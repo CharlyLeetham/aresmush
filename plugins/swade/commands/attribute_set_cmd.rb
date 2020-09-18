@@ -3,7 +3,7 @@ module AresMUSH
     class AttributeSetCmd
       include CommandHandler
       
-      attr_accessor :target_name, :attribute_name, :die_step, :aaaaa
+      attr_accessor :target_name, :attribute_name, :die_step, :aaaa
       
       def parse_args
         # Admin version
@@ -15,7 +15,7 @@ module AresMUSH
         # Self version 
 		else
           self.aaaaa = "Testing some shite"
-		  args = cmd.parse_args(ArgParser.arg1_equals_arg2)
+          args = cmd.parse_args(ArgParser.arg1_equals_arg2)
           self.target_name = enactor_name
           self.attribute_name = titlecase_arg(args.arg1)
           self.die_step = downcase_arg(args.arg2)
