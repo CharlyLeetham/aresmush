@@ -21,6 +21,7 @@ module AresMUSH
         end
       when "sheet"
         return SheetCmd #Swade/commands/sheet_cmd.rb
+	  end
       return nil
     end
 
