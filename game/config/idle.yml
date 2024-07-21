@@ -20,6 +20,9 @@ idle:
     day:
     - 1
   monthly_reminder_title: Monthly Chores
+  permissions:
+    manage_idle: Access idle purge commands.
+    manage_roster: Access roster commands.
   reminder_category: MISC
   restrict_roster: false
   roster_app_category: APP
@@ -45,12 +48,8 @@ idle:
     value: gender
   - field: group
     width: 17
-    title: Faction
-    value: Faction
-  - field: group
-    width: 17
-    title: Iconic Framework
-    value: Iconic Framework
+    title: Organisation
+    value: Organisation
   roster_welcome_msg: Welcome!  You may wish to check your %xcnotes%xn and web portal
     profile page for any notes left by the prior player.  Type %xhonstage%xn to go
     forth and RP.
@@ -61,6 +60,3 @@ idle:
     roster/notes: roster/note
     idle/notes: idle/note
   use_roster: true
-  permissions:
-    manage_idle: Access idle purge commands.
-    manage_roster: Access roster commands.

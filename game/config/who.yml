@@ -8,14 +8,6 @@ who:
   - field: name
     width: 20
     title: Name
-  - field: group
-    value: race
-    width: 16
-    title: Race
-  - field: group
-    value: Iconic Framework
-    width: 18
-    title: Iconic Framework
   - field: connected
     width: 7
     title: Conn

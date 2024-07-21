@@ -37,6 +37,9 @@ chargen:
   lastwill_blurb: The fate of idled-out characters is at the game admin's discretion,
     but you can register a preference with your character's 'last will'. You may ask
     to be killed off, or turned into a NPC, or whatever.
+  permissions:
+    manage_apps: Approve and reject character apps.
+    view_bgs: Can view other characters' backgrounds
   post_approval_message: Please make sure they have a profile image for their log
     icon.
   rank_blurb: Faction rank.
@@ -76,10 +79,6 @@ chargen:
       help: demographics
     groups:
       help: groups
-    ranks:
-      help: ranks
-    cortex:
-      help: cortex
     abilities:
       help: abilities
     background:
@@ -108,6 +107,3 @@ chargen:
 
     RP Hooks:
     %{rp_hooks}
-  permissions:
-    manage_apps: Approve and reject character apps.
-    view_bgs: Can view other characters' backgrounds

@@ -13,7 +13,9 @@ login:
     - 3
     minute:
     - 0
+  boot_timeout_seconds: 300
   creation_not_allowed_message: ''
+  disable_nonadmin_logins: false
   guest_disabled_message: ''
   guest_role: guest
   login_not_allowed_message: ''
@@ -25,7 +27,11 @@ login:
     minute:
     - 19
   notice_timeout_days: 60
+  permissions:
+    login: Able to log in.
+    manage_login: Can access login-related admin tools like resetting someone's password.
   portal_requires_registration: false
+  random_guest_selection: false
   shortcuts:
     logout: quit
     con: connect
@@ -33,7 +39,5 @@ login:
     conn: connect
     kick: boot
     password/change: password/set
+    ban/delete: ban/remove
     notice: notices
-  permissions:
-    login: Able to log in.
-    manage_login: Can access login-related admin tools like resetting someone's password.

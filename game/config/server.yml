@@ -1,18 +1,11 @@
+---
 server:
-    hostname: ares.lostdominion.org
-
-    port: 6006
-    
-    websocket_port: 6007
-
-    web_portal_port: 80
-    
-    engine_api_port: 6008
-    
-    use_https: true
-    
-    certificate_file_path: '/home/ares/certs/fullchain.pem'
-    
-    private_key_file_path: '/home/ares/certs/privkey.pem'
-    
-    bind_address: ''
+  bind_address: ''
+  certificate_file_path: "/home/ares/certs/fullchain.pem"
+  engine_api_port: 6008
+  hostname: recursiverealms.bookoftomorrow.net
+  port: 6006
+  private_key_file_path: "/home/ares/certs/privkey.pem"
+  use_https: true
+  web_portal_port: 80
+  websocket_port: 6007
