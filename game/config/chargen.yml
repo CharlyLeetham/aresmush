@@ -7,6 +7,8 @@ chargen:
   allow_web_submit: true
   app_category: APP
   app_hold_status: HOLD
+  app_notes_prompt: If you want to make any special notes about your application,
+    you can enter them below.
   app_resubmit_status: OPEN
   app_review_commands:
   - app %{name}
@@ -37,6 +39,10 @@ chargen:
   lastwill_blurb: The fate of idled-out characters is at the game admin's discretion,
     but you can register a preference with your character's 'last will'. You may ask
     to be killed off, or turned into a NPC, or whatever.
+  max_bg_length: 0
+  permissions:
+    manage_apps: Approve and reject character apps.
+    view_bgs: Can view other characters' backgrounds
   post_approval_message: Please make sure they have a profile image for their log
     icon.
   rank_blurb: Faction rank.
@@ -108,6 +114,3 @@ chargen:
 
     RP Hooks:
     %{rp_hooks}
-  permissions:
-    manage_apps: Approve and reject character apps.
-    view_bgs: Can view other characters' backgrounds
