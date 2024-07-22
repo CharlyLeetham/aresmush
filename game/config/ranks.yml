@@ -2,31 +2,50 @@
 ranks:
   rank_group: Faction
   rank_rows: 9
-  rank_style: basic
+  rank_style: military
   ranks:
-    Coalition States:
+    Navy:
       Officer:
-        Citizen: true
+        Ensign: true
+        Lieutenant Jg: true
+        Lieutenant: true
+        Captain: true
+        Major: false
+        Colonel: false
+        Commander: false
+        Rear Admiral: false
+        Admiral: false
       Enlisted:
-        Cadet: true
-    Federation of Magic:
-      Enlisted:
-        Citizen: true
+        Crewman Apprentice: true
+        Crewman: true
+        Able Crewman: true
+        Specialist: true
+        Petty Officer 2nd Class: true
+        Petty Officer 1st Class: true
+        Chief Petty Officer: false
+        Senior Chief Petty Officer: false
+        Master Chief Petty Officer: false
+    Marines:
       Officer:
-        Cadet: true
-    RAC:
-      Officer:
-        Level 1: true
-        Level 2: true
-        Level 3: false
-        Level 4: false
+        Ensign: false
+        Lieutenant Jg: false
+        Lieutenant: false
+        Captain: false
+        Major: false
+        Colonel: false
+        Commander: false
+        Brigadier General: false
+        General: false
       Enlisted:
-        Broker: true
-    None:
-      Officer:
-        Wanderer: true
-      Enlisted:
-        Vagabond: true
+        Private: true
+        Private First Class: true
+        Lance Corporal: true
+        Corporal: true
+        Sergeant: true
+        Staff Sergeant: true
+        Gunnery Sergeant: false
+        Master Sergeant: false
+        Sergeant Major: false
   shortcuts:
     rank/clear: rank/set
   permissions:
