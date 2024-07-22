@@ -1,0 +1,7 @@
+<%= center_text("Type: #{character['Type']}", 165) %>
+Description: <%= character['Descriptor'] %>
+Might: <%= character['Might'] %>   Speed: <%= character['Speed'] %>   Intellect: <%= character['Intellect'] %>   Additional Points: <%= character['Additional Points'] %>
+Special Abilities:
+<% character['Tiers']['Tier 1']['Special Abilities'].each do |ability| %>
+  - <%= ability['Name'] %>: <%= ability['Description'] %>
+<% end %>

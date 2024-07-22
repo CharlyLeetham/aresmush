@@ -1,26 +1,18 @@
 module AresMUSH
   module RecursiveRealms
     class ListAllTypesCmd
-      include CommandHandler
+      include TemplateHelpers
+
+      def initialize(client, cmd, enactor)
+        @client = client
+        @cmd = cmd
+        @enactor = enactor
+      end
 
       def handle
         characters_config = Global.read_config("RecursiveRealms", "characters")
-
-        if characters_config.nil?
-          client.emit_ooc "Error: Configuration data not found. Please check the RecursiveRealms.yml file."
-          return
-        end
-
-        begin
-          characters_config.each do |character|
-            template = CharacterTypeTemplate.new(character)
-            client.emit template.render
-            client.emit_ooc "-" * 200
-          end
-        rescue => e
-          client.emit_ooc "Error: #{e.message}"
-          Global.logger.error "Error reading character types: #{e.message}"
-        end
+        template = ERB.new(File.read(File.join(AresMUSH.plugin_dir, 'public', 'recursive_realms_templates', 'character_types.erb')))
+        @client.emit template.result(binding)
       end
     end
   end

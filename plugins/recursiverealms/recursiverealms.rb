@@ -30,7 +30,8 @@ module AresMUSH
                 if fr && detail && attrib
                     fr = fr.downcase
                     detail = detail.downcase
-                    case detail
+                    attrib = attrib.downcase
+                    case attrib
                     when "tiers"
                         return ListTypeTiersCmd
                     when "sa"
