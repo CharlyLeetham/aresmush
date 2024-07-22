@@ -1,5 +1,5 @@
 module AresMUSH
-    module Rr
+    module RecursiveRealms
       class ListTypesCmd
         include CommandHandler
   
