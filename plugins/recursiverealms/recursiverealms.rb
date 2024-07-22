@@ -33,7 +33,7 @@ module AresMUSH
                     client.emit_ooc "Debug: detail initial state is '#{split_switch[1]}'"
                 end                  
                 if detail =~ (tiers|sa|moves|full)
-                    type, detail = $1.downcase, $2.downcase
+                    detail = detail.downcase
                     case detail
                     when "tiers"
                     return ListTypeTiersCmd
@@ -44,8 +44,8 @@ module AresMUSH
                     when "full"
                     return ListTypeFullCmd
                     end
-                elsif cmd.args =~ /^(\w+)$/
-                    self.type = $1.downcase
+                else
+                    self.type = type.downcase
                     return ListTypeCmd
                 else
                     client.emit_ooc "Error: Invalid command format."
