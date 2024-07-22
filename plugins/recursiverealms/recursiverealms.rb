@@ -9,6 +9,11 @@ module AresMUSH
       end
   
       def self.get_cmd_handler(client, cmd, enactor)
+
+        client.emit_ooc "Debug: Entered get_cmd_handler"
+        client.emit_ooc "Debug: cmd.root is '#{cmd.root}'"
+        client.emit_ooc "Debug: cmd.switch is '#{cmd.switch}'"
+        client.emit_ooc "Debug: cmd.args initial state is '#{cmd.args}'"
         case cmd.root          
         when "rr"
           case cmd.switch               
