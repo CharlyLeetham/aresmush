@@ -5,7 +5,7 @@ module AresMUSH
   
         def initialize(character)
           @character = character
-          super File.dirname(__FILE__) + "/character_types_template.erb"
+          super File.dirname(__FILE__) + "/character_types.erb"
         end
       end
     end
