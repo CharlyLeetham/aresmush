@@ -1,0 +1,21 @@
+<%= @character['Type'] %>
+<%= @character['Descriptor'] %>
+Attributes:
+  Might: <%= @character['Might'] %>
+  Speed: <%= @character['Speed'] %>
+  Intellect: <%= @character['Intellect'] %>
+  Additional Points: <%= @character['Additional Points'] %>
+Tier 1:
+  Effort: <%= @character['Tiers']['Tier 1']['Effort'] %>
+  Might Edge: <%= @character['Tiers']['Tier 1']['Physical Nature']['Might Edge'] %>
+  Speed Edge: <%= @character['Tiers']['Tier 1']['Physical Nature']['Speed Edge'] %>
+  Intellect Edge: <%= @character['Tiers']['Tier 1']['Physical Nature']['Intellect Edge'] %>
+  Cypher Limit: <%= @character['Tiers']['Tier 1']['Cypher Limit'] %>
+Special Abilities:
+<% @character['Tiers']['Tier 1']['Special Abilities'].each do |ability| %>
+  - <%= ability['Name'] %>: <%= ability['Description'] %> (Modifier: <%= ability['Modifier'] %>)
+<% end %>
+Moves:
+<% @character['Tiers']['Tier 1']['Moves'].each do |move| %>
+  - <%= move['Name'] %>: <%= move['Description'] %> (Type: <%= move['Type'] %>, Duration: <%= move['Duration'] %>, Cost: <%= move['Cost'] %>, Modifier: <%= move['Modifier'] %>)
+<% end %>
