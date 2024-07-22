@@ -41,7 +41,7 @@ module AresMUSH
                         return ListTypeFullCmd
                     end
                 elsif fr && detail
-                    self.type = fr.downcase
+                    self.fr = fr.downcase
                     return ListTypeCmd
                 else
                     return ListAllTypesCmd
