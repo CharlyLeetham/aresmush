@@ -9,16 +9,14 @@ module AresMUSH
       end
   
       def self.get_cmd_handler(client, cmd, enactor)
-        case cmd.root
+        case cmd.root          
         when "rr"
           case cmd.switch               
           when "start"
             return StartCmd
           when "types"
-            # Debugging output for cmd.args
-            client.emit_ooc "Debug: Command arguments are '#{cmd.args}'"
-            Global.logger.debug "Debug: Command arguments are '#{cmd.args}'"
-            return             
+            client.emit_ooc "Debug: cmd.switch is 'types'"
+            client.emit_ooc "Debug: cmd.args before check is '#{cmd.args}'"           
             if cmd.args
 
             # Debugging output for cmd.args
