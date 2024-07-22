@@ -28,8 +28,11 @@ module AresMUSH
                 when "full"
                   return ListTypeFullCmd
                 end
-              else
+              elsif cmd.args =~ /^(\w+)$/
+                self.type = $1.downcase
                 return ListTypeCmd
+              else
+                client.emit_ooc "Error: Invalid command format."
               end
             else
               return ListAllTypesCmd
