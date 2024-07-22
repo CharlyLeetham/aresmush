@@ -9,45 +9,80 @@ module AresMUSH
       end
   
       def self.get_cmd_handler(client, cmd, enactor)
-
-        client.emit_ooc "Debug: Entered get_cmd_handler"
-        client.emit_ooc "Debug: cmd.root is '#{cmd.root}'"
-        client.emit_ooc "Debug: cmd.switch is '#{cmd.switch}'"
-        client.emit_ooc "Debug: cmd.args initial state is '#{cmd.args}'"
-        case cmd.root          
+        case cmd.root
         when "rr"
-          case cmd.switch               
+          case cmd.switch
           when "start"
             return StartCmd
           when "types"
-            client.emit_ooc "Debug: cmd.switch is 'types'"
-            client.emit_ooc "Debug: cmd.args before check is '#{cmd.args}'"           
             if cmd.args
-
-            # Debugging output for cmd.args
-            client.emit_ooc "Debug: Command arguments are '#{cmd.args}'"
-            Global.logger.debug "Debug: Command arguments are '#{cmd.args}'"
-            return                
               if cmd.args =~ /^(\w+)\/(tiers|sa|moves|full)$/
                 type, detail = $1.downcase, $2.downcase
                 case detail
                 when "tiers"
-                  return ListTypeTiersCmd
+                  return ListTypeTiersCmd.new(client, cmd, enactor)
                 when "sa"
-                  return ListTypeSACmd
+                  return ListTypeSACmd.new(client, cmd, enactor)
                 when "moves"
-                  return ListTypeMovesCmd
+                  return ListTypeMovesCmd.new(client, cmd, enactor)
                 when "full"
-                  return ListTypeFullCmd
+                  return ListTypeFullCmd.new(client, cmd, enactor)
                 end
               elsif cmd.args =~ /^(\w+)$/
-                self.type = $1.downcase
-                return ListTypeCmd
+                return ListTypeCmd.new(client, cmd, enactor)
               else
                 client.emit_ooc "Error: Invalid command format."
               end
             else
-              return ListAllTypesCmd
+              # Split cmd.switch to handle cases like 'types/vector'
+              split_switch = cmd.switch.split('/')
+              if split_switch.length > 1
+                type = split_switch[1]
+                detail = split_switch.length > 2 ? split_switch[2] : nil
+  
+                case detail
+                when "tiers"
+                  return ListTypeTiersCmd.new(client, cmd, enactor)
+                when "sa"
+                  return ListTypeSACmd.new(client, cmd, enactor)
+                when "moves"
+                  return ListTypeMovesCmd.new(client, cmd, enactor)
+                when "full"
+                  return ListTypeFullCmd.new(client, cmd, enactor)
+                else
+                  # Handle case when only type is provided
+                  cmd.args = type
+                  return ListTypeCmd.new(client, cmd, enactor)
+                end
+              else
+                return ListAllTypesCmd.new(client, cmd, enactor)
+              end
+            end
+  
+            if cmd.args
+              # Debugging output for cmd.args
+              client.emit_ooc "Debug: Command arguments are '#{cmd.args}'"
+              
+              if cmd.args =~ /^(\w+)\/(tiers|sa|moves|full)$/
+                type, detail = $1.downcase, $2.downcase
+                case detail
+                when "tiers"
+                  return ListTypeTiersCmd.new(client, cmd, enactor)
+                when "sa"
+                  return ListTypeSACmd.new(client, cmd, enactor)
+                when "moves"
+                  return ListTypeMovesCmd.new(client, cmd, enactor)
+                when "full"
+                  return ListTypeFullCmd.new(client, cmd, enactor)
+                end
+              elsif cmd.args =~ /^(\w+)$/
+                self.type = $1.downcase
+                return ListTypeCmd.new(client, cmd, enactor)
+              else
+                client.emit_ooc "Error: Invalid command format."
+              end
+            else
+              return ListAllTypesCmd.new(client, cmd, enactor)
             end
           when "select"
             return SelectTypeCmd
@@ -74,4 +109,6 @@ module AresMUSH
         return { "RecursiveRealms" => t('recursive_realms.help') }
       end
     end
-end
+  end
+
+  
