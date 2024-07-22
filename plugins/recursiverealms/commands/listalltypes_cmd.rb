@@ -1,6 +1,7 @@
 module AresMUSH
   module RecursiveRealms
     class ListAllTypesCmd
+      include CommandHandler
       
       def initialize(client, cmd, enactor)
         @client = client
