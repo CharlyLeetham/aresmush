@@ -4,7 +4,7 @@ module AresMUSH
         include CommandHandler
   
         def handle
-          types = Global.read_config("rr", "characters").map { |c| c['Type'] }
+          types = Global.read_config("RecursiveRealms", "characters").map { |c| c['Type'] }
           client.emit_ooc "Available Character Types: #{types.join(", ")}"
         end
       end
