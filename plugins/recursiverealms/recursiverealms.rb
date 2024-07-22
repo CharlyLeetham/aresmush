@@ -16,7 +16,7 @@ module AresMUSH
             return StartCmd
           when "types"
             if cmd.args
-              if cmd.args =~ /^([^\s]+)\/(tiers|sa|moves|full)$/
+              if cmd.args =~ /^(\w+)\/(tiers|sa|moves|full)$/
                 type, detail = $1.downcase, $2.downcase
                 case detail
                 when "tiers"
@@ -60,4 +60,3 @@ module AresMUSH
       end
     end
 end
-  
