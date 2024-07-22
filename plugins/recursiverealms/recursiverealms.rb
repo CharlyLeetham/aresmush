@@ -10,20 +10,21 @@ module AresMUSH
   
       def self.get_cmd_handler(client, cmd, enactor)
         case cmd.root          
-        when "rr"         
-          case cmd.switch               
+        when "rr" 
+        #We're looking to see if there's multiple arguments passed in here.
+        split_switch = cmd.switch.split('/')
+        if split_switch.length > 1
+            type = split_switch[0]
+            detail = split_switch.length > 2 ? split_switch[1] : nil
+            client.emit_ooc "Debug: type initial state is '#{split_switch[0]}'"
+            client.emit_ooc "Debug: detail initial state is '#{split_switch[1]}'"
+        end                     
+          case type.switch               
           when "start"
             return StartCmd
           when "types"       
             if cmd.args
-                #We're looking to see if there's multiple arguments passed in here.
-                split_switch = cmd.switch.split('/')
-                if split_switch.length > 1
-                    type = split_switch[0]
-                    detail = split_switch.length > 2 ? split_switch[1] : nil
-                    client.emit_ooc "Debug: type initial state is '#{split_switch[0]}'"
-                    client.emit_ooc "Debug: detail initial state is '#{split_switch[1]}'"
-                end                 
+                
                 if type && detail
                     type = type.downcase
                     detail = detail.downcase
