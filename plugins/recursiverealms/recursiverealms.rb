@@ -19,7 +19,7 @@ module AresMUSH
                 #We're looking to see if there's multiple arguments passed in here.
                 split_switch = cmd.switch.split('/')
                 if split_switch.length > 1
-                    type = split_switch[0]
+                    fr = split_switch[0]
                     detail = split_switch.length > 2 ? split_switch[1] : nil
                     attrib = split_switch.length > 3 ? split_switch[2] : nil
                     client.emit_ooc "Debug: type initial state is '#{split_switch[0]}'"
@@ -27,8 +27,8 @@ module AresMUSH
                     client.emit_ooc "Debug: attrib initial state is '#{split_switch[2]}'"
                 end             
                 
-                if type && detail && attrib
-                    type = type.downcase
+                if fr && detail && attrib
+                    fr = fr.downcase
                     detail = detail.downcase
                     case detail
                     when "tiers"
@@ -40,8 +40,8 @@ module AresMUSH
                     when "full"
                         return ListTypeFullCmd
                     end
-                elsif type && detail
-                    self.type = type.downcase
+                elsif fr && detail
+                    self.type = fr.downcase
                     return ListTypeCmd
                 else
                     return ListAllTypesCmd
