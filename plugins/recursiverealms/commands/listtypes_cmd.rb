@@ -1,5 +1,5 @@
 module AresMUSH
-    module RecursiveRealms
+    module Rr
       class ListTypesCmd
         include CommandHandler
   
@@ -7,7 +7,7 @@ module AresMUSH
           characters_config = Global.read_config("RecursiveRealms", "characters")
           
           if characters_config.nil?
-            client.emit_ooc "Error: Configuration data not found. Please check the rr_types.yml file."
+            client.emit_ooc "Error: Configuration data not found. Please check the RecursiveRealms.yml file."
             return
           end
   
@@ -29,24 +29,34 @@ module AresMUSH
               special_abilities = tier1['Special Abilities']
               moves = tier1['Moves']
   
-              client.emit_ooc "Type: #{type}"
-              client.emit_ooc "Description: #{description}"
-              client.emit_ooc "Attributes: Might: #{might}, Speed: #{speed}, Intellect: #{intellect}, Additional Points: #{additional_points}"
-              client.emit_ooc "Tier 1:"
-              client.emit_ooc "  Effort: #{effort}"
-              client.emit_ooc "  Might Edge: #{might_edge}"
-              client.emit_ooc "  Speed Edge: #{speed_edge}"
-              client.emit_ooc "  Intellect Edge: #{intellect_edge}"
-              client.emit_ooc "  Cypher Limit: #{cypher_limit}"
-              client.emit_ooc "  Special Abilities:"
-              special_abilities.each do |ability|
-                client.emit_ooc "    - #{ability['Name']}: #{ability['Description']} (Modifier: #{ability['Modifier']})"
-              end
-              client.emit_ooc "  Moves:"
-              moves.each do |move|
-                client.emit_ooc "    - #{move['Name']}: #{move['Description']} (Type: #{move['Type']}, Duration: #{move['Duration']}, Cost: #{move['Cost']}, Modifier: #{move['Modifier']})"
-              end
-              client.emit_ooc ""
+              special_abilities_text = special_abilities.map do |ability|
+                "    - #{ability['Name']}: #{ability['Description']} (Modifier: #{ability['Modifier']})"
+              end.join("\n")
+  
+              moves_text = moves.map do |move|
+                "    - #{move['Name']}: #{move['Description']} (Type: #{move['Type']}, Duration: #{move['Duration']}, Cost: #{move['Cost']}, Modifier: #{move['Modifier']})"
+              end.join("\n")
+  
+              client.emit_ooc <<~OUTPUT
+                Type: #{type}
+                Description: #{description}
+                Attributes:
+                  Might: #{might}
+                  Speed: #{speed}
+                  Intellect: #{intellect}
+                  Additional Points: #{additional_points}
+                Tier 1:
+                  Effort: #{effort}
+                  Might Edge: #{might_edge}
+                  Speed Edge: #{speed_edge}
+                  Intellect Edge: #{intellect_edge}
+                  Cypher Limit: #{cypher_limit}
+                  Special Abilities:
+                #{special_abilities_text}
+                  Moves:
+                #{moves_text}
+                
+              OUTPUT
             end
           rescue => e
             client.emit_ooc "Error: #{e.message}"
