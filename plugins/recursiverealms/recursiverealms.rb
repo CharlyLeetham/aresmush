@@ -21,8 +21,8 @@ module AresMUSH
         if split_switch.length > 1
             type = split_switch[1]
             detail = split_switch.length > 2 ? split_switch[2] : nil
-            client.emit_ooc "Debug: type initial state is '#{type}'"
-            client.emit_ooc "Debug: detail initial state is '#{detail}'"
+            client.emit_ooc "Debug: type initial state is '#{split_switch[0]}'"
+            client.emit_ooc "Debug: detail initial state is '#{split_switch[1]}'"
         end            
           case cmd.switch               
           when "start"
