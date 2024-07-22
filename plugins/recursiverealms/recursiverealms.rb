@@ -9,51 +9,47 @@ module AresMUSH
       end
   
       def self.get_cmd_handler(client, cmd, enactor)
-
-        client.emit_ooc "Debug: Entered get_cmd_handler"
-        client.emit_ooc "Debug: cmd.root is '#{cmd.root}'"
-        client.emit_ooc "Debug: cmd.switch is '#{cmd.switch}'"
-        client.emit_ooc "Debug: cmd.args initial state is '#{cmd.args}'"
         case cmd.root          
         when "rr"
-
+        #We're looking to see if there's multiple arguments passed in here.
         split_switch = cmd.switch.split('/')
         if split_switch.length > 1
-            type = split_switch[1]
-            detail = split_switch.length > 2 ? split_switch[2] : nil
+            type = split_switch[0]
+            detail = split_switch.length > 2 ? split_switch[1] : nil
             client.emit_ooc "Debug: type initial state is '#{split_switch[0]}'"
             client.emit_ooc "Debug: detail initial state is '#{split_switch[1]}'"
         end            
           case cmd.switch               
           when "start"
             return StartCmd
-          when "types"
-            client.emit_ooc "Debug: cmd.switch is 'types'"
-            client.emit_ooc "Debug: cmd.args before check is '#{cmd.args}'"           
+          when "types"       
             if cmd.args
-
-            # Debugging output for cmd.args
-            client.emit_ooc "Debug: Command arguments are '#{cmd.args}'"
-            Global.logger.debug "Debug: Command arguments are '#{cmd.args}'"
-            return                
-              if cmd.args =~ /^(\w+)\/(tiers|sa|moves|full)$/
-                type, detail = $1.downcase, $2.downcase
-                case detail
-                when "tiers"
-                  return ListTypeTiersCmd
-                when "sa"
-                  return ListTypeSACmd
-                when "moves"
-                  return ListTypeMovesCmd
-                when "full"
-                  return ListTypeFullCmd
+                #We're looking to see if there's multiple arguments passed in here.
+                split_switch = cmd.switch.split('/')
+                if split_switch.length > 1
+                    type = split_switch[0]
+                    detail = split_switch.length > 2 ? split_switch[1] : nil
+                    client.emit_ooc "Debug: type initial state is '#{split_switch[0]}'"
+                    client.emit_ooc "Debug: detail initial state is '#{split_switch[1]}'"
+                end                  
+                if detail =~ (tiers|sa|moves|full)
+                    type, detail = $1.downcase, $2.downcase
+                    case detail
+                    when "tiers"
+                    return ListTypeTiersCmd
+                    when "sa"
+                    return ListTypeSACmd
+                    when "moves"
+                    return ListTypeMovesCmd
+                    when "full"
+                    return ListTypeFullCmd
+                    end
+                elsif cmd.args =~ /^(\w+)$/
+                    self.type = $1.downcase
+                    return ListTypeCmd
+                else
+                    client.emit_ooc "Error: Invalid command format."
                 end
-              elsif cmd.args =~ /^(\w+)$/
-                self.type = $1.downcase
-                return ListTypeCmd
-              else
-                client.emit_ooc "Error: Invalid command format."
-              end
             else
               return ListAllTypesCmd
             end
