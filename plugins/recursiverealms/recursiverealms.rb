@@ -16,6 +16,11 @@ module AresMUSH
             return StartCmd
           when "types"
             if cmd.args
+
+            # Debugging output for cmd.args
+            client.emit_ooc "Debug: Command arguments are '#{cmd.args}'"
+            Global.logger.debug "Debug: Command arguments are '#{cmd.args}'"
+            return                
               if cmd.args =~ /^(\w+)\/(tiers|sa|moves|full)$/
                 type, detail = $1.downcase, $2.downcase
                 case detail
