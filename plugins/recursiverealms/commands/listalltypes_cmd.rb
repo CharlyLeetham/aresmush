@@ -3,18 +3,23 @@ module AresMUSH
     class ListAllTypesCmd
       include CommandHandler
 
-      def initialize(client, cmd, enactor)
-        @client = client
-        @cmd = cmd
-        @enactor = enactor
-      end
-
       def handle
         characters_config = Global.read_config("RecursiveRealms", "characters")
-          # Emit the configuration to the client
-  client.emit "Characters Configuration: #{characters_config.inspect}"
-        template = CharacterTypesTemplate.new characters_config
-        #client.emit template.render
+        
+        if characters_config.nil?
+          client.emit_ooc "Error: Configuration data not found. Please check the RecursiveRealms.yml file."
+          return
+        end
+
+        begin
+          characters_config.each do |character|
+            template = CharacterTypeTemplate.new(character)
+            client.emit template.render
+          end
+        rescue => e
+          client.emit_ooc "Error: #{e.message}"
+          Global.logger.error "Error reading character types: #{e.message}"
+        end
       end
     end
   end

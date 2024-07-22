@@ -1,17 +1,12 @@
 module AresMUSH
     module RecursiveRealms
-      class CharacterTypesTemplate
-        include TemplateHelpers
-        attr_accessor :character_types
-
-        def initialize(characters_types)
-          self.character_types = characters_types
-           super File.dirname(__FILE__) + "/character_types.erb"
-        end
-
-        private
+      class CharacterTypeTemplate < ErbTemplateRenderer
+        attr_accessor :character
   
-        attr_reader :characters
+        def initialize(character)
+          @character = character
+          super File.dirname(__FILE__) + "/character_types_template.erb"
+        end
       end
     end
   end
