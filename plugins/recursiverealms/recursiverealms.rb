@@ -11,14 +11,14 @@ module AresMUSH
       def self.get_cmd_handler(client, cmd, enactor)
         case cmd.root
         when "rr"
-          case cmd.switch
-            # Debugging output for cmd.args
-            client.emit_ooc "Debug: Command arguments are '#{cmd.args}'"
-            Global.logger.debug "Debug: Command arguments are '#{cmd.args}'"
-            return                
+          case cmd.switch               
           when "start"
             return StartCmd
           when "types"
+            # Debugging output for cmd.args
+            client.emit_ooc "Debug: Command arguments are '#{cmd.args}'"
+            Global.logger.debug "Debug: Command arguments are '#{cmd.args}'"
+            return             
             if cmd.args
 
             # Debugging output for cmd.args
