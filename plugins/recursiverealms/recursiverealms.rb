@@ -17,7 +17,7 @@ module AresMUSH
                 return StartCmd
               when "types" #First step is to select the Character Type
                 if (!cmd.args)
-                    return TypesCmd  #if rr/types is entered, all the Character types will be shown
+                    return ListTypesCmd  #if rr/types is entered, all the Character types will be shown
                 else
                     return SelectTypeCmd
                 end
