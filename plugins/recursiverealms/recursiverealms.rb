@@ -1,3 +1,4 @@
+$:.unshift File.dirname(__FILE__)
 module AresMUSH
     module RecursiveRealms
       def self.plugin_dir
