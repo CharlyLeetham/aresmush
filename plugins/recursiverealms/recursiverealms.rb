@@ -16,6 +16,14 @@ module AresMUSH
         client.emit_ooc "Debug: cmd.args initial state is '#{cmd.args}'"
         case cmd.root          
         when "rr"
+
+        split_switch = cmd.switch.split('/')
+        if split_switch.length > 1
+            type = split_switch[1]
+            detail = split_switch.length > 2 ? split_switch[2] : nil
+            client.emit_ooc "Debug: type initial state is '#{type}'"
+            client.emit_ooc "Debug: detail initial state is '#{detail}'"
+        end            
           case cmd.switch               
           when "start"
             return StartCmd
