@@ -22,7 +22,7 @@ rr_types:
             Description: You can use any weapon.
           - Name: Physical Skills
             Modifier: None
-            Description: You are trained in your choice of two of the following: balancing, climbing, jumping, running, or swimming.
+            Description: You are trained in your choice of two of the following - balancing, climbing, jumping, running, or swimming.
           - Name: Translation
             Modifier: None
             Effect: Easing
