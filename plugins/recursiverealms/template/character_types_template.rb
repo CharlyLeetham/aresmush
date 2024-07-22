@@ -1,6 +1,6 @@
 module AresMUSH
     module RecursiveRealms
-      class CharacterTypeTemplate < ErbTemplateRenderer
+      class CharacterTypesTemplate < ErbTemplateRenderer
         attr_accessor :character
   
         def initialize(character)

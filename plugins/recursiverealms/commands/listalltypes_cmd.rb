@@ -13,7 +13,7 @@ module AresMUSH
 
         begin
           characters_config.each do |character|
-            template = CharacterTypeTemplate.new(character)
+            template = CharacterTypesTemplate.new(character)
             client.emit template.render
           end
         rescue => e
