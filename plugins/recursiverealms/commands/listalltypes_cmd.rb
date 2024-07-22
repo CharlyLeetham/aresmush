@@ -13,7 +13,7 @@ module AresMUSH
         characters_config = Global.read_config("RecursiveRealms", "characters")
           # Emit the configuration to the client
   client.emit "Characters Configuration: #{characters_config.inspect}"
-        #template = CharacterTypesTemplate.new(characters_config)
+        template = CharacterTypesTemplate.new(characters_config)
         #client.emit template.render
       end
     end
