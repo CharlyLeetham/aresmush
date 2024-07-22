@@ -2,7 +2,6 @@ module AresMUSH
   module RecursiveRealms
     class ListAllTypesCmd
       include CommandHandler
-
       def initialize(client, cmd, enactor)
         @client = client
         @cmd = cmd
@@ -11,8 +10,9 @@ module AresMUSH
 
       def handle
         characters_config = Global.read_config("RecursiveRealms", "characters")
-        super File.dirname(__FILE__) + "/character_types.erb"
-        #@client.emit template.result(binding)
+
+        template = CharacterTypeTemplate.new(character)
+        client.emit template.render        
       end
     end
   end
