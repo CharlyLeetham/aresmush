@@ -1,7 +1,7 @@
 module AresMUSH
   module RecursiveRealms
     class ListTypeCmd
-      include TemplateHelpers
+      
 
       def initialize(client, cmd, enactor)
         @client = client
