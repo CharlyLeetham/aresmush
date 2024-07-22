@@ -11,8 +11,8 @@ module AresMUSH
       def self.get_cmd_handler(client, cmd, enactor)
 
                     # Debugging output for cmd.args
-                    client.emit_ooc "Debug: Command arguments are '#{cmd.args}'"
-                    Global.logger.debug "Debug: Command arguments are '#{cmd.args}'"
+                    client.emit_ooc "Debug: Command arguments are '#{cmd.root}'"
+                    Global.logger.debug "Debug: Command arguments are '#{cmd.root}'"
                     return 
         case cmd.root
         when "rr"
