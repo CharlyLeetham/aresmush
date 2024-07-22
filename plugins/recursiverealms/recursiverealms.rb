@@ -30,19 +30,17 @@ module AresMUSH
                     detail = detail.downcase
                     case detail
                     when "tiers"
-                    return ListTypeTiersCmd
+                        return ListTypeTiersCmd
                     when "sa"
-                    return ListTypeSACmd
+                        return ListTypeSACmd
                     when "moves"
-                    return ListTypeMovesCmd
+                        return ListTypeMovesCmd
                     when "full"
-                    return ListTypeFullCmd
+                        return ListTypeFullCmd
                     end
                 else
                     self.type = type.downcase
                     return ListTypeCmd
-                #else
-                #    client.emit_ooc "Error: Invalid command format."
                 end
             else
               return ListAllTypesCmd
