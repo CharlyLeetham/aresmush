@@ -29,10 +29,9 @@ module AresMUSH
                 if split_switch.length > 1
                     type = split_switch[0]
                     detail = split_switch.length > 2 ? split_switch[1] : nil
-                    client.emit_ooc "Debug: type initial state is '#{split_switch[0]}'"
-                    client.emit_ooc "Debug: detail initial state is '#{split_switch[1]}'"
                 end                  
-                if detail =~ (tiers|sa|moves|full)
+                if type && detail
+                    type = type.downcase
                     detail = detail.downcase
                     case detail
                     when "tiers"
