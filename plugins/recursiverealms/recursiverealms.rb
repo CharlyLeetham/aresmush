@@ -47,8 +47,8 @@ module AresMUSH
                 else
                     self.type = type.downcase
                     return ListTypeCmd
-                else
-                    client.emit_ooc "Error: Invalid command format."
+                #else
+                #    client.emit_ooc "Error: Invalid command format."
                 end
             else
               return ListAllTypesCmd
