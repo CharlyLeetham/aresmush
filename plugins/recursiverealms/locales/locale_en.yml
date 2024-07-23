@@ -4,4 +4,4 @@ en:
         char_type_attributesheading: "Attributes"
         char_type_tiersheading: "Tiers"
         char_type_abilitiesheading: "Special"
-        char_type_abilitiesheading: "Moves"
+        char_type_movesheading: "Moves"
