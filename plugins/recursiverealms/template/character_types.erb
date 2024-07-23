@@ -13,10 +13,10 @@
   <%= left("%xhEffort:%xn #{char['Tiers']['Tier 1']['Effort']}  %xhMight Edge:%xn #{char['Tiers']['Tier 1']['Physical Nature']['Might Edge']} %xhSpeed Edge:%xn #{char['Tiers']['Tier 1']['Physical Nature']['Speed Edge']}  %xhIntellect Edge:%xn #{char['Tiers']['Tier 1']['Physical Nature']['Intellect Edge']}  %xhCypher Limit:%xn #{char['Tiers']['Tier 1']['Cypher Limit']}", 80) %>
   <%= line_with_text t('RecursiveRealms.char_type_abilitiesheading') %>
   <% @char['Tiers']['Tier 1']['Special Abilities'].each do |ability| %>
-     <%= left("%xh#{ability['Name']}:%xn #{ability['Description']} %xhModifier:%xn #{ability['Modifier']}", 80)
+     <%= left("%xh#{ability['Name']}:%xn #{ability['Description']} %xhModifier:%xn #{ability['Modifier']}", 80) %>
   <% end %>
   <%= line_with_text t('RecursiveRealms.char_type_movesheading') %>
   <% @char['Tiers']['Tier 1']['Moves'].each do |move| %>
-    <%= left("%xh#{move['Name']}:%xn  #{move['Description']} (%xhType:%xn #{move['Type']}, %xhDuration:%xn #{move['Duration']}, %xhCost:%xn #{move['Cost']}, %xhModifier:%xn #{move['Modifier']}", 80)
+    <%= left("%xh#{move['Name']}:%xn  #{move['Description']} (%xhType:%xn #{move['Type']}, %xhDuration:%xn #{move['Duration']}, %xhCost:%xn #{move['Cost']}, %xhModifier:%xn #{move['Modifier']}", 80) %>
   <% end %>
   <%= footer %>
