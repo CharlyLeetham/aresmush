@@ -29,7 +29,7 @@ module AresMUSH
                     client.emit_ooc "Debug: attrib initial state is '#{split_switch[2]}'"
                 end             
                 
-                if fr && detail && attrib
+                if fr && detail && && attrib && !attrib.empty?
                     fr = fr.downcase
                     detail = detail.downcase
                     attrib = attrib.downcase
@@ -43,7 +43,7 @@ module AresMUSH
                     when "full"
                         return ListTypeFullCmd
                     end
-                elsif fr && detail
+                elsif fr && detail && (!attrib || attrib.empty?)
                     client.emit_ooc "Debug: This loop"
                     self.detail = detail.downcase
                     return ListTypeCmd
