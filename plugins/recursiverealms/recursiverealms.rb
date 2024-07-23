@@ -43,7 +43,7 @@ module AresMUSH
                     when "full"
                         return ListTypeFullCmd
                     end
-                elsif fr && detail && (!attrib || attrib.empty?)
+                elsif fr && detail && (!attrib.nil || attrib.empty?)
                     client.emit_ooc "Debug: This loop"
                     self.detail = detail.downcase
                     return ListTypeCmd
