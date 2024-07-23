@@ -29,7 +29,7 @@ module AresMUSH
                     client.emit_ooc "Debug: attrib initial state is '#{split_switch[2]}'"
                 end             
                 
-                if fr && detail && && attrib && !attrib.empty?
+                if fr && detail && attrib && !attrib.empty?
                     fr = fr.downcase
                     detail = detail.downcase
                     attrib = attrib.downcase
