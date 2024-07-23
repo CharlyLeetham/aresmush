@@ -1,6 +1,6 @@
 module AresMUSH
-    module self.RecursiveRealms
-        def center_text(text, width)
+    module RecursiveRealms
+        def self.center_text(text, width)
           padding = (width - text.length) / 2
           ' ' * padding + text + ' ' * padding
         end
