@@ -14,8 +14,7 @@
   <%= line_with_text t('RecursiveRealms.char_type_abilitiesheading') %>
   <% @char['Tiers']['Tier 1']['Special Abilities'].each do |ability| %>
      <%= left("%xh#{ability['Name']}:%xn #{ability['Description']} %xhModifier:%xn #{ability['Modifier']}", 80) %>
-     <%= texttowrap = #{ability['Description']} %>
-     <%= AresMUSH::RecursiveRealms.wrap_text(texttowrap, 80) %>
+     <%= AresMUSH::RecursiveRealms.wrap_text(ability['Description'], 80) %>
   <% end %>
   <%= line_with_text t('RecursiveRealms.char_type_movesheading') %>
   <% @char['Tiers']['Tier 1']['Moves'].each do |move| %>
