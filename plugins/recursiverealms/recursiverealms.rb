@@ -2,9 +2,6 @@ $:.unshift File.dirname(__FILE__)
 module AresMUSH
     module RecursiveRealms
 
-    # Require the helper file
-    require_relative "helpers/templatehelpers"
-
       def self.plugin_dir
         File.dirname(__FILE__)
       end
