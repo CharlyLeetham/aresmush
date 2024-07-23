@@ -2,3 +2,4 @@ en:
     RecursiveRealms:
         # Titles
         char_type_title: "Character Type for: %{chartype} "
+        welcome: "Welcome World"
