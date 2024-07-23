@@ -24,6 +24,9 @@ module AresMUSH
                     fr = split_switch[0]
                     detail = split_switch.length > 2 ? split_switch[1] : nil
                     attrib = split_switch.length > 3 ? split_switch[2] : nil
+                    client.emit_ooc "Debug: type initial state is '#{split_switch[0]}'"
+                    client.emit_ooc "Debug: detail initial state is '#{split_switch[1]}'"
+                    client.emit_ooc "Debug: attrib initial state is '#{split_switch[2]}'"
                 end             
                 
                 if fr && detail && attrib
@@ -38,8 +41,6 @@ module AresMUSH
                     when "moves"
                         return ListTypeMovesCmd
                     when "full"
-                        return ListTypeFullCmd
-                    else
                         return ListTypeFullCmd
                     end
                 elsif fr && detail
