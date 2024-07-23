@@ -1,4 +1,4 @@
 en:
     RecursiveRealms:
         # Titles
-        char_type: "Character Type for: %{chartype} "
+        char_type_title: "Character Type for: %{chartype} "
