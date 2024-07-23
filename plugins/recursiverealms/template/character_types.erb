@@ -8,22 +8,15 @@
   <%= left("%xhIntellect:%xn #{char['Intellect']}", 80) %>
   <%= left("%xhAdditional Points:%xn #{char['Additional Points']}", 80) %>
   <%= divider %>
-  <%= line_with_text t('RecursiveRealms.tiersheading') %>
+  <%= line_with_text t('RecursiveRealms.char_type_tiersheading') %>
   <%= left("%xhTier 1:%xn", 80) %>
-  <%= left("%xhEffort:%xn #{char['Tiers']['Tier 1']['Effort']}", 80) %>
-  <%= left("%xhMight Edge:%xn #{char['Tiers']['Tier 1']['Physical Nature']['Might Edge']} %xhSpeed Edge:%xn #{char['Tiers']['Tier 1']['Physical Nature']['Speed Edge']}  %xhIntellect Edge:%xn #{char['Tiers']['Tier 1']['Physical Nature']['Intellect Edge']}  %xhCypher Limit:%xn #{char['Tiers']['Tier 1']['Cypher Limit']}", 80) %>
-
-
+  <%= left("%xhEffort:%xn #{char['Tiers']['Tier 1']['Effort']}  %xhMight Edge:%xn #{char['Tiers']['Tier 1']['Physical Nature']['Might Edge']} %xhSpeed Edge:%xn #{char['Tiers']['Tier 1']['Physical Nature']['Speed Edge']}  %xhIntellect Edge:%xn #{char['Tiers']['Tier 1']['Physical Nature']['Intellect Edge']}  %xhCypher Limit:%xn #{char['Tiers']['Tier 1']['Cypher Limit']}", 80) %>
+  <%= line_with_text t('RecursiveRealms.char_type_abilitiesheading') %>
+  <% @char['Tiers']['Tier 1']['Special Abilities'].each do |ability| %>
+     <%= left("%xh#{ability['Name']}:%xn #{ability['Description']} %xhModifier:%xn #{ability['Modifier']}", 80)
+  <% end %>
+  <%= line_with_text t('RecursiveRealms.char_type_movesheading') %>
+  <% @char['Tiers']['Tier 1']['Moves'].each do |move| %>
+    <%= left("%xh#{move['Name']}:%xn  #{move['Description']} (%xhType:%xn #{move['Type']}, %xhDuration:%xn #{move['Duration']}, %xhCost:%xn #{move['Cost']}, %xhModifier:%xn #{move['Modifier']}", 80)
+  <% end %>
   <%= footer %>
-
-
-
-Special Abilities:
-<% @char['Tiers']['Tier 1']['Special Abilities'].each do |ability| %>
-  - <%= ability['Name'] %>: <%= ability['Description'] %> (Modifier: <%= ability['Modifier'] %>)
-<% end %>
-Moves:
-<% @char['Tiers']['Tier 1']['Moves'].each do |move| %>
-  - <%= move['Name'] %>: <%= move['Description'] %> (Type: <%= move['Type'] %>, Duration: <%= move['Duration'] %>, Cost: <%= move['Cost'] %>, Modifier: <%= move['Modifier'] %>)
-<% end %>
-
