@@ -44,9 +44,11 @@ module AresMUSH
                         return ListTypeFullCmd
                     end
                 elsif fr && detail
+                    client.emit_ooc "Debug: This loop"
                     self.detail = detail.downcase
                     return ListTypeCmd
                 else
+                  client.emit_ooc "Debug: That loop"
                     return ListAllTypesCmd
                 end
           when "select"
