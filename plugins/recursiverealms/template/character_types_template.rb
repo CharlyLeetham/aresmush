@@ -9,9 +9,9 @@ module AresMUSH
         end
 
         def chartypetitle
-          return @character.Type
+          return @character["Type"]
         end
-        
+
       end
     end
   end
