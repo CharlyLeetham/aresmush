@@ -1,10 +1,10 @@
 module AresMUSH
   module RecursiveRealms
     class CharacterTypeTemplate < ErbTemplateRenderer
-        attr_accessor :char
+        attr_accessor :chartype
   
-        def initialize(char)
-          @char = char
+        def initialize(chartype)
+          @chartype = chartype
           super File.dirname(__FILE__) + "/character_type.erb"
         end
 
