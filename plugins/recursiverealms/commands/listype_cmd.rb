@@ -1,7 +1,6 @@
 module AresMUSH
   module RecursiveRealms
-    class ListTypeCmd
-      include CommandHandler
+    class ListTypeCmd < AresMUSH::CommandHandler
 
       attr_accessor :detail
 
