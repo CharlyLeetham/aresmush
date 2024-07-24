@@ -19,7 +19,7 @@ module AresMUSH
             return StartCmd
           when ->(args) { args.start_with?('types') }       
                 #We're looking to see if there's multiple arguments passed in here.
-                split_switch = cmd.switch.split('/')
+                split_switch = cmd.switch.split('/').reject(&:empty?)
                 if split_switch.length > 1
                     fr = split_switch[0]
                     detail = split_switch.length > 2 ? split_switch[1] : nil
