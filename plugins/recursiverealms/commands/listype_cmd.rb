@@ -1,6 +1,8 @@
 module AresMUSH
   module RecursiveRealms
     class ListTypeCmd
+      include CommandHandler
+      
       attr_accessor :detail
 
       def initialize(detail, client, cmd)
