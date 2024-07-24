@@ -30,6 +30,7 @@ module AresMUSH
                 end             
                 
                 if fr && detail && attrib && !attrib.empty?
+                    client.emit_ooc "Handling case where all are present: fr = #{fr}, detail = #{detail}, attrib = #{attrib}"
                     fr = fr.downcase
                     detail = detail.downcase
                     attrib = attrib.downcase
@@ -43,12 +44,12 @@ module AresMUSH
                     when "full"
                         return ListTypeFullCmd
                     end
-                elsif fr && detail && (!attrib.nil? || attrib.empty?)
-                    client.emit_ooc "Debug: This loop"
+                elsif fr && detail && (attrib.nil? || attrib.empty?)
+                    client.emit_ooc "Handling case where fr and detail are present: fr = #{fr}, detail = #{detail}"
                     self.detail = detail.downcase
                     return ListTypeCmd
                 else
-                  client.emit_ooc "Debug: That loop"
+                  client.emit_ooc "Handling default case: fr = #{fr}, detail = #{detail}, attrib = #{attrib}"
                     return ListAllTypesCmd
                 end
           when "select"
