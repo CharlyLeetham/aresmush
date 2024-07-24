@@ -46,7 +46,7 @@ module AresMUSH
                     end
                 elsif fr && detail && (attrib.nil? || attrib.empty?)
                     client.emit_ooc "Handling case where fr and detail are present: fr = #{fr}, detail = #{detail}"
-                    self.detail = detail.downcase
+                    detail = detail.downcase
                     return ListTypeCmd
                 else
                   client.emit_ooc "Handling default case: fr = #{fr}, detail = #{detail}, attrib = #{attrib}"
