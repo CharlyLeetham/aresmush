@@ -3,11 +3,10 @@ module AresMUSH
     class ListTypeCmd
       attr_accessor :detail
 
-      def initialize(detail, client, cmd, enactor)
+      def initialize(detail, client, cmd)
         @detail = detail
         @client = client
-        @cmd = cmd
-        @enactor = enactor        
+        @cmd = cmd    
       end
       
       def handle
