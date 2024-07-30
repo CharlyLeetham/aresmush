@@ -9,11 +9,13 @@ module AresMUSH
       def self.shortcuts
         Global.read_config("RecursiveRealms", "shortcuts")
       end
-  
-      def self.get_cmd_handler(client, cmd, enactor)
 
+      def parse_args
         args = cmd.parse_args(ArgParser.arg1_slash_arg2_equals_arg3)
         client.emit_ooc "Debug: args is '#{args.arg1}', '#{args.arg2}', '#{args.arg3}'"
+      end      
+  
+      def self.get_cmd_handler(client, cmd, enactor)       
         case cmd.root          
         when "rr" 
                    
