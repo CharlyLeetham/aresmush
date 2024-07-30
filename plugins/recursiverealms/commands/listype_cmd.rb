@@ -1,15 +1,10 @@
 module AresMUSH
   module RecursiveRealms
-    class ListTypeCmd < AresMUSH::CommandHandler
+    class ListTypeCmd 
+      include CommandHandler
 
       attr_accessor :detail
-
-      def initialize(detail, client, cmd)
-        @detail = detail
-        @client = client
-        @cmd = cmd    
-      end
-      
+          
       def handle
         @client.emit_failure "#{detail}"
         #chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == @detail }
