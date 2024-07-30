@@ -15,7 +15,7 @@ module AresMUSH
         when "rr" 
           args = cmd.parse_args(ArgParser.arg1_slash_arg2_equals_arg3)
           client.emit_ooc "Debug: args '#{args}'"
-          return
+          
           case cmd.switch               
           when "start"
             return StartCmd
