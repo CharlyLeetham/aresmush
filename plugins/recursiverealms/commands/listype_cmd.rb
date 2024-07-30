@@ -13,7 +13,7 @@ module AresMUSH
           self.value = titlecase_arg(args.arg3)
           self.charly = "Top loop"
         else
-          args = cmd.parse_args(ArgParser.arg1_slash_arg2_equals_arg3)
+          args = cmd.parse_args(ArgParser.arg1_slash_optional_arg2)
           self.topcmd = titlecase_arg(args.arg1)
           self.mine = titlecase_arg(args.arg2)
           self.charly = "Bottom loop"
