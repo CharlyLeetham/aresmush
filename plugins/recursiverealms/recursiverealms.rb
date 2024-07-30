@@ -13,7 +13,7 @@ module AresMUSH
       def self.get_cmd_handler(client, cmd, enactor)
 
         args = cmd.parse_args(ArgParser.arg1_slash_arg2_equals_arg3)
-        client.emit_ooc "Debug: args is '#{args[1]}', '#{args[2]}', '#{args[3]}'"
+        client.emit_ooc "Debug: args is '#{args.arg1}', '#{args.arg2}', '#{args.arg3}'"
         case cmd.root          
         when "rr" 
                    
