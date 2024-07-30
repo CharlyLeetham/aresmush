@@ -10,6 +10,8 @@ module AresMUSH
         Global.read_config("RecursiveRealms", "shortcuts")
       end
 
+      
+
       def self.get_cmd_handler(client, cmd, enactor)       
         case cmd.root          
         when "rr" 
