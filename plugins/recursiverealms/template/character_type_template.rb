@@ -9,7 +9,7 @@ module AresMUSH
         end
 
         def chartypetitle
-          return @char["Type"]
+          return @chartype["Type"]
         end
 
       end
