@@ -13,10 +13,14 @@ module AresMUSH
           self.value = titlecase_arg(args.arg3)
           self.charly = "Top loop"
         else
-          args = cmd.parse_args(ArgParser.arg1_slash_optional_arg2)
-          self.topcmd = titlecase_arg(args.arg1)
-          self.mine = titlecase_arg(args.arg2)
-          self.charly = "Bottom loop"
+          split_switch = cmd.switch.split('/').reject(&:empty?)
+          if split_switch.length > 1
+            self.topcmd = split_switch[0]
+            self.mine = split_switch.length > 1 ? split_switch[1] : nil
+            self.value = split_switch.length > 2 ? split_switch[2] : nil
+            self.charly = "Bottom loop"
+        end           
+
         end
       end
 
