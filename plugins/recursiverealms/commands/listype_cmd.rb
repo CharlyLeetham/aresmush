@@ -24,7 +24,7 @@ module AresMUSH
               template = CharacterTypeTemplate.new(chartype)
               client.emit template.render
         else
-          @client.emit_failure "Character type #{type}.capitalize not found. Please check your spelling and try again."
+          @client.emit_failure "Character type #{type.capitalize} not found. Please check your spelling and try again."
         end
       end     
     end
