@@ -27,6 +27,7 @@ module AresMUSH
       def handle
         @client.emit_ooc "topcmd: #{topcmd}, type: #{type}, value: #{value}, charly: #{charly}"
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type }
+        @client.emit_ooc chartype.inspect
         #if chartype
         #      template = CharacterTypeTemplate.new(chartype)
         #      client.emit template.render
