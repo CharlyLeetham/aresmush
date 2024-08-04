@@ -7,7 +7,6 @@ module AresMUSH
 
       def parse_args
         split_switch = RecursiveRealms.split_command(@cmd)
-        @client.emit_ooc "split_switch: #{split_switch}"
         self.topcmd = split_switch[0]
         self.type = split_switch[1]
         self.value = split_switch[2]
