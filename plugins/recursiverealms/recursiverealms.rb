@@ -16,7 +16,7 @@ module AresMUSH
         case cmd.root          
         when "rr" 
           case cmd.switch 
-            client.emit_ooc "Debug: cmd.switch initial state is '#{cmd}}'"              
+            client.emit_ooc "Debug: cmd.switch initial state is ''"              
           when "start"
             return StartCmd
           when ->(args) { args.start_with?('types') }       
