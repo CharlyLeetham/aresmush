@@ -6,7 +6,8 @@ module AresMUSH
       attr_accessor :topcmd, :type, :value 
 
       def parse_args
-        topcmd, type, value = RecursiveRealms.split_command(@cmd)   
+        #topcmd, type, value = RecursiveRealms.split_command(@cmd)   
+        topcmd = RecursiveRealms.split_command(@cmd)
       end
 
       def handle
