@@ -13,6 +13,7 @@ module AresMUSH
         topcmd = split_switch[0]
         type = split_switch[1]
         value = split_switch[2]
+        @client.emit_ooc "topcmd: #{topcmd}, type: #{type}, value: #{value}"
       end
 
       def handle
