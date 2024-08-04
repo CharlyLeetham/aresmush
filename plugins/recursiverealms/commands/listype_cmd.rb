@@ -6,7 +6,7 @@ module AresMUSH
       attr_accessor :topcmd, :type, :value 
 
       def parse_args
-        topcmd, type, value = self.split_command(@cmd)   
+        topcmd, type, value = split_command(@cmd)   
       end
 
       def handle
