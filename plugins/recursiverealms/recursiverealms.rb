@@ -20,7 +20,7 @@ module AresMUSH
             return StartCmd
           when ->(args) { args.start_with?('types') }       
                 #We're looking to see if there's multiple arguments passed in here.  This needs to be a helper
-                split_switch = split_switch = RecursiveRealms.split_command(@cmd)
+                split_switch = RecursiveRealms.split_command(@cmd)
                 if split_switch.length > 1
                     fr = split_switch[0]
                     detail = split_switch.length > 1 ? split_switch[1] : nil
