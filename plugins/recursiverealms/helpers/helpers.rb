@@ -2,7 +2,6 @@ module AresMUSH
     module RecursiveRealms
 
         def self.split_command(cmd)
-            client.emit_ooc "Debug: cmd initial state is '#{cmd}'"
             split_switch = cmd.switch.split('/').reject(&:empty?)
             arg1 = split_switch[0]
             arg2 = split_switch.length > 1 ? split_switch[1].downcase : nil
