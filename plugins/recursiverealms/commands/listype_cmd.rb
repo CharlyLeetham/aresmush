@@ -7,7 +7,7 @@ module AresMUSH
 
       def parse_args
         #topcmd, type, value = RecursiveRealms.split_command(@cmd)   
-        topcmd = RecursiveRealms.split_command(@cmd)
+        topcmd = cmd.parse_args(RecursiveRealms.split_command(@cmd))
       end
 
       def handle
