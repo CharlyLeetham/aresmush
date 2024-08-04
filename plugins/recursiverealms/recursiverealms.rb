@@ -37,6 +37,7 @@ module AresMUSH
                     attrib = attrib.downcase
                     case attrib
                     when "tiers"
+                        client.emit_ooc "Here"
                         return ListTypeTiersCmd
                     when "sa"
                         return ListTypeSACmd
