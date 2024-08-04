@@ -15,7 +15,8 @@ module AresMUSH
       def self.get_cmd_handler(client, cmd, enactor)       
         case cmd.root          
         when "rr" 
-          case cmd.switch               
+          case cmd.switch 
+            client.emit_ooc "Debug: cmd.switch initial state is '#{cmd}}'"              
           when "start"
             return StartCmd
           when ->(args) { args.start_with?('types') }       
