@@ -3,7 +3,7 @@ module AresMUSH
     class ListTypeCmd 
       include CommandHandler
 
-      attr_accessor :split_switch :topcmd, :type, :value 
+      attr_accessor :split_switch, :topcmd, :type, :value 
 
       def parse_args
         #topcmd, type, value = RecursiveRealms.split_command(@cmd)   
