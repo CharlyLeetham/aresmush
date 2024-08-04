@@ -22,8 +22,7 @@ module AresMUSH
           when ->(args) { args.start_with?('types') }       
                 #We're looking to see if there's multiple arguments passed in here.  This needs to be a helper
                 client.emit_ooc "Debug: cmd.args initial state is '#{cmd.args}'" 
-                client.emit_ooc "Debug: args initial state is '#{->args}'"
-                split_switch = RecursiveRealms.split_command(cmd.args)
+                split_switch = RecursiveRealms.split_command(cmd)
                 if split_switch.length > 1
                     fr = split_switch[0]
                     detail = split_switch.length > 1 ? split_switch[1] : nil
