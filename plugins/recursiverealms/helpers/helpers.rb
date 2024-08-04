@@ -6,7 +6,7 @@ module AresMUSH
             topcmd = split_switch[0]
             type = split_switch.length > 1 ? split_switch[1].downcase : nil
             value = split_switch.length > 2 ? split_switch[2].downcase : nil
-            [topcmd, type, value]
+           return [topcmd, type, value]
         end
     end
 end
