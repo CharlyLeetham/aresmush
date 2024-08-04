@@ -8,7 +8,7 @@ module AresMUSH
       def parse_args
         #topcmd, type, value = RecursiveRealms.split_command(@cmd)   
          @client.emit_ooc "topcmd: #{@cmd.inspect}"
-        topcmd = cmd.parse_args(RecursiveRealms.split_command(@cmd))
+        topcmd = RecursiveRealms.split_command(@cmd)
         @client.emit_ooc "topcmd: #{topcmd}"
       end
 
