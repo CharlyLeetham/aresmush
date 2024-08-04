@@ -18,15 +18,17 @@ module AresMUSH
           case cmd.switch               
           when "start"
             return StartCmd
-          when ->(args) { args.start_with?('types') } 
-                #We're looking to see if there's multiple arguments passed in here.  This needs to be a helper       
-                split_switch = RecursiveRealms.split_command(@cmd)
-                self.fr = split_switch[0]
-                self.detail = split_switch[1]
-                self.attrib = split_switch[2]
-                client.emit_ooc "Debug: type initial state is '#{split_switch[0]}', '#{fr}'"
-                client.emit_ooc "Debug: detail initial state is '#{split_switch[1]}', '#{detail}'"
-                client.emit_ooc "Debug: attrib initial state is '#{split_switch[2]}', '#{attrib}'"
+          when ->(args) { args.start_with?('types') }       
+                #We're looking to see if there's multiple arguments passed in here.  This needs to be a helper
+                split_switch = split_switch = RecursiveRealms.split_command(@cmd)
+                if split_switch.length > 1
+                    fr = split_switch[0]
+                    detail = split_switch.length > 1 ? split_switch[1] : nil
+                    attrib = split_switch.length > 2 ? split_switch[2] : nil
+                    client.emit_ooc "Debug: type initial state is '#{split_switch[0]}', '#{fr}'"
+                    client.emit_ooc "Debug: detail initial state is '#{split_switch[1]}', '#{detail}'"
+                    client.emit_ooc "Debug: attrib initial state is '#{split_switch[2]}', '#{attrib}'"
+                end             
                 
                 if fr && detail && attrib && !attrib.empty?
                     client.emit_ooc "Handling case where all are present: fr = #{fr}, detail = #{detail}, attrib = #{attrib}"
