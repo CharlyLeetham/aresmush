@@ -1,6 +1,8 @@
 module AresMUSH
   module RecursiveRealms
     class ListTypeTiersCmd
+      include CommandHandler
+            
       attr_accessor :split_switch, :topcmd, :type, :value
 
       def parse_args
