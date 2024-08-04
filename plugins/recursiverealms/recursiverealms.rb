@@ -10,7 +10,7 @@ module AresMUSH
         Global.read_config("RecursiveRealms", "shortcuts")
       end
 
-      
+
 
       def self.get_cmd_handler(client, cmd, enactor)       
         case cmd.root          
@@ -19,7 +19,7 @@ module AresMUSH
           when "start"
             return StartCmd
           when ->(args) { args.start_with?('types') }       
-                #We're looking to see if there's multiple arguments passed in here.
+                #We're looking to see if there's multiple arguments passed in here.  This needs to be a helper
                 split_switch = cmd.switch.split('/').reject(&:empty?)
                 if split_switch.length > 1
                     fr = split_switch[0]

@@ -6,12 +6,7 @@ module AresMUSH
       attr_accessor :topcmd, :type, :value 
 
       def parse_args
-          split_switch = cmd.switch.split('/').reject(&:empty?)
-          if split_switch.length > 1
-            self.topcmd = split_switch[0]
-            self.type = split_switch.length > 1 ? split_switch[1].downcase : nil
-            self.value = split_switch.length > 2 ? split_switch[2].downcase : nil
-          end           
+        topcmd, type, value = Helpers.split_command(@cmd)   
       end
 
       def handle
