@@ -10,10 +10,10 @@ module AresMUSH
          @client.emit_ooc "topcmd: #{@cmd.inspect}"
         split_switch = RecursiveRealms.split_command(@cmd)
         @client.emit_ooc "split_switch: #{split_switch}"
-        topcmd = split_switch[0]
-        type = split_switch[1]
-        value = split_switch[2]
-        @client.emit_ooc "topcmd: #{topcmd}, type: #{type}, value: #{value}"
+        self.topcmd = split_switch[0]
+        self.type = split_switch[1]
+        self.value = split_switch[2]
+        @client.emit_ooc "topcmd: #{self.topcmd}, type: #{self.type}, value: #{self.value}"
       end
 
       def handle
