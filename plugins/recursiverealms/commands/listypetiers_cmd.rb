@@ -15,7 +15,7 @@ module AresMUSH
       def handle
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type }
         if chartype
-          client.emit_ooc chartype[Tiers]
+          client.emit_ooc chartype['Tiers']
           #begin
           #  chartype.each do |ct|
           #    template = CharacterTypeTierTemplate.new(ct)
