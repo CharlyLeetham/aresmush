@@ -17,7 +17,7 @@ module AresMUSH
         if chartype
           client.emit_ooc chartype['Tiers']
           begin
-            chartype['Tiers'].each do |ct, attr|
+            chartype.each do |ct|
              template = CharacterTypeTierTemplate.new(ct)
              client.emit template.render
 
