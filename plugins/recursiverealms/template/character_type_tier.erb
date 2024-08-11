@@ -3,7 +3,13 @@
 <% @chartype['Tiers'].each do |tier, attrib| %>
    <%= left("%xh#{tier}:%xn", 80) %>
    <% attrib.each do |attribute_name, attribute_value| %>
-      <%= attribute_name %>:
+       <% if attribute_value.is_a?(Hash) %>
+         <%= attribute_name %>: Hash
+       <% elsif attribute_value.is_a?(Array) %>
+         <%= attribute_name %>: Array
+       <% else %>         
+         <%= attribute_name %>: Regular
+       <% end %>
 
    <% end %>
 
