@@ -18,10 +18,10 @@ module AresMUSH
           client.emit_ooc chartype['Tiers']
           begin
             chartype['Tiers'].each do |ct, attr|
-          #   template = CharacterTypeTierTemplate.new(ct)
-          #   client.emit template.render
+             template = CharacterTypeTierTemplate.new(ct)
+             client.emit template.render
 
-            client.emit_ooc "#{ct}"
+            #client.emit_ooc "#{ct}"
             end
           rescue => e   
             client.emit_failure "Character type #{self.type.capitalize} not found. Please check your spelling. Error: #{e.message}"
