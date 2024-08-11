@@ -13,7 +13,20 @@
    <%= left("%xh#{tier}:%xn", 80) %>
    <%= left("%xhEffort:%xn #{attrib['Effort'] || 'N/A'}  %xhMight Edge:%xn #{attrib['Might Edge'] || 'N/A'} %xhSpeed Edge:%xn #{attrib['Speed Edge'] || 'N/A'}  %xhIntellect Edge:%xn #{attrib['Intellect Edge'] || 'N/A'}  %xhCypher Limit:%xn #{attrib['Cypher Limit'] || 'N/A'}", 100) %>
 
-   <% attrib.each do |attribute_name, attribute_value| %>
+    <% if attrib["Special Abilities"].is_a?(Array) %>
+      <%= left("#{attrib['Special Abilities'].map { |ability| ability['Name'] }.join(', ')}", 80) %>
+    <% else %>
+      No special abilities available.
+    <% end %>
+
+    <% if attrib["Moves"].is_a?(Array) %>
+      <%= left("#{attrib['Moves'].map { |move| move['Name'] }.join(', ')}", 80) %>
+    <% else %>
+      No moves available.
+    <% end %>    
+
+
+    <% attrib.each do |attribute_name, attribute_value| %>
       <% if attribute_value.is_a?(Hash) %>
          <%= left("%xh#{attribute_name}:%xn", 80) %>
             <% attribute_value.each do |key, val| %>
