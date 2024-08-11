@@ -1,60 +1,60 @@
 ---
 RecursiveRealms:
-characters:
-  - Type: "Vector"
-    Descriptor: "Action-oriented individuals like athletes, soldiers, firefighters, hunters, and explorers."
-    Might: 10
-    Speed: 10
-    Intellect: 8
-    Additional Points: 6
-    Tiers:
-      Tier 1:
-        Effort: 1
-        Physical Nature:
-          Might Edge: 1
-          Speed Edge: 1
-          Intellect Edge: 0
-        Cypher Limit: 2
-        Special Abilities:
-          - Defensive:
-              Modifier: "None"
+  characters:
+    - Type: Vector
+      Descriptor: "Action-oriented individuals like athletes, soldiers, firefighters, hunters, and explorers."
+      Might: 10
+      Speed: 10
+      Intellect: 8
+      Additional Points: 6
+      Tiers:
+        Tier 1:
+          Effort: 1
+          Physical Nature:
+            Might Edge: 1
+            Speed Edge: 1
+            Intellect Edge: 0
+          Cypher Limit: 2
+          Special Abilities:
+            - Name: Defensive
+              Modifier: None
               Description: "You are trained in Speed defense actions when not wearing armor."
-          - Practiced With All Weapons:
-              Modifier: "None"
+            - Name: Practiced With All Weapons
+              Modifier: None
               Description: "You can use any weapon."
-          - Physical Skills:
-              Modifier: "None"
+            - Name: Physical Skills
+              Modifier: None
               Description: "You are trained in your choice of two of the following: balancing, climbing, jumping, running, or swimming."
-          - Translation:
-              Modifier: "None"
-              Effect: "Easing"
+            - Name: Translation
+              Modifier: None
+              Effect: Easing
               Description: "You allow group members to acclimate more quickly after the translation is complete."
-        Moves:
-          - Bash:
-              Type: "Combat"
-              Duration: "Instant"
+          Moves:
+            - Name: Bash
+              Type: Combat
+              Duration: Instant
               Cost: "+1/Might"
               Modifier: "-1/Difficulty"
               Description: "This is a pummeling melee attack. The difficulty of the attack roll is decreased by one step."
-          - Endurance:
-              Modifier: "None"
+            - Name: Endurance
+              Modifier: None
               Description: "All durations related to physical endurance are either doubled or halved, whichever is more beneficial."
-          - Fleet of Foot:
-              Modifier: "None"
+            - Name: Fleet of Foot
+              Modifier: None
               Description: "If you succeed at a difficulty 2 Speed roll to run, you can move a short distance and take an action in the same round."
-          - No Need for Weapons:
-              Type: "Equipment"
+            - Name: No Need for Weapons
+              Type: Equipment
               Modifier: "Gain/Medium Unarmed"
               Description: "When you make an unarmed attack (such as a punch or kick), you can choose whether you make the attack as if using a medium weapon or as if using a light weapon."
-          - Pierce:
-              Type: "Combat"
-              Duration: "Instant"
+            - Name: Pierce
+              Type: Combat
+              Duration: Instant
               Modifier: "+1/damage"
               Cost: "1/Speed"
               Description: "This is a well-aimed, penetrating ranged attack. You make an attack and inflict 1 additional point of damage."
-          - Practiced in Armor:
-              Type: "Equipment"
+            - Name: Practiced in Armor
+              Type: Equipment
               Expertise: "Practiced/All Armor"
               Cost: "-2/Speed, -2/Might"
-              Modifier: "None"
+              Modifier: None
               Description: "You can wear any kind of armor. You reduce the Might and Speed Pool penalty for wearing armor by 2."
