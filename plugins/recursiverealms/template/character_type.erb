@@ -11,9 +11,29 @@
 <%= left("%xhTier 1:%xn", 80) %>
 <%= left("%xhEffort:%xn #{chartype['Tiers']['Tier 1']['Effort']}  %xhMight Edge:%xn #{chartype['Tiers']['Tier 1']['Physical Nature']['Might Edge']} %xhSpeed Edge:%xn #{chartype['Tiers']['Tier 1']['Physical Nature']['Speed Edge']}  %xhIntellect Edge:%xn #{chartype['Tiers']['Tier 1']['Physical Nature']['Intellect Edge']}  %xhCypher Limit:%xn #{chartype['Tiers']['Tier 1']['Cypher Limit']}", 80) %>
 <%= line_with_text t('RecursiveRealms.char_type_abilitiesheading') %>
+<% @chartype['Tiers'].each do |tier, attrib| %>
+   <%= left("%xh#{tier}:%xn", 80) %>
+   <% attrib.each do |attribute_name, attribute_value| %>
+      <% if attribute_value.is_a?(Hash) %>
+         <%= left("%xh#{attribute_name}:%xn", 160) %>
+            <% attribute_value.each do |key, val| %>
+              <%= left("%xh#{key}:%xn #{val}", 160)%>
+            <% end %>
+       <% elsif attribute_value.is_a?(Array) %>
+         <%= left("%xh#{attribute_name}:%xn", 160) %>
+            <% attribute_value.each do |item| %>
+                  <% item.each do |key, val| %>
+                    <%= left("%xh#{key}:%xn #{val}", 165)%>
+                  <% end %>
+            <% end %>         
+       <% else %>         
+         <%= left("%xh#{attribute_name}:%xn #{attribute_value}", 160)%>
+       <% end %>
+    <% end %>
 
-<% @chartype['Tiers']['Tier 1']['Special Abilities'].each do |ability| %>
-   <%= left("%xh#{ability['Name']}:%xn #{ability['Description']} %xhModifier:%xn #{ability['Modifier']}", 160) %>
+
+
+   <%#= left("%xh#{ability['Name']}:%xn #{ability['Description']} %xhModifier:%xn #{ability['Modifier']}", 80) %>
 <% end %>
 
 <%= line_with_text t('RecursiveRealms.char_type_movesheading') %>
