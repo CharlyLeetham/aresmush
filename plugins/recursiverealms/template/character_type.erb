@@ -8,11 +8,11 @@
 <%= left("%xhAdditional Points:%xn #{chartype['Additional Points']}", 80) %>
 
 <%= line_with_text t('RecursiveRealms.char_type_tiersheading') %>
-<%= left("%xhTier 1:%xn", 80) %>
-<%= left("%xhEffort:%xn #{tier_attributes['Effort'] || 'N/A'}  %xhMight Edge:%xn #{tier_attributes['Might Edge'] || 'N/A'} %xhSpeed Edge:%xn #{tier_attributes['Speed Edge'] || 'N/A'}  %xhIntellect Edge:%xn #{tier_attributes['Intellect Edge'] || 'N/A'}  %xhCypher Limit:%xn #{tier_attributes['Cypher Limit'] || 'N/A'}", 80) %>
 
 <% @chartype['Tiers'].each do |tier, attrib| %>
    <%= left("%xh#{tier}:%xn", 80) %>
+   <%= left("%xhEffort:%xn #{tier_attributes['Effort'] || 'N/A'}  %xhMight Edge:%xn #{tier_attributes['Might Edge'] || 'N/A'} %xhSpeed Edge:%xn #{tier_attributes['Speed Edge'] || 'N/A'}  %xhIntellect Edge:%xn #{tier_attributes['Intellect Edge'] || 'N/A'}  %xhCypher Limit:%xn #{tier_attributes['Cypher Limit'] || 'N/A'}", 80) %>
+
    <% attrib.each do |attribute_name, attribute_value| %>
       <% if attribute_value.is_a?(Hash) %>
          <%= left("%xh#{attribute_name}:%xn", 80) %>
