@@ -63,3 +63,24 @@ RecursiveRealms:
             - Physical Skill:
                 Modifier: "None"
                 Description: "Choose one skill in which you are not already trained: balancing, climbing, jumping, running, or swimming. You are trained in that skill. Enabler."
+            - Skill With Defense:
+                  Modifier: "None"
+                  Description: "Choose one type of defense task in which you are not already trained: Might, Speed, or Intellect. You are trained in defense tasks of that type. Unlike most moves, you can select this move up to three times. Each time you select it, you must choose a different type of defense task. Enabler."
+            - Reach Beyond:
+                  Cost: "+3/Intellect"
+                  Description: "When you use Reach Beyond, you can access training in a skill provided by a focus you have in another recursion. You must have used the skill in its proper recursion at least once before. You can use the skill once. To use it again, you must use Reach Beyond again. Enabler."
+          Moves:
+            - Enable Others:
+                Description: "You can use the helping rules to provide a benefit to another character attempting a physical task. This requires no action on your part. Enabler."
+            - Quick Recovery:
+                Description: "Your second recovery roll (usually requiring ten minutes) is only a single action, just like the first roll. Enabler."
+            - Range Increase:
+                Description: "Ranges for you increase by one step. Immediate becomes short, short becomes long, long becomes 200 feet (61 m). Enabler."
+            - Skill With Attacks:
+                Description: "Choose one type of attack in which you are not already trained: light bashing, light bladed, light ranged, medium bashing, medium bladed, medium ranged, heavy bashing, heavy bladed, or heavy ranged. You are trained in attacks using that type of weapon. Enabler."
+            - Spray:
+                Cost: "+2/Speed"
+                Description: "If a weapon has the ability to fire rapid shots without reloading (usually called a rapid-fire weapon, such as the submachine gun), you can spray multiple shots around your target to increase the chance of hitting. Spray uses 1d6 + 1 rounds of ammo (or all the ammo in the weapon, if it has less than the number rolled). The difficulty of the attack roll is decreased by one step. If the attack is successful, it deals 1 less point of damage than normal. Action."
+            - Wreck:
+                Description: "Using two hands, you wield a weapon or a tool with a powerful swing. (If fighting unarmed, this attack is made with both fists or both feet together.) When using this as an attack, you take a –1 penalty to the attack roll, and you inflict 3 additional points of damage. When attempting to damage an object or barrier, you are trained in the task. Action."
+                
