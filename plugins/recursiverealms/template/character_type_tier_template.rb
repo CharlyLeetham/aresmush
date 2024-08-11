@@ -5,7 +5,6 @@ module AresMUSH
   
         def initialize(chartype)
           @chartype = chartype
-          client.emit chartype
           super File.dirname(__FILE__) + "/character_type_tier.erb"
         end
 
