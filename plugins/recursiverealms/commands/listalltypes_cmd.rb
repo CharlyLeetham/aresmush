@@ -7,7 +7,7 @@ module AresMUSH
         characters_config = Global.read_config("RecursiveRealms", "characters")
         
         if characters_config.nil?
-          client.emit_ooc "Error: Configuration data not found. Please check the RecursiveRealms.yml file."
+          client.emit_ooc "Error: Configuration data not found. Please check the rr_types.yml file."
           return
         end
 

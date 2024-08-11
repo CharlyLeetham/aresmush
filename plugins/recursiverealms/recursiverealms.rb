@@ -20,15 +20,11 @@ module AresMUSH
           when "start"
             return StartCmd
           when ->(args) { args.start_with?('types') }       
-                split_switch = RecursiveRealms.split_command(cmd)
-                client.emit_ooc "split_switch: #{split_switch.length}"
-                client.emit_ooc "split_switch: #{split_switch}"    
-                client.emit_ooc "fr: #{split_switch[0]}, detail: #{split_switch[1]}, attrib: #{split_switch[2]}"                            
+                split_switch = RecursiveRealms.split_command(cmd)                        
                 if split_switch.length > 1
                     fr = split_switch[0]
                     detail = split_switch.length > 1 ? split_switch[1] : nil
                     attrib = split_switch.length > 2 ? split_switch[2] : nil
-
                     client.emit_ooc "fr: #{fr}, detail: #{detail}, attrib: #{attrib}"
                 end             
                 
