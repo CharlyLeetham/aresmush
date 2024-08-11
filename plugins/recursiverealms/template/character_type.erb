@@ -15,19 +15,19 @@
    <%= left("%xh#{tier}:%xn", 80) %>
    <% attrib.each do |attribute_name, attribute_value| %>
       <% if attribute_value.is_a?(Hash) %>
-         <%= left("%xh#{attribute_name}:%xn", 160) %>
+         <%= left("%xh#{attribute_name}:%xn", 80) %>
             <% attribute_value.each do |key, val| %>
-              <%= left("%xh#{key}:%xn #{val}", 160)%>
+              <%= left("%xh#{key}:%xn #{val}", 80)%>
             <% end %>
        <% elsif attribute_value.is_a?(Array) %>
-         <%= left("%xh#{attribute_name}:%xn", 160) %>
+         <%= left("%xh#{attribute_name}:%xn", 80) %>
             <% attribute_value.each do |item| %>
                   <% item.each do |key, val| %>
-                    <%= left("%xh#{key}:%xn #{val}", 165)%>
+                    <%= left("%xh#{key}:%xn #{val}", 80)%>
                   <% end %>
             <% end %>         
        <% else %>         
-         <%= left("%xh#{attribute_name}:%xn #{attribute_value}", 160)%>
+         <%= left("%xh#{attribute_name}:%xn #{attribute_value}", 80)%>
        <% end %>
     <% end %>
 
