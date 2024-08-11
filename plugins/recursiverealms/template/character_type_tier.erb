@@ -2,12 +2,12 @@
 <%#=  left("%xhDescription:%xn #{chartype['Descriptor']}", 80) %>
 
 <%= line_with_text t('RecursiveRealms.char_type_tiersheading') %>
-<%#= left("%xhTier 1:%xn", 80) %>
-<%#= left("%xhEffort:%xn #{chartype['Tiers']['Tier 1']['Effort']}  %xhMight Edge:%xn #{chartype['Tiers']['Tier 1']['Physical Nature']['Might Edge']} %xhSpeed Edge:%xn #{chartype['Tiers']['Tier 1']['Physical Nature']['Speed Edge']}  %xhIntellect Edge:%xn #{chartype['Tiers']['Tier 1']['Physical Nature']['Intellect Edge']}  %xhCypher Limit:%xn #{chartype['Tiers']['Tier 1']['Cypher Limit']}", 80) %>
-<%#= line_with_text t('RecursiveRealms.char_type_abilitiesheading') %>
+<%= left("%xhTier 1:%xn", 80) %>
+<%= left("%xhEffort:%xn #{chartype['Tiers']['Tier 1']['Effort']}  %xhMight Edge:%xn #{chartype['Tiers']['Tier 1']['Physical Nature']['Might Edge']} %xhSpeed Edge:%xn #{chartype['Tiers']['Tier 1']['Physical Nature']['Speed Edge']}  %xhIntellect Edge:%xn #{chartype['Tiers']['Tier 1']['Physical Nature']['Intellect Edge']}  %xhCypher Limit:%xn #{chartype['Tiers']['Tier 1']['Cypher Limit']}", 80) %>
+<%= line_with_text t('RecursiveRealms.char_type_abilitiesheading') %>
 
-<%# @chartype['Tiers']['Tier 1']['Special Abilities'].each do |ability| %>
-   <%# = left("%xh#{ability['Name']}:%xn #{ability['Description']} %xhModifier:%xn #{ability['Modifier']}", 160) %>
-<%# end %>
+<% @chartype['Tiers']['Tier 1']['Special Abilities'].each do |ability| %>
+   <% = left("%xh#{ability['Name']}:%xn #{ability['Description']} %xhModifier:%xn #{ability['Modifier']}", 160) %>
+<% end %>
 
 <%= footer %>
