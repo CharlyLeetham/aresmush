@@ -58,3 +58,8 @@ RecursiveRealms:
               Cost: "-2/Speed, -2/Might"
               Modifier: None
               Description: "You can wear any kind of armor. You reduce the Might and Speed Pool penalty for wearing armor by 2."
+        Tier 2:
+          Special Abilities:
+            - Physical Skill:
+                Modifier: "None"
+                Description: "Choose one skill in which you are not already trained: balancing, climbing, jumping, running, or swimming. You are trained in that skill. Enabler."
