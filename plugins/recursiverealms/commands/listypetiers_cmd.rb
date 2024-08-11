@@ -15,12 +15,11 @@ module AresMUSH
       def handle
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type }
         if chartype
-          client.emit_ooc chartype
           begin
              template = CharacterTypeTierTemplate.new(chartype)
              client.emit template.render
           rescue => e   
-            client.emit_failure "Character type #{self.type.capitalize} not found. Please check your spelling. Error: #{e.message}"
+            client.emit_failure "An Error occured: #{e.message}"
             Global.logger.error "Error reading character types: #{e.message}"            
           end
         end
