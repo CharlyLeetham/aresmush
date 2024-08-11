@@ -5,7 +5,7 @@
 
 <% chartype["Tiers"].each do |tier, attributes| %>
    <%# = left("%xh#{tier}:%xn", 80) %>
-   <% tier %>
+   <%= tier %>
 
    <%# = left("%xhEffort:%xn #{chartype['Tiers']['Tier 1']['Effort']}  %xhMight Edge:%xn #{chartype['Tiers']['Tier 1']['Physical Nature']['Might Edge']} %xhSpeed Edge:%xn #{chartype['Tiers']['Tier 1']['Physical Nature']['Speed Edge']}  %xhIntellect Edge:%xn #{chartype['Tiers']['Tier 1']['Physical Nature']['Intellect Edge']}  %xhCypher Limit:%xn #{chartype['Tiers']['Tier 1']['Cypher Limit']}", 80) %>
    <%# = line_with_text t('RecursiveRealms.char_type_abilitiesheading') %>
