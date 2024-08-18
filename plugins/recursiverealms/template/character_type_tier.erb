@@ -14,7 +14,7 @@
       <% attribute_value.each do |item| %>
       <% item.each do |key, val| %>
         <%#= left("%xh#{key}:%xn #{val}", 100)%>
-        <% %xh#{key}:%xn #{val} %>
+        <%= "%xh#{key}:%xn #{val}" %>
       <% end %>
 
     <% end %>    
