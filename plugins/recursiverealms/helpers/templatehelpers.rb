@@ -8,6 +8,7 @@ module AresMUSH
 
 
         def self.rr_wrap_text(str, target_width)
+            str = str.to_s  # Convert input to string
             return "" if str.nil? || str.empty?
           
             words = str.split(/\s+/)
@@ -29,6 +30,7 @@ module AresMUSH
           
         # Use the wrap_text function and then apply SubstitutionFormatter.left
         def self.rr_format_text(str, target_width, pad_char = " ")
+            str = str.to_s  # Convert input to string
             wrapped_text = rr_wrap_text(str, target_width)
             wrapped_lines = wrapped_text.split("\n")
           
