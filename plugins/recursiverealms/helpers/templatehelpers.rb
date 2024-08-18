@@ -7,7 +7,7 @@ module AresMUSH
         end
 
 
-        def rr_wrap_text(str, target_width)
+        def self.rr_wrap_text(str, target_width)
             return "" if str.nil? || str.empty?
           
             words = str.split(/\s+/)
@@ -28,7 +28,7 @@ module AresMUSH
         end
           
         # Use the wrap_text function and then apply SubstitutionFormatter.left
-        def rr_format_text(str, target_width, pad_char = " ")
+        def self.rr_format_text(str, target_width, pad_char = " ")
             wrapped_text = rr_wrap_text(str, target_width)
             wrapped_lines = wrapped_text.split("\n")
           
