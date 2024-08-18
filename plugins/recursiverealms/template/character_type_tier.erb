@@ -13,12 +13,10 @@
       <% attribute_value.each do |item| %>
       <% item.each do |key, val| %>
         <%= left("%xh#{key}:%xn #{val}", 100)%>
-        <%#= left("%xh#{key}:%xn", 100)%>
       <% end %>
     <% end %>         
   <% else %>         
     <%= left("%xh#{attribute_name}:%xn #{attribute_value}", 100)%>
-    <%#= left("%xh#{attribute_name}:%xn", 100)%>
   <% end %>
 <% end %>
 
