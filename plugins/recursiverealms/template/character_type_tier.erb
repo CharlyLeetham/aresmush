@@ -8,7 +8,8 @@
             <% attribute_value.each do |key, val| %>
               <%#= left("%xh#{key}:%xn #{val}", 100)%>
               <% text = #{val} %>
-              <%= AresMUSH::RecursiveRealms.rr_format_text(text, 100, '') %>
+              <% text %>
+              <%#= AresMUSH::RecursiveRealms.rr_format_text(text, 100, '') %>
             <% end %>
        <% elsif attribute_value.is_a?(Array) %>
          <%= left("%xh#{attribute_name}:%xn", 100) %>
