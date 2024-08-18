@@ -20,8 +20,8 @@
             <% end %>         
        <% else %>         
          <%#= left("%xh#{attribute_name}:%xn #{attribute_value}", 100)%>
-          <%= left("%xh#{key}:%xn", 100)%>
-          <%= AresMUSH::RecursiveRealms.rr_format_text(val, 100, '') %>
+          <%= left("%xh#{attribute_name}:%xn", 100)%>
+          <%= AresMUSH::RecursiveRealms.rr_format_text(vaattribute_value, 100, '') %>
        <% end %>
 
    <% end %>
