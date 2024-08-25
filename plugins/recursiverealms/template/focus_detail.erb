@@ -12,12 +12,10 @@
 <% if @focus && @focus['Tiers'] %>
   <% @focus['Tiers'].each do |tier, details| %>
     <%= left("%xh#{tier}:%xn", 80) %>
-    
     <% if details.empty? %>
       <%= left("  No effects available.", 80) %>
     <% else %>
       <% effects_found = false %>
-      
       <% details.each do |effect, effect_details| %>
         <% if effect_details.is_a?(Hash) %>
           <% effect_details.each do |key, value| %>
@@ -29,7 +27,6 @@
               <% effects_found = true %>
             <% end %>
           <% end %>
-        
         <% elsif effect_details.is_a?(Array) %>
           <%= left("    #{effect_details.join(', ')}", 80) %>
           <% effects_found = true %>
@@ -39,7 +36,6 @@
           <% effects_found = true %>
         <% end %>
       <% end %>
-      
       <% unless effects_found %>
         <%= left("  No effects available.", 80) %>
       <% end %>
