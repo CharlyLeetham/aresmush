@@ -25,7 +25,6 @@ module AresMUSH
                     fr = split_switch[0]
                     detail = split_switch.length > 1 ? split_switch[1] : nil
                     attrib = split_switch.length > 2 ? split_switch[2] : nil
-                    client.emit_ooc "fr: #{fr}, detail: #{detail}, attrib: #{attrib}"
                 end             
                 
                 if fr && detail && attrib && !attrib.empty?
@@ -34,7 +33,6 @@ module AresMUSH
                     attrib = attrib.downcase
                     case attrib
                     when "tiers"
-                        client.emit_ooc "Here"
                         return ListTypeTiersCmd
                     when "sa"
                         return ListTypeSACmd
