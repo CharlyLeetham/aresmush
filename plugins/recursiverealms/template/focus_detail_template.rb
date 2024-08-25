@@ -8,7 +8,7 @@ module AresMUSH
           super File.dirname(__FILE__) + "/focus_detail.erb"
         end
 
-        def chartypetitle
+        def focusdetailtitle
           return @focus["Focus"]
         end
 
