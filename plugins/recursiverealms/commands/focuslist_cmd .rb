@@ -12,10 +12,8 @@ module AresMUSH
         end
 
         begin
-          focus_config.each do |focus|
-            template = FocusListTemplate.new(focus)
+            template = FocusListTemplate.new(focus_config)
             client.emit template.render
-          end
         rescue => e
           client.emit_ooc "Error: #{e.message}"
           Global.logger.error "Error reading focus types: #{e.message}"
