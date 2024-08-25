@@ -48,6 +48,7 @@ module AresMUSH
                 else
                     return ListAllTypesCmd
                 end
+              end
 
           when ->(args) { args.start_with?('focus')
                 split_switch = RecursiveRealms.split_command(cmd) #In helpers.rb                       
