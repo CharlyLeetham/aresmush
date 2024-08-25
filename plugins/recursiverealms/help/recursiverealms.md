@@ -2,7 +2,7 @@
 toc: Recursive Realms
 summary: Commands.
 ---
-# rr 
+# Recursive Realms
 The `rr` command is the base of everything Recursive Realms.  You can list the Character Types and dig into them etc. 
 
 
