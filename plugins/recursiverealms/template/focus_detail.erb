@@ -9,8 +9,8 @@
 
 <%= line_with_text t('RecursiveRealms.char_type_tiersheading') %>
 
-<% if @focustype['Tiers'] %>
-  <% @focustype['Tiers'].each do |tier, details| %>
+<% if @focus['Tiers'] %>
+  <% @focus['Tiers'].each do |tier, details| %>
     <%= left("%xh#{tier}:%xn", 80) %> 
     <% details.each do |effect, effect_details| %>
       <%= left("  %xh#{effect}:%xn", 80) %>
