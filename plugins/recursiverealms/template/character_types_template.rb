@@ -5,6 +5,7 @@ module AresMUSH
   
         def initialize(chartype)
           @chartype = chartype
+          client.emit_ooc "#{chartype}"
           super File.dirname(__FILE__) + "/character_types.erb"
         end
 
