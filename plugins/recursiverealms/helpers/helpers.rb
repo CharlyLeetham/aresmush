@@ -2,8 +2,8 @@ module AresMUSH
     module RecursiveRealms
 
         def self.split_command(cmd)
-            split_switch = cmd.switch.split('/', 3).reject(&:empty?)
-            client.emit "split_switch: #{split_switch.inspect}"            
+            split_switch = cmd.raw.split('/', 3).reject(&:empty?)
+            return split_switch            
             arg1 = split_switch[0]
             arg2 = split_switch.length > 1 ? split_switch[1..-1].join('/').downcase : nil
             arg3 = split_switch.length > 2 ? split_switch[2].downcase : nil
