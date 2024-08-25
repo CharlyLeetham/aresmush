@@ -47,37 +47,7 @@ module AresMUSH
                     return ListTypeCmd
                 else
                     return ListAllTypesCmd
-                end
-              end
-
-          when ->(args) { args.start_with?('focus')
-                split_switch = RecursiveRealms.split_command(cmd) #In helpers.rb                       
-                if split_switch.length > 1
-                    fr = split_switch[0]
-                    detail = split_switch.length > 1 ? split_switch[1] : nil
-                    attrib = split_switch.length > 2 ? split_switch[2] : nil
-                end 
-                
-                if fr && detail && attrib && !attrib.empty?
-                  fr = fr.downcase
-                  detail = detail.downcase
-                  attrib = attrib.downcase
-                  #return ListTypeCmd
-                  client.emit_ooc "Focus Case 1"
-                  client.emit_ooc "#{fr}, #{detail}, #{attrib}"
-                elsif fr && detail && (attrib.nil? || attrib.empty?)
-                  detail = detail.downcase
-                  client.emit_ooc "Focus Case 2"
-                  client.emit_ooc "#{fr}, #{detail}, #{attrib}"
-
-                  #return ListTypeCmd
-                else
-                  client.emit_ooc "Focus Case 3"
-                  client.emit_ooc "#{fr}, #{detail}, #{attrib}"
-
-                  #return ListAllTypesCmd
-               end   
-              end             
+                end          
           #I don't know if these are needed, but I'm leaving them as place holders (25 Aug 2024)
           when "select"
             return SelectTypeCmd
