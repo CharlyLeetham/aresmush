@@ -39,7 +39,7 @@ module AresMUSH
                     when "moves"
                         return ListTypeMovesCmd
                     when "full"
-                        return ListTypeFullCmd
+                        return ListTypeCmd
                     end
                 elsif fr && detail && (attrib.nil? || attrib.empty?)
                     detail = detail.downcase
