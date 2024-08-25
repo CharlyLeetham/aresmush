@@ -12,6 +12,7 @@ The `rr` command is the base of everything Recursive Realms.  You can list the C
 `rr/types/[type]/tiers` - Substitute [type] for a known Character type and display all the Tier details for the type.  ie. rr/types/vector/tiers
 `rr/types/[type]/sa` - Substitute [type] for a known Character type and display all the Special Abilities for the type.  ie. rr/types/vector/sa
 `rr/types/[type]/moves` - Substitute [type] for a known Character type and display all the Moves for the type.  ie. rr/types/vector/moves
+`rr/types/[type]/full` - Substitute [type] for a known Character type and get all the details on it.  ie. rr/types/vector/full
 
 Permitted Character Types:
 Vector
