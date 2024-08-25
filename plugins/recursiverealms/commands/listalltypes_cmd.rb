@@ -13,7 +13,7 @@ module AresMUSH
 
 
         begin
-          template = CharacterTypesTemplate.new(character_config)
+          template = CharacterTypesTemplate.new(characters_config)
           client.emit template.render
         rescue => e
           client.emit_ooc "Error: #{e.message}"
