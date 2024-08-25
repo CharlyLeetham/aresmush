@@ -25,12 +25,12 @@
           <% end %>
         <% elsif item.is_a?(Array) %>
           <% item.each do |array_item| %>
-            <%= left("- #{array_item}", 100) %>
+            <%= array_item %>
           <% end %>
         <% else %>
           <%= left("#{item}", 100) %>
         <% end %>
-        
+
       <% end %>
     <% end %>
   <% end %>
