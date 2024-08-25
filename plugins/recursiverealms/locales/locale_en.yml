@@ -11,5 +11,6 @@ en:
         char_type_tiersheading: "Tiers"
         char_type_abilitiesheading: "Special"
         char_type_movesheading: "Moves"
+        focus_title: "Recursive Realms Focii "        
         focus_detail_title: "Detail for Focus: %{focus} "
         focus_detail_attributesheading: "Attributes"

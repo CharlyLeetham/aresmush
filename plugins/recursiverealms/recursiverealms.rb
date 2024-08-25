@@ -65,8 +65,7 @@ module AresMUSH
                 detail = detail.downcase
                 return FocusDetailCmd
               else #only one argument passed. ie rr/focus
-
-                #return ListAllTypesCmd
+                return FocusListCmd
              end                   
           #I don't know if these are needed, but I'm leaving them as place holders (25 Aug 2024)
           when "select"
