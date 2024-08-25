@@ -1,0 +1,918 @@
+focuses:
+  - Focus: Abides in Stone
+    Description: You are a golem. Your stone body, carved to resemble a humanoid, is nonetheless more akin to statue than flesh.
+    Connection: Pick one other PC. She roused you from a long period of inactivity, and you feel indebted to her for returning you (perhaps accidentally) to mobility.
+    Equipment: A pouch, a chisel and hammer, one weapon of your choice, and 200 crowns.
+    Minor Effect Suggestion: You step on the target, and your immense weight prevents it from moving on its next turn.
+    Major Effect Suggestion: You break a weapon, shield, or piece of armor the target was using.
+    Tiers:
+      Tier 1:
+        Effect 1: 
+          Title: Golem Body
+          Modifier: +1 Armor / +5 Might Pool / +1 Might Edge
+          Equipment: Gain / Medium Stone Fists
+          Inability: Cannot be trained or specialized in Speed Defense Rolls.
+          Description: Your stone body was carved to resemble either a human or qephilim wearing elaborate (though much eroded) clothing from the Age of Myth. You do not need to eat, drink, or breathe (though you do need rest and sleep).
+        Effect 2:
+          Title: Golem Healing
+          Inability: You are unable to use the first, single-action recovery roll of the day that other PCs have access to.
+          Description: Sorcery is what animates you and gives you your own kind of life. While that sorcery allows you to be healed in a fashion similar to that of living flesh, your stone form is more difficult to repair than flesh.
+      Tier 2:
+        Effect 1:
+          Title: Golem Grip
+          Cost: 3/Might
+          Description: Your attacks or actions with your stone fists is modified by one step in your favor. You may inflict 4 points of damage on any grabbed target the turn after you grab it.
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Adapts to Any Environment
+    Description: You can survive and thrive in any environment, adapting quickly to new situations and challenges.
+    Connection: One of the other PCs once helped you adapt to a new environment.
+    Equipment: Additional supplies suited to any environment.
+    Minor Effect Suggestion: You can adapt to the environment faster than expected.
+    Major Effect Suggestion: You can adapt to the environment instantly.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: Defend
+          Modifier: +1 Armor
+          Description: Gain +1 armor against all attacks of any kind. This armor cannot be pierced.
+        Effect 2: 
+          Title: Heal
+          Modifier: +1 Recovery Rolls
+          Description: Add +1 to all recovery rolls.
+      Tier 2:
+        Effect 1: 
+          Title: Breathe
+          Cost: 2/Might
+          Description: You can breathe safely in any (or no) atmosphere for 1 hour.
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Abides in Stone
+    Description: Your character has a body made of stone, making you incredibly tough and strong.
+    Connection: One of the other PCs knows a secret about your stone nature.
+    Equipment: Extra medium or heavy melee weapon.
+    Minor Effect Suggestion: Your stone form makes you more resistant to damage.
+    Major Effect Suggestion: Your stone form makes you nearly invulnerable for a short time.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Carries A Quiver
+    Description: You are a master archer, skilled in the use of bows and creating arrows.
+    Connection: One of the other PCs is a fellow archer or hunter.
+    Equipment: You have a high-quality bow and a quiver of specialized arrows.
+    Minor Effect Suggestion: You hit a vulnerable spot on your target, increasing damage.
+    Major Effect Suggestion: Your shot disables your target.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Channels Sinfire
+    Description: You can project and control destructive sinfire.
+    Connection: One of the other PCs helped you learn to control your sinfire abilities.
+    Equipment: A sinfire wand or other sinfire-related equipment.
+    Minor Effect Suggestion: Your sinfire attack sets the target on fire.
+    Major Effect Suggestion: Your sinfire attack causes an explosion, dealing damage to nearby enemies.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Conducts Weird Science
+    Description: You can create strange devices and perform weird science.
+    Connection: One of the other PCs is a fellow scientist or inventor.
+    Equipment: A lab or workshop filled with strange scientific equipment.
+    Minor Effect Suggestion: Your gadget works better than expected.
+    Major Effect Suggestion: Your gadget has an additional, unexpected beneficial effect.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Embraces Qephilim Ancestry
+    Description: You have the powers of your Qephilim ancestors.
+    Connection: One of the other PCs has Qephilim ancestry or knowledge.
+    Equipment: Qephilim artifacts or weapons.
+    Minor Effect Suggestion: Your Qephilim abilities are more effective.
+    Major Effect Suggestion: You temporarily gain an additional Qephilim ability.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Entertains
+    Description: You can entertain and inspire others with your performances.
+    Connection: One of the other PCs is a fellow performer or artist.
+    Equipment: Instruments or props related to your performance art.
+    Minor Effect Suggestion: Your performance is exceptionally inspiring.
+    Major Effect Suggestion: Your performance has a profound effect on your audience.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Infiltrates
+    Description: You are skilled at infiltration and espionage.
+    Connection: One of the other PCs has experience in infiltration or espionage.
+    Equipment: Disguise kits and tools for breaking and entering.
+    Minor Effect Suggestion: Your stealthy action goes unnoticed.
+    Major Effect Suggestion: Your infiltration is perfect, leaving no trace.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Integrates Weaponry
+    Description: You have weapons integrated into your body.
+    Connection: One of the other PCs helped you integrate your weaponry.
+    Equipment: Integrated weaponry and tools to maintain them.
+    Minor Effect Suggestion: Your integrated weapon functions perfectly.
+    Major Effect Suggestion: Your integrated weapon has an unexpected, beneficial effect.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Is Licensed to Carry
+    Description: You have a legal permit to carry weapons.
+    Connection: One of the other PCs helped you obtain your permit.
+    Equipment: Firearms and related gear.
+    Minor Effect Suggestion: Your use of firearms is exceptionally accurate.
+    Major Effect Suggestion: Your use of firearms is devastating.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Leads
+    Description: You are a natural leader, capable of rallying others.
+    Connection: One of the other PCs has followed your leadership before.
+    Equipment: Leadership tools and symbols of authority.
+    Minor Effect Suggestion: Your leadership inspires confidence.
+    Major Effect Suggestion: Your leadership leads to a decisive victory.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Lives in the Wilderness
+    Description: You can survive and thrive in the wilderness.
+    Connection: One of the other PCs has survived with you in the wilderness before.
+    Equipment: Survival gear suited for wilderness living.
+    Minor Effect Suggestion: Your survival skills are exceptionally effective.
+    Major Effect Suggestion: Your survival skills allow you to overcome any environmental challenge.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Looks for Trouble
+    Description: You are always ready for a fight and can handle dangerous situations.
+    Connection: One of the other PCs has fought alongside you before.
+    Equipment: Weapons and gear suited for combat.
+    Minor Effect Suggestion: Your combat readiness gives you an edge.
+    Major Effect Suggestion: Your combat readiness allows you to turn the tide of battle.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Metamorphosizes
+    Description: You can change your shape and take on new forms.
+    Connection: One of the other PCs has seen you transform before.
+    Equipment: None specifically related to your focus.
+    Minor Effect Suggestion: Your transformation is seamless.
+    Major Effect Suggestion: Your transformation grants you additional abilities.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Operates Undercover
+    Description: You are skilled at operating undercover and maintaining false identities.
+    Connection: One of the other PCs has worked with you undercover before.
+    Equipment: Disguise kits and tools for undercover work.
+    Minor Effect Suggestion: Your disguise is perfect.
+    Major Effect Suggestion: Your undercover work uncovers vital information.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Practices Soul Sorcery
+    Description: You can perform magic related to the soul and emotions.
+    Connection: One of the other PCs has seen your soul sorcery in action.
+    Equipment: Items related to soul sorcery.
+    Minor Effect Suggestion: Your soul sorcery is more effective than expected.
+    Major Effect Suggestion: Your soul sorcery has a profound effect on the target.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Processes Information
+    Description: You can process and analyze large amounts of information quickly and accurately.
+    Connection: One of the other PCs is a fellow researcher or analyst.
+    Equipment: Research tools and data analysis equipment.
+    Minor Effect Suggestion: Your analysis uncovers hidden details.
+    Major Effect Suggestion: Your analysis reveals critical information that changes the course of action.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Regenerates Tissue
+    Description: You can regenerate damaged tissue and heal quickly.
+    Connection: One of the other PCs has witnessed your regenerative abilities.
+    Equipment: None specifically related to your focus.
+    Minor Effect Suggestion: Your regeneration is faster than expected.
+    Major Effect Suggestion: Your regeneration heals all wounds instantly.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Shepherds the Dead
+    Description: You can communicate with and control the dead.
+    Connection: One of the other PCs has seen your necromancy in action.
+    Equipment: Items related to necromancy.
+    Minor Effect Suggestion: Your necromantic abilities are more effective than expected.
+    Major Effect Suggestion: Your necromancy allows you to control multiple undead.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Slays Dragons
+    Description: You are skilled in tracking and slaying dragons.
+    Connection: One of the other PCs has fought dragons alongside you.
+    Equipment: Weapons and gear suited for hunting dragons.
+    Minor Effect Suggestion: Your attack is exceptionally effective against dragons.
+    Major Effect Suggestion: Your attack slays the dragon instantly.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Solves Mysteries
+    Description: You are skilled in solving mysteries and uncovering hidden truths.
+    Connection: One of the other PCs has worked with you on a mystery before.
+    Equipment: Tools for investigation and analysis.
+    Minor Effect Suggestion: Your deduction uncovers additional clues.
+    Major Effect Suggestion: Your deduction solves the mystery instantly.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Spawns
+    Description: You can create and control spawns to assist you.
+    Connection: One of the other PCs has seen your spawns in action.
+    Equipment: Items related to spawning.
+    Minor Effect Suggestion: Your spawn is stronger than expected.
+    Major Effect Suggestion: Your spawn has additional abilities.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Translates
+    Description: You can understand and translate any language, including written and spoken forms.
+    Connection: One of the other PCs has worked with you on translations before.
+    Equipment: Tools for translation and interpretation.
+    Minor Effect Suggestion: Your translation is exceptionally accurate.
+    Major Effect Suggestion: Your translation uncovers hidden or critical information.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Wields Two Weapons at Once
+    Description: You are skilled in fighting with two weapons simultaneously.
+    Connection: One of the other PCs has fought alongside you before.
+    Equipment: Two high-quality weapons of your choice.
+    Minor Effect Suggestion: Your attacks with two weapons are exceptionally accurate.
+    Major Effect Suggestion: Your attacks with two weapons are devastating.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""
+
+  - Focus: Works Miracles
+    Description: You can perform miraculous feats, such as healing a severe wound or creating food and water.
+    Connection: One of the other PCs has witnessed your miracles.
+    Equipment: Items related to performing miracles.
+    Minor Effect Suggestion: Your miracle is more effective than expected.
+    Major Effect Suggestion: Your miracle has a profound effect.
+    Tiers:
+      Tier 1:
+        Effect 1:
+          Title: ""
+          Description: ""
+        Effect 2:
+          Title: ""
+          Description: ""
+      Tier 2:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 3:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 4:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 5:
+        Effect 1:
+          Title: ""
+          Description: ""
+      Tier 6:
+        Effect 1:
+          Title: ""
+          Description: ""

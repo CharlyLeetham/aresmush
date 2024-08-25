@@ -7,6 +7,8 @@ The `rr` command is the base of everything Recursive Realms.  You can list the C
 
 
 `rr` - Shows command usage.
+
+## Character Types
 `rr/types` - Display all the character types available to players.
 `rr/types/[type]` - Substitute [type] for a known Character type and get all the details on it.  ie. rr/types/vector
 `rr/types/[type]/tiers` - Substitute [type] for a known Character type and display all the Tier details for the type.  ie. rr/types/vector/tiers
@@ -18,3 +20,7 @@ Permitted Character Types:
 Vector
 Paradox
 Spinner
+
+## Focus
+`rr/focus` - lists all focuses. Name and short desc
+`rr/focus/[focus]` - lists the details for the specific focus
