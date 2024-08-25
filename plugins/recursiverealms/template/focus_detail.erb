@@ -20,10 +20,10 @@
         <% if effect_details.is_a?(Hash) %>
           <% effect_details.each do |key, value| %>
             <% if (key == "Title" || key == "Description") && value.present? %>
-              <%= left("    #{key}: #{value}", 80) %>
+              <%= left("    %xh#{key}:%xn #{value}", 80) %>
               <% effects_found = true %>
             <% elsif key != "Title" && key != "Description" %>
-              <%= left("    #{key}: #{value}", 80) %>
+              <%= left("    %xh#{key}:%xn #{value}", 80) %>
               <% effects_found = true %>
             <% end %>
           <% end %>
