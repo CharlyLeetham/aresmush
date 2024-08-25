@@ -20,7 +20,7 @@ module AresMUSH
           when "start"
             return StartCmd
           when ->(args) { args.start_with?('types') }       
-                split_switch = RecursiveRealms.split_command(cmd)                        
+                split_switch = RecursiveRealms.split_command(cmd) #In helpers.rb                       
                 if split_switch.length > 1
                     fr = split_switch[0]
                     detail = split_switch.length > 1 ? split_switch[1] : nil
@@ -47,6 +47,7 @@ module AresMUSH
                 else
                     return ListAllTypesCmd
                 end
+          #I don't know if these are needed, but I'm leaving them as place holders (25 Aug 2024)
           when "select"
             return SelectTypeCmd
           when "tier"
