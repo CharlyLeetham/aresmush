@@ -3,7 +3,6 @@
 
 <% @chartype['Tiers'].each do |tier, attrib| %>
   <%= left("%xh#{tier}:%xn", 100) %>
-
   <% attrib.each do |attribute_name, attribute_value| %>
     <% if attribute_name == 'Special Abilities' %>
       <%= left("%xh#{attribute_name}:%xn", 100) %>
