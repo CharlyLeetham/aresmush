@@ -13,12 +13,13 @@ module AresMUSH
       end
 
       def handle
+        client.emit_ooc "#{self.focus}"
         focustype = Global.read_config("RecursiveRealms", "focuses").find { |c| c['Focus'].downcase == self.focus }
         if focustype
               template = FocusDetailTemplate.new(focustype)
               client.emit template.render
         else
-          @client.emit_failure "Focus type #{self.type.capitalize} not found. Please check your spelling."
+          @client.emit_failure "Focus type #{self.focus.capitalize} not found. Please check your spelling."
         end
       end     
     end
