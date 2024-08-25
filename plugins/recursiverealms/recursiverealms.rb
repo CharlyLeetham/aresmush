@@ -52,17 +52,12 @@ module AresMUSH
               when ->(args) { args.start_with?('focus') }
               client.emit_ooc "#{cmd}"
               #split_switch = RecursiveRealms.split_command(cmd) #In helpers.rb   
-             split_switch = cmd.switch.split('/', 2) # Split into at most 2 parts
-  
-             arg1 = split_switch[0]
-             if split_switch.length > 1
-               remaining_parts = split_switch[1].split('/', 2) # Further split the second part, but only once
-               arg2 = remaining_parts[0]
-               arg3 = remaining_parts.length > 1 ? remaining_parts[1] : nil
-             else
-               arg2 = nil
-               arg3 = nil
-             end             
+              split_switch = cmd.switch.split('/', 3) 
+
+              arg1 = split_switch[0] # The first part before the first '/'
+              arg2 = split_switch.length > 1 ? split_switch[1] : nil # The second part, which may contain spaces
+              arg3 = split_switch.length > 2 ? split_switch[2] : nil # The third part, if it exists
+            
              client.emit "split_switch: #{split_switch.inspect}, arg0: #{arg1}, arg1: #{arg2}, arg2: #{arg3}"  
               #client.emit_ooc "#{split_switch}"                    
               if split_switch.length > 1
