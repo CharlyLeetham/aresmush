@@ -11,11 +11,10 @@ module AresMUSH
           return
         end
 
+
         begin
-          characters_config.each do |character|
-            template = CharacterTypesTemplate.new(character)
-            client.emit template.render
-          end
+          template = CharacterTypesTemplate.new(character_config)
+          client.emit template.render
         rescue => e
           client.emit_ooc "Error: #{e.message}"
           Global.logger.error "Error reading character types: #{e.message}"
