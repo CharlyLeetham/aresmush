@@ -51,7 +51,9 @@ module AresMUSH
                 
               when ->(args) { args.start_with?('focus') }
               client.emit_ooc "#{cmd}"
-              split_switch = RecursiveRealms.split_command(cmd) #In helpers.rb   
+              #split_switch = RecursiveRealms.split_command(cmd) #In helpers.rb   
+             split_switch = cmd.switch.split('/', 3).reject(&:empty?)
+            client.emit "split_switch: #{split_switch.inspect}"  
               #client.emit_ooc "#{split_switch}"                    
               if split_switch.length > 1
                   fr = split_switch[0]
