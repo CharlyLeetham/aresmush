@@ -13,7 +13,6 @@ module AresMUSH
 
         begin
           characters_config.each do |character|
-            client.emit_ooc "#{character}"
             template = CharacterTypesTemplate.new(character)
             client.emit template.render
           end
