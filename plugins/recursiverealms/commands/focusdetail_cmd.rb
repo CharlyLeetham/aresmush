@@ -13,7 +13,7 @@ module AresMUSH
       end
 
       def handle
-        focustype = Global.read_config("RecursiveRealms", "focuses").find { |c| c['Focus'].downcase == self.type }
+        focustype = Global.read_config("RecursiveRealms", "focuses").find { |c| c['Focus'].downcase == self.focus }
         if focustype
               template = FocusDetailTemplate.new(focustype)
               client.emit template.render
