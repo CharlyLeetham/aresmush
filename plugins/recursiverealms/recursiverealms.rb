@@ -75,7 +75,8 @@ module AresMUSH
                   client.emit_ooc "#{fr}, #{detail}, #{attrib}"
 
                   #return ListAllTypesCmd
-               end                
+               end   
+              end             
           #I don't know if these are needed, but I'm leaving them as place holders (25 Aug 2024)
           when "select"
             return SelectTypeCmd
