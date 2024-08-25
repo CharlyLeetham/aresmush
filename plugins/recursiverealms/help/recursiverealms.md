@@ -17,3 +17,5 @@ Permitted Character Types:
 Vector
 Paradox
 Spinner
+
+Characters with the "view_bgs" permission can view rr using `rr <name>`.
