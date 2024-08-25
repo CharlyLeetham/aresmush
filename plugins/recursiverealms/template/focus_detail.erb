@@ -2,17 +2,16 @@
 <%=  left("%xhDescription:%xn #{focus['Description']}", 80) %>
 
 <%= line_with_text t('RecursiveRealms.char_type_attributesheading') %>
-<%= left("%xhConnection:%xn #{focus['Connection']}", 200) %>
-<%= left("%xh:Equipment%xn #{focus['Equipment']}", 200) %>
-<%= left("%xhMinor Effect Suggestion:%xn #{focus['Minor Effect Suggestion']}", 200) %>
-<%= left("%xhMajor Effect Suggestion:%xn #{focus['Minor Effect Suggestion']}", 200) %>
+<%= %xhConnection:%xn #{focus['Connection']}" %>
+<%= "%xhEquipment:%xn #{focus['Equipment']}" %>
+<%= "%xhMinor Effect Suggestion:%xn #{focus['Minor Effect Suggestion']}" %>
+<%= "%xhMajor Effect Suggestion:%xn #{focus['Minor Effect Suggestion']}" %>
 
 <%= line_with_text t('RecursiveRealms.char_type_tiersheading') %>
 
 <% if @focus['Tiers'] %>
   <% @focus['Tiers'].each do |tier, details| %>
     <%= left("%xh#{tier}:%xn", 80) %>
-    
     <% details.each do |effect, effect_details| %>
       <%= left("  %xh#{effect}:%xn", 80) %>
       
