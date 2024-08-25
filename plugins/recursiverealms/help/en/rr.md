@@ -6,7 +6,7 @@ summary: Commands.
 The `rr` command is the base of everything Recursive Realms.  You can list the Character Types and dig into them etc. 
 
 
-`rr` - Show this help file. <-- Not coded yet, Serenity
+`rr` - Shows command usage.
 `rr/types` - Display all the character types available to players.
 `rr/types/[type]` - Substitute [type] for a known Character type and get all the details on it.  ie. rr/types/vector
 `rr/types/[type]/tiers` - Substitute [type] for a known Character type and display all the Tier details for the type.  ie. rr/types/vector/tiers
