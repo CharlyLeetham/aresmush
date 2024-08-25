@@ -57,22 +57,15 @@ module AresMUSH
                   detail = split_switch.length > 1 ? split_switch[1] : nil
                   attrib = split_switch.length > 2 ? split_switch[2] : nil
               end 
-              
+                  #need a command here
               if fr && detail && attrib && !attrib.empty?  #if you pass three arguments to rr
                 fr = fr.downcase
                 detail = detail.downcase
                 attrib = attrib.downcase
-                #return ListTypeCmd
-                client.emit_ooc "Focus Case 1"
-                client.emit_ooc "#{fr}, #{detail}, #{attrib}"
               elsif fr && detail && (attrib.nil? || attrib.empty?)  #if you pass two arguments to rr ie. rr/focus/abides in stone
                 detail = detail.downcase
-                client.emit_ooc "Focus Case 2"
-                client.emit_ooc "#{fr}, #{detail}, #{attrib}"
                 return FocusDetailCmd
               else #only one argument passed. ie rr/focus
-                client.emit_ooc "Focus Case 3"
-                client.emit_ooc "#{fr}, #{detail}, #{attrib}"
 
                 #return ListAllTypesCmd
              end                   
