@@ -7,6 +7,7 @@ module AresMUSH
             template = RRCommandTemplate.new
             client.emit template.render
         end  
+       end
     end
   end
   
