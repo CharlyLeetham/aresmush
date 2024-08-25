@@ -1,5 +1,5 @@
 <%= line_with_text t('RecursiveRealms.focus_detail_title', :focus => self.focusdetailtitle) %>
-<%=  left("%xhDescription:%xn #{focus['Description']}", 80) %>
+<%= "%xhDescription:%xn #{focus['Description']}" %>
 
 <%= line_with_text t('RecursiveRealms.char_type_attributesheading') %>
 <%= "%xhConnection:%xn #{focus['Connection']}" %>
@@ -9,15 +9,21 @@
 
 <%= line_with_text t('RecursiveRealms.char_type_tiersheading') %>
 
-<% if @focus['Tiers'] %>
-  <% @focus['Tiers'].each do |tier, details| %>
-    <%= left("%xh#{tier}:%xn", 80) %>
+<% if @focustype['Tiers'] %>
+  <% @focustype['Tiers'].each do |tier, details| %>
+    <%= left("%xh#{tier}:%xn", 80) %> 
     <% details.each do |effect, effect_details| %>
       <%= left("  %xh#{effect}:%xn", 80) %>
       
       <% if effect_details.is_a?(Hash) %>
         <% effect_details.each do |key, value| %>
-          <%= left("    #{key}: #{value}", 80) %>
+          <% if key == "Title" || key == "Description" %>
+            <% unless value.blank? %>
+              <%= left("    #{key}: #{value}", 80) %>
+            <% end %>
+          <% else %>
+            <%= left("    #{key}: #{value}", 80) %>
+          <% end %>
         <% end %>
         
       <% elsif effect_details.is_a?(Array) %>
