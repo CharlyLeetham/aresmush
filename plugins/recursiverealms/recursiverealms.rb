@@ -50,7 +50,7 @@ module AresMUSH
                 end 
                 
               when ->(args) { args.start_with?('focus') }
-              client.emit_ooc "#{args.inspect}"
+              client.emit_ooc "#{cmd.switch.inspect}"
               #split_switch = RecursiveRealms.split_command(cmd) #In helpers.rb   
               if split_switch.length > 1
                   fr = split_switch[0]
