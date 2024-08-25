@@ -1,9 +1,10 @@
   <%= line_with_text t('RecursiveRealms.focus_title') %>
+  
   <% if @focuses && @focuses.any? %>
-  <% @focuses.each do |focus| %>
-    <%= left("%xhTitle:%xn #{focus['Focus']}", 80) %>
-    <% if focus['Description'].present? %>
-      <%= "%xhDescription: %xn #{focus['Description']}" %>
+  <% @focus.each do |f| %>
+    <%= left("%xhTitle:%xn #{f['Focus']}", 80) %>
+    <% if f['Description'].present? %>
+      <%= "%xhDescription: %xn #{f['Description']}" %>
     <% else %>
       <%= "%xnDescription: %xnNo description available." %>
     <% end %>
