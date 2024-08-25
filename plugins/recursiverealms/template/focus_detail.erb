@@ -9,32 +9,47 @@
 
 <%= line_with_text t('RecursiveRealms.char_type_tiersheading') %>
 
-<% if @focus['Tiers'] %>
+<% if @focus && @focus['Tiers'] %>
   <% @focus['Tiers'].each do |tier, details| %>
-    <%= left("%xh#{tier}:%xn", 80) %> 
-    <% details.each do |effect, effect_details| %>
-      <%= left("  %xh#{effect}:%xn", 80) %>
+    <%= left("%xh#{tier}:%xn", 80) %>
+    
+    <% if details.empty? %>
+      <%= left("  No effects available.", 80) %>
+    <% else %>
+      <% effects_found = false %>
       
-      <% if effect_details.is_a?(Hash) %>
-        <% effect_details.each do |key, value| %>
-          <% if key == "Title" || key == "Description" %>
-            <% unless value.blank? %>
+      <% details.each do |effect, effect_details| %>
+        <% if effect_details.is_a?(Hash) %>
+          <% effect_details.each do |key, value| %>
+            <% if (key == "Title" || key == "Description") && value.present? %>
               <%= left("    #{key}: #{value}", 80) %>
+              <% effects_found = true %>
+            <% elsif key != "Title" && key != "Description" %>
+              <%= left("    #{key}: #{value}", 80) %>
+              <% effects_found = true %>
             <% end %>
-          <% else %>
-            <%= left("    #{key}: #{value}", 80) %>
           <% end %>
+        
+        <% elsif effect_details.is_a?(Array) %>
+          <%= left("    #{effect_details.join(', ')}", 80) %>
+          <% effects_found = true %>
+        
+        <% elsif effect_details.present? %>
+          <%= left("    #{effect_details}", 80) %>
+          <% effects_found = true %>
         <% end %>
-        
-      <% elsif effect_details.is_a?(Array) %>
-        <%= left("    #{effect_details.join(', ')}", 80) %>
-        
-      <% else %>
-        <%= left("    #{effect_details}", 80) %>
       <% end %>
       
+      <% unless effects_found %>
+        <%= left("  No effects available.", 80) %>
+      <% end %>
     <% end %>
+    
   <% end %>
+<% else %>
+  No tiers or focus type available.
+<% end %>
+
 <% end %>
 
 
