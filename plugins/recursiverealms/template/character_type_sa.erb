@@ -12,7 +12,7 @@
             <% if val.is_a?(Hash) %>
               <%= left("%xh#{key}:%xn", 100) %>
               <% val.each do |sub_key, sub_val| %>
-                <%= %xhsub_key:%xn sub_val %>
+                <%= "%xh#{sub_key}:%xn #{sub_val}" %>
               <% end %>
             <% elsif val.is_a?(Array) %>
               <%= left("%xh#{key}:%xn", 100) %>
