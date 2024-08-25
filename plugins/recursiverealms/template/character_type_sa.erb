@@ -20,7 +20,7 @@
                 <%= array_item %>
               <% end %>
             <% else %>
-              <%= left("%xh#{key}:%xn #{val}", 100) %>
+              <%= "%xh#{key}:%xn #{val}" %>
             <% end %>
           <% end %>
         <% elsif item.is_a?(Array) %>
