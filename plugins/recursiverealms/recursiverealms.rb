@@ -69,7 +69,7 @@ module AresMUSH
                 detail = detail.downcase
                 client.emit_ooc "Focus Case 2"
                 client.emit_ooc "#{fr}, #{detail}, #{attrib}"
-                #return ListTypeCmd
+                return FocusDetailCmd
               else #only one argument passed. ie rr/focus
                 client.emit_ooc "Focus Case 3"
                 client.emit_ooc "#{fr}, #{detail}, #{attrib}"
