@@ -1,16 +1,16 @@
-<%= line_with_text t('RecursiveRealms.focus_detail_title', :focustype => self.focusdetailtitle) %>
-<%=  left("%xhDescription:%xn #{focustype['Description']}", 80) %>
+<%= line_with_text t('RecursiveRealms.focus_detail_title', :focus => self.focusdetailtitle) %>
+<%=  left("%xhDescription:%xn #{focus['Description']}", 80) %>
 
 <%= line_with_text t('RecursiveRealms.char_type_attributesheading') %>
-<%= left("%xhConnection:%xn #{focustype['Connection']}", 200) %>
-<%= left("%xh:Equipment%xn #{focustype['Equipment']}", 200) %>
-<%= left("%xhMinor Effect Suggestion:%xn #{focustype['Minor Effect Suggestion']}", 200) %>
-<%= left("%xhMajor Effect Suggestion:%xn #{focustype['Minor Effect Suggestion']}", 200) %>
+<%= left("%xhConnection:%xn #{focus['Connection']}", 200) %>
+<%= left("%xh:Equipment%xn #{focus['Equipment']}", 200) %>
+<%= left("%xhMinor Effect Suggestion:%xn #{focus['Minor Effect Suggestion']}", 200) %>
+<%= left("%xhMajor Effect Suggestion:%xn #{focus['Minor Effect Suggestion']}", 200) %>
 
 <%= line_with_text t('RecursiveRealms.char_type_tiersheading') %>
 
-<% if @focustype['Tiers'] %>
-  <% @focustype['Tiers'].each do |tier, details| %>
+<% if @focus['Tiers'] %>
+  <% @focus['Tiers'].each do |tier, details| %>
     <%= left("%xh#{tier}:%xn", 80) %>
     
     <% details.each do |effect, effect_details| %>
