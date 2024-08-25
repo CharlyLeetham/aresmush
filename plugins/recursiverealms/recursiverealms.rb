@@ -17,7 +17,7 @@ module AresMUSH
         when "rr" 
           case cmd.switch
           when nil
-            return ListTypeCmd           
+            return RRCmd           
           when "start"
             return StartCmd
           when ->(args) { args.start_with?('types') }       

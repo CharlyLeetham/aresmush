@@ -1,8 +1,7 @@
 module AresMUSH
     module RecursiveRealms
-      class ListTypeCmd 
+      class RRCmd 
         include CommandHandler
-   
         def handle
             template = RRCommandTemplate.new
             client.emit template.render
