@@ -44,11 +44,18 @@ module AresMUSH
               client.emit_success "Effort for #{self.type.capitalize} (Tier #{traits.tier}) set to #{effort}."
             else
               client.emit_failure "Effort information for #{self.value.capitalize} (Tier #{traits.tier}) not found."
-            end            
+            end  
 
+            # Retrieve and add the special abilities for the type and tier
+            special_abilities = chartype['Tiers'][tier_key]['Special Abilities']
+            if special_abilities
+              RecursiveRealms.add_special_abilities(special_abilities, traits.tier)
             else
-              RecursiveRealms.handle_invalid_type(client, self.value, enactor) #in cg_helpers.rb
-            end 
+              client.emit_ooc "No Special Abilities found for #{self.value.capitalize} (Tier #{traits.tier})."
+            end
+          else
+            RecursiveRealms.handle_invalid_type(client, self.value, enactor) #in cg_helpers.rb
+          end 
         end
       end
     end
