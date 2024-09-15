@@ -27,6 +27,7 @@ module AresMUSH
     class RRTraits < Ohm::Model
 		include ObjectModel
 		attribute :name
+        attribute :type        
 		attribute :tier
         attribute :effort
         attribute :xp 

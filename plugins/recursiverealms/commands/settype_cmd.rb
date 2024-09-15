@@ -22,9 +22,16 @@ module AresMUSH
           chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type }
           if chartype
             client.emit_ooc "#{self.type.capitalize} Selected"
-          else
-            RecursiveRealms.handle_invalid_type(client, self.type, enactor) #in cg_helpers.rb
-          end 
+            # Find the traits record, or create a new one if it doesn't exist
+            traits = enactor.rr_traits.first || RRTraits.create(character: enactor)
+            
+            # Update the traits with the new type
+            traits.update(type: self.type)
+            client.emit_success "Your character type has been updated to #{self.type.capitalize}."
+
+            else
+              RecursiveRealms.handle_invalid_type(client, self.type, enactor) #in cg_helpers.rb
+            end 
         end
       end
     end
