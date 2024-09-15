@@ -31,22 +31,22 @@ module AresMUSH
           end
 
           # Update the tier in the character's traits
-          traits.update(tier: self.tier.to_i)
-          client.emit_success "Your character's tier has been updated to #{self.tier}."
+          traits.update(tier: self.value.to_i)
+          client.emit_success "Your character's tier has been updated to #{self.value}."
 
           # Now adjust the effort based on the new tier
           chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
 
           if chartype
             # Fetch the correct effort value for the new tier from the YAML
-            tier_key = "Tier #{self.tier}"
+            tier_key = "Tier #{self.value}"
             effort = chartype['Tiers'][tier_key]['Effort']
 
             if effort
               traits.update(effort: effort)
-              client.emit_success "Effort for #{traits.type.capitalize} (Tier #{self.tier}) has been set to #{effort}."
+              client.emit_success "Effort for #{traits.type.capitalize} (Tier #{self.value}) has been set to #{effort}."
             else
-              client.emit_failure "Effort information for #{traits.type.capitalize} (Tier #{self.tier}) not found in configuration."
+              client.emit_failure "Effort information for #{traits.type.capitalize} (Tier #{self.value}) not found in configuration."
             end
           else
             client.emit_failure "Character type '#{traits.type}' not found in the configuration."
