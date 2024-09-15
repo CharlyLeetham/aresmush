@@ -101,6 +101,6 @@ module AresMUSH
 		reference :character, "AresMUSH::Character"
 		index :name
 	end    
-
+end
 
 
