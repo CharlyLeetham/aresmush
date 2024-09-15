@@ -34,6 +34,16 @@ module AresMUSH
               client.emit_success "Tier was empty and has been automatically set to 1."
             else
               client.emit_ooc "Tier is already set to #{traits.tier} and will not be changed."
+            end 
+            
+            # Set the Effort value from the YAML based on the type and tier
+            tier_key = "Tier #{traits.tier}"
+            effort = chartype['Tiers'][tier_key]['Effort']
+            if effort
+              traits.update(effort: effort)
+              client.emit_success "Effort for #{self.type.capitalize} (Tier #{traits.tier}) set to #{effort}."
+            else
+              client.emit_failure "Effort information for #{self.type.capitalize} (Tier #{traits.tier}) not found."
             end            
 
             else
