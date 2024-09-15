@@ -6,7 +6,7 @@ module AresMUSH
       attr_accessor :ability_name, :choices
 
       def parse_args
-        split_switch = RecursiveRealms.split_command(@cmd)
+        split_switch = RecursiveRealms.multi_split_command(@cmd)
 
         # Ensure we don't raise errors when not enough arguments are passed
         self.ability_name = split_switch[2] # The name of the special ability
