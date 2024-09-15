@@ -56,6 +56,7 @@ module AresMUSH
           return
         end
 
+        client.emit_ooc "Here"
         # Update or create the ability record in the database for the character
         existing_ability = enactor.rr_specialabilities.find { |a| a.name.downcase == ability['Name'].downcase }
 
