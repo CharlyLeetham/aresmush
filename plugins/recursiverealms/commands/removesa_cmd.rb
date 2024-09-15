@@ -26,7 +26,7 @@ module AresMUSH
             client.emit_success "All special abilities have been removed."
           else
             # Remove only the special abilities for the specified tier
-            abilities_to_remove = abilities.select { |ability| ability.tier == self.tier }
+            abilities_to_remove = abilities.select { |ability| ability.tier.to_i == self.tier }
   
             if abilities_to_remove.empty?
               client.emit_failure "No special abilities found for Tier #{self.tier}."
