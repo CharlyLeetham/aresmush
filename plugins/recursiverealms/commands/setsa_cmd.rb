@@ -18,6 +18,9 @@ module AresMUSH
 
         # Find the special ability by name
         ability = enactor.rr_specialabilities.find { |a| a.name.downcase == self.ability_name.downcase }
+
+        client.emit_ooc "#{ability.inspect}"
+        
         if ability.nil?
           client.emit_failure "Special Ability '#{self.ability_name}' not found."
           return
