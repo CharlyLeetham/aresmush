@@ -24,6 +24,7 @@ module AresMUSH
         if ability['SkList'] && ability['SkList'].include?(',')
           # If the ability requires a choice from the SkList, prompt the user for input
           client.emit_ooc "You must choose from the following options for #{ability['Name']}: #{ability['SkList']}."
+          client.emit_ooc "Type rr/set/sa/#{ability['Name']}/option1,option2"
           # Add logic to capture the user's choice here
         else
           if existing_ability
