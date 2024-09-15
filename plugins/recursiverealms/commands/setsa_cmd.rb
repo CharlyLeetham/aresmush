@@ -29,9 +29,6 @@ module AresMUSH
           client.emit_failure "Character type '#{traits.type}' not found in configuration."
           return
         end        
-
-        client.emit_ooc "#{chartype.inspect}"
-
         tier_key = "Tier #{traits.tier}"
         special_abilities = chartype['Tiers'][tier_key]['Special Abilities']
         ability = special_abilities.find { |a| a['Name'].downcase == self.ability_name.downcase }
@@ -44,7 +41,7 @@ module AresMUSH
         end
 
         # Determine how many options can be chosen based on the Expertise value
-        expertise_limit = ability.expertise.split('/').first.to_i
+        expertise_limit = ability['Expertise'].split('/').first.to_i
 
         client.emit_ooc "#{expertise_limit}, #{self.choices}"
 
