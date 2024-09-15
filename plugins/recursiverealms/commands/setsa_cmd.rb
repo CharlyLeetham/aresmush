@@ -35,7 +35,7 @@ module AresMUSH
           # If valid, update the sklist with the chosen selections (comma-separated)
           ability.update(sklist: selected_choices.join(", "))
           client.emit_success "You have selected: #{selected_choices.join(", ")} for #{ability.name}."
-=end
+#=end
         end
       end
     end
