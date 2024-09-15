@@ -18,8 +18,8 @@ module AresMUSH
           if chartype
                 client.emit_ooc "#{self.type.capitalize} Selected"
           else
-            @client.emit_failure "Character type #{self.type.capitalize} not found. Please choose from one of the following:"
-                client.emit_ooc "#{self.type.capitalize} Selected" template.render
+            client.emit_failure "Character type #{self.type.capitalize} not found. Please choose from one of the following:"
+            client.emit_ooc "#{self.type.capitalize} Selected" 
             return recursiverealms.ListAllTypesCmd
           end  
 =begin
