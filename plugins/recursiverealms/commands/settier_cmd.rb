@@ -46,7 +46,7 @@ module AresMUSH
               traits.update(effort: effort)
               client.emit_success "Effort for #{traits.type.capitalize} (Tier #{self.value}) has been set to #{effort}."
             else
-              client.emit_failure "Effort information for #{traits.type.capitalize} (Tier #{self.value}) not found in configuration."
+              client.emit_success "Effort information for #{traits.type.capitalize} (Tier #{self.value}) does not change."
             end
           else
             client.emit_failure "Character type '#{traits.type}' not found in the configuration."
