@@ -91,6 +91,30 @@ module AresMUSH
               client.emit_ooc "Testing"
               return RRCmd
             end
+          when ->(args) { args.start_with?('remove') }       
+          split_switch = RecursiveRealms.split_command(cmd) #In helpers.rb                       
+            if split_switch.length > 1
+                fr = split_switch[0]
+                detail = split_switch.length > 1 ? split_switch[1] : nil
+                attrib = split_switch.length > 2 ? split_switch[2] : nil
+            end  
+            #client.emit_ooc "#{fr}, #{detail}, #{attrib}"                      
+
+            if fr && detail #if you pass at least two arguments to rr ie. rr/set/type/vector
+              fr = fr.downcase
+              detail = detail.downcase
+              case detail
+              when "type"
+                return SetTypeCmd
+              when "tier"
+                return SetTierCmd
+              when "sa"
+                return RemoveSACmd
+              end 
+            else
+              client.emit_ooc "Testing"
+              return RRCmd
+            end            
           when "sheet"
             return RRSheetCmd
   
