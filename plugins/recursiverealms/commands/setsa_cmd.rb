@@ -16,11 +16,21 @@ module AresMUSH
       def handle
         client.emit_ooc "#{ability_name}, #{choices}"
 
-        # Find the special ability by name
-        ability = enactor.rr_specialabilities.find { |a| a.name.downcase == self.ability_name.downcase }
+        # Retrieve the special ability from the YAML based on character type and tier
+        chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
+        if chartype.nil?
+          client.emit_failure "Character type '#{traits.type}' not found in configuration."
+          return
+        end        
+
+        client.emit_ooc "#{chartype.inspect}"
+
+        tier_key = "Tier #{traits.tier}"
+        special_abilities = chartype['Tiers'][tier_key]['Special Abilities']
+        ability = special_abilities.find { |a| a['Name'].downcase == self.ability_name.downcase }
 
         client.emit_ooc "#{ability.inspect}"
-        
+
         if ability.nil?
           client.emit_failure "Special Ability '#{self.ability_name}' not found."
           return
