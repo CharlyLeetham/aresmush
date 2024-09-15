@@ -49,7 +49,7 @@ module AresMUSH
             # Retrieve and add the special abilities for the type and tier
             special_abilities = chartype['Tiers'][tier_key]['Special Abilities']
             if special_abilities
-              RecursiveRealms.add_special_abilities(special_abilities, traits.tier, enactor)
+              RecursiveRealms.add_special_abilities(special_abilities, traits.tier, enactor, client)
             else
               client.emit_ooc "No Special Abilities found for #{self.value.capitalize} (Tier #{traits.tier})."
             end
