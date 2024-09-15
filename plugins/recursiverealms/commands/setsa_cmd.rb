@@ -35,18 +35,7 @@ module AresMUSH
 
         # If no ability name is given, show a list of abilities with SkList options that haven't been set
         if self.ability_name.nil? || self.ability_name.empty?
-          abilities_to_select = special_abilities.select do |ability|
-            # Ability should have options in SkList and should not already be set
-            ability['SkList'] && ability['SkList'].include?(',') &&
-            !enactor.rr_specialabilities.to_a.find { |a| a.name.downcase == ability['Name'].downcase }
-          end
-
-          if abilities_to_select.empty?
-            client.emit_ooc "All abilities with required selections have already been set."
-          else
-            ability_list = abilities_to_select.map { |ability| ability['Name'] }.join(", ")
-            client.emit_ooc "Abilities that require options and haven't been set: #{ability_list}"
-          end
+          RecursiveRealms.list_unset_abilities_with_options(special_abilities, enactor, client)
           return
         end
 
@@ -70,29 +59,8 @@ module AresMUSH
           return
         end
 
-        # Split and validate user choices
-        selected_choices = self.choices.split(",").map(&:strip)
-        if selected_choices.size > expertise_limit
-          client.emit_failure "You can only choose up to #{expertise_limit} options for #{ability['Name']}. You selected #{selected_choices.size}."
-          return
-        end
-
-        # Update or create the ability record in the database for the character
-        existing_ability = enactor.rr_specialabilities.to_a.find { |a| a.name.downcase == ability['Name'].downcase }
-     
-        if existing_ability
-          existing_ability.update(sklist: selected_choices.join(", "))
-        else
-          RRSpecialAbilities.create(
-            character: enactor,
-            name: ability['Name'],
-            tier: traits.tier,
-            type: ability['Type'],
-            expertise: ability['Expertise'],
-            sklist: selected_choices.join(", ")
-          )
-        end
-        client.emit_success "You have selected: #{selected_choices.join(", ")} for #{ability['Name']}."
+        # Set the selected choices for the ability
+        RecursiveRealms.set_special_ability_choices(ability, self.choices, expertise_limit, enactor, client, traits)
       end
     end
   end
