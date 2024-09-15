@@ -1,6 +1,5 @@
 module AresMUSH
     module RecursiveRealms
-
         def handle_missing_type(client, enactor)
             client.emit_failure "Character type not provided. Please choose from one of the following available types:"
             list_all_types(client, enactor)
