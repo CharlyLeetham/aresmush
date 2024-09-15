@@ -9,8 +9,8 @@ module AresMUSH
         split_switch = RecursiveRealms.multi_split_command(@cmd)
 
         # Ensure we don't raise errors when not enough arguments are passed
-        self.ability_name = split_switch[1] # The name of the special ability
-        self.choices = split_switch.length > 2 ? split_switch[2] : nil # The user choices, if provided
+        self.ability_name = split_switch.length > 2 ? split_switch[2] : nil # The name of the special ability
+        self.choices = split_switch.length > 3 ? split_switch[3] : nil # The user choices, if provided
       end
 
       def handle
@@ -23,15 +23,25 @@ module AresMUSH
           return
         end        
 
-        # Retrieve the special ability from the YAML based on character type and tier
+        # Retrieve the special ability list from the YAML based on character type and tier
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
         if chartype.nil?
           client.emit_failure "Character type '#{traits.type}' not found in configuration."
           return
-        end        
+        end
+
         tier_key = "Tier #{traits.tier}"
         special_abilities = chartype['Tiers'][tier_key]['Special Abilities']
-        ability = special_abilities.to_a.find { |a| a['Name'].downcase == self.ability_name.downcase }
+
+        # If no ability name is given, show a list of available abilities for the current tier
+        if self.ability_name.nil? || self.ability_name.empty?
+          ability_list = special_abilities.map { |ability| ability['Name'] }.join(", ")
+          client.emit_ooc "Available Special Abilities for Tier #{traits.tier}: #{ability_list}"
+          return
+        end
+
+        # Find the ability by name
+        ability = special_abilities.find { |a| a['Name'].downcase == self.ability_name.downcase }
 
         if ability.nil?
           client.emit_failure "Special Ability '#{self.ability_name}' not found."
@@ -40,6 +50,7 @@ module AresMUSH
 
         # Determine how many options can be chosen based on the Expertise value
         expertise_limit = ability['Expertise'].split('/').first.to_i
+
         # If no choices provided, display the available options and how many can be chosen
         if self.choices.nil? || self.choices.empty?
           available_options = ability['SkList']
@@ -56,7 +67,6 @@ module AresMUSH
           return
         end
 
-        client.emit_ooc "Here"
         # Update or create the ability record in the database for the character
         existing_ability = enactor.rr_specialabilities.to_a.find { |a| a.name.downcase == ability['Name'].downcase }
      
