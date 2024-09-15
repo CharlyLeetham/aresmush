@@ -31,7 +31,7 @@ module AresMUSH
         end        
         tier_key = "Tier #{traits.tier}"
         special_abilities = chartype['Tiers'][tier_key]['Special Abilities']
-        ability = special_abilities.find { |a| a['Name'].downcase == self.ability_name.downcase }
+        ability = special_abilities.find.to_a { |a| a['Name'].downcase == self.ability_name.downcase }
 
         if ability.nil?
           client.emit_failure "Special Ability '#{self.ability_name}' not found."
