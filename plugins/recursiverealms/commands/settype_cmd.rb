@@ -15,19 +15,19 @@ module AresMUSH
         def handle
           client.emit_ooc "#{topcmd}, #{type}, #{value}"
 
-          if self.type.nil?
+          if self.value.nil?
             RecursiveRealms.handle_missing_type(client, enactor) 
           end          
 
-          chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type }
+          chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.value }
           if chartype
-            client.emit_ooc "#{self.type.capitalize} Selected"
+            client.emit_ooc "#{self.value.capitalize} Selected"
             # Find the traits record, or create a new one if it doesn't exist
             traits = enactor.rr_traits.first || RRTraits.create(character: enactor)
             
             # Update the traits with the new type
-            traits.update(type: self.type)
-            client.emit_success "Your character type has been updated to #{self.type.capitalize}."
+            traits.update(type: self.value)
+            client.emit_success "Your character type has been updated to #{self.value.capitalize}."
 
             if traits.tier.nil? || traits.tier.empty?
               traits.update(tier: 1)
@@ -43,11 +43,11 @@ module AresMUSH
               traits.update(effort: effort)
               client.emit_success "Effort for #{self.type.capitalize} (Tier #{traits.tier}) set to #{effort}."
             else
-              client.emit_failure "Effort information for #{self.type.capitalize} (Tier #{traits.tier}) not found."
+              client.emit_failure "Effort information for #{self.value.capitalize} (Tier #{traits.tier}) not found."
             end            
 
             else
-              RecursiveRealms.handle_invalid_type(client, self.type, enactor) #in cg_helpers.rb
+              RecursiveRealms.handle_invalid_type(client, self.value, enactor) #in cg_helpers.rb
             end 
         end
       end
