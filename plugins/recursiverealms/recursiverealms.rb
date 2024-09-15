@@ -82,6 +82,8 @@ module AresMUSH
               case detail
               when "type"
                 return SetTypeCmd
+              when "tier"
+                return SetTierCmd
               end 
             else
               client.emit_ooc "Testing"
