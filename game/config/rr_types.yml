@@ -1,92 +1,109 @@
 RecursiveRealms:
-  characters:
-    - Type: Vector
-      Descriptor: "Action-oriented individuals like athletes, soldiers, firefighters, hunters, and explorers."
-      Might: 10
-      Speed: 10
-      Intellect: 8
-      Additional Points: 6
-      Tiers:
-        Tier 1:
-          Effort: 1
-          Physical Nature:
-            Might Edge: 1
-            Speed Edge: 1
-            Intellect Edge: 0
-          Cypher Limit: 2
-          Special Abilities:
-            - Name: Defensive
-              Type: Skill
-              Description: "You are trained in Speed defense actions when not wearing armor."
-            - Name: Practiced With All Weapons
-              Type: Skill
-              Description: "You can use any weapon."
-            - Name: Physical Skills
-              Type: Skill
-              Expertise: "2/Trained"
-              SkList: "Balancing, Climbing, Jumping, Running, Swimming"
-              Description: "You are trained in your choice of two of the following: balancing, climbing, jumping, running, or swimming."
-            - Name: Translation
-              Type: Skill
-              Modifier: None
-              Effect: Easing
-              Description: "You allow group members to acclimate more quickly after the translation is complete." 
-          Moves:
-            - Name: Bash
-              Type: Combat
-              Duration: Instant
-              Cost: "+1/Might"
-              Modifier: "-1/Difficulty"
-              Description: "This is a pummeling melee attack. The difficulty of the attack roll is decreased by one step."
-            - Name: Endurance
-              Type: Ability
-              Modifier: None
-              Description: "All durations related to physical endurance are either doubled or halved, whichever is more beneficial."
-            - Name: Fleet of Foot
-              Type: Ability
-              Modifier: None
-              Description: "If you succeed at a difficulty 2 Speed roll to run, you can move a short distance and take an action in the same round."
-            - Name: No Need for Weapons
-              Type: Equipment
-              Gear: "Gain/Medium Unarmed"
-              Description: "When you make an unarmed attack (such as a punch or kick), you can choose whether you make the attack as if using a medium weapon or as if using a light weapon."
-            - Name: Pierce
-              Type: Combat
-              Duration: Instant
-              Modifier: "+1/Damage"
-              Cost: "1/Speed"
-              Description: "This is a well-aimed, penetrating ranged attack. You make an attack and inflict 1 additional point of damage."
-            - Name: Practiced in Armor
-              Type: Ability
-              Expertise: "Practiced/All Armor"
-              Cost: "-2/Speed Pool, -2/Might Pool"
-              Modifier: None
-              Description: "You can wear any kind of armor. You reduce the Might and Speed Pool penalty for wearing armor by 2."
-        Tier 2:
-          Special Abilities:
-            - Name: Physical Skill
-              Modifier: None
-              Description: "Choose one skill in which you are not already trained: balancing, climbing, jumping, running, or swimming. You are trained in that skill. Enabler."
-            - Name: Skill With Defense
-              Modifier: None
-              Description: "Choose one type of defense task in which you are not already trained: Might, Speed, or Intellect. You are trained in defense tasks of that type. Unlike most moves, you can select this move up to three times. Each time you select it, you must choose a different type of defense task. Enabler."
-            - Name: Reach Beyond
-              Cost: "+3/Intellect"
-              Description: "When you use Reach Beyond, you can access training in a skill provided by a focus you have in another recursion. You must have used the skill in its proper recursion at least once before. You can use the skill once. To use it again, you must use Reach Beyond again. Enabler."
-          Moves:
-            - Name: Enable Others
-              Modifier: None
-              Description: "You can use the helping rules to provide a benefit to another character attempting a physical task. This requires no action on your part. Enabler."
-            - Name: Quick Recovery
-              Modifier: None
-              Description: "Your second recovery roll (usually requiring ten minutes) is only a single action, just like the first roll. Enabler."
-            - Name: Range Increase
-              Modifier: None
-              Description: "Ranges for you increase by one step. Immediate becomes short, short becomes long, long becomes 200 feet (61 m). Enabler."
-            - Name: Skill With Attacks
-              Description: "Choose one type of attack in which you are not already trained: light bashing, light bladed, light ranged, medium bashing, medium bladed, medium ranged, heavy bashing, heavy bladed, or heavy ranged. You are trained in attacks using that type of weapon. Enabler."
-            - Name: Spray
-              Cost: "+2/Speed"
-              Description: "If a weapon has the ability to fire rapid shots without reloading (usually called a rapid-fire weapon, such as the submachine gun), you can spray multiple shots around your target to increase the chance of hitting. Spray uses 1d6 + 1 rounds of ammo (or all the ammo in the weapon, if it has less than the number rolled). The difficulty of the attack roll is decreased by one step. If the attack is successful, it deals 1 less point of damage than normal. Action."
-            - Name: Wreck
-              Description: "Using two hands, you wield a weapon or a tool with a powerful swing. (If fighting unarmed, this attack is made with both fists or both feet together.) When using this as an attack, you take a –1 penalty to the attack roll, and you inflict 3 additional points of damage. When attempting to damage an object or barrier, you are trained in the task. Action."
+characters:
+  - Type: Vector
+    Descriptor: "Action-oriented individuals like athletes, soldiers, firefighters, hunters, and explorers."
+    Might: 10
+    Speed: 10
+    Intellect: 8
+    Additional Points: 6
+    Tiers:
+      Tier 1:
+        Effort: 1
+        Physical Nature:
+          Might Edge: 1
+          Speed Edge: 1
+          Intellect Edge: 0
+        Cypher Limit: 2
+        Special Abilities:
+          - Name: Defensive
+            Type: Skill
+	Expertise: "1/Trained"
+	SkList: "Unarmored Speed Defense"
+            Flavor Text: "You are trained in Speed defense actions when not wearing armor."
+          - Name: Practiced With All Weapons
+            Type: Skill
+	Expertise: "1/Practiced"
+	SkList: "All Weapons"
+            Flavor Text: "You can use any weapon."
+          - Name: Physical Skills
+            Type: Skill
+            Expertise: "2/Trained"
+            SkList: "Balancing, Climbing, Jumping, Running, Swimming"
+            Flavor Text: "You are trained in your choice of two of the following: balancing, climbing, jumping, running, or swimming."
+          - Name: Translation
+            Type: Skill
+            Expertise: "1/Practiced"
+	SkList: "Easing"
+            Flavor Text: "You allow group members to acclimate more quickly after the translation is complete." 
+        Moves:
+          - Name: Bash
+            Type: Combat
+            Modifier: "-1/Difficulty"
+            Cost: "+1/Might"
+            Duration: Instant
+            Flavor Text: "This is a pummeling melee attack. The difficulty of the attack roll is decreased by one step."
+          - Name: Endurance
+            Type: Ability
+            Flavor Text: "All durations related to physical endurance are either doubled or halved, whichever is more beneficial."
+          - Name: Fleet of Foot
+            Type: Ability
+            Flavor Text: "If you succeed at a difficulty 2 Speed roll to run, you can move a short distance and take an action in the same round."
+          - Name: No Need for Weapons
+            Type: Equipment
+            Gear: "Gain/Medium Unarmed"
+            Flavor Text: "When you make an unarmed attack (such as a punch or kick), you can choose whether you make the attack as if using a medium weapon or as if using a light weapon."
+          - Name: Pierce
+            Type: Combat
+            Modifier: "+1/Damage"
+            Cost: "1/Speed"
+            Duration: Instant
+            Flavor Text: "This is a well-aimed, penetrating ranged attack. You make an attack and inflict 1 additional point of damage."
+          - Name: Practiced in Armor
+            Type: Ability
+            Cost: "-2/Speed Pool, -2/Might Pool"
+            Expertise: "1/Practiced"
+            SkList: "All Armor"
+            Flavor Text: "You can wear any kind of armor. You reduce the Might and Speed Pool penalty for wearing armor by 2."
+      Tier 2:
+        Special Abilities:
+          - Name: Physical Skill
+            Type: Skill
+            Expertise: "1/Trained"
+            SkList: "Balancing, Climbing, Jumping, Running, Swimming"
+            Flavor Text: "Choose one skill in which you are not already trained: balancing, climbing, jumping, running, or swimming. You are trained in that skill. Enabler."
+          - Name: Skill With Defense
+            Type: Skill
+            Expertise: "1/Trained"
+            SkList: "Might Defense, Speed Defense, Intellect Defense"
+            Flavor Text: "Become trained in one defense skill in which you are not already trained: Might Defense, Speed Defense or Intellect Defense. Enabler."
+          - Name: Reach Beyond
+            Type: Ability
+            Cost: "+3/Intellect"
+            Duration: "1 Roll"
+            Flavor Text: "When you use Reach Beyond, you can access training in a skill provided by a focus you have in another recursion. You must have used the skill in its proper recursion at least once before. You can use the skill once. To use it again, you must use Reach Beyond again. Enabler."
+        Moves:
+          - Name: Enable Others
+            Type: Ability
+            Flavor Text: "You can use the helping rules to provide a benefit to another character attempting a physical task. This requires no action on your part. Enabler."
+          - Name: Quick Recovery
+            Type: Ability
+            Flavor Text: "Your second recovery roll (usually requiring ten minutes) is only a single action, just like the first roll. Enabler."
+          - Name: Range Increase
+            Type: Ability
+            Flavor Text: "Ranges for you increase by one step. Immediate becomes short, short becomes long, long becomes 200 feet (61 m). Enabler."
+          - Name: Skill With Attacks
+            Type: Skill
+            Expertise: "1/Trained"
+            SkList: "Light Bashing, Light Bladed, Light Ranged, Medium Bashing, Medium Bladed, Medium Ranged, Heavy Bashing, Heavy Bladed, Heavy Ranged"
+            Description: "Choose one type of attack in which you are not already trained: light bashing, light bladed, light ranged, medium bashing, medium bladed, medium ranged, heavy bashing, heavy bladed, or heavy ranged. You are trained in attacks using that type of weapon. Enabler."
+          - Name: Spray
+            Type: Combat
+            Modifier: "-1/Difficulty", "-1/Damage"
+            Cost: "+2/Speed", "1d6+1 ammo"
+            Duration: Instant
+            Flavor Text: "If a weapon has the ability to fire rapid shots without reloading (usually called a rapid-fire weapon, such as the submachine gun), you can spray multiple shots around your target to increase the chance of hitting. Spray uses 1d6 + 1 rounds of ammo (or all the ammo in the weapon, if it has less than the number rolled). The difficulty of the attack roll is decreased by one step. If the attack is successful, it deals 1 less point of damage than normal. Action."
+          - Name: Wreck
+            Type: Combat
+            Modifier: "-1/Roll", "+3/Damage"
+            Duration: Instant
+            Flavor Text: "Using two hands, you wield a weapon or a tool with a powerful swing. (If fighting unarmed, this attack is made with both fists or both feet together.) When using this as an attack, you take a –1 penalty to the attack roll, and you inflict 3 additional points of damage. When attempting to damage an object or barrier, you are trained in the task. Action."
