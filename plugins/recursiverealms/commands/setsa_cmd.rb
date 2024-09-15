@@ -23,7 +23,7 @@ module AresMUSH
           return
         end        
 
-        # Retrieve the special ability list from the YAML based on character type and tier
+        # Retrieve the special abilities from the YAML based on character type and tier
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
         if chartype.nil?
           client.emit_failure "Character type '#{traits.type}' not found in configuration."
@@ -33,10 +33,20 @@ module AresMUSH
         tier_key = "Tier #{traits.tier}"
         special_abilities = chartype['Tiers'][tier_key]['Special Abilities']
 
-        # If no ability name is given, show a list of available abilities for the current tier
+        # If no ability name is given, show a list of abilities with SkList options that haven't been set
         if self.ability_name.nil? || self.ability_name.empty?
-          ability_list = special_abilities.map { |ability| ability['Name'] }.join(", ")
-          client.emit_ooc "Available Special Abilities for Tier #{traits.tier}: #{ability_list}"
+          abilities_to_select = special_abilities.select do |ability|
+            # Ability should have options in SkList and should not already be set
+            ability['SkList'] && ability['SkList'].include?(',') &&
+            !enactor.rr_specialabilities.to_a.find { |a| a.name.downcase == ability['Name'].downcase }
+          end
+
+          if abilities_to_select.empty?
+            client.emit_ooc "All abilities with required selections have already been set."
+          else
+            ability_list = abilities_to_select.map { |ability| ability['Name'] }.join(", ")
+            client.emit_ooc "Abilities that require options and haven't been set: #{ability_list}"
+          end
           return
         end
 
