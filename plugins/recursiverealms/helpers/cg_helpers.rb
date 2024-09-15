@@ -18,6 +18,8 @@ module AresMUSH
         # Helper method to add special abilities to the character's abilities
         def self.add_special_abilities(special_abilities, tier, enactor, client)
           special_abilities.each do |ability|
+
+            client.emit_ooc "#{ability.inspect}"
             # Check if the ability requires a user choice
             if ability['SkList'] && ability['SkList'].include?(',')
               # Prompt the user to make a choice (this can be handled with a separate command)
