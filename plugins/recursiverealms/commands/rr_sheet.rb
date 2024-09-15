@@ -16,7 +16,7 @@ module AresMUSH
           else
             client.emit_ooc "Special Abilities:"
             enactor.rr_specialabilities.each do |ability|
-              client.emit_ooc "  - Name: #{ability.name}, Expertise: #{ability.expertise}, SkList: #{ability.sklist}"
+              client.emit_ooc "  - Name: #{ability.name}, Expertise: #{ability.expertise}, SkList: #{ability.sklist}, Tier: #{ability.tier}, Type: #{ability.type}"
             end
           end
         else

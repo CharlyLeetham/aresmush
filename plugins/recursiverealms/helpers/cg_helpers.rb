@@ -18,12 +18,8 @@ module AresMUSH
         # Helper method to add or update special abilities for the character
         def self.add_special_abilities(special_abilities, tier, enactor, client)
           special_abilities.each do |ability|
-            client.emit_ooc "#{ability.inspect}"
-
             # Check if the ability already exists for the character
             existing_ability = enactor.rr_specialabilities.to_a.find { |a| a.name.downcase == ability['Name'].downcase }
-            client.emit_ooc "ea: #{existing_ability.inspect}"
-
             if ability['SkList'] && ability['SkList'].include?(',')
               # If the ability requires a choice from the SkList, prompt the user for input
               client.emit_ooc "You must choose from the following options for #{ability['Name']}: #{ability['SkList']}."
