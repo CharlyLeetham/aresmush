@@ -3,7 +3,7 @@ module AresMUSH
       class SetSACmd
         include CommandHandler
   
-        attr_accessor :topcmd, :type, :value, :tier
+        attr_accessor :ability_name, :choices
   
         def parse_args
           split_switch = RecursiveRealms.multi_split_command(@cmd)
