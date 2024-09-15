@@ -76,7 +76,7 @@ module AresMUSH
             end  
             client.emit_ooc "#{fr}, #{detail}, #{attrib}"                      
 
-            if fr && detail && (attrib.nil? || attrib.empty?)  #if you pass two arguments to rr ie. rr/focus/abides in stone
+            if fr && detail #if you pass at least two arguments to rr ie. rr/set/type/vector
               fr = fr.downcase
               detail = detail.downcase
               case detail
