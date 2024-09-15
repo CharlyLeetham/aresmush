@@ -42,12 +42,9 @@ module AresMUSH
 
         # Determine how many options can be chosen based on the Expertise value
         expertise_limit = ability['Expertise'].split('/').first.to_i
-
-        client.emit_ooc "#{expertise_limit}, #{self.choices}"
-
         # If no choices provided, display the available options and how many can be chosen
         if self.choices.nil? || self.choices.empty?
-          available_options = ability.sklist
+          available_options = ability['SkList']
           client.emit_ooc "You need to select options for #{ability.name}. You can choose up to #{expertise_limit} options."
           client.emit_ooc "Available options: #{available_options}"
           return
