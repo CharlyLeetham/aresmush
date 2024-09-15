@@ -22,7 +22,7 @@ module AresMUSH
           # Check if the tier is a valid number
           if !self.value || !self.value.is_integer? || self.value.to_i <= 0
             return client.emit_failure "Please provide a valid tier number."
-          return   
+          end   
           
           # Find or create the traits record
           traits = enactor.rr_traits.first
