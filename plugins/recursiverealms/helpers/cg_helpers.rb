@@ -35,6 +35,7 @@ module AresMUSH
               )
               client.emit_success "Added Special Ability: #{ability['Name']} (Tier #{tier})."
             end
-          end        
+          end
+        end        
     end
 end        
