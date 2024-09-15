@@ -13,7 +13,8 @@ module AresMUSH
         end
   
         def handle
-
+          client.emit_ooc "#{topcmd}, #{type}, #{value}"
+          return
           if self.type.nil?
             client.emit_failure "Character type not provided. Please choose from one of the following available types:"
             # Execute the recursiverealms.ListAllTypesCmd command
