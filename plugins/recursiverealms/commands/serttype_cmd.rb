@@ -1,19 +1,29 @@
 module AresMUSH
     module RecursiveRealms
-      class SelectTypeCmd
+      class SetTypeCmd
         include CommandHandler
   
-        attr_accessor :type, :tier
+        attr_accessor :topcmd, :type, :value, :tier
   
         def parse_args
-            args = cmd.args.split(" ")
-            self.type = args[0].downcase
-            self.tier = args[1] ? args[1].to_i : 1 # Default to tier 1 if no tier is specified
-          end
+          split_switch = RecursiveRealms.split_command(@cmd)
+          self.topcmd = split_switch[0]
+          self.type = split_switch[1]
+          self.value = split_switch[2]
+        end
   
         def handle
-        types = Global.read_config("rr", "rr_types").map { |t| t['Type'].downcase }
-        if types.include?(self.type)
+
+          chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type }
+          if chartype
+                client.emit_ooc "#{self.type.capitalize} Selected"
+          else
+            @client.emit_failure "Character type #{self.type.capitalize} not found. Please choose from one of the following:"
+                client.emit_ooc "#{self.type.capitalize} Selected" template.render
+            return recursiverealms.ListAllTypesCmd
+          end  
+=begin
+          if types.include?(self.type)
             enactor.update(character_type: self.type)
             enactor.update(tier: self.tier)
             assign_tier_attributes

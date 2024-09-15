@@ -68,8 +68,8 @@ module AresMUSH
                 return FocusListCmd
              end                   
           #I don't know if these are needed, but I'm leaving them as place holders (25 Aug 2024)
-          when "select"
-            return SelectTypeCmd
+          when "set"
+            return SetTypeCmd
           when "tier"
             return DisplayTierCmd
           when "attributes"
