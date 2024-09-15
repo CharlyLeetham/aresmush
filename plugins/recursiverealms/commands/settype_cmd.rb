@@ -21,7 +21,8 @@ module AresMUSH
             client.emit_failure "Character type #{self.type.capitalize} not found. Please choose from one of the following:"
             client.emit_ooc "#{self.type.capitalize} Selected" 
             return recursiverealms.ListAllTypesCmd
-          end  
+          end 
+        end 
 =begin
           if types.include?(self.type)
             enactor.update(character_type: self.type)
