@@ -22,7 +22,10 @@ module AresMUSH
             client.emit_ooc "#{self.type.capitalize} Selected" 
             return recursiverealms.ListAllTypesCmd
           end 
-        end 
+        end
+      end
+    end
+  end        
 =begin
           if types.include?(self.type)
             enactor.update(character_type: self.type)
@@ -54,7 +57,7 @@ module AresMUSH
             enactor.update(attributes: attributes)
             enactor.update(special_abilities: tier_data['Special Abilities'])
         end
-=begin  
+ 
         def display_assigned_attributes
           attributes = enactor.attributes
           special_abilities = enactor.special_abilities
@@ -65,8 +68,4 @@ module AresMUSH
           client.emit_ooc "Assigned attributes for Tier 1: #{attributes_text}"
           client.emit_ooc "Special Abilities: #{special_abilities_text}"
         end
-=end
-      end
-    end
-  end
-  
+=end 
