@@ -16,7 +16,7 @@ module AresMUSH
           client.emit_ooc "#{topcmd}, #{type}, #{value}"
 
           if self.value.nil?
-            RecursiveRealms.handle_missing_type(client, enactor) 
+            return RecursiveRealms.handle_missing_type(client, enactor) 
           end          
 
           chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.value }
