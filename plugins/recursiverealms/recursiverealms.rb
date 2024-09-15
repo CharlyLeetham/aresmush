@@ -87,6 +87,7 @@ module AresMUSH
               end 
             else
               client.emit_ooc "Testing"
+              return RRCmd
             end
           when "sheet"
             return RRSheetCmd

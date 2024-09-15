@@ -24,3 +24,12 @@ Spinner
 ## Focus
 `rr/focus` - lists all focuses. Name and short desc
 `rr/focus/[focus]` - lists the details for the specific focus
+
+
+## Character Gen
+
+`rr/set/type` - Displays an error and the available Types (rr/types)
+`rr/set/type/[type]` - Sets the type to the character
+`rr/set/tier/[tier]` - Sets the tier for the character and updates settings (WIP)
+
+`rr/sheet` - Gives a very basic output of the current characters sheet - for testing at the moment.
