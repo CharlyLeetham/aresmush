@@ -29,6 +29,13 @@ module AresMUSH
             traits.update(type: self.type)
             client.emit_success "Your character type has been updated to #{self.type.capitalize}."
 
+            if traits.tier.nil? || traits.tier.empty?
+              traits.update(tier: 1)
+              client.emit_success "Tier was empty and has been automatically set to 1."
+            else
+              client.emit_ooc "Tier is already set to #{traits.tier} and will not be changed."
+            end            
+
             else
               RecursiveRealms.handle_invalid_type(client, self.type, enactor) #in cg_helpers.rb
             end 
