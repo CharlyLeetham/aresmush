@@ -18,7 +18,7 @@ module AresMUSH
             client.emit_failure "Character type not provided. Please choose from one of the following available types:"
             # Execute the recursiverealms.ListAllTypesCmd command
             list_cmd = RecursiveRealms::ListAllTypesCmd.new
-            return list_cmd.execute(client, enactor)
+            list_cmd.execute(client, enactor)
           end          
 
           chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type }
