@@ -16,6 +16,13 @@ module AresMUSH
       def handle
         client.emit_ooc "#{ability_name}, #{choices}"
 
+        # Retrieve character type and tier from their traits
+        traits = enactor.rr_traits.first
+        if traits.nil?
+          client.emit_failure "Character traits not found."
+          return
+        end        
+
         # Retrieve the special ability from the YAML based on character type and tier
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
         if chartype.nil?
