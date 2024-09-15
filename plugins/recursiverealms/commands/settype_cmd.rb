@@ -16,19 +16,14 @@ module AresMUSH
           client.emit_ooc "#{topcmd}, #{type}, #{value}"
 
           if self.type.nil?
-            client.emit_failure "Character type not provided. Please choose from one of the following available types:"
-            # Execute the recursiverealms.ListAllTypesCmd command
-            list_command = RecursiveRealms::ListAllTypesCmd.new(client, Command.new("recursiverealms.ListAllTypesCmd"), enactor)
-            return list_command.handle
+            handle_missing_type(client, enactor) #in cg_helpers.rb
           end          
 
           chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type }
           if chartype
-                client.emit_ooc "#{self.type.capitalize} Selected"
+            client.emit_ooc "#{self.type.capitalize} Selected"
           else
-            client.emit_failure "Character type #{self.type.capitalize} not found. Please choose from one of the following:"
-            list_command = RecursiveRealms::ListAllTypesCmd.new(client, Command.new("recursiverealms.ListAllTypesCmd"), enactor)
-            return list_command.handle
+            handle_invalid_type(client, self.type, enactor) #in cg_helpers.rb
           end 
         end
       end
