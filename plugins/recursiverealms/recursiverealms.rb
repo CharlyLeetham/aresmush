@@ -70,6 +70,8 @@ module AresMUSH
           when ->(args) { args.start_with?('set') }       
           split_switch = RecursiveRealms.split_command(cmd) #In helpers.rb                       
             return SetTypeCmd
+        when "sheet"
+            return RRSheetCmd
   
             #I don't know if these are needed, but I'm leaving them as place holders (25 Aug 2024)
           when "tier"
