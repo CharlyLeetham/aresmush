@@ -28,7 +28,7 @@ module AresMUSH
                     attrib = split_switch.length > 2 ? split_switch[2] : nil
                 end             
                 
-                if fr && detail && attrib && !attrib.empty?
+                if fr && detail && attrib && !attrib.empty? #if you pass three arguments to rr
                     fr = fr.downcase
                     detail = detail.downcase
                     attrib = attrib.downcase
@@ -69,18 +69,24 @@ module AresMUSH
              end
           when ->(args) { args.start_with?('set') }       
           split_switch = RecursiveRealms.split_command(cmd) #In helpers.rb                       
-          if split_switch.length > 1
-              fr = split_switch[0]
-              detail = split_switch.length > 1 ? split_switch[1] : nil
-              attrib = split_switch.length > 2 ? split_switch[2] : nil
-          end  
+            if split_switch.length > 1
+                fr = split_switch[0]
+                detail = split_switch.length > 1 ? split_switch[1] : nil
+                attrib = split_switch.length > 2 ? split_switch[2] : nil
+            end  
             client.emit_ooc "#{fr}, #{detail}, #{attrib}"                      
-            #return SetTypeCmd
 
-
-
-
-        when "sheet"
+            if fr && detail && (attrib.nil? || attrib.empty?)  #if you pass two arguments to rr ie. rr/focus/abides in stone
+              fr = fr.downcase
+              detail = detail.downcase
+              case detail
+              when "type"
+                return SetTypeCmd
+              end 
+            else
+              client.emit_ooc "Testing"
+            end
+          when "sheet"
             return RRSheetCmd
   
             #I don't know if these are needed, but I'm leaving them as place holders (25 Aug 2024)
