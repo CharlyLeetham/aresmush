@@ -27,8 +27,8 @@ module AresMUSH
                 client.emit_ooc "#{self.type.capitalize} Selected"
           else
             client.emit_failure "Character type #{self.type.capitalize} not found. Please choose from one of the following:"
-            client.emit_ooc "#{self.type.capitalize} Selected" 
-            return recursiverealms.ListAllTypesCmd
+            list_command = RecursiveRealms::ListAllTypesCmd.new(client, Command.new("recursiverealms.ListAllTypesCmd"), enactor)
+            return list_command.handle
           end 
         end
       end
