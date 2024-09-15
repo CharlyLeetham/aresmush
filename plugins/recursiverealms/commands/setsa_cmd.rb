@@ -33,8 +33,6 @@ module AresMUSH
         special_abilities = chartype['Tiers'][tier_key]['Special Abilities']
         ability = special_abilities.find { |a| a['Name'].downcase == self.ability_name.downcase }
 
-        client.emit_ooc "#{ability.inspect}"
-
         if ability.nil?
           client.emit_failure "Special Ability '#{self.ability_name}' not found."
           return
@@ -47,7 +45,7 @@ module AresMUSH
           available_options = ability['SkList']
           client.emit_ooc "You need to select options for #{ability['Name']}. You can choose up to #{expertise_limit} options."
           client.emit_ooc "Available options: #{available_options}"
-          client.emit_ooc "Use the command rr/set/#{ability["Mame]}/choice1,choice2"
+          client.emit_ooc "Use the command rr/set/#{ability['Mame']}/choice1,choice2"
           return
         end
 
