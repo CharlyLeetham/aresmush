@@ -84,6 +84,8 @@ module AresMUSH
                 return SetTypeCmd
               when "tier"
                 return SetTierCmd
+              when "sa"
+                return SetSACmd
               end 
             else
               client.emit_ooc "Testing"
