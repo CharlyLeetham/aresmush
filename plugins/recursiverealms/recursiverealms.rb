@@ -69,7 +69,17 @@ module AresMUSH
              end
           when ->(args) { args.start_with?('set') }       
           split_switch = RecursiveRealms.split_command(cmd) #In helpers.rb                       
-            return SetTypeCmd
+          if split_switch.length > 1
+              fr = split_switch[0]
+              detail = split_switch.length > 1 ? split_switch[1] : nil
+              attrib = split_switch.length > 2 ? split_switch[2] : nil
+          end  
+            client.emit_ooc "#{fr}, #{detail}, #{attrib}"                      
+            #return SetTypeCmd
+
+
+
+
         when "sheet"
             return RRSheetCmd
   
