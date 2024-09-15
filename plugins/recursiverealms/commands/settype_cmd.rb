@@ -16,14 +16,14 @@ module AresMUSH
           client.emit_ooc "#{topcmd}, #{type}, #{value}"
 
           if self.type.nil?
-            handle_missing_type(client, enactor) #in cg_helpers.rb
+            RecursiveRealms.handle_missing_type(client, enactor) #in cg_helpers.rb
           end          
 
           chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type }
           if chartype
             client.emit_ooc "#{self.type.capitalize} Selected"
           else
-            handle_invalid_type(client, self.type, enactor) #in cg_helpers.rb
+            RecursiveRealms.handle_invalid_type(client, self.type, enactor) #in cg_helpers.rb
           end 
         end
       end
