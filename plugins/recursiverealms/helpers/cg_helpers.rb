@@ -22,6 +22,7 @@ module AresMUSH
 
             # Check if the ability already exists for the character
             existing_ability = enactor.rr_specialabilities.find { |a| a.name.downcase == ability['Name'].downcase }
+                        client.emit_ooc "ea: #{existing_ability.inspect}"
 
             if ability['SkList'] && ability['SkList'].include?(',')
               # If the ability requires a choice from the SkList, prompt the user for input
