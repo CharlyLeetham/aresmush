@@ -52,13 +52,25 @@ module AresMUSH
         # Split and validate user choices
         selected_choices = self.choices.split(",").map(&:strip)
         if selected_choices.size > expertise_limit
-          client.emit_failure "You can only choose up to #{expertise_limit} options for #{ability.name}. You selected #{selected_choices.size}."
+          client.emit_failure "You can only choose up to #{expertise_limit} options for #{ability['Name']}. You selected #{selected_choices.size}."
           return
         end
 
-        # If valid, update the sklist with the chosen selections (comma-separated)
-        ability.update(sklist: selected_choices.join(", "))
-        client.emit_success "You have selected: #{selected_choices.join(", ")} for #{ability.name}."
+        # Update or create the ability record in the database for the character
+        existing_ability = enactor.rr_specialabilities.find { |a| a.name.downcase == ability['Name'].downcase }
+        if existing_ability
+          existing_ability.update(sklist: selected_choices.join(", "))
+        else
+          RRSpecialAbilities.create(
+            character: enactor,
+            name: ability['Name'],
+            tier: traits.tier,
+            type: ability['Type'],
+            expertise: ability['Expertise'],
+            sklist: selected_choices.join(", ")
+          )
+        end
+        client.emit_success "You have selected: #{selected_choices.join(", ")} for #{ability['Name']}."
       end
     end
   end
