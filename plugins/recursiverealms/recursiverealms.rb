@@ -74,7 +74,7 @@ module AresMUSH
                 detail = split_switch.length > 1 ? split_switch[1] : nil
                 attrib = split_switch.length > 2 ? split_switch[2] : nil
             end  
-            client.emit_ooc "#{fr}, #{detail}, #{attrib}"                      
+            #client.emit_ooc "#{fr}, #{detail}, #{attrib}"                      
 
             if fr && detail #if you pass at least two arguments to rr ie. rr/set/type/vector
               fr = fr.downcase

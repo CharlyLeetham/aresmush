@@ -15,10 +15,10 @@ module AresMUSH
         def handle
          client.emit_ooc "#{topcmd}, #{type}, #{value}"
           # Find the special ability by name
-=begin
-          ability = enactor.rr_specialabilities.find { |a| a.name.downcase == self.ability_name.downcase }
+#=begin
+          ability = enactor.rr_specialabilities.find { |a| a.name.downcase == self.value.downcase }
           if ability.nil?
-            client.emit_failure "Special Ability '#{self.ability_name}' not found."
+            client.emit_failure "Special Ability '#{self.value}' not found."
             return
           end
   
