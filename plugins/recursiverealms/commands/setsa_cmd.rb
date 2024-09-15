@@ -45,7 +45,7 @@ module AresMUSH
         # If no choices provided, display the available options and how many can be chosen
         if self.choices.nil? || self.choices.empty?
           available_options = ability['SkList']
-          client.emit_ooc "You need to select options for #{ability.name}. You can choose up to #{expertise_limit} options."
+          client.emit_ooc "You need to select options for #{ability['Name']}. You can choose up to #{expertise_limit} options."
           client.emit_ooc "Available options: #{available_options}"
           return
         end
