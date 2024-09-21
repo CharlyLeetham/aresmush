@@ -65,12 +65,6 @@ module AresMUSH
         # Add the move to the character's rr_moves collection
         RecursiveRealms.add_move(self.move_name, enactor, client)
 
-        # Display how many moves the character has left
-        remaining_moves = moves_allowed - (current_moves + 1)
-        client.emit_success "Move '#{self.move_name}' has been added. You have #{remaining_moves} moves remaining."
-
-        # Display current moves
-        display_current_moves(enactor, client)
       end
 
       def display_current_moves(enactor, client)
