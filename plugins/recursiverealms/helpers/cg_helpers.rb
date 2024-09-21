@@ -147,7 +147,7 @@ module AresMUSH
         return
       end
 
-      moves_allowed = traits.moves || 0
+      moves_allowed = (traits.moves || 0).to_i
       current_moves = enactor.rr_moves.size
       remaining_moves = moves_allowed - current_moves
 
