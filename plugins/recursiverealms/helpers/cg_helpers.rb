@@ -219,6 +219,12 @@ module AresMUSH
       move_list = moves.map { |move| move['Name'] }.join(", ")
       client.emit_ooc "Available Moves: #{move_list}"
       client.emit_ooc "Use the command 'rr/set/move/[move]' to select a move."
+      list_all_moves(client, enactor)
+    end
+    
+    def self.list_all_moves(client, enactor)
+      list_command = RecursiveRealms::ListTypesMoveCmd.new(client, Command.new("recursiverealms.ListTypesMoveCmd"), enactor)
+      list_command.handle
     end    
   end
 end
