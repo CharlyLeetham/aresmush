@@ -13,29 +13,26 @@ module AresMUSH
       end
 
       def handle
-        moves = enactor.rr_moves
-        client.emit_ooc "#{moves.to_a.inspect}"
-
+        moves = enactor.rr_moves.to_a # Convert the moves collection to an array for easier manipulation
         if moves.empty?
           client.emit_failure "You have no moves to remove."
           return
         end
 
         if self.move_name.nil?
-          # Remove all moves if no move name is specified
-          moves.each do |move|
-            move.delete # Ohm method to delete the object
-          end
-          client.emit_success "All moves have been removed."
+          # Call the helper function to emit the current moves status
+          RecursiveRealms.emit_moves_status(enactor, client)
         else
-          # Find and remove the move by name using Ohm find API
-          move_to_remove = moves.to_a.find(name: self.move_name.downcase).first
+          # Find and remove the move by name
+          move_to_remove = moves.find { |m| m.name.downcase == self.move_name.downcase }
 
           if move_to_remove.nil?
             client.emit_failure "Move '#{self.move_name}' not found."
           else
             move_to_remove.delete
             client.emit_success "Move '#{self.move_name}' has been removed."
+            # Re-emit the current moves status after the move is removed
+            RecursiveRealms.emit_moves_status(enactor, client)
           end
         end
       end
