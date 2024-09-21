@@ -143,7 +143,6 @@ module AresMUSH
         client.emit_success "Move '#{move['Name']}' has been added to your character."
       end
 
-
       def self.update_moves_allowed(chartype, traits, current_tier, client)
         moves_allowed_total = 0
       

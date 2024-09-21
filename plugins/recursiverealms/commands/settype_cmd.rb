@@ -35,9 +35,11 @@ module AresMUSH
             else
               client.emit_ooc "Tier is already set to #{traits.tier} and will not be changed."
             end 
-            
-            # Set the Effort value from the YAML based on the type and tier
+
             tier_key = "Tier #{traits.tier}"
+
+            # Set the Effort value from the YAML based on the type and tier
+        
             effort = chartype['Tiers'][tier_key]['Effort']
             if effort
               traits.update(effort: effort)
@@ -48,7 +50,7 @@ module AresMUSH
 
 
             # Update Moves Allowed
-            RecursiveRealms.update_moves_allowed(chartype, traits, self.value.to_i, client)
+            RecursiveRealms.update_moves_allowed(chartype, traits, self.tier_key.to_i, client)
 
             traits.update(moves: moves_allowed_total)
             client.emit_success "Total Number of Allowed Moves for #{self.type.capitalize} (up to Tier #{traits.tier}) set to #{moves_allowed_total}."
