@@ -10,6 +10,7 @@ module AresMUSH
 
         # Ensure we don't raise errors when not enough arguments are passed
         self.move_name = split_switch.length > 2 ? split_switch[2] : nil # The name of the move, if provided
+        client.emit_ooc "#{move_name}"
       end
 
       def handle
