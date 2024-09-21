@@ -14,6 +14,7 @@ module AresMUSH
           # Check if character type is set
           if traits.type.nil?
             client.emit_failure "Your character type is not set. Please set a character type first."
+            client.emit_failure "Please type rr/set/type/[type] to start the Character Generation process"
             return
           end
   
