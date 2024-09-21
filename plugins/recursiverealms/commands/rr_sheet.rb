@@ -19,11 +19,20 @@ module AresMUSH
               client.emit_ooc "  - Name: #{ability.name}, Expertise: #{ability.expertise}, SkList: #{ability.sklist}, Tier: #{ability.tier}, Type: #{ability.type}"
             end
           end
+
+          # Fetch and display moves
+          if enactor.rr_moves.empty?
+            client.emit_ooc "No moves assigned."
+          else
+            client.emit_ooc "Moves:"
+            enactor.rr_moves.each do |move|
+              client.emit_ooc "  - Name: #{move.name}, Type: #{move.type}, Modifier: #{move.modifier}, Cost: #{move.cost}, Duration: #{move.duration}, Tier: #{move.tier}"
+            end
+          end
         else
           client.emit_ooc "No traits assigned."
         end
       end
-      
     end
   end
 end
