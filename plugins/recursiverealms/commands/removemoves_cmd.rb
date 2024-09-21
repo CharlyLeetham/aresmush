@@ -14,7 +14,7 @@ module AresMUSH
 
       def handle
         moves = enactor.rr_moves
-        client.emit_ooc "#{moves.inspect}"
+        client.emit_ooc "#{moves.to_a.inspect}"
 
         if moves.empty?
           client.emit_failure "You have no moves to remove."
