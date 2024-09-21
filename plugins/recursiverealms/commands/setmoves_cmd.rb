@@ -11,6 +11,23 @@ module AresMUSH
       end
 
       def handle
+        # If no move name is given, call the helper function and list available moves
+        if self.move_name.nil? || self.move_name.empty?
+          # Retrieve character type and tier from the YAML
+          chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
+          if chartype.nil?
+            client.emit_failure "Character type '#{traits.type}' not found in configuration."
+            return
+          end
+
+          tier_key = "Tier #{traits.tier}"
+          moves = chartype['Tiers'][tier_key]['Moves']
+
+          # Call the helper function to show available moves
+          RecursiveRealms.handle_missing_move(moves, enactor, client)
+          return
+        end
+
         # Retrieve character traits
         traits = enactor.rr_traits.first
         if traits.nil?

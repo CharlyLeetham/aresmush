@@ -206,5 +206,19 @@ module AresMUSH
       traits.update(moves: moves_allowed_total)
       client.emit_success "Total allowed moves for #{traits.type.capitalize} (up to Tier #{current_tier}) set to #{moves_allowed_total}."
     end
+
+
+    # Handle the case when the move_name is missing
+    def self.handle_missing_move(moves, enactor, client)
+      # Show available moves for the current tier
+      if moves.nil? || moves.empty?
+        client.emit_failure "No moves available for selection."
+        return
+      end
+
+      move_list = moves.map { |move| move['Name'] }.join(", ")
+      client.emit_ooc "Available Moves: #{move_list}"
+      client.emit_ooc "Use the command 'rr/set/move/[move]' to select a move."
+    end    
   end
 end
