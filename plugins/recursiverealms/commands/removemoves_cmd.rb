@@ -3,15 +3,13 @@ module AresMUSH
     class RemoveMovesCmd
       include CommandHandler
 
-      attr_accessor :tier
+      attr_accessor :move_name
 
       def parse_args
         split_switch = RecursiveRealms.multi_split_command(@cmd)
-        client.emit_ooc "#{split_switch.inspect}"
 
         # Ensure we don't raise errors when not enough arguments are passed
-        self.tier = split_switch.length > 2 ? split_switch[2] : nil
-        client.emit_ooc "#{tier}"
+        self.move_name = split_switch.length > 2 ? split_switch[2] : nil # The name of the move, if provided
       end
 
       def handle
@@ -22,19 +20,19 @@ module AresMUSH
           return
         end
 
-        if self.tier.nil?
-          # Remove all moves if no tier is specified
+        if self.move_name.nil?
+          # Remove all moves if no move name is specified
           moves.each { |move| move.delete }
           client.emit_success "All moves have been removed."
         else
-          # Remove only the moves for the specified tier
-          moves_to_remove = moves.select { |move| move.tier.to_i == self.tier }
+          # Remove only the move with the specified name
+          move_to_remove = moves.find { |move| move.name.downcase == self.move_name.downcase }
 
-          if moves_to_remove.empty?
-            client.emit_failure "No moves found for Tier #{self.tier}."
+          if move_to_remove.nil?
+            client.emit_failure "Move '#{self.move_name}' not found."
           else
-            moves_to_remove.each { |move| move.delete }
-            client.emit_success "All moves for Tier #{self.tier} have been removed."
+            move_to_remove.delete
+            client.emit_success "Move '#{self.move_name}' has been removed."
           end
         end
       end
