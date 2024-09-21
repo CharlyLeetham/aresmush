@@ -29,6 +29,7 @@ module AresMUSH
 
         tier_key = "Tier #{traits.tier}"
         moves = chartype['Tiers'][tier_key]['Moves']
+        client.emit_ooc "#{moves.inspect}"        
 
         # Error handling for when Moves does not exist
         if moves.nil? || moves.empty?
@@ -37,7 +38,7 @@ module AresMUSH
         end
 
         # Retrieve the allowed number of moves
-        moves_allowed = traits.moves || 0
+        moves_allowed = traits.moves.to_i || 0
         current_moves = enactor.rr_moves.size
 
         # Check if the character has already reached the maximum allowed moves
