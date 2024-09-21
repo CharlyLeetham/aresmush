@@ -8,7 +8,7 @@ module AresMUSH
         traits = enactor.rr_traits.first
         if traits
           # Emit the basic trait information
-          client.emit_ooc "Character Type: #{traits.type}, Tier: #{traits.tier}, Effort: #{traits.effort}, XP: #{traits.xp}"
+          client.emit_ooc "Character Type: #{traits.type}, Tier: #{traits.tier}, Effort: #{traits.effort}, XP: #{traits.xp}, Moves Allowed: #{traits.moves}"
       
           # Fetch and display special abilities
           if enactor.rr_specialabilities.empty?
