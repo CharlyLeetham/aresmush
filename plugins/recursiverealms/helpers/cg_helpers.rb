@@ -154,10 +154,38 @@ module AresMUSH
       client.emit_ooc "Moves allowed: #{moves_allowed}, Current moves: #{current_moves}, Remaining moves: #{remaining_moves}"
 
       if remaining_moves > 0
+        # List the available moves from all tiers they have access to
+         available_moves = list_available_moves(traits, enactor)
         client.emit_success "You have #{remaining_moves} move(s) remaining."
+        if available_moves.empty?
+          client.emit_ooc "No additional moves are available for selection."
+        else
+          client.emit_ooc "Available moves: #{available_moves.join(', ')}"
+        end
       else
         client.emit_failure "You have reached the maximum number of moves."
       end
+    end 
+    
+    # Helper method to list available moves from all accessible tiers, excluding chosen ones
+    def self.list_available_moves(traits, enactor)
+      # Retrieve the character's type from the traits
+      chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
+      return [] if chartype.nil?
+
+      available_moves = []
+      current_moves = enactor.rr_moves.to_a.map(&:name).map(&:downcase)
+
+      # Iterate through all tiers up to the current tier
+      (1..traits.tier.to_i).each do |tier|
+        tier_key = "Tier #{tier}"
+        moves = chartype['Tiers'][tier_key] ? chartype['Tiers'][tier_key]['Moves'] : []
+
+        # Add only the moves that haven't been chosen yet
+        available_moves.concat(moves.select { |m| !current_moves.include?(m['Name'].downcase) }.map { |m| m['Name'] })
+      end
+
+      available_moves
     end    
 
     # Helper method to update moves allowed based on current tier
