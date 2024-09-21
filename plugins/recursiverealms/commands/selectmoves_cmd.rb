@@ -4,9 +4,16 @@ module AresMUSH
         include CommandHandler
   
         def handle
+          # Get character traits
           traits = enactor.rr_traits.first
           if traits.nil?
             client.emit_failure "Character traits not found."
+            return
+          end
+  
+          # Check if character type is set
+          if traits.type.nil?
+            client.emit_failure "Your character type is not set. Please set a character type first."
             return
           end
   
@@ -14,7 +21,6 @@ module AresMUSH
           chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
           if chartype.nil?
             client.emit_failure "Character type '#{traits.type}' not found in configuration."
-            client.emit_failure "Use rr/set/type/[type] to start CGen"
             return
           end
   
