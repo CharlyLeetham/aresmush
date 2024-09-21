@@ -50,10 +50,7 @@ module AresMUSH
 
 
             # Update Moves Allowed
-            RecursiveRealms.update_moves_allowed(chartype, traits, self.tier_key.to_i, client)
-
-            traits.update(moves: moves_allowed_total)
-            client.emit_success "Total Number of Allowed Moves for #{self.type.capitalize} (up to Tier #{traits.tier}) set to #{moves_allowed_total}."
+            RecursiveRealms.update_moves_allowed(chartype, traits, traits.tier.to_i, client)
 
             # Retrieve and add the special abilities for the type and tier
             special_abilities = chartype['Tiers'][tier_key]['Special Abilities']
