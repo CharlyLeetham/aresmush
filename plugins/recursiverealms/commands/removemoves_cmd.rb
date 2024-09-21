@@ -10,6 +10,7 @@ module AresMUSH
 
         # Ensure we don't raise errors when not enough arguments are passed
         self.tier = split_switch.length > 2 ? split_switch[2].to_i : nil
+        client.emit_ooc "#{tier}"
       end
 
       def handle
