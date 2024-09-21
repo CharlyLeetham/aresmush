@@ -31,6 +31,7 @@ module AresMUSH
 		attribute :tier
         attribute :effort
         attribute :xp 
+		attribute :moves
 		reference :character, "AresMUSH::Character"
 		index :name
 	end

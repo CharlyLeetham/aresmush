@@ -14,6 +14,7 @@ RecursiveRealms:
             Speed Edge: 1
             Intellect Edge: 0
           Cypher Limit: 2
+          Moves Allowed: 2          
           Special Abilities:
             - Name: Defensive
               Type: Skill
@@ -65,6 +66,7 @@ RecursiveRealms:
               SkList: "All Armor"
               Flavor Text: "You can wear any kind of armor. You reduce the Might and Speed Pool penalty for wearing armor by 2."
         Tier 2:
+          Moves Allowed: 1        
           Special Abilities:
             - Name: Physical Skill
               Type: Skill

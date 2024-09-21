@@ -46,6 +46,23 @@ module AresMUSH
               client.emit_failure "Effort information for #{self.value.capitalize} (Tier #{traits.tier}) not found."
             end  
 
+            #Add the number of moves allowed to the character record
+            moves_allowed_total = 0
+
+            (1..traits.tier.to_i).each do |tier|
+              tier_key = "Tier #{tier}"
+              moves_allowed_for_tier = chartype['Tiers'][tier_key] ? chartype['Tiers'][tier_key]['Moves Allowed'] : nil
+              
+              if moves_allowed_for_tier
+                moves_allowed_total += moves_allowed_for_tier
+              else
+                client.emit_ooc "Number of Allowed Moves for #{self.type.capitalize} (Tier #{tier}) not found. Skipping."
+              end
+            end
+            
+            traits.update(moves: moves_allowed_total)
+            client.emit_success "Total Number of Allowed Moves for #{self.type.capitalize} (up to Tier #{traits.tier}) set to #{moves_allowed_total}."
+
             # Retrieve and add the special abilities for the type and tier
             special_abilities = chartype['Tiers'][tier_key]['Special Abilities']
             if special_abilities
