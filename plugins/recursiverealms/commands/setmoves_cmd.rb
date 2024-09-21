@@ -32,7 +32,11 @@ module AresMUSH
         tier_key = "Tier #{traits.tier}"
         moves = chartype['Tiers'][tier_key]['Moves']
 
-        client.emit_ooc "#{moves.inspect}"
+        # Error handling for when Moves does not exist
+        if moves.nil? || moves.empty?
+          client.emit_failure "No moves are available for #{traits.type.capitalize} at Tier #{traits.tier}."
+          return
+        end
 
         # If no move name is given, show a list of available moves for the current tier
         if self.move_name.nil? || self.move_name.empty?
@@ -46,6 +50,8 @@ module AresMUSH
 
         if move.nil?
           client.emit_failure "Move '#{self.move_name}' not found."
+          move_list = moves.map { |move| move['Name'] }.join(", ")
+          client.emit_ooc "Available Moves: #{move_list}"          
           return
         end
 
