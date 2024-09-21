@@ -33,10 +33,17 @@ Spinner
 `rr/set/tier/[tier]` - Sets the tier for the character and updates settings (WIP)
 
 `rr/set/sa` - Shows Special Abilities that have options that have not yet been set
-`rr/set/sa/[Ability Name]` - Shows the available options for the Special Ability
+`rr/set/sa/[Ability Name]` - Sets the available options for the Special Ability
 `rr/set/sa/[Ability Name]/option1,option2` - Sets the Special Ability with those options
 
 `rr/remove/sa` = Removes all Special Abilities on the character
 `rr/rmove/sa/[tiernumber]` - Removes the Special Abilities for that tier
+
+`rr/set/moves` - Shows all moves for the Type set. (output needs fixing)
+`rr/set/move/[move]` - Sets the selected move on the character
+
+`rr/remove/moves` = Removes all Moves on the character
+`rr/rmove/moves/[move]` - Remove the Move on the character
+
 
 `rr/sheet` - Gives a very basic output of the current characters sheet - for testing at the moment.
