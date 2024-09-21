@@ -124,6 +124,9 @@ module AresMUSH
               return RRCmd
             end            
   
+          #reset command
+          when "reset"
+            return RRResetCmd
           #Sheet command  
           when "sheet"
             return RRSheetCmd
