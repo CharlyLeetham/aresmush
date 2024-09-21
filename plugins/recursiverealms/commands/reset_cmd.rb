@@ -4,16 +4,18 @@ module AresMUSH
       include CommandHandler
 
       def handle
+        # Check if the user typed 'yes' as a confirmation
+        if cmd.args == "yes"
+          reset_character
+        else
+          client.emit_ooc "This will reset your character's type, tier, abilities, moves, and other attributes. Type 'rr/reset yes' to confirm."
+        end
+      end
+
+      def reset_character
         traits = enactor.rr_traits.first
         if traits.nil?
           client.emit_failure "No traits found to reset."
-          return
-        end
-
-        # Confirm with the user before proceeding
-        if !enactor.has_confirmed_reset
-          client.emit_ooc "This will reset your character's type, tier, abilities, moves, and other attributes. Type 'yes' to confirm."
-          enactor.update(has_confirmed_reset: true) # Track that they've been prompted
           return
         end
 
@@ -25,17 +27,14 @@ module AresMUSH
           moves: nil,
           xp: 0
         )
-        
+
         # Remove special abilities
         enactor.rr_specialabilities.each(&:delete)
 
         # Remove moves
         enactor.rr_moves.each(&:delete)
 
-        # Clear confirmation flag
-        enactor.update(has_confirmed_reset: false)
-
-        client.emit_success "Your character has been reset to a default state."
+        client.emit_success "Your character has been reset to a blank state."
       end
     end
   end
