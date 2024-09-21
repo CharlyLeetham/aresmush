@@ -127,7 +127,7 @@ module AresMUSH
         if existing_move
           client.emit_failure "Move '#{move_name}' has already been added."
           return
-        end
+        end        
   
         # Add the move to the character's rr_moves collection
         RRMoves.create(
@@ -142,5 +142,24 @@ module AresMUSH
   
         client.emit_success "Move '#{move['Name']}' has been added to your character."
       end
+
+
+      def self.update_moves_allowed(chartype, traits, current_tier, client)
+        moves_allowed_total = 0
+      
+        (1..current_tier).each do |tier|
+          tier_key = "Tier #{tier}"
+          moves_allowed_for_tier = chartype['Tiers'][tier_key] ? chartype['Tiers'][tier_key]['Moves Allowed'] : nil
+      
+          if moves_allowed_for_tier
+            moves_allowed_total += moves_allowed_for_tier
+          else
+            client.emit_ooc "Moves Allowed for #{traits.type.capitalize} (Tier #{tier}) not found. Skipping."
+          end
+        end
+      
+        traits.update(moves: moves_allowed_total)
+        client.emit_success "Total Number of Allowed Moves for #{traits.type.capitalize} (up to Tier #{current_tier}) set to #{moves_allowed_total}."
+      end      
   end
 end
