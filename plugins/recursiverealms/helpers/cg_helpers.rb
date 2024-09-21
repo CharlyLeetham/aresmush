@@ -133,7 +133,7 @@ module AresMUSH
       moves_allowed = traits.moves || 0
       current_moves = enactor.rr_moves.size
       remaining_moves = moves_allowed - current_moves
-      client.emit_ooc "Moves allowed: #{moves_allowed}, Current moves: #{current_moves}, #{remaining_moves} "
+      client.emit_ooc "Moves allowed: #{moves_allowed}, Current moves: #{current_moves}, Remaining #{remaining_moves} "
       client.emit_success "Move '#{move_name}' added. #{remaining_moves} move(s) remaining."
     end
 
