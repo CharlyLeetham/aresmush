@@ -29,7 +29,7 @@ module AresMUSH
           client.emit_success "All moves have been removed."
         else
           # Find and remove the move by name using Ohm find API
-          move_to_remove = moves.find(name: self.move_name.downcase).first
+          move_to_remove = moves.to_a.find(name: self.move_name.downcase).first
 
           if move_to_remove.nil?
             client.emit_failure "Move '#{self.move_name}' not found."
