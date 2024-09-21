@@ -11,8 +11,6 @@ module AresMUSH
       end
 
       def handle
-        client.emit_ooc "Move: #{move_name}"
-
         # Retrieve character traits
         traits = enactor.rr_traits.first
         if traits.nil?
@@ -29,7 +27,6 @@ module AresMUSH
 
         tier_key = "Tier #{traits.tier}"
         moves = chartype['Tiers'][tier_key]['Moves']
-        client.emit_ooc "#{moves.inspect}"        
 
         # Error handling for when Moves does not exist
         if moves.nil? || moves.empty?

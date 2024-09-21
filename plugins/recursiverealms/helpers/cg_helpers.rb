@@ -95,39 +95,57 @@ module AresMUSH
       client.emit_success "You have selected: #{selected_choices.join(", ")} for #{ability['Name']}."
     end
 
-       # Helper method to add a move to the character's moves
-       def self.add_move(move_name, enactor, client)
-        # Retrieve character type and tier from their traits
-        traits = enactor.rr_traits.first
-        if traits.nil?
-          client.emit_failure "Character traits not found."
-          return
-        end
-  
-        # Retrieve the character's type from the traits
-        chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
-        if chartype.nil?
-          client.emit_failure "Character type '#{traits.type}' not found in configuration."
-          return
-        end
-  
-        tier_key = "Tier #{traits.tier}"
-        moves = chartype['Tiers'][tier_key]['Moves']
-  
-        # Find the move by name
-        move = moves.find { |m| m['Name'].downcase == move_name.downcase }
-  
-        if move.nil?
-          client.emit_failure "Move '#{move_name}' not found."
-          return
-        end
-  
-        # Check if the move already exists for the character
-        existing_move = enactor.rr_moves.to_a.find { |m| m.name.downcase == move['Name'].downcase }
-        if existing_move
-          client.emit_failure "Move '#{move_name}' has already been added."
-          return
-        end        
+    # Helper method to add a move to the character's moves
+    def self.add_move(move_name, enactor, client)
+      # Retrieve character type and tier from their traits
+      traits = enactor.rr_traits.first
+      if traits.nil?
+        client.emit_failure "Character traits not found."
+        return
+      end
+
+      # Retrieve the character's type from the traits
+      chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
+      if chartype.nil?
+        client.emit_failure "Character type '#{traits.type}' not found in configuration."
+        return
+      end
+
+      tier_key = "Tier #{traits.tier}"
+      moves = chartype['Tiers'][tier_key]['Moves']
+
+      # Find the move by name
+      move = moves.find { |m| m['Name'].downcase == move_name.downcase }
+      if move.nil?
+        client.emit_failure "Move '#{move_name}' not found."
+        return
+      end
+
+      # Check if the move already exists for the character
+      existing_move = enactor.rr_moves.to_a.find { |m| m.name.downcase == move['Name'].downcase }
+      if existing_move
+        client.emit_failure "Move '#{move_name}' has already been added."
+        return
+      end
+
+      # Add the move to the character's rr_moves collection
+      RRMoves.create(
+        character: enactor,
+        name: move['Name'],
+        tier: traits.tier,
+        type: move['Type'],
+        modifier: move['Modifier'],
+        cost: move['Cost'],
+        duration: move['Duration']
+      )
+
+      # Calculate remaining moves and emit a success message
+      moves_allowed = traits.moves || 0
+      current_moves = enactor.rr_moves.size
+      remaining_moves = moves_allowed - current_moves
+
+      client.emit_success "Move '#{move_name}' has been added. You have #{remaining_moves} moves remaining."
+    end       
   
         # Add the move to the character's rr_moves collection
         RRMoves.create(
