@@ -10,12 +10,10 @@ module AresMUSH
 
         # Ensure we don't raise errors when not enough arguments are passed
         self.move_name = split_switch.length > 2 ? split_switch[2] : nil # The name of the move, if provided
-        client.emit_ooc "#{move_name}"
       end
 
       def handle
         moves = enactor.rr_moves
-        client.emit_ooc "#{moves.inspect}"        
 
         if moves.empty?
           client.emit_failure "You have no moves to remove."
@@ -24,11 +22,13 @@ module AresMUSH
 
         if self.move_name.nil?
           # Remove all moves if no move name is specified
-          moves.each { |move| move.delete }
+          moves.each do |move|
+            move.delete # Ohm method to delete the object
+          end
           client.emit_success "All moves have been removed."
         else
-          # Remove only the move with the specified name
-          move_to_remove = moves.find { |move| move.name.downcase == self.move_name.downcase }
+          # Find and remove the move by name using Ohm find API
+          move_to_remove = moves.find(name: self.move_name.downcase).first
 
           if move_to_remove.nil?
             client.emit_failure "Move '#{self.move_name}' not found."
