@@ -22,7 +22,7 @@ module AresMUSH
           type: nil,
           tier: nil,
           effort: nil,
-          moves: nil
+          moves: nil,
           xp: 0
         )
         
