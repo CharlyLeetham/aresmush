@@ -116,6 +116,8 @@ module AresMUSH
                 return SetTierCmd
               when "sa"
                 return RemoveSACmd
+              when "moves"
+                return RemoveMovesCmd                
               end 
             else
               client.emit_ooc "Testing"
