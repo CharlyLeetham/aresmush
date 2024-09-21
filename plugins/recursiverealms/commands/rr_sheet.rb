@@ -30,7 +30,8 @@ module AresMUSH
             end
           end
         else
-          client.emit_ooc "No traits assigned."
+          client.emit_ooc "No traits assigned. Please type rr/set/type/[type] to begin your character creation."
+          return RecursiveRealms.handle_missing_type(client, enactor)
         end
       end
     end
