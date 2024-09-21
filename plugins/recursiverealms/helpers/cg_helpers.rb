@@ -127,6 +127,7 @@ module AresMUSH
         client.emit_failure "Move '#{move_name}' has already been added."
         return
       end
+    end
 
       # Add the move to the character's rr_moves collection
       RRMoves.create(
