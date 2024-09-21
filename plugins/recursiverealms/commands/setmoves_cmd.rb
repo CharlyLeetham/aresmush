@@ -12,7 +12,14 @@ module AresMUSH
 
       def handle
         # If no move name is given, call the helper function and list available moves
+
         if self.move_name.nil? || self.move_name.empty?
+          traits = enactor.rr_traits.first
+          if traits.nil?
+            client.emit_failure "Character traits not found."
+            return
+          end
+          
           # Retrieve character type and tier from the YAML
           chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
           if chartype.nil?
