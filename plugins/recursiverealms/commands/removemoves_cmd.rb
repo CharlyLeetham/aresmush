@@ -20,7 +20,12 @@ module AresMUSH
         end
 
         if self.move_name.nil?
-          # Call the helper function to emit the current moves status
+          # If no move_name is provided, remove all moves
+          moves.each do |move|
+            move.delete # Ohm method to delete the move object
+          end
+          client.emit_success "All moves have been removed."
+          # Re-emit the current moves status after removal
           RecursiveRealms.emit_moves_status(enactor, client)
         else
           # Find and remove the move by name
