@@ -32,6 +32,8 @@ module AresMUSH
         tier_key = "Tier #{traits.tier}"
         moves = chartype['Tiers'][tier_key]['Moves']
 
+        client.emit_ooc "#{move_name.inspect}"
+
         # If no move name is given, show a list of available moves for the current tier
         if self.move_name.nil? || self.move_name.empty?
           move_list = moves.map { |move| move['Name'] }.join(", ")
