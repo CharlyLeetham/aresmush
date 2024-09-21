@@ -114,12 +114,16 @@ module AresMUSH
         return
       end
 
+      # Check if the move already exists for the character
       existing_move = enactor.rr_moves.to_a.find { |m| m.name.downcase == move['Name'].downcase }
       if existing_move
         client.emit_failure "Move '#{move_name}' has already been added."
+        # Call the function to display current moves status
+        RecursiveRealms.emit_moves_status(enactor, client)
         return
       end
 
+      # Add the move to the character's rr_moves collection
       RRMoves.create(
         character: enactor,
         name: move['Name'],
@@ -130,12 +134,31 @@ module AresMUSH
         duration: move['Duration']
       )
 
+      # Call the function to display current moves status after the move is added
+      RecursiveRealms.emit_moves_status(enactor, client)
+    end
+
+
+    # Helper method to calculate and emit the current move status
+    def self.emit_moves_status(enactor, client)
+      traits = enactor.rr_traits.first
+      if traits.nil?
+        client.emit_failure "Character traits not found."
+        return
+      end
+
       moves_allowed = traits.moves || 0
       current_moves = enactor.rr_moves.size
       remaining_moves = moves_allowed - current_moves
-      client.emit_ooc "Moves allowed: #{moves_allowed}, Current moves: #{current_moves}, Remaining #{remaining_moves} "
-      client.emit_success "Move '#{move_name}' added. #{remaining_moves} move(s) remaining."
-    end
+
+      client.emit_ooc "Moves allowed: #{moves_allowed}, Current moves: #{current_moves}, Remaining moves: #{remaining_moves}"
+
+      if remaining_moves > 0
+        client.emit_success "You have #{remaining_moves} move(s) remaining."
+      else
+        client.emit_failure "You have reached the maximum number of moves."
+      end
+    end    
 
     # Helper method to update moves allowed based on current tier
     def self.update_moves_allowed(chartype, traits, current_tier, client)
