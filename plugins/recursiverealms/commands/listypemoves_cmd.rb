@@ -9,7 +9,7 @@ module AresMUSH
         # Use multi_split_command to split and parse the arguments
         args = RecursiveRealms.multi_split_command(@cmd)
         self.type = args[1] # Character type provided in the command (in args[1])
-        self.tier = args.length > 3 ? args[3] : nil # Optional tier argument (in args[2])
+        self.tier = args.length > 3 ? args[3] : nil # Optional tier argument is in args[3]
       end
 
       def handle
@@ -35,11 +35,9 @@ module AresMUSH
           tier_key = "Tier #{self.tier}"
           tier_data = chartype['Tiers'][tier_key]
 
-          client.emit_ooc "#{tier_data.inspect}"
-
           if tier_data && tier_data['Moves']
-            # Render only the moves for the specific tier
-            template = CharacterTypeMovesTemplate.new(chartype, tier_data)
+            # Pass only the tier number to the template
+            template = CharacterTypeMovesTemplate.new(chartype, self.tier)
             client.emit template.render
           else
             client.emit_failure "Moves not found for Tier #{self.tier} for character type #{self.type.capitalize}."
