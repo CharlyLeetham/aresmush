@@ -3,8 +3,6 @@ module AresMUSH
     class CharacterTypeMovesTemplate < ErbTemplateRenderer
       attr_accessor :chartype, :tier
 
-      client.emit_ooc "Character Type: #{chartype['Type']}, Tier: #{@tier ? @tier : 'All Tiers'}"
-
       def initialize(chartype, tier = nil)
         @chartype = chartype
         @tier = tier
