@@ -3,10 +3,11 @@ module AresMUSH
     class CharacterTypeMovesSummTemplate < ErbTemplateRenderer
       attr_accessor :chartype, :tier, :num_moves
 
-      def initialize(chartype, tier = nil, num_moves = nil)
+      def initialize(enactor, chartype, tier = nil, num_moves = nil)
         @chartype = chartype
         @tier = tier
         @num_moves = num_moves
+        @enactor = enactor
         super File.dirname(__FILE__) + "/character_type_moves_summ.erb"
       end
 
@@ -26,7 +27,7 @@ module AresMUSH
       def current_moves
         @enactor.rr_moves.map(&:name).map(&:downcase)
       end
-            
+
     end
   end
 end
