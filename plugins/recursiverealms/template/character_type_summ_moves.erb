@@ -1,0 +1,16 @@
+<%= line_with_text t('RecursiveRealms.char_moves_title', :chartype => self.chartypetitle) %>
+<%= left("%xhDescription:%xn #{chartype['Descriptor']}", 100) %>
+
+<% self.tiers.each do |tier, attrib| %>
+  <%= left("%xh#{tier}:%xn", 100) %>
+  <% if attrib && attrib['Moves'] %> 
+    <%= left("%xhMoves:%xn", 100) %>
+    <% attrib['Moves'].each do |move| %>
+      <%= left("%xh#{move['Name']}:%xn #{move['Flavor Text']}", 100) %>
+    <% end %>
+  <% else %>
+    <%= left("%xhNo moves found for #{tier}.%xn", 100) %> <!-- Error handling for missing moves -->
+  <% end %>
+<% end %>
+
+<%= footer %>
