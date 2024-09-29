@@ -29,10 +29,11 @@ module AresMUSH
               client.emit_ooc "  - Name: #{move.name}, Type: #{move.type}, Modifier: #{move.modifier}, Cost: #{move.cost}, Duration: #{move.duration}, Tier: #{move.tier}"
             end
           end
-
-          # Pass the character's traits, special abilities, and moves to the template
-          template = RRSheetTemplate.new(traits, enactor.rr_specialabilities, enactor.rr_moves)
-          client.emit template.render
+          traits = enactor.rr_traits.first
+          if traits
+            # Pass the character's traits, special abilities, and moves to the template
+            template = RRSheetTemplate.new(traits, enactor.rr_specialabilities, enactor.rr_moves)
+            client.emit template.render
           else
             client.emit_ooc "Character type configuration not found in the YAML file."
           end
