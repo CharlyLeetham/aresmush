@@ -12,7 +12,9 @@
     <% if attrib && attrib['Moves'] %> 
       <%= left("%xhMoves:%xn", 100) %>
       <% attrib['Moves'].each do |move| %>
-        <%= left("%xh#{move['Name']}:%xn #{move['Flavor Text']}", 100) %>
+        <%= left("%xh#{move['Name']}:%xn", 30) %> <!-- Display the name of the move -->
+        <%= left("#{move['Flavor Text']}", 70) %> <!-- Display the Flavor Text wrapped at 70 characters -->
+        <br/>
       <% end %>
     <% else %>
       <%= left("%xhNo moves found for #{tier}.%xn", 100) %> <!-- Error handling for missing moves -->
