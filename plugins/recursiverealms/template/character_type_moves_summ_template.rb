@@ -22,6 +22,11 @@ module AresMUSH
           return @chartype['Tiers']
         end
       end
+
+      def current_moves
+        @enactor.rr_moves.map(&:name).map(&:downcase)
+      end
+            
     end
   end
 end
