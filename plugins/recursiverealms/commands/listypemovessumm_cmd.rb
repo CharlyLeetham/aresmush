@@ -32,6 +32,7 @@ module AresMUSH
         # Retrieve the current tier from the character's traits
         traits = enactor.rr_traits.first
         current_tier = traits.tier
+        num_moves = traits.moves
 
         # Show moves for the character's current tier only
         tier_key = "Tier #{current_tier}"
@@ -39,7 +40,7 @@ module AresMUSH
 
         if tier_data && tier_data['Moves']
           # Pass only the current tier to the template
-          template = CharacterTypeMovesSummTemplate.new(chartype, current_tier)
+          template = CharacterTypeMovesSummTemplate.new(chartype, current_tier, num_moves)
           client.emit template.render
         else
           client.emit_failure "Moves not found for Tier #{current_tier} for character type #{self.type.capitalize}."
