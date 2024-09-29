@@ -30,7 +30,7 @@ module AresMUSH
             end
           end
 
-          template = RRSheetTemplate.new(#{traits.type})
+          template = RRSheetTemplate.new(traits.type)
           client.emit template.render
         else
           client.emit_ooc "No traits assigned. Please type rr/set/type/[type] to begin your character creation."
