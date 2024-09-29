@@ -2,6 +2,21 @@
 <%= left("%xhDescription:%xn #{chartype['Descriptor']}", 100) %>
 <%= "Debug Info: Character Type - #{chartype['Type']}, Tier - #{@tier ? @tier : 'All Tiers'}" %>
 
-
+<% self.tiers.each do |tier, attrib| %>
+  <%= left("%xh#{tier}:%xn", 100) %>
+  <% if attrib && attrib['Moves'] %>  <!-- Make sure attrib is not nil -->
+    <%= left("%xhMoves:%xn", 100) %>
+    <% attrib['Moves'].each do |move| %>
+      <%= left("%xh#{move['Name']}:%xn #{move['Description']}", 100) %>
+      <% move.each do |key, value| %>
+        <% unless key == 'Name' or key == 'Description' %>
+          <%= "%xh#{key}:%xn #{value}" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= left("%xhNo moves found for #{tier}.%xn", 100) %> <!-- Error handling for missing moves -->
+  <% end %>
+<% end %>
 
 <%= footer %>

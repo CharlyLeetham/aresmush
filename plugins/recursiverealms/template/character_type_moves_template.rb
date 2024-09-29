@@ -14,9 +14,9 @@ module AresMUSH
       end
 
       def tiers
-        # If a tier is specified, return only that tier, else return all tiers
+        # If a tier is specified, ensure only the relevant data is returned
         if @tier
-          return { @tier => @chartype['Tiers'][@tier] }
+          return { "Tier #{@tier}" => @chartype['Tiers']["Tier #{@tier}"] }
         else
           return @chartype['Tiers']
         end
