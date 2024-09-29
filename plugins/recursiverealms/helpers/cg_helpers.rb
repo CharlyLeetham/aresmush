@@ -224,8 +224,33 @@ module AresMUSH
     end    
     
     def self.list_all_moves(client, enactor)
-      list_command = RecursiveRealms::ListTypeMovesCmd.new(client, Command.new("recursiverealms.ListTypeMovesCmd"), enactor)
-      list_command.handle
-    end    
+      # Retrieve character traits
+      traits = enactor.rr_traits.first
+      if traits.nil?
+        client.emit_failure "Character traits not found."
+        return
+      end
+
+      # Retrieve character type and tier from the YAML
+      chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
+      if chartype.nil?
+        client.emit_failure "Character type '#{traits.type}' not found in configuration."
+        return
+      end
+
+      # Retrieve moves for the current tier
+      tier_key = "Tier #{traits.tier}"
+      moves = chartype['Tiers'][tier_key]['Moves']
+
+      # Error handling for when Moves does not exist
+      if moves.nil? || moves.empty?
+        client.emit_failure "No moves are available for #{traits.type.capitalize} at Tier #{traits.tier}."
+        return
+      end
+
+      # Display the moves available for the current tier
+      move_list = moves.map { |move| move['Name'] }.join(", ")
+      client.emit_ooc "Available Moves for #{traits.type.capitalize} (Tier #{traits.tier}): #{move_list}"
+    end   
   end
 end
