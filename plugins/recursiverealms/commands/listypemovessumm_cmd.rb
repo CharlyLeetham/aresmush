@@ -3,13 +3,12 @@ module AresMUSH
     class ListTypeMovesSummCmd
       include CommandHandler
 
-      attr_accessor :type, :tier
+      attr_accessor :type
 
       def parse_args
         # Use multi_split_command to split and parse the arguments
         args = RecursiveRealms.multi_split_command(@cmd)
         self.type = args[1] # Character type provided in the command (in args[1])
-        self.tier = args.length > 3 ? args[3] : nil # Optional tier argument is in args[3]
       end
 
       def handle
@@ -30,22 +29,20 @@ module AresMUSH
           return
         end
 
-        # If a specific tier is provided, show moves only for that tier
-        if self.tier
-          tier_key = "Tier #{self.tier}"
-          tier_data = chartype['Tiers'][tier_key]
+        # Retrieve the current tier from the character's traits
+        traits = enactor.rr_traits.first
+        current_tier = traits.tier
 
-          if tier_data && tier_data['Moves']
-            # Pass only the tier number to the template
-            template = CharacterTypeMovesSummTemplate.new(chartype, self.tier)
-            client.emit template.render
-          else
-            client.emit_failure "Moves not found for Tier #{self.tier} for character type #{self.type.capitalize}."
-          end
-        else
-          # Show moves for all tiers
-          template = CharacterTypeMovesSummTemplate.new(chartype, nil) # Pass nil to render all tiers
+        # Show moves for the character's current tier only
+        tier_key = "Tier #{current_tier}"
+        tier_data = chartype['Tiers'][tier_key]
+
+        if tier_data && tier_data['Moves']
+          # Pass only the current tier to the template
+          template = CharacterTypeMovesSummTemplate.new(chartype, current_tier)
           client.emit template.render
+        else
+          client.emit_failure "Moves not found for Tier #{current_tier} for character type #{self.type.capitalize}."
         end
       end
     end
