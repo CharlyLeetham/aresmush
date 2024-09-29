@@ -10,6 +10,7 @@ module AresMUSH
         end
   
         def handle
+          client.emit_ooc "#{self.attrib}"
           characters_config = Global.read_config("RecursiveRealms", "characters")
           character = characters_config.find { |c| c['Type'].downcase == self.attrib }
   
