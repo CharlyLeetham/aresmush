@@ -1,6 +1,6 @@
 module AresMUSH
     module RecursiveRealms
-      class ListTypeMovesCmd
+      class OLDListTypeMovesCmd
         include CommandHandler
   
         attr_accessor :type
