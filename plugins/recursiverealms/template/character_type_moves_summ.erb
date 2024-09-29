@@ -13,7 +13,7 @@
       <% tier_data['Moves'].each do |move| %>
         <% move_name = move['Name'].downcase %>
         <% if current_moves.include?(move_name) %>
-          <%= left("%xh**#{move['Name']}**:%xn", 30) %> <%= left("#{move['Flavor Text']}", 70) %>
+          <%= left("%xh%xg#{move['Name']}:%xg%xn", 30) %> <%= left("#{move['Flavor Text']}", 70) %>
         <% else %>
           <%= left("%xh#{move['Name']}:%xn", 30) %> <%= left("#{move['Flavor Text']}", 70) %>
         <% end %>
