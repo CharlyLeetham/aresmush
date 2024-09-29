@@ -1,6 +1,6 @@
 <%= line_with_text t('RecursiveRealms.char_moves_title', :chartype => self.chartypetitle) %>
 <%= left("%xhDescription:%xn #{chartype['Descriptor']}", 100) %>
-<%= left("%xhTotal Moves:%xn #{num_moves]}", 100) %>
+<%= left("%xhTotal Moves:%xn #{num_moves}", 100) %>
 
 <% self.tiers.each do |tier, attrib| %>
   <%= left("%xh#{tier}:%xn", 100) %>
