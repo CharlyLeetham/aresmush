@@ -8,8 +8,8 @@ module AresMUSH
       def parse_args
         # Use multi_split_command to split and parse the arguments
         args = RecursiveRealms.multi_split_command(@cmd)
-        self.type = args[1] # Character type provided in the command
-        self.tier = args.length > 2 ? args[2] : nil # Optional tier argument
+        self.type = args[0] # Character type provided in the command
+        self.tier = args.length > 1 ? args[1] : nil # Optional tier argument
       end
 
       def handle
@@ -36,14 +36,15 @@ module AresMUSH
           tier_data = chartype['Tiers'][tier_key]
 
           if tier_data && tier_data['Moves']
-            template = CharacterTypeMovesTemplate.new(chartype, "Tier #{self.tier}")
+            # Render only the moves for the specific tier
+            template = CharacterTypeMovesTemplate.new(chartype, tier_data)
             client.emit template.render
           else
             client.emit_failure "Moves not found for Tier #{self.tier} for character type #{self.type.capitalize}."
           end
         else
           # Show moves for all tiers
-          template = CharacterTypeMovesTemplate.new(chartype)
+          template = CharacterTypeMovesTemplate.new(chartype, nil) # Pass nil to render all tiers
           client.emit template.render
         end
       end
