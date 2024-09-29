@@ -29,6 +29,9 @@ module AresMUSH
               client.emit_ooc "  - Name: #{move.name}, Type: #{move.type}, Modifier: #{move.modifier}, Cost: #{move.cost}, Duration: #{move.duration}, Tier: #{move.tier}"
             end
           end
+
+          template = RRSheetTemplate.new(#{traits.type})
+          client.emit template.render
         else
           client.emit_ooc "No traits assigned. Please type rr/set/type/[type] to begin your character creation."
           return RecursiveRealms.handle_missing_type(client, enactor)
