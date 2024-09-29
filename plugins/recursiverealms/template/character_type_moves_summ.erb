@@ -3,22 +3,35 @@
 <%= left("%xhTotal Moves:%xn #{num_moves}", 100) %>
 <%= "#{chartype.inspect}" %>
 
-<% current_tier_num = @tier.to_i %> 
-<% self.tiers.each do |tier, attrib| %>
-  <% tier_num = tier.split(" ")[1].to_i %> 
-  <%= "Tier Num: #{tier_num}" %>
+<% current_tier = @tier.to_i %> <!-- Convert current tier to an integer for comparison -->
 
-  <% if tier_num <= current_tier_num %>
-    <%= left("%xh#{tier}:%xn", 100) %>
-    <% if attrib && attrib['Moves'] %> 
+<!-- Loop through all tiers in chartype and extract moves for tiers <= current_tier -->
+<% @chartype['Tiers'].each do |tier_name, tier_data| %>
+  
+  <% tier_number = tier_name.split(' ').last.to_i %> <!-- Extract the numeric part of the tier (e.g., "Tier 1" -> 1) -->
+
+  <!-- Only display the tier if its number is <= current_tier -->
+  <% if tier_number <= current_tier %>
+
+    <!-- Display the tier name -->
+    <%= left("%xh#{tier_name}:%xn", 100) %>
+    
+    <!-- Check if the tier contains moves and display them -->
+    <% if tier_data['Moves'] %>
       <%= left("%xhMoves:%xn", 100) %>
-      <% attrib['Moves'].each do |move| %>
-        <%= left("%xh#{move['Name']}:%xn", 30) %> <%= left("#{move['Flavor Text']}", 70) %> 
+      
+      <!-- Loop through each move in the current tier and display its details -->
+      <% tier_data['Moves'].each do |move| %>
+        <%= left("%xh#{move['Name']}:%xn", 30) %> <!-- Move name -->
+        <%= left("#{move['Flavor Text']}", 70) %> <!-- Move flavor text -->
+        <br/>
       <% end %>
-    <% else %>
-      <%= left("%xhNo moves found for #{tier}.%xn", 100) %>
-    <% end %>
-  <% end %>
-<% end %>
 
+    <% else %>
+      <%= left("%xhNo moves found for #{tier_name}.%xn", 100) %> <!-- If no moves exist in the current tier -->
+    <% end %>
+
+  <% end %> <!-- End tier number comparison -->
+
+<% end %> <!-- End loop for chartype['Tiers'] -->
 <%= footer %>
