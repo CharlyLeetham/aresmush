@@ -2,7 +2,6 @@
 <%= left("%xhDescription:%xn #{chartype['Descriptor']}", 100) %>
 <%= "Debug Info: Character Type - #{chartype['Type']}, Tier - #{@tier ? @tier : 'All Tiers'}" %>
 
-
 <% self.tiers.each do |tier, attrib| %>
   <%= left("%xh#{tier}:%xn", 100) %>
   <% if attrib['Moves'] %>

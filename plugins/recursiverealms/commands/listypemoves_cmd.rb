@@ -33,6 +33,7 @@ module AresMUSH
         # If a specific tier is provided, show moves only for that tier
         if self.tier
           tier_key = "Tier #{self.tier}"
+          tier_data = chartype['Tiers'][tier_key]
 
           if tier_data && tier_data['Moves']
             # Pass only the tier number to the template
