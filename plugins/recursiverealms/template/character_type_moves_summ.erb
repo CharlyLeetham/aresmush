@@ -2,15 +2,21 @@
 <%= left("%xhDescription:%xn #{chartype['Descriptor']}", 100) %>
 <%= left("%xhTotal Moves:%xn #{num_moves}", 100) %>
 
+<% current_tier_num = @tier.to_i %> <!-- Convert current tier to integer for comparison -->
 <% self.tiers.each do |tier, attrib| %>
-  <%= left("%xh#{tier}:%xn", 100) %>
-  <% if attrib && attrib['Moves'] %> 
-    <%= left("%xhMoves:%xn", 100) %>
-    <% attrib['Moves'].each do |move| %>
-      <%= left("%xh#{move['Name']}:%xn #{move['Flavor Text']}", 100) %>
+  <% tier_num = tier.split(" ")[1].to_i %> <!-- Extract the tier number from the string "Tier N" -->
+
+  <!-- Show only tiers that are less than or equal to the character's current tier -->
+  <% if tier_num <= current_tier_num %>
+    <%= left("%xh#{tier}:%xn", 100) %>
+    <% if attrib && attrib['Moves'] %> 
+      <%= left("%xhMoves:%xn", 100) %>
+      <% attrib['Moves'].each do |move| %>
+        <%= left("%xh#{move['Name']}:%xn #{move['Flavor Text']}", 100) %>
+      <% end %>
+    <% else %>
+      <%= left("%xhNo moves found for #{tier}.%xn", 100) %> <!-- Error handling for missing moves -->
     <% end %>
-  <% else %>
-    <%= left("%xhNo moves found for #{tier}.%xn", 100) %> <!-- Error handling for missing moves -->
   <% end %>
 <% end %>
 
