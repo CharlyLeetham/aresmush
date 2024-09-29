@@ -8,8 +8,8 @@ module AresMUSH
       def parse_args
         # Use multi_split_command to split and parse the arguments
         args = RecursiveRealms.multi_split_command(@cmd)
-        self.type = args[0] # Character type provided in the command
-        self.tier = args.length > 1 ? args[1] : nil # Optional tier argument
+        self.type = args[1] # Character type provided in the command
+        self.tier = args.length > 1 ? args[2] : nil # Optional tier argument
         client.emit_ooc "#{type}, #{tier}"
       end
 
