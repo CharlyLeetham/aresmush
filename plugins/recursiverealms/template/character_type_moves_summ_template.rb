@@ -1,11 +1,12 @@
 module AresMUSH
   module RecursiveRealms
     class CharacterTypeMovesSummTemplate < ErbTemplateRenderer
-      attr_accessor :chartype, :tier
+      attr_accessor :chartype, :tier, :num_moves
 
-      def initialize(chartype, tier = nil)
+      def initialize(chartype, tier = nil, num_moves = nil)
         @chartype = chartype
         @tier = tier
+        @num_moves = num_moves
         super File.dirname(__FILE__) + "/character_type_moves_summ.erb"
       end
 
