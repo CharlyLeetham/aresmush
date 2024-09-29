@@ -1,10 +1,9 @@
 <%= line_with_text t('RecursiveRealms.char_moves_title', :chartype => self.chartypetitle) %>
 <%= left("%xhDescription:%xn #{chartype['Descriptor']}", 100) %>
-<%= "Debug Info: Character Type - #{chartype['Type']}, Tier - #{@tier ? @tier : 'All Tiers'}" %>
 
 <% self.tiers.each do |tier, attrib| %>
   <%= left("%xh#{tier}:%xn", 100) %>
-  <% if attrib && attrib['Moves'] %>  <!-- Make sure attrib is not nil -->
+  <% if attrib && attrib['Moves'] %> 
     <%= left("%xhMoves:%xn", 100) %>
     <% attrib['Moves'].each do |move| %>
       <%= left("%xh#{move['Name']}:%xn #{move['Description']}", 100) %>
