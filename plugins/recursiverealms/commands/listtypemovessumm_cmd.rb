@@ -11,7 +11,7 @@ module AresMUSH
   
         def handle
           characters_config = Global.read_config("RecursiveRealms", "characters")
-          character = characters_config.find { |c| c['Type'].downcase == self.attrib }
+          character = characters_config.find { |c| c['Type'].downcase == self.type }
   
           if character.nil?
             client.emit_ooc "Error: Character type not found. Please check the RecursiveRealms.yml file."
