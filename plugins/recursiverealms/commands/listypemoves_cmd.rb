@@ -35,6 +35,8 @@ module AresMUSH
           tier_key = "Tier #{self.tier}"
           tier_data = chartype['Tiers'][tier_key]
 
+          client.emit_ooc "#{tier_data.inspect}"
+
           if tier_data && tier_data['Moves']
             # Render only the moves for the specific tier
             template = CharacterTypeMovesTemplate.new(chartype, tier_data)
