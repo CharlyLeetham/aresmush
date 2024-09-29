@@ -4,20 +4,20 @@
 
 <% current_tier_num = @tier.to_i %> <!-- Convert current tier to integer for comparison -->
 <% self.tiers.each do |tier, attrib| %>
-  <% tier_num = tier.split(" ")[1].to_i %> <!-- Extract the tier number from the string "Tier N" -->
+  <% tier_num = tier.split(" ")[1].to_i %> 
+  <%= "Tier Num: #{tier_num}" %>
 
-  <!-- Show only tiers that are less than or equal to the character's current tier -->
   <% if tier_num <= current_tier_num %>
     <%= left("%xh#{tier}:%xn", 100) %>
     <% if attrib && attrib['Moves'] %> 
       <%= left("%xhMoves:%xn", 100) %>
       <% attrib['Moves'].each do |move| %>
-        <%= left("%xh#{move['Name']}:%xn", 30) %> <!-- Display the name of the move -->
-        <%= left("#{move['Flavor Text']}", 70) %> <!-- Display the Flavor Text wrapped at 70 characters -->
+        <%= left("%xh#{move['Name']}:%xn", 30) %>
+        <%= left("#{move['Flavor Text']}", 70) %> 
         <br/>
       <% end %>
     <% else %>
-      <%= left("%xhNo moves found for #{tier}.%xn", 100) %> <!-- Error handling for missing moves -->
+      <%= left("%xhNo moves found for #{tier}.%xn", 100) %>
     <% end %>
   <% end %>
 <% end %>
