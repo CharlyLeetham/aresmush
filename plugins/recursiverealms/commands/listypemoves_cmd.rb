@@ -23,7 +23,6 @@ module AresMUSH
           self.type = traits.type.downcase # Use the character's type from traits
         end
 
-        client.emit_ooc "here2"
         # Fetch character type from the YAML configuration
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type.downcase }
         if chartype.nil?
