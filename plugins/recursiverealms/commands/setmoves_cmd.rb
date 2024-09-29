@@ -12,6 +12,7 @@ module AresMUSH
 
       def handle
         # If no move name is given, call the helper function and list available moves
+
         if self.move_name.nil? || self.move_name.empty?
           traits = enactor.rr_traits.first
           if traits.nil?
@@ -25,84 +26,69 @@ module AresMUSH
             client.emit_failure "Character type '#{traits.type}' not found in configuration."
             return
           end
-      
+
           tier_key = "Tier #{traits.tier}"
           moves = chartype['Tiers'][tier_key]['Moves']
-      
-          # Error handling for when Moves does not exist
-          if moves.nil? || moves.empty?
-            client.emit_failure "No moves are available for #{traits.type.capitalize} at Tier #{traits.tier}."
-            return
-          end
-      
-          # Show current moves status
-          display_current_moves(enactor, client)
-      
+
           # Call the helper function to show available moves
           RecursiveRealms.handle_missing_move(moves, enactor, client)
           return
         end
-      
+
         # Retrieve character traits
         traits = enactor.rr_traits.first
         if traits.nil?
           client.emit_failure "Character traits not found."
           return
         end
-      
+
         # Retrieve character type and tier from the YAML
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
         if chartype.nil?
           client.emit_failure "Character type '#{traits.type}' not found in configuration."
           return
         end
-      
+
         tier_key = "Tier #{traits.tier}"
         moves = chartype['Tiers'][tier_key]['Moves']
-      
+
         # Error handling for when Moves does not exist
         if moves.nil? || moves.empty?
           client.emit_failure "No moves are available for #{traits.type.capitalize} at Tier #{traits.tier}."
           return
         end
-      
+
         # Retrieve the allowed number of moves
         moves_allowed = traits.moves.to_i || 0
         current_moves = enactor.rr_moves.size
-      
-        # Show current moves status
-        client.emit_ooc "You have #{current_moves}/#{moves_allowed} moves set."
-      
+
         # Check if the character has already reached the maximum allowed moves
         if current_moves >= moves_allowed
           client.emit_failure "You have reached the maximum number of allowed moves (#{moves_allowed})."
           display_current_moves(enactor, client)
           return
         end
-      
+
         # If no move name is given, show a list of available moves for the current tier
         if self.move_name.nil? || self.move_name.empty?
           move_list = moves.map { |move| move['Name'] }.join(", ")
           client.emit_ooc "Available Moves: #{move_list}"
           return
         end
-      
+
         # Find the move by name
         move = moves.find { |m| m['Name'].downcase == self.move_name.downcase }
-      
+
         if move.nil?
           client.emit_failure "Move '#{self.move_name}' not found."
           move_list = moves.map { |move| move['Name'] }.join(", ")
           client.emit_ooc "Available Moves: #{move_list}"
           return
         end
-      
+
         # Add the move to the character's rr_moves collection
         RecursiveRealms.add_move(self.move_name, enactor, client)
-      
-        # Show the updated number of moves after the move is added
-        current_moves += 1
-        client.emit_success "Move '#{self.move_name}' added. You now have #{current_moves}/#{moves_allowed} moves set."
+
       end
 
       def display_current_moves(enactor, client)
