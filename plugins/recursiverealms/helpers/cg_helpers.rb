@@ -207,12 +207,21 @@ module AresMUSH
       client.emit_success "Total allowed moves for #{traits.type.capitalize} (up to Tier #{current_tier}) set to #{moves_allowed_total}."
     end
 
-
     # Handle the case when the move_name is missing
     def self.handle_missing_move(moves, enactor, client)
-      client.emit_failure "Character type not provided. Please choose from one of the available types:"
+      # Retrieve character traits
+      traits = enactor.rr_traits.first
+      if traits.nil? || traits.type.nil?
+        client.emit_failure "Character type not set. Please set a character type first."
+        return
+      end
+
+      # Include the character's type in the message
+      client.emit_failure "Available Moves for #{traits.type.capitalize}:"
+      
+      # Call the function to list all available moves
       list_all_moves(client, enactor)
-    end
+    end    
     
     def self.list_all_moves(client, enactor)
       list_command = RecursiveRealms::ListTypeMovesCmd.new(client, Command.new("recursiverealms.ListTypeMovesCmd"), enactor)

@@ -12,7 +12,7 @@ module AresMUSH
 
       def handle
         # If no move name is given, call the helper function and list available moves
-        client.emit_ooc "Here"
+
         if self.move_name.nil? || self.move_name.empty?
           traits = enactor.rr_traits.first
           if traits.nil?
