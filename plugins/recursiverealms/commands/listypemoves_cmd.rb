@@ -6,46 +6,45 @@ module AresMUSH
       attr_accessor :type, :tier
 
       def parse_args
-        split_switch = RecursiveRealms.multi_split_command(@cmd)
-        self.type = split_switch[1] # This is the type provided in the command, can be nil if not provided
-        self.tier = split_switch.length > 2 ? split_switch[2] : nil # If provided, tier is optional
+        # Use multi_split_command to split and parse the arguments
+        args = RecursiveRealms.multi_split_command(@cmd)
+        self.type = args[0] # Character type provided in the command
+        self.tier = args.length > 1 ? args[1] : nil # Optional tier argument
       end
 
       def handle
-        # If type is missing, use the enactor's traits
+        # If type is missing, fall back to using the enactor's traits
         if self.type.nil? || self.type.empty?
           traits = enactor.rr_traits.first
           if traits.nil? || traits.type.nil?
             client.emit_failure "No character type found. Please specify a type or set your character's traits."
             return
           end
-          self.type = traits.type.downcase
+          self.type = traits.type.downcase # Use the character's type from traits
         end
 
-        # Fetch the character type from the YAML config
+        # Fetch character type from the YAML configuration
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type }
         if chartype.nil?
           client.emit_failure "Character type '#{self.type}' not found in the configuration."
           return
         end
 
-        begin
-          # If a tier is specified, only show moves for that tier
-          if self.tier
-            if chartype['Tiers']["Tier #{self.tier}"]
-              template = CharacterTypeMovesTemplate.new(chartype, "Tier #{self.tier}")
-              client.emit template.render
-            else
-              client.emit_failure "Tier #{self.tier} not found for character type #{self.type}."
-            end
-          else
-            # If no tier is specified, show all moves for all tiers
-            template = CharacterTypeMovesTemplate.new(chartype)
+        # If a specific tier is provided, show moves only for that tier
+        if self.tier
+          tier_key = "Tier #{self.tier}"
+          tier_data = chartype['Tiers'][tier_key]
+
+          if tier_data && tier_data['Moves']
+            template = CharacterTypeMovesTemplate.new(chartype, "Tier #{self.tier}")
             client.emit template.render
+          else
+            client.emit_failure "Moves not found for Tier #{self.tier} for character type #{self.type.capitalize}."
           end
-        rescue => e
-          client.emit_failure "An error occurred: #{e.message}"
-          Global.logger.error "Error reading character types: #{e.message}"
+        else
+          # Show moves for all tiers
+          template = CharacterTypeMovesTemplate.new(chartype)
+          client.emit template.render
         end
       end
     end
