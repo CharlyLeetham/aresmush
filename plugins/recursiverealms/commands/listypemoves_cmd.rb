@@ -10,6 +10,7 @@ module AresMUSH
         args = RecursiveRealms.multi_split_command(@cmd)
         self.type = args[0] # Character type provided in the command
         self.tier = args.length > 1 ? args[1] : nil # Optional tier argument
+        client.emit_ooc "#{type}, #{tier}"
       end
 
       def handle
