@@ -1,40 +1,43 @@
 module AresMUSH
   module RecursiveRealms
-    class ListTypeMovesCmd
-      include CommandHandler
+    class CharacterTypeMovesTemplate < ErbTemplateRenderer
+      attr_accessor :chartype, :tier_data, :tier
 
-      attr_accessor :type, :value
-
-      def parse_args
-        split_switch = RecursiveRealms.multi_split_command(@cmd) # Use multi_split_command
-        self.type = split_switch[1] # This is the type provided in the command, can be nil if not provided
-        self.value = split_switch[2]
+      def initialize(chartype, tier_data = nil, tier = nil)
+        @chartype = chartype
+        @tier_data = tier_data
+        @tier = tier
+        super File.dirname(__FILE__) + "/character_type_moves.erb"
       end
 
-      def handle
-        # If type is missing, fall back to using the enactor's traits
-        if self.type.nil? || self.type.empty?
-          traits = enactor.rr_traits.first
-          if traits.nil? || traits.type.nil?
-            client.emit_failure "No character type found. Please specify a type or set your character's traits."
-            return
-          end
-          self.type = traits.type.downcase # Use the character's type from traits
-        end
+      def chartypetitle
+        return @chartype["Type"]
+      end
 
-        # Fetch character type from the YAML configuration
-        chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type }
-        if chartype
-          begin
-            template = CharacterTypeMovesTemplate.new(chartype)
-            client.emit template.render
-          rescue => e
-            client.emit_failure "An error occurred: #{e.message}"
-            Global.logger.error "Error reading character types: #{e.message}"
-          end
+      def render_tiers
+        if @tier_data
+          # Render only the specific tier
+          render_single_tier(@tier, @tier_data)
         else
-          client.emit_failure "Character type '#{self.type}' not found in the configuration."
+          # Render all tiers
+          @chartype['Tiers'].each do |tier, attrib|
+            render_single_tier(tier, attrib)
+          end
         end
+      end
+
+      def render_single_tier(tier, attrib)
+        result = []
+        result << "%xh#{tier}:%xn"
+        attrib.each do |attribute_name, attribute_value|
+          if attribute_name == 'Moves'
+            result << "%xh#{attribute_name}:%xn"
+            attribute_value.each do |move|
+              result << "#{move['Name']} - #{move['Type']} (#{move['Modifier']}, Cost: #{move['Cost']}, Duration: #{move['Duration']})"
+            end
+          end
+        end
+        result.join("\n")
       end
     end
   end

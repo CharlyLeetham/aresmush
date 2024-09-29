@@ -1,9 +1,10 @@
 <%= line_with_text t('RecursiveRealms.char_moves_title', :chartype => self.chartypetitle) %>
 <%= left("%xhDescription:%xn #{chartype['Descriptor']}", 100) %>
 
-<% @chartype['Tiers'].each do |tier, attrib| %>
-  <%= left("%xh#{tier}:%xn", 100) %>
-  <% attrib.each do |attribute_name, attribute_value| %>
+<% if tier_data %> 
+  <!-- Render moves for the specific tier if tier_data is provided -->
+  <%= left("%xhTier #{tier}:%xn", 100) %>
+  <% tier_data.each do |attribute_name, attribute_value| %>
     <% if attribute_name == 'Moves' %>
       <%= left("%xh#{attribute_name}:%xn", 100) %>
       <% attribute_value.each do |item| %>
@@ -30,11 +31,45 @@
         <% else %>
           <%= item %>
         <% end %>
-
       <% end %>
     <% end %>
   <% end %>
-
+  
+<% else %>
+  <!-- Render moves for all tiers if no specific tier is requested -->
+  <% @chartype['Tiers'].each do |tier, attrib| %>
+    <%= left("%xh#{tier}:%xn", 100) %>
+    <% attrib.each do |attribute_name, attribute_value| %>
+      <% if attribute_name == 'Moves' %>
+        <%= left("%xh#{attribute_name}:%xn", 100) %>
+        <% attribute_value.each do |item| %>
+          <% if item.is_a?(Hash) %>
+            <% item.each do |key, val| %>
+              <% if val.is_a?(Hash) %>
+                <%= left("%xh#{key}:%xn", 100) %>
+                <% val.each do |sub_key, sub_val| %>
+                  <%= "%xh#{sub_key}:%xn #{sub_val}" %>
+                <% end %>
+              <% elsif val.is_a?(Array) %>
+                <%= left("%xh#{key}:%xn", 100) %>
+                <% val.each do |array_item| %>
+                  <%= array_item %>
+                <% end %>
+              <% else %>
+                <%= "%xh#{key}:%xn #{val}" %>
+              <% end %>
+            <% end %>
+          <% elsif item.is_a?(Array) %>
+            <% item.each do |array_item| %>
+              <%= array_item %>
+            <% end %>
+          <% else %>
+            <%= item %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
   <% end %>
+<% end %>
 
 <%= footer %>
