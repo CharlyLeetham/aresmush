@@ -2,6 +2,7 @@
 <%= left("%xhDescription:%xn #{chartype['Descriptor']}", 100) %>
 <%= left("%xhTotal Moves:%xn #{num_moves}", 100) %>
 <% current_tier = @tier.to_i %>
+<% current_moves = enactor.rr_moves.map(&:name).map(&:downcase) %>
 <% @chartype['Tiers'].each do |tier_name, tier_data| %>
   
   <% tier_number = tier_name.split(' ').last.to_i %>
@@ -10,7 +11,12 @@
     <% if tier_data['Moves'] %>
       <%= left("%xhMoves:%xn", 100) %>
       <% tier_data['Moves'].each do |move| %>
-        <%= left("%xh#{move['Name']}:%xn", 30) %> <%= left("#{move['Flavor Text']}", 70) %>
+        <% move_name = move['Name'].downcase %>
+        <% if current_moves.include?(move_name) %>
+          <%= left("%xh**#{move['Name']}**:%xn", 30) %> <%= left("#{move['Flavor Text']}", 70) %>
+        <% else %>
+          <%= left("%xh#{move['Name']}:%xn", 30) %> <%= left("#{move['Flavor Text']}", 70) %>
+        <% end %>
       <% end %>
     <% else %>
       <%= left("%xhNo moves found for #{tier_name}.%xn", 100) %>
