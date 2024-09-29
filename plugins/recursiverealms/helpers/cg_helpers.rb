@@ -236,7 +236,13 @@ module AresMUSH
       command_string = "recursiverealms.ListTypeMovesSummCmd #{traits.type}"
       command_string = "#{traits.type}"
       #list_command = RecursiveRealms::ListTypeMovesSummCmd.new(client, Command.new(command_string), enactor)
-      list_command = RecursiveRealms::ListTypeMovesSummCmd.new(client, Command.new(command_string), enactor)    
+      #list_command = RecursiveRealms::ListTypeMovesSummCmd.new(client, Command.new(command_string), enactor)
+      
+      # Initialize the Command with the correct string
+      command = Command.new(command_string)
+  
+      # Pass the new command to the ListTypeMovesSummCmd handler
+      list_command = RecursiveRealms::ListTypeMovesSummCmd.new(client, command, enactor)
     
       # Handle the command to list the available moves
       list_command.handle
