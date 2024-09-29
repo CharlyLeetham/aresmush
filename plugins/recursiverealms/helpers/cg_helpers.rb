@@ -214,11 +214,7 @@ module AresMUSH
       if traits.nil? || traits.type.nil?
         client.emit_failure "Character type not set. Please set a character type first."
         return
-      end
-
-      # Include the character's type in the message
-      client.emit_failure "Available Moves for #{traits.type.capitalize}:"
-      
+      end    
       # Call the function to list all available moves
       list_all_moves(client, enactor)
     end    
