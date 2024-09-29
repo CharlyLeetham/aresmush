@@ -40,7 +40,6 @@ module AresMUSH
                     when "sa"
                         return ListTypeSACmd
                     when "moves"
-                        client.emit_ooc "Here"
                         return ListTypeMovesCmd
                     when "full"
                         return ListTypeCmd
