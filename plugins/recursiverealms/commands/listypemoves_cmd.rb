@@ -8,8 +8,8 @@ module AresMUSH
       def parse_args
         # Use multi_split_command to split and parse the arguments
         args = RecursiveRealms.multi_split_command(@cmd)
-        self.type = args[0] # Character type provided in the command
-        self.tier = args.length > 1 ? args[1] : nil # Optional tier argument
+        self.type = args[1] # Character type provided in the command
+        self.tier = args.length > 2 ? args[2] : nil # Optional tier argument
       end
 
       def handle
@@ -24,7 +24,7 @@ module AresMUSH
         end
 
         # Fetch character type from the YAML configuration
-        chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type }
+        chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type.downcase }
         if chartype.nil?
           client.emit_failure "Character type '#{self.type}' not found in the configuration."
           return
