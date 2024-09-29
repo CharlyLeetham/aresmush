@@ -30,13 +30,9 @@ module AresMUSH
             end
           end
 
-          # Fetch the full character configuration from the YAML file based on the character's type
-          chartype_config = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
-
-          if chartype_config
-            # Pass the full character configuration to the template
-            template = RRSheetTemplate.new(chartype_config)
-            client.emit template.render
+          # Pass the character's traits, special abilities, and moves to the template
+          template = RRSheetTemplate.new(traits, enactor.rr_specialabilities, enactor.rr_moves)
+          client.emit template.render
           else
             client.emit_ooc "Character type configuration not found in the YAML file."
           end
