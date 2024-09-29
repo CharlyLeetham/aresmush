@@ -19,7 +19,7 @@ module AresMUSH
           end
   
           begin
-            template = CharacterTypeMovesTemplate.new(character)
+            template = CharacterTypeMovesSummTemplate.new(character)
             client.emit template.render
           rescue => e
             client.emit_ooc "Error: #{e.message}"
