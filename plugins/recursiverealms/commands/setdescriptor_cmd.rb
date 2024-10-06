@@ -57,6 +57,7 @@ module AresMUSH
         else
           # Fetch all descriptors from the YAML configuration
           descriptors = Global.read_config("RecursiveRealms", "descriptor")
+          client.emit_ooc "#{descriptors}"
           
           # Find the descriptor by its ID saved in the traits
           descriptor = descriptors.find { |f| f['ID'] == traits.descriptor }
