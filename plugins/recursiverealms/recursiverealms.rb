@@ -73,12 +73,10 @@ module AresMUSH
 
               #Descriptors Commands  
               when ->(args) { args.start_with?('descriptors') }
-              split_switch = RecursiveRealms.multi_split_command(cmd) # Using multi_split_command from helpers.rb
-              if split_switch.length > 1
+           ``   split_switch = RecursiveRealms.multi_split_command(cmd) # Using multi_split_command from helpers.rb
                 fr = split_switch[0]
                 detail = split_switch.length > 1 ? split_switch[1] : nil
                 attrib = split_switch.length > 2 ? split_switch[2] : nil
-              end
 
               if fr && detail && attrib && !attrib.empty?  #if you pass three arguments to rr
                 fr = fr.downcase
