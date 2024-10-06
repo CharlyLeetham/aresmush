@@ -12,7 +12,7 @@ module AresMUSH
       end
 
       def handle
-        client.emit_ooc "here #{args.inspect}"
+        client.emit_ooc "here #{descriptor.inspect}"
         descriptortype = Global.read_config("RecursiveRealms", "descriptors").find { |c| c['Descriptor'].downcase == self.descriptor.downcase }
         if descriptortype
               template = DescriptorDetailTemplate.new(descriptortype)
