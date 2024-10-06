@@ -8,11 +8,11 @@ module AresMUSH
       def parse_args
         # Use multi_split_command to split and parse the arguments
         args = RecursiveRealms.multi_split_command(@cmd)
-        self.type = args[1] # Character type provided in the command (in args[1])
+        self.type = args # Character type provided in the command (in args[1])
       end
 
       def handle
-        client.emit_ooc "Here #{self.type}"
+        client.emit_ooc "Here #{self.type.inspect}"
         # If type is missing, fall back to using the enactor's traits
         if self.type.nil? || self.type.empty?
           traits = enactor.rr_traits.first
