@@ -228,6 +228,7 @@ module AresMUSH
       end
     
       # Create the command and pass it to the ListTypeMovesCmd
+      client.emit "#{traits.type}"
       command_string = "recursiverealms.ListTypeMovesSummCmd #{traits.type}"
       list_command = RecursiveRealms::ListTypeMovesSummCmd.new(client, Command.new(command_string), enactor)
     
