@@ -8,7 +8,7 @@ module AresMUSH
       def parse_args
         # Use multi_split_command to split and parse the arguments
         args = RecursiveRealms.multi_split_command(@cmd)
-        self.descriptor = args.length > 2 ? args[2] : nil # Descriptor provided in the command (third argument)
+        self.descriptor = args.length > 2 ? args[1] : nil # Descriptor provided in the command (third argument)
       end
 
       def handle
