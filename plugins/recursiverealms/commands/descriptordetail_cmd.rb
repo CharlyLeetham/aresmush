@@ -3,7 +3,7 @@ module AresMUSH
     class DescriptorDetailCmd 
       include CommandHandler
 
-      attr_accessor :split_switch, :descriptor, :value 
+      attr_accessor :args, :descriptor, :value 
 
       def parse_args
         # Use multi_split_command to split and parse the arguments
@@ -12,7 +12,7 @@ module AresMUSH
       end
 
       def handle
-        client.emit_ooc "here #{descriptor.inspect}"
+        client.emit_ooc "here #{args.inspect}"
         descriptortype = Global.read_config("RecursiveRealms", "descriptors").find { |c| c['Descriptor'].downcase == self.descriptor.downcase }
         if descriptortype
               template = DescriptorDetailTemplate.new(descriptortype)
