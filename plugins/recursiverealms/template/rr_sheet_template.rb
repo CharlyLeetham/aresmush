@@ -14,8 +14,16 @@ module AresMUSH
         return @traits.type.capitalize
       end
 
-      def tier
-        return @traits.tier || "N/A"
+      def effort
+        return @traits.effort || "N/A"
+      end
+      
+      def might
+        return @traits.might || "N/A"
+      end      
+
+      def speed
+        return @traits.speed || "N/A"
       end
 
       def effort
