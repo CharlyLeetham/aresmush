@@ -16,9 +16,6 @@ module AresMUSH
           client.emit_failure "You must provide a descriptor to view its details."
           return
         end
-
-        client.emit_ooc "Arguments: #{args.inspect}, Descriptor: #{self.descriptor}"
-
         # Retrieve the descriptor type from the YAML configuration
         descriptortype = Global.read_config("RecursiveRealms", "descriptors").find { |c| c['Descriptor'].downcase == self.descriptor.downcase }
 
