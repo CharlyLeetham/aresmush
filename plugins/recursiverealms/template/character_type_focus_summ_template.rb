@@ -7,6 +7,8 @@ module AresMUSH
         @enactor = enactor
         @chartype = chartype
         @focuses = focuses
+
+        client.emit_ooc "Focuses: #{@focuses.inspect}"        
         super File.dirname(__FILE__) + "/character_type_focus_summ.erb"
       end
 
