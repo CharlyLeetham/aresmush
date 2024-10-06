@@ -25,6 +25,10 @@ Spinner
 `rr/focus` - lists all focuses. Name and short desc
 `rr/focus/[focus]` - lists the details for the specific focus
 
+## Descriptors
+`rr/descriptors` - lists all descriptors. Name and short desc
+`rr/descriptors/[descriptors]` - lists the details for the specific descriptors
+
 
 ## Character Gen
 
