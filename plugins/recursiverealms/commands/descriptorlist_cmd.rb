@@ -6,7 +6,7 @@ module AresMUSH
       def handle
         descriptor_config = Global.read_config("RecursiveRealms", "descriptors")
         
-        if focus_config.nil?
+        if descriptor_config.nil?
           client.emit_ooc "Error: Configuration data not found. Please check the rr_descriptor.yml file."
           return
         end
