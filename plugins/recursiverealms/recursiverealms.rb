@@ -120,7 +120,9 @@ module AresMUSH
               when "sa"
                 return RemoveSACmd
               when "moves"
-                return RemoveMovesCmd                
+                return RemoveMovesCmd    
+              when "focus"
+                return RemoveFocusCmd                              
               end 
             else
               #client.emit_ooc "Testing"

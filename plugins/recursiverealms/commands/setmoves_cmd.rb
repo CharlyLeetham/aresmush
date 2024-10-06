@@ -65,6 +65,8 @@ module AresMUSH
         # Check if the character has already reached the maximum allowed moves
         if current_moves >= moves_allowed
           client.emit_failure "You have reached the maximum number of allowed moves (#{moves_allowed})."
+          client.emit_ooc "Use rr/remove/moves to remove ALL moves"
+          client.emit_ooc "Use rr/remove/moves/[move] to remove a specific moves"
           display_current_moves(enactor, client)
           return
         end
