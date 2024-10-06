@@ -11,25 +11,9 @@ module AresMUSH
       end
 
       def handle
-        # If no focus name is given, list available focuses
+        # If no focus name is given, list all available focuses
         if self.focus_name.nil? || self.focus_name.empty?
-          traits = enactor.rr_traits.first
-          if traits.nil?
-            client.emit_failure "Character traits not found."
-            return
-          end
-
-          # Retrieve character type and tier from the YAML
-          chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
-          if chartype.nil?
-            client.emit_failure "Character type '#{traits.type}' not found in configuration."
-            return
-          end
-
-          tier_key = "Tier #{traits.tier}"
-
-          # Fetch available focuses for the character type and current tier and below
-          RecursiveRealms.list_available_focuses(chartype, traits.tier, client)
+          list_available_focuses(client)
           return
         end
 
@@ -40,23 +24,13 @@ module AresMUSH
           return
         end
 
-        # Retrieve character type and tier from the YAML
-        chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
-        if chartype.nil?
-          client.emit_failure "Character type '#{traits.type}' not found in configuration."
-          return
-        end
-
-        tier_key = "Tier #{traits.tier}"
-
-        # Fetch the available focuses for the tier
+        # Fetch all focuses from the YAML configuration
         focuses = Global.read_config("RecursiveRealms", "focuses")
         focus = focuses.find { |f| f['Focus'].downcase == self.focus_name.downcase }
 
         if focus.nil?
           client.emit_failure "Focus '#{self.focus_name}' not found."
-          available_focuses = focuses.map { |f| f['Focus'] }.join(", ")
-          client.emit_ooc "Available Focuses: #{available_focuses}"
+          list_available_focuses(client)
           return
         end
 
@@ -69,7 +43,12 @@ module AresMUSH
         # Assign the focus to the character
         traits.update(focus: self.focus_name)
         client.emit_success "Your focus has been set to #{self.focus_name.capitalize}."
+      end
 
+      def list_available_focuses(client)
+        focuses = Global.read_config("RecursiveRealms", "focuses")
+        available_focuses = focuses.map { |f| f['Focus'] }.join(", ")
+        client.emit_ooc "Available Focuses: #{available_focuses}"
       end
     end
   end
