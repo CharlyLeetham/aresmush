@@ -258,11 +258,14 @@ module AresMUSH
 
       # Get the character type from the traits
       character_type = traits.type.downcase
+
+      # Fetch all available focuses from the YAML configuration
+      focuses = Global.read_config("RecursiveRealms", "focuses")
+      
       # Create the command string to call ListTypeFocusSummCmd with the character type
-      command_string = "recursiverealms.ListTypeFocusSummCmd #{character_type}"
-      list_command = RecursiveRealms::ListTypeMovesSummCmd.new(client, Command.new(command_string), enactor)
-      client.emit_ooc "#{command_string}"
-      client.emit_ooc "#{list_command}"
+      command_string = "rr/set/focus/#{character_type}"
+      list_command = RecursiveRealms::ListTypeFocusSummCmd.new(client, Command.new(command_string), enactor)
+
       # Handle the command to list the available focuses
       list_command.handle
     end
