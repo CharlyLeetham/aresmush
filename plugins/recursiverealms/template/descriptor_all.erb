@@ -2,7 +2,7 @@
 
 <% if @descriptor && @descriptor.any? %>
 <% @descriptor.each do |f| %>
-  <%= left("%xh#{f['Descriptor']}%xn", 20) -%>
+  <%= left("%xh#{f['Descriptor']}:%xn", 10) -%>
   <% if f['Flavor Text'].present? %>
     <%= "#{f['Flavor Text']}" %>
   <% else %>
