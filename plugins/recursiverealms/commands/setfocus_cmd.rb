@@ -11,9 +11,9 @@ module AresMUSH
       end
 
       def handle
-        # If no focus name is given, list all available focuses
+        # If no focus name is given, list all available focuses by calling the helper
         if self.focus_name.nil? || self.focus_name.empty?
-          list_available_focuses(client)
+          RecursiveRealms.handle_missing_focus(Global.read_config("RecursiveRealms", "characters"), enactor, client)
           return
         end
 
@@ -30,25 +30,19 @@ module AresMUSH
 
         if focus.nil?
           client.emit_failure "Focus '#{self.focus_name}' not found."
-          list_available_focuses(client)
+          RecursiveRealms.handle_missing_focus(Global.read_config("RecursiveRealms", "characters"), enactor, client)
           return
         end
 
         # Check if the character already has a focus
-        if enactor.rr_traits.first.focus
-          client.emit_failure "You already have a focus: #{enactor.rr_traits.first.focus.capitalize}. You must clear it first before setting a new focus."
+        if traits.focus
+          client.emit_failure "You already have a focus: #{traits.focus.capitalize}. You must clear it first before setting a new focus."
           return
         end
 
         # Assign the focus to the character
         traits.update(focus: self.focus_name)
         client.emit_success "Your focus has been set to #{self.focus_name.capitalize}."
-      end
-
-      def list_available_focuses(client)
-        focuses = Global.read_config("RecursiveRealms", "focuses")
-        available_focuses = focuses.map { |f| f['Focus'] }.join(", ")
-        client.emit_ooc "Available Focuses: #{available_focuses}"
       end
     end
   end
