@@ -33,6 +33,7 @@ module AresMUSH
 
         # Fetch all available focuses from the YAML configuration
         focuses = Global.read_config("RecursiveRealms", "focuses")
+        client.emit_ooc "Focuses: #{focuses.inspect}"
 
         # Pass character type and focus data to the template
         template = CharacterTypeFocusSummTemplate.new(@enactor, chartype, focuses)
