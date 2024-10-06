@@ -271,5 +271,35 @@ module AresMUSH
       list_command.handle
     end
 
+    def self.handle_missing_descriptor(chartype, enactor, client)
+      # Retrieve character traits
+      traits = enactor.rr_traits.first
+      if traits.nil? || traits.type.nil?
+        client.emit_failure "Character type not set. Please set a character type first."
+        return
+      end
+    
+      # Call the function to list all available descriptors
+      list_all_descriptors(client, enactor)
+    end    
+
+    def self.list_all_descriptors(client, enactor)
+      # Retrieve character traits
+      traits = enactor.rr_traits.first
+      if traits.nil?
+        client.emit_failure "Character traits not found."
+        return
+      end
+    
+      # Fetch all available descriptors from the YAML configuration
+      descriptors = Global.read_config("RecursiveRealms", "descriptors")
+    
+      # Format the descriptor list to show both the ID and Descriptor name
+      descriptor_list = descriptors.map { |d| "#{d['ID']}. #{d['Descriptor']}" }.join("\n")
+      
+      # Emit the available descriptors to the client
+      client.emit_ooc "Available Descriptors:\n#{descriptor_list}"
+    end    
+
   end
 end

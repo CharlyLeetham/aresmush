@@ -36,6 +36,7 @@ module AresMUSH
         attribute :xp 
 		attribute :moves
 		attribute :focus
+		attribute :descriptor		
 		reference :character, "AresMUSH::Character"
 		index :name
 	end

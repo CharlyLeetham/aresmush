@@ -1,6 +1,7 @@
 RecursiveRealms:
   descriptors:
-    - Descriptor: Appealing
+    - ID: 1
+      Descriptor: Appealing
       Flavor Text: "You're attractive to others, but perhaps more important, you are likable and charismatic."
       Abilities:
         - Name: Charismatic
@@ -18,7 +19,8 @@ RecursiveRealms:
           SkList: "Resisting Persuasion or Seduction"
           Flavor Text: "You are aware of how others can manipulate and charm."
 
-    - Descriptor: Brash
+    - ID: 2
+      Descriptor: Brash
       Flavor Text: "You are confident in your abilities, energetic and perhaps a bit irreverent toward ideas you disagree with."
       Abilities:
         - Name: Energetic
@@ -36,7 +38,8 @@ RecursiveRealms:
           SkList: "Ignoring or overcoming fear and intimidation"
           Flavor Text: "You won't be swayed from your path, even if it is a terrible idea."
 
-    - Descriptor: Clever
+    - ID: 3
+      Descriptor: Clever
       Flavor Text: "You are smart, sharp-witted, and always seem to have the right words or answers."
       Abilities:
         - Name: Smart
@@ -52,7 +55,8 @@ RecursiveRealms:
         - "You talked your way into the situation because you thought it might earn you some money."
         - "You suspect that the other PCs won't succeed without you."
 
-    - Descriptor: Fast
+    - ID: 4
+      Descriptor: Fast
       Flavor Text: "You are quick on your feet, with fast reflexes and agile movements."
       Abilities:
         - Name: Energetic
@@ -67,7 +71,8 @@ RecursiveRealms:
         - "You're impulsive, and it seemed like a good idea at the time."
         - "This mission ties in with a personal goal of your own."
 
-    - Descriptor: Graceful
+    - ID: 5
+      Descriptor: Graceful
       Flavor Text: "You move with agility and ease, performing even difficult tasks with poise."
       Abilities:
         - Name: Agile
@@ -82,7 +87,8 @@ RecursiveRealms:
         - "Your quick reflexes saved one of the other PCs from a precarious situation, and they invited you along to say thank you."
         - "A reward was offered, and you need the money."
 
-    - Descriptor: Intelligent
+    - ID: 6
+      Descriptor: Intelligent
       Flavor Text: "You are clever, with a sharp mind and a natural aptitude for learning."
       Abilities:
         - Name: Smart
@@ -96,7 +102,8 @@ RecursiveRealms:
         - "You believed that the task might lead to important and interesting discoveries."
         - "A colleague requested that you take part in the mission as a favor."
 
-    - Descriptor: Lucky
+    - ID: 7
+      Descriptor: Lucky
       Flavor Text: "You have a knack for being in the right place at the right time."
       Abilities:
         - Name: Luck Pool
@@ -110,7 +117,8 @@ RecursiveRealms:
         - "One of the other PCs asked you to come along because you're known to be lucky."
         - "You need money to pay off a debt or avoid arrest."
 
-    - Descriptor: Sharp-Eyed
+    - ID: 8
+      Descriptor: Sharp-Eyed
       Flavor Text: "Your keen eyesight and ability to notice small details often gives you an advantage."
       Abilities:
         - Name: Perceptive
@@ -125,7 +133,8 @@ RecursiveRealms:
         - "You were tracking a foe, and the trail led you here."
         - "You need money to fund your studies or research."
 
-    - Descriptor: Skeptical
+    - ID: 9
+      Descriptor: Skeptical
       Flavor Text: "You question everything and are difficult to fool."
       Abilities:
         - Name: Insightful
@@ -139,7 +148,8 @@ RecursiveRealms:
         - "Your theory about the nonexistence of the supernatural can be invalidated only by your own senses, so you came along."
         - "You need money to fund your research."
 
-    - Descriptor: Stealthy
+    - ID: 10
+      Descriptor: Stealthy
       Flavor Text: "You are quick, silent, and can move undetected when needed."
       Abilities:
         - Name: Quick
@@ -155,7 +165,8 @@ RecursiveRealms:
         - "An employer secretly paid you to get involved."
         - "You overheard the other PCs talking about a topic that interested you, so you decided to approach the group."
 
-    - Descriptor: Strange
+    - ID: 11
+      Descriptor: Strange
       Flavor Text: "Your knowledge of the Strange and otherworldly makes you uniquely suited to your role."
       Abilities:
         - Name: Versatile
@@ -173,7 +184,8 @@ RecursiveRealms:
         - "You believed the mission would be a great way to learn more about the Strange."
         - "A creature from another recursion came through an inapposite gate. Before it died, it told you where you could learn more."
 
-    - Descriptor: Strong
+    - ID: 12
+      Descriptor: Strong
       Flavor Text: "You are physically powerful and capable of tremendous feats of strength."
       Abilities:
         - Name: Mighty
@@ -188,7 +200,8 @@ RecursiveRealms:
         - "You sought out the PCs because you need money for your family."
         - "The PCs were in trouble, and you stepped in to help."
 
-    - Descriptor: Tough
+    - ID: 13
+      Descriptor: Tough
       Flavor Text: "You are resilient and durable, able to endure hardships better than others."
       Abilities:
         - Name: Resilient

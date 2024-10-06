@@ -114,6 +114,8 @@ module AresMUSH
                   return SetMovesCmd
                 when "focus"
                   return SetFocusCmd
+                when "descriptor"
+                  return SetDescriptorCmd                  
                 end 
               else
                 return RRCmd
