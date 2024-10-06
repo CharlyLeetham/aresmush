@@ -235,11 +235,22 @@ module AresMUSH
       list_command.handle
     end
     
-    def self.list_available_focuses(chartype, current_tier, client)
-      focuses = Global.read_config("RecursiveRealms", "focuses")
-      available_focuses = focuses.map { |f| f['Focus'] }.join(", ")
-      client.emit_ooc "Available Focuses for #{chartype['Type'].capitalize} (Tier #{current_tier} and below): #{available_focuses}"
+    # Function to list all focuses based on character type and traits
+    def self.list_all_focuses(client, enactor)
+      # Retrieve character traits
+      traits = enactor.rr_traits.first
+      if traits.nil?
+        client.emit_failure "Character traits not found."
+        return
+      end
+
+      # Create the command and pass it to the ListTypeFocusSummCmd
+      command_string = "recursiverealms.ListTypeFocusSummCmd #{traits.type}"
+      list_command = RecursiveRealms::ListTypeFocusSummCmd.new(client, Command.new(command_string), enactor)
+
+      # Handle the command to list the available focuses
+      list_command.handle
     end
-    
+
   end
 end
