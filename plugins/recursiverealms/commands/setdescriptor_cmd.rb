@@ -25,10 +25,10 @@ module AresMUSH
         end
 
         # Fetch all focuses from the YAML configuration
-        descriptor = Global.read_config("RecursiveRealms", "descriptor")
+        descriptor = Global.read_config("RecursiveRealms", "descriptors")
 
          # Find the descriptor by name (case-insensitive)
-        descriptor = descriptors.find { |f| f['Descriptor'].downcase == self.descriptor_name.downcase }
+        descriptor = descriptor.find { |f| f['Descriptor'].downcase == self.descriptor_name.downcase }
 
         if descriptor.nil?
           client.emit_failure "Descriptor '#{self.descriptor_name}' not found."
@@ -56,7 +56,7 @@ module AresMUSH
           client.emit_ooc "No Descriptor set."
         else
           # Fetch all descriptors from the YAML configuration
-          descriptors = Global.read_config("RecursiveRealms", "descriptor")
+          descriptors = Global.read_config("RecursiveRealms", "descriptors")
           client.emit_ooc "#{descriptors}"
           
           # Find the descriptor by its ID saved in the traits
