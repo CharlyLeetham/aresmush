@@ -1,5 +1,6 @@
 <%= line_with_text t('RecursiveRealms.char_focus_title', :chartype => self.chartypetitle) %>
 <%= left("%xhDescription:%xn #{chartype['Descriptor']}", 100) %>
+
 <% focus_list.each do |focus| %>
   <% if focus[:selected] %>
     <%= left("%xh%xg#{focus[:name]}:%xg%xn", 30) %> <%= left("#{focus[:description]}", 70) %>
