@@ -30,8 +30,8 @@ module AresMUSH
         attribute :type        
 		attribute :tier
         attribute :might
-        attribute :speed 
-		attribute :intellect		
+        attribute :speed
+		attribute :intellect	
         attribute :effort
         attribute :xp 
 		attribute :moves
