@@ -1,10 +1,10 @@
   <%= line_with_text t('RecursiveRealms.descriptor_title') %>
 
-<% if @focus && @focus.any? %>
-<% @focus.each do |f| %>
-  <%= left("%xhTitle:%xn #{f['Focus']}", 80) %>
-  <% if f['Flavor Text'].present? %>
-    <%= "%xhDescription: %xn #{f['Flavor Text']}" %>
+<% if @descriptor && @descriptor.any? %>
+<% @descriptor.each do |f| %>
+  <%= left("%xhTitle:%xn #{f['Descriptor']}", 80) %>
+  <% if f['Description'].present? %>
+    <%= "%xhDescription: %xn #{f['Description']}" %>
   <% else %>
     <%= "%xnDescription: %xnNo description available." %>
   <% end %>

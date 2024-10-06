@@ -71,6 +71,26 @@ module AresMUSH
                   return FocusListCmd
                 end
 
+              #Descriptors Commands  
+              when ->(args) { args.start_with?('descriptors') }
+              split_switch = RecursiveRealms.multi_split_command(cmd) # Using multi_split_command from helpers.rb
+              if split_switch.length > 1
+                fr = split_switch[0]
+                detail = split_switch.length > 1 ? split_switch[1] : nil
+                attrib = split_switch.length > 2 ? split_switch[2] : nil
+              end
+
+              if fr && detail && attrib && !attrib.empty?  #if you pass three arguments to rr
+                fr = fr.downcase
+                detail = detail.downcase
+                attrib = attrib.downcase
+              elsif fr && detail && (attrib.nil? || attrib.empty?)  #if you pass two arguments to rr ie. rr/focus/abides in stone
+                detail = detail.downcase
+                return DescriptorDetailCmd
+              else #only one argument passed. ie rr/focus
+                return DescriptorListCmd
+              end                
+
             #Set Commands (for CGen) 
             when ->(args) { args.start_with?('set') }       
               split_switch = RecursiveRealms.split_command(cmd) #In helpers.rb                       

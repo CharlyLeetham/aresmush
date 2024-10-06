@@ -1,0 +1,204 @@
+RecursiveRealms:
+  descriptors:
+    - Descriptor: Appealing
+      Flavor Text: "You're attractive to others, but perhaps more important, you are likable and charismatic."
+      Abilities:
+        - Name: Charismatic
+          Type: Stat
+          Modifier: +2/Intellect Pool
+          Flavor Text: "People like you, want to help you and want to be your friend."
+        - Name: Socializer
+          Type: Skill
+          Expertise: 1/Trained
+          SkList: "Pleasant Social Interactions"
+          Flavor Text: "You have a lot of skill in socialization."
+        - Name: Resistant to Charms
+          Type: Skill
+          Expertise: 1/Trained
+          SkList: "Resisting Persuasion or Seduction"
+          Flavor Text: "You are aware of how others can manipulate and charm."
+
+    - Descriptor: Brash
+      Flavor Text: "You are confident in your abilities, energetic and perhaps a bit irreverent toward ideas you disagree with."
+      Abilities:
+        - Name: Energetic
+          Type: Stat
+          Modifier: +2/Speed Pool
+          Flavor Text: "It's hard to keep you down once you get going."
+        - Name: Decisive
+          Type: Skill
+          Expertise: 1/Trained
+          SkList: "Initiative"
+          Flavor Text: "You know when it's go time."
+        - Name: Bold
+          Type: Skill
+          Expertise: 1/Trained
+          SkList: "Ignoring or overcoming fear and intimidation"
+          Flavor Text: "You won't be swayed from your path, even if it is a terrible idea."
+
+    - Descriptor: Clever
+      Flavor Text: "You are smart, sharp-witted, and always seem to have the right words or answers."
+      Abilities:
+        - Name: Smart
+          Modifier: +2/Intellect Pool
+        - Skill:
+          - You are trained in lies and trickery.
+          - You are trained in defense rolls against mental effects.
+          - You are trained in identifying or assessing things.
+      Inability: "The difficulty of tasks involving reading, studying, or remembering details is increased by one step."
+      Initial Link to the Starting Adventure:
+        - "You convinced one of the other PCs to tell you what she was doing."
+        - "From afar, you observed that something interesting was going on."
+        - "You talked your way into the situation because you thought it might earn you some money."
+        - "You suspect that the other PCs won't succeed without you."
+
+    - Descriptor: Fast
+      Flavor Text: "You are quick on your feet, with fast reflexes and agile movements."
+      Abilities:
+        - Name: Energetic
+          Modifier: +2/Speed Pool
+        - Skill:
+          - You are trained in running.
+          - You are trained in initiative actions.
+      Inability: "The difficulty of any Might defense roll is increased by one step."
+      Initial Link to the Starting Adventure:
+        - "You jumped in to save one of the other PCs who was in dire need."
+        - "One of the other PCs recruited you for your unique talents."
+        - "You're impulsive, and it seemed like a good idea at the time."
+        - "This mission ties in with a personal goal of your own."
+
+    - Descriptor: Graceful
+      Flavor Text: "You move with agility and ease, performing even difficult tasks with poise."
+      Abilities:
+        - Name: Agile
+          Modifier: +2/Speed Pool
+        - Skill:
+          - You're trained in all tasks involving balance and careful movement.
+          - You're trained in all tasks involving physical performing arts.
+          - You're trained in all Speed defense tasks.
+      Initial Link to the Starting Adventure:
+        - "Against your better judgment, you joined the other PCs because you saw that they were in danger."
+        - "One of the other PCs convinced you that joining the group would be a good idea."
+        - "Your quick reflexes saved one of the other PCs from a precarious situation, and they invited you along to say thank you."
+        - "A reward was offered, and you need the money."
+
+    - Descriptor: Intelligent
+      Flavor Text: "You are clever, with a sharp mind and a natural aptitude for learning."
+      Abilities:
+        - Name: Smart
+          Modifier: +2/Intellect Pool
+        - Skill:
+          - You're trained in an area of knowledge of your choice.
+          - You're trained in all actions that involve remembering or memorizing things you experience directly.
+      Initial Link to the Starting Adventure:
+        - "One of the other PCs asked your opinion of the mission, knowing that if you thought it was a good idea, it probably was."
+        - "You saw value in what the other PCs were doing."
+        - "You believed that the task might lead to important and interesting discoveries."
+        - "A colleague requested that you take part in the mission as a favor."
+
+    - Descriptor: Lucky
+      Flavor Text: "You have a knack for being in the right place at the right time."
+      Abilities:
+        - Name: Luck Pool
+          Description: "You have one additional Pool that begins with 3 points. You can use these points as points from any other Pool (Might, Speed, or Intellect)."
+        - Skill:
+          - You are trained in all tasks involving positive or negative luck.
+      Inability: "The difficulty of any task involving planning or forethought is increased by one step."
+      Initial Link to the Starting Adventure:
+        - "You convinced one of the other PCs that you should come along because it sounded like a lark."
+        - "You happened to be in the right place at the right time."
+        - "One of the other PCs asked you to come along because you're known to be lucky."
+        - "You need money to pay off a debt or avoid arrest."
+
+    - Descriptor: Sharp-Eyed
+      Flavor Text: "Your keen eyesight and ability to notice small details often gives you an advantage."
+      Abilities:
+        - Name: Perceptive
+          Modifier: +2/Intellect Pool
+        - Skill:
+          - You are trained in all tasks involving finding or noticing small details.
+          - You are trained in defense rolls to resist blinding attacks or other attacks that target your sight.
+      Inability: "The difficulty of any task involving hearing is increased by one step."
+      Initial Link to the Starting Adventure:
+        - "You noticed something odd and decided to investigate."
+        - "One of the other PCs convinced you that this was a worthwhile endeavor."
+        - "You were tracking a foe, and the trail led you here."
+        - "You need money to fund your studies or research."
+
+    - Descriptor: Skeptical
+      Flavor Text: "You question everything and are difficult to fool."
+      Abilities:
+        - Name: Insightful
+          Modifier: +2/Intellect Pool
+        - Skill:
+          - You're trained in identifying falsehoods, tricks, or illusions.
+          - You're trained in seeing through a trick, illusion, or rhetorical ruse designed to evade the issue.
+      Initial Link to the Starting Adventure:
+        - "You overheard other PCs holding forth on a topic with an opinion you were quite skeptical about, so you decided to approach the group and ask for proof."
+        - "You were following one of the other PCs because you were suspicious of him, which brought you into the action."
+        - "Your theory about the nonexistence of the supernatural can be invalidated only by your own senses, so you came along."
+        - "You need money to fund your research."
+
+    - Descriptor: Stealthy
+      Flavor Text: "You are quick, silent, and can move undetected when needed."
+      Abilities:
+        - Name: Quick
+          Modifier: +2/Speed Pool
+        - Skill:
+          - You are trained in all stealth tasks.
+          - You are trained in all interactions involving lies or trickery.
+          - You are trained in all special abilities involving illusions or trickery.
+      Inability: "The difficulty of all movement-related tasks is one step higher for you."
+      Initial Link to the Starting Adventure:
+        - "You attempted to steal from one of the other PCs. That character caught you and forced you to come along with him."
+        - "You were tailing one of the other PCs for reasons of your own, which brought you into the action."
+        - "An employer secretly paid you to get involved."
+        - "You overheard the other PCs talking about a topic that interested you, so you decided to approach the group."
+
+    - Descriptor: Strange
+      Flavor Text: "Your knowledge of the Strange and otherworldly makes you uniquely suited to your role."
+      Abilities:
+        - Name: Versatile
+          Modifiers:
+            - +2 to your Intellect Pool
+            - +1 to your Speed Pool
+        - Skill:
+          - You're trained in recognizing and understanding the Strange and its effects.
+          - Alternatively, you're trained in either fractal surfing or Chaosphere navigation.
+          - You can sense whether creatures from another recursion, creatures of the Strange, or Strange cyphers are active in situations where their presence is not obvious.
+      Inability: "The difficulty of any task involving charm, persuasion, etiquette, or deception is increased by one step."
+      Initial Link to the Starting Adventure:
+        - "A dream guided you to this point."
+        - "You need money to fund your studies."
+        - "You believed the mission would be a great way to learn more about the Strange."
+        - "A creature from another recursion came through an inapposite gate. Before it died, it told you where you could learn more."
+
+    - Descriptor: Strong
+      Flavor Text: "You are physically powerful and capable of tremendous feats of strength."
+      Abilities:
+        - Name: Mighty
+          Modifier: +2 to your Might Pool
+        - Skill:
+          - You are trained in all actions involving breaking things.
+          - You are trained in all actions involving lifting.
+      Inability: "The difficulty of any task involving balancing or fine motor skills is increased by one step."
+      Initial Link to the Starting Adventure:
+        - "One of the other PCs recruited you for your strength."
+        - "You're always up for a challenge."
+        - "You sought out the PCs because you need money for your family."
+        - "The PCs were in trouble, and you stepped in to help."
+
+    - Descriptor: Tough
+      Flavor Text: "You are resilient and durable, able to endure hardships better than others."
+      Abilities:
+        - Name: Resilient
+          Modifier: +2 to your Might Pool
+        - Skill:
+          - You are trained in Might defense actions.
+          - You are trained in all tasks involving endurance.
+          - You are trained in all tasks involving resisting poison, disease, or other debilitation.
+      Initial Link to the Starting Adventure:
+        - "One of the other PCs recruited you for your toughness."
+        - "You were brought in to protect one of the PCs."
+        - "You need money to pay off a debt or avoid arrest."
+        - "The PCs were in trouble, and you stepped in to help."
