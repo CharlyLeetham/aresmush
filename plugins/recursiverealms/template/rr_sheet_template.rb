@@ -18,8 +18,8 @@ module AresMUSH
         return @traits.tier || "N/A"
       end
 
-      def effort
-        return @traits.effort || "N/A"
+      def intellect
+        return @traits.intellect || "N/A"
       end
       
       def might
