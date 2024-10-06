@@ -6,7 +6,7 @@ module AresMUSH
       attr_accessor :split_switch, :descriptor, :value 
 
       def parse_args
-        split_switch = RecursiveRealms.multi_split_command(cmd) # Using multi_split_command from helpers.rb
+        split_switch = RecursiveRealms.multi_split_command(@cmd) # Using multi_split_command from helpers.rb
         self.value = split_switch[1] # Character type provided in the command (in args[1])
         self.descriptor = split_switch.length > 2 ? split_switch[2] : nil # Optional tier argument is in args[3]
       end
