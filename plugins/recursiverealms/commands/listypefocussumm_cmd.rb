@@ -8,7 +8,8 @@ module AresMUSH
       def parse_args
         # Use multi_split_command to split and parse the arguments
         args = RecursiveRealms.multi_split_command(@cmd)
-        self.type = args # Character type provided in the command (in args[1])
+        self.type = @cmd # Character type provided in the command (in args[1])
+
       end
 
       def handle
