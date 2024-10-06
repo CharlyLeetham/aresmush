@@ -60,13 +60,13 @@ module AresMUSH
           client.emit_ooc "#{descriptors}"
           
           # Find the descriptor by its ID saved in the traits
-          descriptor = descriptors.find { |f| f['ID'] == traits.descriptor }
+          #descriptor = descriptors.find { |f| f['ID'] == traits.descriptor }
           
-          if descriptor
-            client.emit_ooc "Current Descriptor: #{descriptor['Descriptor']}."
-          else
-            client.emit_ooc "No Descriptor set"
-          end
+          #if descriptor
+          #  client.emit_ooc "Current Descriptor: #{descriptor['Descriptor']}."
+          #else
+          #  client.emit_ooc "No Descriptor set"
+          #end
         end
       end
     end
