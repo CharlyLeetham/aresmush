@@ -3,8 +3,8 @@
 <% if @descriptor && @descriptor.any? %>
 <% @descriptor.each do |f| %>
   <%= left("%xhTitle:%xn #{f['Descriptor']}", 80) %>
-  <% if f['Description'].present? %>
-    <%= "%xhDescription: %xn #{f['Description']}" %>
+  <% if f['Flavor Text'].present? %>
+    <%= "%xhDescription: %xn #{f['Flavor Text']}" %>
   <% else %>
     <%= "%xnDescription: %xnNo description available." %>
   <% end %>
