@@ -238,7 +238,6 @@ module AresMUSH
     def self.handle_missing_focus(chartype, enactor, client)
       # Retrieve character traits
       traits = enactor.rr_traits.first
-      client.emit_ooc "#{traits.inspect}"
       if traits.nil? || traits.type.nil?
         client.emit_failure "Character type not set. Please set a character type first."
         return
@@ -258,6 +257,7 @@ module AresMUSH
 
       # Get the character type from the traits
       character_type = traits.type.downcase
+      client.emit "#{character_type}"
 
       # Create the command string to call ListTypeFocusSummCmd with the character type
       command_string = "recursiverealms.ListTypeFocusSummCmd #{character_type}"
