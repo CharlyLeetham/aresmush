@@ -1,0 +1,35 @@
+<%= line_with_text t('RecursiveRealms.descriptor_title', :descriptor => self.descriptordetailtitle) %>
+<%= left("%xhDescription:%xn #{chartype['Flavor Text']}", 100) %>
+
+<% if chartype['Abilities'] %>
+  <%= left("%xhAbilities:%xn", 100) %>
+  <% chartype['Abilities'].each do |ability| %>
+    <% if ability.is_a?(Hash) %>
+      <% ability.each do |ability_key, ability_val| %>
+        <%= left("%xh#{ability_key}:%xn", 100) %>
+        <% if ability_val.is_a?(Hash) %>
+          <% ability_val.each do |sub_key, sub_val| %>
+            <%= "%xh#{sub_key}:%xn #{sub_val}" %>
+          <% end %>
+        <% else %>
+          <%= ability_val %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= ability %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if chartype['Inability'] %>
+  <%= left("%xhInability:%xn #{chartype['Inability']}", 100) %>
+<% end %>
+
+<% if chartype['Initial Link to the Starting Adventure'] %>
+  <%= left("%xhInitial Links:%xn", 100) %>
+  <% chartype['Initial Link to the Starting Adventure'].each do |link| %>
+    <%= left("#{link}", 100) %>
+  <% end %>
+<% end %>
+
+<%= footer %>
