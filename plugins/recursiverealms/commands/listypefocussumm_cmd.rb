@@ -12,6 +12,7 @@ module AresMUSH
       end
 
       def handle
+        client.emit_occ "#{self.type}"
         # If type is missing, fall back to using the enactor's traits
         if self.type.nil? || self.type.empty?
           traits = enactor.rr_traits.first
