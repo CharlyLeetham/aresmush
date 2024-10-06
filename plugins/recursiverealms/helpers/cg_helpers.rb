@@ -238,6 +238,7 @@ module AresMUSH
     def self.handle_missing_focus(chartype, enactor, client)
       # Retrieve character traits
       traits = enactor.rr_traits.first
+      cient.emit_ooc "#{traits.inspect}"
       if traits.nil? || traits.type.nil?
         client.emit_failure "Character type not set. Please set a character type first."
         return
