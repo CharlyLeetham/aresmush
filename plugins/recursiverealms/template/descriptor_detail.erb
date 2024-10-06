@@ -1,5 +1,5 @@
 <%= line_with_text t('RecursiveRealms.descriptor_title', :descriptor => self.descriptordetailtitle) %>
-<%= left("%xhDescription:%xn #{descriptor['Flavor Text']}") %>
+<%= "%xhDescription:%xn #{descriptor['Flavor Text']}" %>
 
 <% if descriptor['Abilities'] %>
   <%= left("%xhAbilities:%xn", 100) %>
