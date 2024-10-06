@@ -37,16 +37,22 @@ module AresMUSH
         # Check if the character already has a focus
         if traits.focus
           client.emit_failure "You already have a focus: #{traits.focus.capitalize}. You must clear it first before setting a new focus."
-          client.emit_ooc "Use rr/remove/focus to remove the focus"
-          display_current_moves(enactor, client)
-          return
-        end          
+          client.emit_ooc "Use rr/remove/focus to remove the focus."
+          display_current_focus(enactor, client)
           return
         end
 
         # Assign the focus to the character
         traits.update(focus: self.focus_name)
         client.emit_success "Your focus has been set to #{self.focus_name.capitalize}."
+      end
+
+      def display_current_focus(enactor, client)
+        if enactor.rr_traits.first.focus.nil?
+          client.emit_ooc "No focus set."
+        else
+          client.emit_ooc "Current Focus: #{enactor.rr_traits.first.focus.capitalize}."
+        end
       end
     end
   end
