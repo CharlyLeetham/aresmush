@@ -29,6 +29,10 @@ module AresMUSH
             traits.update(type: self.value)
             client.emit_success "Your character type has been updated to #{self.value.capitalize}."
 
+            # Set Might, Speed, and Intellect from the YAML config
+            traits.update(might: chartype['Might'], speed: chartype['Speed'], intellect: chartype['Intellect'])
+            client.emit_success "Stats set: Might=#{chartype['Might']}, Speed=#{chartype['Speed']}, Intellect=#{chartype['Intellect']}."
+
             if traits.tier.nil? || traits.tier.empty?
               traits.update(tier: 1)
               client.emit_success "Tier was empty and has been automatically set to 1."
