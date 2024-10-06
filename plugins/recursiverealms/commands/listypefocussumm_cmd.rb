@@ -20,8 +20,7 @@ module AresMUSH
             client.emit_failure "No character type found. Please specify a type or set your character's traits."
             return
           end
-          self.type = traits.type.downcase # Use the character's type from traits
-          client.emit_ooc "Here #{self.type}"          
+          self.type = traits.type.downcase # Use the character's type from traits       
         end
 
         # Fetch character type from the YAML configuration
