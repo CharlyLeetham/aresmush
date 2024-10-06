@@ -254,16 +254,16 @@ module AresMUSH
         client.emit_failure "Character traits not found."
         return
       end
-      
-      # Retrieve the character type and fetch the corresponding focuses from YAML
+
+      # Get the character type from the traits
       character_type = traits.type.downcase
-      focuses = Global.read_config("RecursiveRealms", "focuses")
 
-      # Filter and list focuses for the character's type
-      available_focuses = focuses.map { |focus| focus['Focus'] }.join(", ")
+      # Create the command string to call ListTypeFocusSummCmd with the character type
+      command_string = "recursiverealms.ListTypeFocusSummCmd #{character_type}"
+      list_command = RecursiveRealms::ListTypeFocusSummCmd.new(client, Command.new(command_string), enactor)
 
-      # Emit the list of available focuses to the client
-      client.emit_ooc "Available Focuses for #{character_type.capitalize}: #{available_focuses}"
+      # Handle the command to list the available focuses
+      list_command.handle
     end
 
   end
