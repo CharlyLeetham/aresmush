@@ -1,9 +1,9 @@
 <%= line_with_text t('RecursiveRealms.descriptor_title', :descriptor => self.descriptordetailtitle) %>
-<%= left("%xhDescription:%xn #{chartype['Flavor Text']}", 100) %>
+<%= left("%xhDescription:%xn #{descriptortype['Flavor Text']}", 100) %>
 
-<% if chartype['Abilities'] %>
+<% if descriptortype['Abilities'] %>
   <%= left("%xhAbilities:%xn", 100) %>
-  <% chartype['Abilities'].each do |ability| %>
+  <% descriptortype['Abilities'].each do |ability| %>
     <% if ability.is_a?(Hash) %>
       <% ability.each do |ability_key, ability_val| %>
         <%= left("%xh#{ability_key}:%xn", 100) %>
@@ -21,13 +21,13 @@
   <% end %>
 <% end %>
 
-<% if chartype['Inability'] %>
+<% if descriptortype['Inability'] %>
   <%= left("%xhInability:%xn #{chartype['Inability']}", 100) %>
 <% end %>
 
-<% if chartype['Initial Link to the Starting Adventure'] %>
+<% if descriptortype['Initial Link to the Starting Adventure'] %>
   <%= left("%xhInitial Links:%xn", 100) %>
-  <% chartype['Initial Link to the Starting Adventure'].each do |link| %>
+  <% descriptortype['Initial Link to the Starting Adventure'].each do |link| %>
     <%= left("#{link}", 100) %>
   <% end %>
 <% end %>
