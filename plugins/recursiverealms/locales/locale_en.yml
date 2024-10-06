@@ -10,7 +10,7 @@ en:
         rr_set_title: "CGen Set Commands"
         rr_sheet_title: "Sheet Commands"
         rr_sheet_special_abilities_heading: "Special Abilities"        
-        rr_sheet_moves_heading: "Special Abilities"                
+        rr_sheet_moves_heading: "Moves"                
         char_type_attributesheading: "Attributes"
         char_type_tiersheading: "Tiers"
         char_type_abilitiesheading: "Special"
