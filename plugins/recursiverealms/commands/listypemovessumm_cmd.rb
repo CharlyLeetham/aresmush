@@ -21,6 +21,7 @@ module AresMUSH
             return
           end
           self.type = traits.type.downcase # Use the character's type from traits
+          client.emit_ooc "Here #{self.type}"          
         end
 
         # Fetch character type from the YAML configuration
