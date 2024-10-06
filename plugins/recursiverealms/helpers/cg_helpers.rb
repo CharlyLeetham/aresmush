@@ -233,6 +233,13 @@ module AresMUSH
     
       # Handle the command to list the available moves
       list_command.handle
-    end   
+    end
+    
+    def self.list_available_focuses(chartype, current_tier, client)
+      focuses = Global.read_config("RecursiveRealms", "focuses")
+      available_focuses = focuses.map { |f| f['Focus'] }.join(", ")
+      client.emit_ooc "Available Focuses for #{chartype['Type'].capitalize} (Tier #{current_tier} and below): #{available_focuses}"
+    end
+    
   end
 end

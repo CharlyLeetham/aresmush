@@ -93,6 +93,8 @@ module AresMUSH
                   return SetSACmd
                 when "moves"
                   return SetMovesCmd
+                when "focus"
+                  return SetFocusCmd
                 end 
               else
                 return RRCmd

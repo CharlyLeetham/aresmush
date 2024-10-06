@@ -35,6 +35,7 @@ module AresMUSH
         attribute :effort
         attribute :xp 
 		attribute :moves
+		attribute :focus
 		reference :character, "AresMUSH::Character"
 		index :name
 	end
