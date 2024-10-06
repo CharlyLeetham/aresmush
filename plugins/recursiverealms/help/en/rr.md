@@ -39,6 +39,11 @@ Spinner
 `rr/remove/sa` = Removes all Special Abilities on the character
 `rr/rmove/sa/[tiernumber]` - Removes the Special Abilities for that tier
 
+`rr/set/focus` - Shows all Focuses available for Type 
+`rr/set/focus/[focus]` - Sets the selected focus on the character
+
+`rr/remove/focus` = Removes the Focus on the character
+
 `rr/set/moves` - Shows all moves for the Type set. (output needs fixing)
 `rr/set/move/[move]` - Sets the selected move on the character
 
