@@ -1,8 +1,6 @@
 <%= line_with_text t('RecursiveRealms.char_type_title', :chartype => self.chartypetitle) %>
 <%= left("%xhTier:%xn #{tier}", 80) %>
-<%= left("%xhEffort:%xn #{effort}", 80) %>
-<%= left("%xhXP:%xn #{xp}", 80) %>
-<%= left("%xhMoves Allowed:%xn #{moves_allowed}", 80) %>
+<%= left("%xhEffort:%xn #{effort}", 12) left("%xhXP:%xn #{xp}", 6) left("%xhMoves Allowed:%xn #{moves_allowed}", 20) %>
 
 <%= line_with_text t('RecursiveRealms.rr_sheet_special_abilities_heading') %>
 <%= left("Special Abilities: #{special_abilities_list}", 80) %>
