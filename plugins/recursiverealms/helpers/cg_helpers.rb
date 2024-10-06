@@ -235,7 +235,18 @@ module AresMUSH
       list_command.handle
     end
     
-    # Function to list all focuses based on character type and traits
+    def self.handle_missing_focus(chartype, enactor, client)
+      # Retrieve character traits
+      traits = enactor.rr_traits.first
+      if traits.nil? || traits.type.nil?
+        client.emit_failure "Character type not set. Please set a character type first."
+        return
+      end
+
+      # Call the function to list all available focuses
+      list_all_focuses(client, enactor)
+    end
+
     def self.list_all_focuses(client, enactor)
       # Retrieve character traits
       traits = enactor.rr_traits.first
@@ -243,13 +254,16 @@ module AresMUSH
         client.emit_failure "Character traits not found."
         return
       end
+      
+      # Retrieve the character type and fetch the corresponding focuses from YAML
+      character_type = traits.type.downcase
+      focuses = Global.read_config("RecursiveRealms", "focuses")
 
-      # Create the command and pass it to the ListTypeFocusSummCmd
-      command_string = "recursiverealms.ListTypeFocusSummCmd #{traits.type}"
-      list_command = RecursiveRealms::ListTypeFocusSummCmd.new(client, Command.new(command_string), enactor)
+      # Filter and list focuses for the character's type
+      available_focuses = focuses.map { |focus| focus['Focus'] }.join(", ")
 
-      # Handle the command to list the available focuses
-      list_command.handle
+      # Emit the list of available focuses to the client
+      client.emit_ooc "Available Focuses for #{character_type.capitalize}: #{available_focuses}"
     end
 
   end
