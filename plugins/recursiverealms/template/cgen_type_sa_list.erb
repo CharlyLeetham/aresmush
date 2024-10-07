@@ -2,6 +2,7 @@
 
 <%= line_with_text "Fully Set Special Abilities:" %>
 <% fully_set_abilities = @abilities.select { |ability| ability[:remaining_choices].to_i <= 0 } %>
+<%= #{fully_set_abilities.inspect} %>
 <% if fully_set_abilities.any? %>
   <% fully_set_abilities.each do |ability| %>
     <% display_name = "%xg#{ability[:name]}%xn" %>
