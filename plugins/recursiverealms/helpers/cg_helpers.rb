@@ -133,7 +133,38 @@ module AresMUSH
       # Retrieve the list of abilities set on the character
       character_abilities = enactor.rr_specialabilities&.map(&:name)&.map(&:downcase) || []
     
-      abilities.each do |ability|
+      # Split abilities into two groups: those with expertise of 1 and those with 2 or more
+      expertise_one_abilities = abilities.select { |ability| ability['Expertise'].to_s.split('/').first.to_i == 1 }
+      expertise_two_or_more_abilities = abilities.select { |ability| ability['Expertise'].to_s.split('/').first.to_i > 1 }
+    
+      # Function to display abilities
+      display_abilities = lambda do |ability_list|
+        ability_list.each do |ability|
+          ability_name = ability['Name']
+          next unless ability_name # Skip abilities without a name
+    
+          ability_name_downcase = ability_name.downcase
+          is_set = character_abilities.include?(ability_name_downcase)
+          display_name = is_set ? "%xg#{ability_name}%xn" : "%xr#{ability_name}%xn"
+    
+          tier = ability['Tier'] || 'Unknown'
+    
+          # Display the ability name, status, and tier
+          if ability['SkList'] && ability['Expertise'].to_s.split('/').first.to_i == 1
+            # Special case where SkList exists and expertise is 1
+            client.emit_ooc "#{display_name}: #{ability['Flavor Text']} (#{ability['SkList']}). Tier #{tier}"
+          else
+            # Normal case without SkList or expertise other than 1
+            client.emit_ooc "#{display_name}: #{ability['Flavor Text']} (Tier #{tier})"
+          end
+        end
+      end
+    
+      # Display abilities with expertise of 1 first
+      display_abilities.call(expertise_one_abilities)
+    
+      # Display abilities with expertise of 2 or more at the end
+      expertise_two_or_more_abilities.each do |ability|
         ability_name = ability['Name']
         next unless ability_name # Skip abilities without a name
     
@@ -142,22 +173,17 @@ module AresMUSH
         display_name = is_set ? "%xg#{ability_name}%xn" : "%xr#{ability_name}%xn"
     
         tier = ability['Tier'] || 'Unknown'
-        
-        if ability['SkList'] && ability['Expertise'].to_s.split('/').first.to_i == 1
-          # Special case where SkList exists and expertise is 1
-          client.emit_ooc "#{display_name}: #{ability['Flavor Text']} (#{ability['SkList']}). Tier #{tier}"
-        else
-          # Normal case without SkList or expertise other than 1
-          client.emit_ooc "#{display_name}: #{ability['Flavor Text']} (Tier #{tier})"
-        end
     
-        # Check for SkList only if expertise is 2 or greater
-        expertise_level = ability['Expertise'].split('/').first.to_i
-        if ability['SkList'] && expertise_level > 1
+        # Display the ability name, status, and tier
+        client.emit_ooc "#{display_name}: #{ability['Flavor Text']} (Tier #{tier})"
+    
+        # Now process SkList options only for abilities with expertise of 2 or more
+        if ability['SkList']
           options_set = enactor.rr_specialabilities.to_a.find { |sa| sa.name.downcase == ability_name_downcase }
           selected_options = options_set&.sklist&.split(',')&.map(&:strip) || []
     
-          remaining_choices = expertise_level - selected_options.size
+          expertise_limit = ability['Expertise'].split('/').first.to_i
+          remaining_choices = expertise_limit - selected_options.size
     
           if selected_options.any?
             client.emit_ooc "Selected options: #{selected_options.join(', ')}"
@@ -165,7 +191,7 @@ module AresMUSH
             client.emit_ooc "No options set yet."
           end
     
-          client.emit_ooc "You can select up to #{expertise_level} options for #{ability_name}."
+          client.emit_ooc "You can select up to #{expertise_limit} options for #{ability_name}."
           if remaining_choices.positive?
             client.emit_ooc "You have #{remaining_choices} remaining choices."
             client.emit_ooc "Use the command: rr/set/sa/#{ability_name_downcase}/[choice1],[choice2],..."
