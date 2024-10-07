@@ -145,6 +145,33 @@ module AresMUSH
     
         # Display the ability name, status, and tier
         client.emit_ooc "#{ability_name}: #{ability['Flavor Text']} (Tier #{tier})"
+
+        # Check if the ability has an SkList (meaning it has options to set)
+        if ability['SkList']
+          # Determine how many options can be chosen based on the Expertise value
+          expertise_limit = ability['Expertise'].split('/').first.to_i
+
+          # Get the ability from the character's set abilities to check if any options are already selected
+          options_set = enactor.rr_specialabilities.find { |sa| sa.name.downcase == ability['Name'].downcase }
+
+          if options_set && options_set.sklist
+            selected_options = options_set.sklist.split(',').map(&:strip)
+            remaining_choices = expertise_limit - selected_options.size
+            client.emit_ooc "Selected options: #{selected_options.join(', ')}"
+          else
+            remaining_choices = expertise_limit
+            client.emit_ooc "No options set yet."
+          end
+
+          # Show how many choices they are allowed to set and how many they have left
+          client.emit_ooc "You can select up to #{expertise_limit} options for #{ability['Name']}."
+          if remaining_choices > 0
+            client.emit_ooc "You have #{remaining_choices} remaining choices."
+            client.emit_ooc "Use the command: rr/set/sa/#{ability['Name'].downcase}/[choice1],[choice2],..."
+          else
+            client.emit_ooc "You have selected the maximum allowed options."
+          end
+        end        
       end
     end
 
