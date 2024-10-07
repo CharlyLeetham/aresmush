@@ -226,16 +226,32 @@ module AresMUSH
         client.emit_failure "Character traits not found."
         return
       end
+      
+      # Fetch character type from the YAML configuration
+      chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
+      if chartype.nil?
+        client.emit_failure "Character type '#{traits.type}' not found in the configuration."
+        return
+      end
     
-      # Create the command and pass it to the ListTypeMovesCmd
-      command_string = "recursiverealms.ListTypeMovesSummCmd #{traits.type}"
-      list_command = RecursiveRealms::ListTypeMovesSummCmd.new(client, Command.new(command_string), enactor)
-      client.emit_ooc "#{command_string}"
-      client.emit_ooc "#{list_command}"    
-      # Handle the command to list the available moves
-      list_command.handle
-    end
+      # Retrieve the current tier and number of moves
+      current_tier = traits.tier
+      num_moves = traits.moves
     
+      # Get the moves for the current tier
+      tier_key = "Tier #{current_tier}"
+      tier_data = chartype['Tiers'][tier_key]
+    
+      if tier_data && tier_data['Moves']
+        # Pass the moves data to the template for rendering
+        template = CharacterTypeMovesSummTemplate.new(enactor, chartype, current_tier, num_moves)
+        client.emit template.render
+      else
+        client.emit_failure "Moves not found for Tier #{current_tier} for character type #{traits.type.capitalize}."
+      end
+    end    
+
+
     def self.handle_missing_focus(chartype, enactor, client)
       # Retrieve character traits
       traits = enactor.rr_traits.first
