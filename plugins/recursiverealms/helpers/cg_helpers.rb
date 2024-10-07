@@ -194,7 +194,7 @@ module AresMUSH
         return
       end
     
-      client.emit_ooc "#{enactor.rr_specialabilities}"
+      client.emit_ooc "#{enactor.rr_specialabilities.inspect}"
       # Prepare the template data and render
       template = RecursiveRealms::SpecialAbilitiesTemplate.new(abilities, enactor, traits)
       client.emit template.render
