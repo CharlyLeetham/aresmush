@@ -6,12 +6,10 @@ module AresMUSH
       def initialize(abilities, enactor, traits)
         @enactor = enactor
         @abilities = abilities
-        @client = client
-        @current_tier = enactor.rr_traits.first&.tier || 'Unknown' # Get the character's current tier
-        # Safely map special abilities and downcase the names
-       
+        @current_tier = traits.tier || 'Unknown'
+        @selected_abilities = enactor.rr_specialabilities.to_a # Store the full objects
 
-        super File.dirname(__FILE__) + "/cgen_type_sa_list.erb"
+        super File.dirname(__FILE__) + "/special_abilities.erb"
 
         # Separate abilities into expertise 1 and 2+ for display
         @expertise_one_abilities = format_abilities_by_expertise(1)
@@ -32,7 +30,7 @@ module AresMUSH
         filtered_abilities.map do |ability|
           ability_name = ability["Name"]
           ability_name_downcase = ability_name.downcase
-          is_set = @selected_abilities.include?(ability_name_downcase)
+          is_set = @selected_abilities.any? { |sa| sa.name.downcase == ability_name_downcase } # Compare the name dynamically
           sklist = ability["SkList"]
           selected_options = fetch_selected_options(ability_name_downcase)
           expertise_limit = ability["Expertise"] ? ability["Expertise"].split('/').first.to_i : 0
@@ -53,7 +51,7 @@ module AresMUSH
 
       # Fetch selected options for the given ability
       def fetch_selected_options(ability_name_downcase)
-        ability_data = @enactor.rr_specialabilities.find { |sa| sa.name.downcase == ability_name_downcase }
+        ability_data = @selected_abilities.find { |sa| sa.name.downcase == ability_name_downcase }
         ability_data&.sklist&.split(',')&.map(&:strip) || []
       end
     end
