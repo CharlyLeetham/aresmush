@@ -8,7 +8,7 @@ module AresMUSH
         @abilities = abilities
         @client = client
         @current_tier = enactor.rr_traits.first || 'Unknown' # Get the character's current tier
-        @selected_abilities = enactor.rr_specialabilities.map(&:name).map(&:downcase) # Track abilities already set on the character
+        #@selected_abilities = enactor.rr_specialabilities.map(&:name).map(&:downcase) # Track abilities already set on the character
         super File.dirname(__FILE__) + "/cgen_type_sa_list.erb"
 
         # Separate abilities into expertise 1 and 2+ for display
