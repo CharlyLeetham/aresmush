@@ -137,50 +137,47 @@ module AresMUSH
     
       # Iterate over each ability and display its status along with the tier
       abilities.each do |ability|
-        begin
-          is_set = character_abilities.include?(ability['Name'].downcase)
-          ability_name = is_set ? "%xg#{ability['Name']}%xn" : "%xr#{ability['Name']}%xn"
-      
-          # Determine the tier for the ability
-          tier = ability['Tier'] || 'Unknown'  # Fallback to 'Unknown' if tier is not specified
-      
-          # Display the ability name, status, and tier
-          client.emit_ooc "#{ability_name}: #{ability['Flavor Text']} (Tier #{tier})"
-
-          # Check if the ability has an SkList (meaning it has options to set)
-          if ability['SkList']
-            client.emit_ooc "here -1"
-            # Determine how many options can be chosen based on the Expertise value
-            expertise_limit = ability['Expertise'].split('/').first.to_i
-
-            client.emit_ooc "here"
-            # Get the ability from the character's set abilities to check if any options are already selected
-            options_set = enactor.rr_specialabilities.find do |sa| 
-              sa.respond_to?(:name) && sa.name.downcase == ability_name_downcase
-            end
-
-            client.emit_ooc "here 2"
-            if options_set && options_set.sklist
-              selected_options = options_set.sklist.split(',').map(&:strip)
-              remaining_choices = expertise_limit - selected_options.size
-              client.emit_ooc "Selected options: #{selected_options.join(', ')}"
-            else
-              remaining_choices = expertise_limit
-              client.emit_ooc "No options set yet."
-            end
-
-            # Show how many choices they are allowed to set and how many they have left
-            client.emit_ooc "You can select up to #{expertise_limit} options for #{ability['Name']}."
-            if remaining_choices > 0
-              client.emit_ooc "You have #{remaining_choices} remaining choices."
-              client.emit_ooc "Use the command: rr/set/sa/#{ability['Name'].downcase}/[choice1],[choice2],..."
-            else
-              client.emit_ooc "You have selected the maximum allowed options."
-            end
-          end 
-        rescue => e
-          client.emit_ooc "Error processing ability #{ability['Name']}: #{e.message}"
-        end        
+        # Ensure ability has a name field and check if it's set
+        ability_name_downcase = ability['Name'] ? ability['Name'].downcase : nil
+        is_set = ability_name_downcase && character_abilities.include?(ability_name_downcase)
+    
+        ability_name = is_set ? "%xg#{ability['Name']}%xn" : "%xr#{ability['Name']}%xn"
+    
+        # Determine the tier for the ability
+        tier = ability['Tier'] || 'Unknown'  # Fallback to 'Unknown' if tier is not specified
+    
+        # Display the ability name, status, and tier
+        client.emit_ooc "#{ability_name}: #{ability['Flavor Text']} (Tier #{tier})"
+    
+        # Check if the ability has an SkList (meaning it has options to set)
+        if ability['SkList']
+          # Get the special ability from the character's set abilities, checking for name presence
+          options_set = enactor.rr_specialabilities.find do |sa| 
+            sa.respond_to?(:name) && sa.name && sa.name.downcase == ability_name_downcase
+          end
+    
+          selected_options = options_set&.sklist&.split(',')&.map(&:strip) || []
+    
+          # Extract the expertise level from the ability and calculate remaining choices
+          expertise_limit = ability['Expertise'].split('/').first.to_i
+          remaining_choices = expertise_limit - selected_options.size
+    
+          # Display selected options and expertise limits
+          if selected_options.any?
+            client.emit_ooc "Selected options: #{selected_options.join(', ')}"
+          else
+            client.emit_ooc "No options set yet."
+          end
+    
+          # Show how many choices they are allowed to set and how many they have left
+          client.emit_ooc "You can select up to #{expertise_limit} options for #{ability['Name']}."
+          if remaining_choices > 0
+            client.emit_ooc "You have #{remaining_choices} remaining choices."
+            client.emit_ooc "Use the command: rr/set/sa/#{ability['Name'].downcase}/[choice1],[choice2],..."
+          else
+            client.emit_ooc "You have selected the maximum allowed options."
+          end
+        end
       end
     end
 
