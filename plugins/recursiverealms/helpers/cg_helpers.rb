@@ -293,23 +293,21 @@ module AresMUSH
     
       # Fetch all available descriptors from the YAML configuration
       descriptors = Global.read_config("RecursiveRealms", "descriptors")
-      
+
       # Get the character type from the traits
-      character_type = traits.type.downcase
+      #character_type = traits.type.downcase
 
       # Create the command string to call ListTypeFocusSummCmd with the character type
-      command_string = "recursiverealms.ListTypeDescriptorSummCmd #{character_type}"      
-      #command_string = "rr/set/focus/#{character_type}"
-      list_command = RecursiveRealms::ListTypeDescriptorSummCmd.new(client, Command.new(command_string), enactor)
+      #command_string = "recursiverealms.ListTypeDescriptorSummCmd #{character_type}"      
+      #list_command = RecursiveRealms::ListTypeDescriptorSummCmd.new(client, Command.new(command_string), enactor)
 
       # Handle the command to list the available focuses
-      list_command.handle
-    
-      # Format the descriptor list to show both the ID and Descriptor name
-      #descriptor_list = descriptors.map { |d| "#{d['ID']}. #{d['Descriptor']}" }.join("\n")
-      
-      # Emit the available descriptors to the client
-      #client.emit_ooc "Available Descriptors:\n#{descriptor_list}"
+      #list_command.handle
+
+      # Pass descriptors to the template
+      template = CharacterTypeDescriptorSummTemplate.new(enactor, descriptors)
+      client.emit template.render      
+  
     end    
 
   end
