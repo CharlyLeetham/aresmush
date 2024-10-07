@@ -148,12 +148,15 @@ module AresMUSH
 
         # Check if the ability has an SkList (meaning it has options to set)
         if ability['SkList']
+          client.emit_ooc "here -1"
           # Determine how many options can be chosen based on the Expertise value
           expertise_limit = ability['Expertise'].split('/').first.to_i
 
+          client.emit_ooc "here"
           # Get the ability from the character's set abilities to check if any options are already selected
           options_set = enactor.rr_specialabilities.find { |sa| sa.name.downcase == ability['Name'].downcase }
 
+          client.emit_ooc "here 2"
           if options_set && options_set.sklist
             selected_options = options_set.sklist.split(',').map(&:strip)
             remaining_choices = expertise_limit - selected_options.size
