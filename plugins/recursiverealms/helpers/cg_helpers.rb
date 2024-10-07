@@ -293,7 +293,9 @@ module AresMUSH
     
       # Fetch all available descriptors from the YAML configuration
       descriptors = Global.read_config("RecursiveRealms", "descriptors")
-
+      
+      # Get the character type from the traits
+      character_type = traits.type.downcase
 
       # Create the command string to call ListTypeFocusSummCmd with the character type
       command_string = "recursiverealms.ListTypeDescriptorSummCmd #{character_type}"      
