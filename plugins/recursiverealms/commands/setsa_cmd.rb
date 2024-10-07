@@ -9,8 +9,8 @@ module AresMUSH
         split_switch = RecursiveRealms.multi_split_command(@cmd)
 
         # Ensure we don't raise errors when not enough arguments are passed
-        self.ability_name = split_switch.length > 2 ? split_switch[2] : nil # The name of the special ability
-        self.choices = split_switch.length > 3 ? split_switch[3] : nil # The user choices, if provided
+        self.ability_name = split_switch.length > 1 ? split_switch[1] : nil # The name of the special ability
+        self.choices = split_switch.length > 2 ? split_switch[2] : nil # The user choices, if provided
       end
 
       def handle
