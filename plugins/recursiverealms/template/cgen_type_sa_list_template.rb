@@ -9,7 +9,7 @@ module AresMUSH
         @current_tier = traits.tier || 'Unknown'
 
         # Correctly map the ability names using the correct case for 'Name'
-        @selected_abilities = enactor.rr_specialabilities.to_a.map { |sa| sa.name.downcase }
+        @selected_abilities = enactor.rr_specialabilities
 
         super File.dirname(__FILE__) + "/cgen_type_sa_list.erb"
 
