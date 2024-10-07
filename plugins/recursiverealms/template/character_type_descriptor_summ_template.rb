@@ -3,7 +3,7 @@ module AresMUSH
     class CharacterTypeDescriptorSummTemplate < ErbTemplateRenderer
       attr_accessor :chartype, :descriptors
 
-      def initialize(enactor, chartype, focuses)
+      def initialize(enactor, chartype, descriptors)
         @enactor = enactor
         @chartype = chartype
         @descriptors = descriptors
