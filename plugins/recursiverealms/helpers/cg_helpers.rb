@@ -191,12 +191,13 @@ module AresMUSH
             client.emit_ooc "No options set yet."
           end
     
-          client.emit_ooc "You can select up to #{expertise_limit} options for #{ability_name}."
+          # Show the appropriate message based on remaining choices
           if remaining_choices.positive?
-            client.emit_ooc "You have #{remaining_choices} remaining choices."
+            client.emit_ooc "You can select up to #{expertise_limit} options for #{ability_name} and have #{remaining_choices} choices remaining."
             client.emit_ooc "Use the command: rr/set/sa/#{ability_name_downcase}/[choice1],[choice2],..."
           else
             client.emit_ooc "You have selected the maximum allowed options."
+            client.emit_ooc "Use rr/remove/sa/#{ability_name_downcase}/[choice] to remove a choice."
           end
         end
       end
