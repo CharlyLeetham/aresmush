@@ -1,13 +1,11 @@
 <%= line_with_text "Available Special Abilities for #{chartypetitle} (Tier #{current_tier}):" %>
 
 <%= line_with_text "Fully Set Special Abilities:" %>
-<% fully_set_abilities = @abilities.select { |ability| ability[:remaining_choices].to_i <= 0 } %>
-<%= "#{fully_set_abilities.inspect}" %>
-<% if fully_set_abilities.any? %>
-  <% fully_set_abilities.each do |ability| %>
-    <% display_name = "%xg#{ability["Name"]}%xn" %>
-    <%= left("#{display_name}: #{ability["Flavor Text"n]} (Tier #{ability["Tier"]})", 80) %>
-    <% if ability["SkList"] %>
+<% if @set_abilities.any? %>
+  <% @set_abilities.each do |ability| %>
+    <% display_name = "%xg#{ability[:name]}%xn" %>
+    <%= left("#{display_name}: #{ability[:description]} (Tier #{ability[:tier]})", 80) %>
+    <% if ability[:sklist] %>
       <%= left("Selected options: #{ability[:selected_options].join(', ')}", 80) %>
     <% end %>
   <% end %>
@@ -16,9 +14,8 @@
 <% end %>
 
 <%= line_with_text "Unset or Incomplete Special Abilities:" %>
-<% incomplete_abilities = @abilities.reject { |ability| ability[:remaining_choices].to_i <= 0 } %>
-<% if incomplete_abilities.any? %>
-  <% incomplete_abilities.each do |ability| %>
+<% if @unset_abilities.any? %>
+  <% @unset_abilities.each do |ability| %>
     <% display_name = ability[:is_set] ? "%xg#{ability[:name]}%xn" : "%xr#{ability[:name]}%xn" %>
     <%= left("#{display_name}: #{ability[:description]} (Tier #{ability[:tier]})", 80) %>
 
@@ -29,7 +26,7 @@
         <%= left("No options set yet.", 80) %>
       <% end %>
 
-      <% if ability[:remaining_choices].to_i.positive? %>
+      <% if ability[:remaining_choices].positive? %>
         <%= left("You can select up to #{ability[:expertise_limit]} options for #{ability[:name]} and have #{ability[:remaining_choices]} choices remaining.", 80) %>
         <%= left("Use the command: rr/set/sa/#{ability[:name].downcase}/[choice1],[choice2],...", 80) %>
       <% else %>
