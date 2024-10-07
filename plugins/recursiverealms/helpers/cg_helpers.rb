@@ -140,7 +140,7 @@ module AresMUSH
         is_set = character_abilities.include?(ability['Name'].downcase)
         client.emit_ooc "Test 2"        
         options_set = ability['SkList'] && enactor.rr_specialabilities.find { |sa| sa.name.downcase == ability['Name'].downcase }
-    
+        client.emit_ooc "Test 3"     
         ability_status = is_set ? "%xg(SET)%xn" : "%xr(UNSET)%xn"
         client.emit_ooc "#{ability_status} #{ability['Name']} - #{ability['Flavor Text']}"
     
