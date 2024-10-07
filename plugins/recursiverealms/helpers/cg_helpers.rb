@@ -144,7 +144,7 @@ module AresMUSH
         tier = ability['Tier'] || 'Unknown'  # Fallback to 'Unknown' if tier is not specified
     
         # Display the ability name, status, and tier
-        client.emit_ooc "#{ability['Name']}: #{ability['Flavor Text']} (Tier #{tier})"
+        client.emit_ooc "#{ability_name: #{ability['Flavor Text']} (Tier #{tier})"
       end
     end
 
