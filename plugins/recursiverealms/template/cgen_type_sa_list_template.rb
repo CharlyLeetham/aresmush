@@ -15,8 +15,7 @@ module AresMUSH
         super File.dirname(__FILE__) + "/cgen_type_sa_list.erb"
 
         # Categorize abilities into fully set and unset/incomplete
-        #@set_abilities, @unset_abilities = categorize_abilities
-        @set_abilities = categorize_abilities
+        @set_abilities, @unset_abilities = categorize_abilities
       end
 
       def chartypetitle
@@ -33,7 +32,7 @@ module AresMUSH
           is_set = @selected_abilities.any? { |sa| sa.name.downcase == ability_name }
 
           expertise_limit = ability["Expertise"] ? ability["Expertise"].split('/').first.to_i : 0
-          #options_set = fetch_selected_options(ability_name)
+          options_set = fetch_selected_options(ability_name)
           remaining_choices = expertise_limit - options_set.size
 
           # If it's set and all choices are selected, it's fully set
@@ -63,8 +62,8 @@ module AresMUSH
 
       # Fetch selected options for an ability (if any)
       def fetch_selected_options(ability_name_downcase)
-        ability_data = @enactor.rr_specialabilities.find { |sa| sa.name.downcase == ability_name_downcase }
-        ability_data&.sklist&.split(',')&.map(&:strip) || []
+        #ability_data = @enactor.rr_specialabilities.find { |sa| sa.name.downcase == ability_name_downcase }
+        #ability_data&.sklist&.split(',')&.map(&:strip) || []
       end
     end
   end
