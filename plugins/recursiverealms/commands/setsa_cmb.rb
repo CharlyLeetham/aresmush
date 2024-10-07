@@ -7,12 +7,11 @@ module AresMUSH
   
         def parse_args
           split_switch = RecursiveRealms.multi_split_command(@cmd)
-          self.ability_name = split_switch.length > 2 ? split_switch[2] : nil # The name of the special ability
-          self.choices = split_switch.length > 3 ? split_switch[3] : nil # The user choices, if provided
+          self.ability_name = split_switch[2] if split_switch.length > 2
+          self.choices = split_switch[3] if split_switch.length > 3
         end
   
         def handle
-          # Retrieve character traits
           traits = enactor.rr_traits.first
           if traits.nil?
             client.emit_failure "Character traits not found."
@@ -26,28 +25,28 @@ module AresMUSH
             return
           end
   
-          # Retrieve special abilities from the current tier and lower tiers
+          # Get all special abilities for the character's current and lower tiers
           all_special_abilities = RecursiveRealms.get_all_special_abilities_for_tier_and_below(chartype, traits.tier)
   
-          # If no ability name is provided, show unset abilities with options
-          if self.ability_name.nil? || self.ability_name.empty?
-            RecursiveRealms.list_unset_abilities_with_options(all_special_abilities, enactor, client)
+          # If no ability name is provided, show all special abilities, highlighting what's already set
+          if self.ability_name.nil?
+            RecursiveRealms.list_all_special_abilities(all_special_abilities, enactor, client, traits)
             return
           end
   
           # Find the ability by name
-          ability = all_special_abilities.find { |a| a['Name'].downcase == self.ability_name.downcase }
+          ability = all_special_abilities.find { |a| a['Name'].casecmp(self.ability_name).zero? }
           if ability.nil?
             client.emit_failure "Special Ability '#{self.ability_name}' not found."
             return
           end
   
-          # Determine the expertise limit for options selection
+          # Expertise limit for choosing options
           expertise_limit = ability['Expertise'] ? ability['Expertise'].split('/').first.to_i : 0
   
           # If no choices are provided, display available options and how many can be chosen
-          if self.choices.nil? || self.choices.empty?
-            RecursiveRealms.list_unset_abilities_with_options([ability], enactor, client)
+          if self.choices.nil?
+            RecursiveRealms.list_all_special_abilities([ability], enactor, client, traits)
             return
           end
   
