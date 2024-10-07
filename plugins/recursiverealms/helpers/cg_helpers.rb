@@ -120,6 +120,8 @@ module AresMUSH
       client.emit_ooc "Available Special Abilities for #{traits.type.capitalize} (Current and Lower Tiers):"
 
       # Track which abilities are set on the character
+      client.emit_ooc "#{rr_specialabilities.inspect}"
+      
       character_abilities = enactor.rr_specialabilities.map(&:name).map(&:downcase)
 
       client.emit_ooc "#{character_abilities.inspect}"
