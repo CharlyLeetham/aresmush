@@ -8,6 +8,7 @@ en:
         rr_command_title: "How to use Recursive Realms commands"
         rr_command_chartype_title: "Character Types"
         rr_command_focus_title: "Available Focii"
+        rr_command_descriptor_title: "Available Descriptors"
         rr_set_title: "CGen Set Commands"
         rr_sheet_title: "Sheet Commands"
         rr_sheet_special_abilities_heading: "Special Abilities"        
