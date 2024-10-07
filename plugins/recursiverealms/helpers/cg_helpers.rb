@@ -156,8 +156,8 @@ module AresMUSH
     
           client.emit_ooc "#{enactor.rr_specialabilities.inspect}"
 
-          options_set = enactor.rr_specialabilities.find do |sa|
-            sa.name.to_s.downcase == ability_name_downcase.to_s.downcase
+          options_set = enactor.rr_specialabilities.to_a.find do |sa|
+            sa.name.downcase == ability_name_downcase.downcase
           end
 
 
