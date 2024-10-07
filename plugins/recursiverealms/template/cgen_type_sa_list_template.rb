@@ -9,7 +9,7 @@ module AresMUSH
         @current_tier = traits.tier || 'Unknown'
         @selected_abilities = enactor.rr_specialabilities.to_a # Store the full objects
 
-        super File.dirname(__FILE__) + "/special_abilities.erb"
+        super File.dirname(__FILE__) + "/cgen_type_sa_list.erb"
 
         # Separate abilities into expertise 1 and 2+ for display
         @expertise_one_abilities = format_abilities_by_expertise(1)
