@@ -125,28 +125,27 @@ module AresMUSH
       client.emit_ooc "Available Special Abilities for #{traits.type.capitalize} (Current and Lower Tiers):"
     
       # Check if there are any special abilities set on the character
-      if enactor.rr_specialabilities.nil? || enactor.rr_specialabilities.empty?
+      character_abilities = enactor.rr_specialabilities&.map(&:name)&.map(&:downcase) || []
+      
+      if character_abilities.empty?
         client.emit_ooc "No special abilities are currently set on your character."
-        character_abilities = []
       else
-        # Track which abilities are set on the character
-        character_abilities = enactor.rr_specialabilities.map(&:name).map(&:downcase)
         client.emit_ooc "Current Abilities: #{character_abilities.inspect}"
       end
     
       # Iterate over each ability, display its status and options
       abilities.each do |ability|
-        client.emit_ooc "Test"
         is_set = character_abilities.include?(ability['Name'].downcase)
-        client.emit_ooc "Test 2"        
-        options_set = ability['SkList'] && enactor.rr_specialabilities.find { |sa| sa.name.downcase == ability['Name'].downcase }
-        client.emit_ooc "Test 3"     
         ability_status = is_set ? "%xg(SET)%xn" : "%xr(UNSET)%xn"
         client.emit_ooc "#{ability_status} #{ability['Name']} - #{ability['Flavor Text']}"
     
-        # If the ability has options (SkList), display the options and whether they're set
+        # If the ability has options (SkList), check if any options are set and display them
         if ability['SkList']
           client.emit_ooc "Options: #{ability['SkList']}"
+          
+          # Check if options are set for the current ability
+          options_set = enactor.rr_specialabilities&.find { |sa| sa.name.downcase == ability['Name'].downcase }
+    
           if options_set && options_set.sklist
             client.emit_ooc "Selected options: #{options_set.sklist}"
           else
