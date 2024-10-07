@@ -38,6 +38,7 @@ module AresMUSH
 
         # Check if the character already has a focus
         if traits.descriptor
+          descriptor = descriptors.find { |f| f['ID'].to_s == traits.descriptor.to_s }
           client.emit_failure "You already have a Descriptor: #{descriptor['Descriptor'].capitalize}. You must clear it first before setting a new descriptor."
           client.emit_ooc "Use rr/remove/descriptor to remove the descriptor."
           display_current_descriptor(enactor, client)
