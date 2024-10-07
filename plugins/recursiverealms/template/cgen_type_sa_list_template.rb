@@ -62,8 +62,8 @@ module AresMUSH
 
       # Fetch selected options for an ability (if any)
       def fetch_selected_options(ability_name_downcase)
-        ability_data = @enactor.rr_specialabilities.find { |sa| sa.name.downcase == ability_name_downcase }
-        #ability_data&.sklist&.split(',')&.map(&:strip) || []
+        ability_data = @enactor.rr_specialabilities.to_a.find { |sa| sa.name.downcase == ability_name_downcase }
+        ability_data&.sklist&.split(',')&.map(&:strip) || []
       end
     end
   end
