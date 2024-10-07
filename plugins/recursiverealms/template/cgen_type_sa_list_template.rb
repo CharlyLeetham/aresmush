@@ -7,6 +7,7 @@ module AresMUSH
         @enactor = enactor
         @abilities = abilities
         @current_tier = traits.tier || 'Unknown'
+        @traits = traits
 
         # Correctly map the ability names using the correct case for 'Name'
         @selected_abilities = enactor.rr_specialabilities
