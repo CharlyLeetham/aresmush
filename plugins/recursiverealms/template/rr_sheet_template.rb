@@ -3,7 +3,7 @@ module AresMUSH
     class RRSheetTemplate < ErbTemplateRenderer
       attr_accessor :traits
 
-      def initialize(traits, special_abilities, moves)
+      def initialize(traits)
         @traits = traits
         super File.dirname(__FILE__) + "/rr_sheet.erb"
       end
