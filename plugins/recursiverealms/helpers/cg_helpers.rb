@@ -107,7 +107,7 @@ module AresMUSH
 
       chartype['Tiers'].each do |tier_name, tier_data|
         tier_number = tier_name.split(' ').last.to_i
-        if tier_number <= current_tier
+        if tier_number <= current_tier.to_i
           tier_abilities = tier_data['Special Abilities'] || []
           abilities_by_tier += tier_abilities
         end
