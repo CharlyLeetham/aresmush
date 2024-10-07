@@ -54,7 +54,7 @@ module AresMUSH
       abilities.each do |ability|
         next unless ability['SkList']
 
-        is_set = enactor.rr_specialabilities.find { |sa| sa.name.downcase == ability['Name'].downcase }
+        is_set = enactor.rr_specialabilities.to_a.find { |sa| sa.name.downcase == ability['Name'].downcase }
         unless is_set
           client.emit_ooc "#{ability['Name']} - #{ability['Flavor Text']}"
           client.emit_ooc "Options: #{ability['SkList']}"
