@@ -59,7 +59,7 @@ module AresMUSH
           descriptors = Global.read_config("RecursiveRealms", "descriptors")
           
           # Find the descriptor by its ID saved in the traits
-          descriptor = descriptors.find { |f| f['ID'] == traits.descriptor }
+          descriptor = descriptors.find { |f| f['ID'].to_s == traits.descriptor.to_s }
 
           client.emit_ooc "Traits: #{traits.descriptor} Desc: #{descriptor}"
           
