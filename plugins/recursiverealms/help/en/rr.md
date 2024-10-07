@@ -41,12 +41,17 @@ Spinner
 `rr/set/sa/[Ability Name]/option1,option2` - Sets the Special Ability with those options
 
 `rr/remove/sa` = Removes all Special Abilities on the character
-`rr/rmove/sa/[tiernumber]` - Removes the Special Abilities for that tier
+`rr/remove/sa/[tiernumber]` - Removes the Special Abilities for that tier
 
-`rr/set/focus` - Shows all Focuses available for Type 
+`rr/set/focus` - Shows all Focuses available 
 `rr/set/focus/[focus]` - Sets the selected focus on the character
 
 `rr/remove/focus` = Removes the Focus on the character
+
+`rr/set/descriptor` - Shows all Descriptors available
+`rr/set/descriptor/[descriptor]` - Sets the selected descriptor on the character
+
+`rr/remove/descriptor` = Removes the Descriptor on the character
 
 `rr/set/moves` - Shows all moves for the Type set. (output needs fixing)
 `rr/set/move/[move]` - Sets the selected move on the character
