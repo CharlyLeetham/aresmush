@@ -142,8 +142,16 @@ module AresMUSH
         display_name = is_set ? "%xg#{ability_name}%xn" : "%xr#{ability_name}%xn"
     
         tier = ability['Tier'] || 'Unknown'
-        client.emit_ooc "#{display_name}: #{ability['Flavor Text']} (Tier #{tier})"
+        
+        if ability['SkList'] && ability['Expertise'].to_s.split('/').first.to_i == 1
+          # Special case where SkList exists and expertise is 1
+          client.emit_ooc "#{display_name}: #{ability['Flavor Text']} (#{ability['SkList']}): Tier #{tier}"
+        else
+          # Normal case without SkList or expertise other than 1
+          client.emit_ooc "#{display_name}: #{ability['Flavor Text']} (Tier #{tier})"
+        end
     
+        # If the ability has options (SkList), display additional details
         if ability['SkList']
           options_set = enactor.rr_specialabilities.to_a.find { |sa| sa.name.downcase == ability_name_downcase }
           selected_options = options_set&.sklist&.split(',')&.map(&:strip) || []
