@@ -18,7 +18,7 @@ module AresMUSH
         old_descriptor = descriptors.find { |d| d['ID'].to_s == traits.descriptor.to_s }
         traits.update(descriptor: nil) # Clear the focus from the character's traits
 
-        client.emit_success "Your Descriptor '#{old_descriptor[Descriptor].capitalize}' has been removed."
+        client.emit_success "Your Descriptor '#{old_descriptor['Descriptor'].capitalize}' has been removed."
       end
     end
   end
