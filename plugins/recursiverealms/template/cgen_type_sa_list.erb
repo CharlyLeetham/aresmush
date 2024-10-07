@@ -5,7 +5,7 @@
 <%= "#{fully_set_abilities.inspect}" %>
 <% if fully_set_abilities.any? %>
   <% fully_set_abilities.each do |ability| %>
-    <% display_name = "%xg#{ability[:Name]}%xn" %>
+    <% display_name = "%xg#{ability["Name"]}%xn" %>
     <%= left("#{display_name}: #{ability[:description]} (Tier #{ability[:tier]})", 80) %>
     <% if ability[:sklist] %>
       <%= left("Selected options: #{ability[:selected_options].join(', ')}", 80) %>
