@@ -9,7 +9,7 @@ module AresMUSH
         @current_tier = traits.tier || 'Unknown'
         @selected_abilities = enactor.rr_specialabilities.map(&:name).map(&:downcase)
 
-        super File.dirname(__FILE__) + "/special_abilities.erb"
+        super File.dirname(__FILE__) + " "
 
         # Categorize abilities into fully set and unset/incomplete
         @set_abilities, @unset_abilities = categorize_abilities
