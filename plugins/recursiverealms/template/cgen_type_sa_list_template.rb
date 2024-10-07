@@ -29,11 +29,11 @@ module AresMUSH
         unset_or_incomplete = []
 
         @abilities.each do |ability|
-          ability_name = ability["name"].downcase
+          ability_name = ability["Name"].downcase
           is_set = @selected_abilities.any? { |sa| sa.name.downcase == ability_name }
 
           expertise_limit = ability["Expertise"] ? ability["Expertise"].split('/').first.to_i : 0
-          options_set = fetch_selected_options(ability_name)
+          #options_set = fetch_selected_options(ability_name)
           remaining_choices = expertise_limit - options_set.size
 
           # If it's set and all choices are selected, it's fully set
