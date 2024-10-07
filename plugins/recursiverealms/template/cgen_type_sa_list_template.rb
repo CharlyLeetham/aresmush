@@ -30,7 +30,7 @@ module AresMUSH
 
         @abilities.each do |ability|
           ability_name = ability["Name"].downcase
-          is_set = @selected_abilities.to_a.any? { |sa| sa.name.downcase == ability_name }
+          is_set = @selected_abilities.any? { |sa| sa.name.downcase == ability_name }
 
           expertise_limit = ability["Expertise"] ? ability["Expertise"].split('/').first.to_i : 0
           options_set = fetch_selected_options(ability_name)
