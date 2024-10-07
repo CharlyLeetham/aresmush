@@ -74,7 +74,6 @@ module AresMUSH
               #Descriptors Commands  
               when ->(args) { args.start_with?('descriptors') }
                 split_switch = RecursiveRealms.multi_split_command(cmd) # Using multi_split_command from helpers.rb
-                client.emit_ooc "#{split_switch}"
                 fr = split_switch[0]
                 detail = split_switch.length > 1 ? split_switch[1] : nil
                 attrib = split_switch.length > 2 ? split_switch[2] : nil
