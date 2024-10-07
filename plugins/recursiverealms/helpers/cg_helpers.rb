@@ -62,21 +62,6 @@ module AresMUSH
       end
     end
 
-    # Helper method to list abilities that haven't been set and require options
-    #def self.list_unset_abilities_with_options(special_abilities, enactor, client)
-    #  abilities_to_select = special_abilities.select do |ability|
-    #    ability['SkList'] && ability['SkList'].include?(',') &&
-    #    !enactor.rr_specialabilities.to_a.find { |a| a.name.downcase == ability['Name'].downcase }
-    #  end
-
-    #  if abilities_to_select.empty?
-    #    client.emit_ooc "All abilities with required selections have already been set."
-    #  else
-    #    ability_list = abilities_to_select.map { |ability| ability['Name'] }.join(", ")
-    #    client.emit_ooc "Abilities requiring selection: #{ability_list}"
-    #  end
-    #end
-
     # Helper method to validate and set the chosen options for a special ability
     def self.set_special_ability_choices(ability, choices, expertise_limit, enactor, client, traits)
       selected_choices = choices.split(",").map(&:strip)
