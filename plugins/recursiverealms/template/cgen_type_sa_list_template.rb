@@ -18,7 +18,7 @@ module AresMUSH
       end
 
       def chartypetitle
-        @traits["type"]
+        @traits.type
       end
 
       # Format abilities based on their expertise level
