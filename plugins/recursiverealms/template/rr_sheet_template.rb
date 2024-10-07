@@ -1,12 +1,10 @@
 module AresMUSH
   module RecursiveRealms
     class RRSheetTemplate < ErbTemplateRenderer
-      attr_accessor :traits, :special_abilities, :moves
+      attr_accessor :traits
 
       def initialize(traits, special_abilities, moves)
         @traits = traits
-        @special_abilities = special_abilities
-        @moves = moves
         super File.dirname(__FILE__) + "/rr_sheet.erb"
       end
 
@@ -51,6 +49,15 @@ module AresMUSH
         return @moves.map { |move| move.name }.join(', ') unless @moves.empty?
         return "None"
       end
+
+      def focus
+        return @traits.focus || "N/A"
+      end
+
+      def descriptor
+        return @traits.descriptor || "N/A"
+      end
+
     end
   end
 end
