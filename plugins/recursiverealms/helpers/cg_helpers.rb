@@ -124,7 +124,7 @@ module AresMUSH
 
       character_abilities = enactor.rr_specialabilities.map(&:name).map(&:downcase)
 
-      client.emit_ooc "#{character_abilities.inspect}"
+      client.emit_ooc "#{character_abilities}"
       # Iterate over each ability, display its status and options
       abilities.each do |ability|
         is_set = character_abilities.include?(ability['Name'].downcase)
