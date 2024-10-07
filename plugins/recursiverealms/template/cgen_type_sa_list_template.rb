@@ -3,10 +3,11 @@ module AresMUSH
     class SpecialAbilitiesTemplate < ErbTemplateRenderer
       attr_accessor :chartype, :abilities, :current_tier, :expertise_one_abilities, :expertise_two_or_more_abilities
 
-      def initialize(enactor, chartype, abilities)
+      def initialize(abilities, enactor, client, traits)
         @enactor = enactor
-        @chartype = chartype
         @abilities = abilities
+        @client = client
+        @traits = traits
         @current_tier = enactor.rr_traits.first || 'Unknown' # Get the character's current tier
         @selected_abilities = enactor.rr_specialabilities.map(&:name).map(&:downcase) # Track abilities already set on the character
         super File.dirname(__FILE__) + "/cgen_type_sa_list.erb"
