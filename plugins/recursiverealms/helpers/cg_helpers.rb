@@ -117,26 +117,35 @@ module AresMUSH
     end    
 
     def self.list_all_special_abilities(abilities, enactor, client, traits)
+      if abilities.nil? || abilities.empty?
+        client.emit_failure "No special abilities available for #{traits.type.capitalize}."
+        return
+      end
+    
       client.emit_ooc "Available Special Abilities for #{traits.type.capitalize} (Current and Lower Tiers):"
-
-      # Track which abilities are set on the character
-      client.emit_ooc "#{enactor.rr_specialabilities.inspect}"
-
-      character_abilities = enactor.rr_specialabilities.map(&:name).map(&:downcase)
-
-      client.emit_ooc "#{character_abilities}"
+    
+      # Check if there are any special abilities set on the character
+      if enactor.rr_specialabilities.nil? || enactor.rr_specialabilities.empty?
+        client.emit_ooc "No special abilities are currently set on your character."
+        character_abilities = []
+      else
+        # Track which abilities are set on the character
+        character_abilities = enactor.rr_specialabilities.map(&:name).map(&:downcase)
+        client.emit_ooc "Current Abilities: #{character_abilities.inspect}"
+      end
+    
       # Iterate over each ability, display its status and options
       abilities.each do |ability|
         is_set = character_abilities.include?(ability['Name'].downcase)
         options_set = ability['SkList'] && enactor.rr_specialabilities.find { |sa| sa.name.downcase == ability['Name'].downcase }
-
+    
         ability_status = is_set ? "%xg(SET)%xn" : "%xr(UNSET)%xn"
         client.emit_ooc "#{ability_status} #{ability['Name']} - #{ability['Flavor Text']}"
-
+    
         # If the ability has options (SkList), display the options and whether they're set
         if ability['SkList']
           client.emit_ooc "Options: #{ability['SkList']}"
-          if options_set
+          if options_set && options_set.sklist
             client.emit_ooc "Selected options: #{options_set.sklist}"
           else
             client.emit_ooc "No options set yet."
