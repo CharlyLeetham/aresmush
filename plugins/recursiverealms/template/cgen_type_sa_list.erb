@@ -1,0 +1,42 @@
+<%= line_with_text "Available Special Abilities for #{chartypetitle} (Tier #{current_tier}):" %>
+
+<% if expertise_one_abilities.any? %>
+  <% expertise_one_abilities.each do |ability| %>
+    <% display_name = ability[:is_set] ? "%xg#{ability[:name]}%xn" : "%xr#{ability[:name]}%xn" %>
+    <% if ability[:sklist] %>
+      <%= left("#{display_name}: #{ability[:description]} (#{ability[:sklist]}). Tier #{ability[:tier]}", 80) %>
+    <% else %>
+      <%= left("#{display_name}: #{ability[:description]} (Tier #{ability[:tier]})", 80) %>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= left("No Special Abilities with expertise 1.", 80) %>
+<% end %>
+
+<%= line_with_text "Abilities with expertise 2 or more:" %>
+<% if expertise_two_or_more_abilities.any? %>
+  <% expertise_two_or_more_abilities.each do |ability| %>
+    <% display_name = ability[:is_set] ? "%xg#{ability[:name]}%xn" : "%xr#{ability[:name]}%xn" %>
+    <%= left("#{display_name}: #{ability[:description]} (Tier #{ability[:tier]})", 80) %>
+
+    <% if ability[:sklist] %>
+      <% if ability[:selected_options].any? %>
+        <%= left("Selected options: #{ability[:selected_options].join(', ')}", 80) %>
+      <% else %>
+        <%= left("No options set yet.", 80) %>
+      <% end %>
+
+      <% if ability[:remaining_choices].positive? %>
+        <%= left("You can select up to #{ability[:expertise_limit]} options for #{ability[:name]} and have #{ability[:remaining_choices]} choices remaining.", 80) %>
+        <%= left("Use the command: rr/set/sa/#{ability[:name].downcase}/[choice1],[choice2],...", 80) %>
+      <% else %>
+        <%= left("You have selected the maximum allowed options.", 80) %>
+        <%= left("Use rr/remove/sa/#{ability[:name].downcase}/[choice] to remove a choice.", 80) %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= left("No Special Abilities with expertise 2 or more.", 80) %>
+<% end %>
+
+<%= footer %>

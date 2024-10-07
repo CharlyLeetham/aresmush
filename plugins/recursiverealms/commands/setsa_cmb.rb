@@ -30,7 +30,7 @@ module AresMUSH
   
           # If no ability name is provided, show all special abilities, highlighting what's already set
           if self.ability_name.nil?
-            RecursiveRealms.list_all_special_abilities(all_special_abilities, enactor, client, traits)
+            RecursiveRealms.new_list_all_special_abilities(all_special_abilities, enactor, client, traits)
             return
           end
   
@@ -46,7 +46,7 @@ module AresMUSH
   
           # If no choices are provided, display available options and how many can be chosen
           if self.choices.nil?
-            RecursiveRealms.list_all_special_abilities([ability], enactor, client, traits)
+            RecursiveRealms.new_list_all_special_abilities([ability], enactor, client, traits)
             return
           end
   

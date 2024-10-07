@@ -188,6 +188,17 @@ module AresMUSH
       end
     end
 
+    def self.new_list_all_special_abilities(abilities, enactor, client, traits)
+      if abilities.nil? || abilities.empty?
+        client.emit_failure "No special abilities available for #{traits.type.capitalize}."
+        return
+      end
+    
+      # Prepare the template data and render
+      template = RecursiveRealms::SpecialAbilitiesTemplate.new(abilities, enactor, traits)
+      client.emit template.render
+    end
+
     # Helper method to add a move to the character's moves
     def self.add_move(move_name, enactor, client)
       traits = enactor.rr_traits.first
