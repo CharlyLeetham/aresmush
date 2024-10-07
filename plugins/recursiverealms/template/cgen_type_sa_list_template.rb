@@ -15,7 +15,7 @@ module AresMUSH
         super File.dirname(__FILE__) + "/cgen_type_sa_list.erb"
 
         # Categorize abilities into fully set and unset/incomplete
-        @set_abilities, @unset_abilities = categorize_abilities
+        #@set_abilities, @unset_abilities = categorize_abilities
       end
 
       def chartypetitle
