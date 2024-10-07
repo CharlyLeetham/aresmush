@@ -32,6 +32,7 @@ module AresMUSH
 
         # Fetch all available focuses from the YAML configuration
         descriptors = Global.read_config("RecursiveRealms", "descriptors")
+        client.emit_ooc "#{descriptors}"
         # Pass character type and focus data to the template
         template = CharacterTypeDescriptorSummTemplate.new(@enactor, chartype, descriptors)
         client.emit template.render
