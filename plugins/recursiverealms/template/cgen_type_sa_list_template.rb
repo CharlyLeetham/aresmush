@@ -7,7 +7,9 @@ module AresMUSH
         @enactor = enactor
         @abilities = abilities
         @current_tier = traits.tier || 'Unknown'
-        @selected_abilities = enactor.rr_specialabilities
+
+        # Correctly map the ability names using the correct case for 'Name'
+        @selected_abilities = enactor.rr_specialabilities.to_a.map { |sa| sa.Name.downcase }
 
         super File.dirname(__FILE__) + "/cgen_type_sa_list.erb"
 
@@ -59,7 +61,7 @@ module AresMUSH
 
       # Fetch selected options for an ability (if any)
       def fetch_selected_options(ability_name_downcase)
-        ability_data = @enactor.rr_specialabilities.find { |sa| sa.name.downcase == ability_name_downcase }
+        ability_data = @enactor.rr_specialabilities.find { |sa| sa.Name.downcase == ability_name_downcase }
         ability_data&.sklist&.split(',')&.map(&:strip) || []
       end
     end
