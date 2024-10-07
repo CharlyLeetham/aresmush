@@ -130,6 +130,7 @@ module AresMUSH
       # Get the list of special abilities already set on the character (if any)
       character_abilities = enactor.rr_specialabilities&.map(&:name)&.map(&:downcase) || []
     
+      client.emit_ooc "#{abilities.inspect}"
       # Iterate over each ability and display its status along with the tier
       abilities.each do |ability|
         is_set = character_abilities.include?(ability['Name'].downcase)
