@@ -47,20 +47,35 @@ module AresMUSH
       end
     end
 
-    # Helper method to list abilities that haven't been set and require options
-    def self.list_unset_abilities_with_options(special_abilities, enactor, client)
-      abilities_to_select = special_abilities.select do |ability|
-        ability['SkList'] && ability['SkList'].include?(',') &&
-        !enactor.rr_specialabilities.to_a.find { |a| a.name.downcase == ability['Name'].downcase }
-      end
 
-      if abilities_to_select.empty?
-        client.emit_ooc "All abilities with required selections have already been set."
-      else
-        ability_list = abilities_to_select.map { |ability| ability['Name'] }.join(", ")
-        client.emit_ooc "Abilities requiring selection: #{ability_list}"
+    def self.list_unset_abilities_with_options(abilities, enactor, client)
+      client.emit_ooc "Special Abilities that have unset options (SkList):"
+
+      abilities.each do |ability|
+        next unless ability['SkList']
+
+        is_set = enactor.rr_specialabilities.find { |sa| sa.name.downcase == ability['Name'].downcase }
+        unless is_set
+          client.emit_ooc "#{ability['Name']} - #{ability['Flavor Text']}"
+          client.emit_ooc "Options: #{ability['SkList']}"
+        end
       end
     end
+
+    # Helper method to list abilities that haven't been set and require options
+    #def self.list_unset_abilities_with_options(special_abilities, enactor, client)
+    #  abilities_to_select = special_abilities.select do |ability|
+    #    ability['SkList'] && ability['SkList'].include?(',') &&
+    #    !enactor.rr_specialabilities.to_a.find { |a| a.name.downcase == ability['Name'].downcase }
+    #  end
+
+    #  if abilities_to_select.empty?
+    #    client.emit_ooc "All abilities with required selections have already been set."
+    #  else
+    #    ability_list = abilities_to_select.map { |ability| ability['Name'] }.join(", ")
+    #    client.emit_ooc "Abilities requiring selection: #{ability_list}"
+    #  end
+    #end
 
     # Helper method to validate and set the chosen options for a special ability
     def self.set_special_ability_choices(ability, choices, expertise_limit, enactor, client, traits)
@@ -85,6 +100,46 @@ module AresMUSH
         )
       end
       client.emit_success "You have selected: #{selected_choices.join(", ")} for #{ability['Name']}."
+    end
+
+    def self.get_all_special_abilities_for_tier_and_below(chartype, current_tier)
+      abilities_by_tier = []
+
+      chartype['Tiers'].each do |tier_name, tier_data|
+        tier_number = tier_name.split(' ').last.to_i
+        if tier_number <= current_tier
+          tier_abilities = tier_data['Special Abilities'] || []
+          abilities_by_tier += tier_abilities
+        end
+      end
+
+      abilities_by_tier
+    end    
+
+    def self.list_all_special_abilities(abilities, enactor, client, traits)
+      client.emit_ooc "Available Special Abilities for #{traits.type.capitalize} (Current and Lower Tiers):"
+
+      # Track which abilities are set on the character
+      character_abilities = enactor.rr_specialabilities.map(&:name).map(&:downcase)
+
+      # Iterate over each ability, display its status and options
+      abilities.each do |ability|
+        is_set = character_abilities.include?(ability['Name'].downcase)
+        options_set = ability['SkList'] && enactor.rr_specialabilities.find { |sa| sa.name.downcase == ability['Name'].downcase }
+
+        ability_status = is_set ? "%xg(SET)%xn" : "%xr(UNSET)%xn"
+        client.emit_ooc "#{ability_status} #{ability['Name']} - #{ability['Flavor Text']}"
+
+        # If the ability has options (SkList), display the options and whether they're set
+        if ability['SkList']
+          client.emit_ooc "Options: #{ability['SkList']}"
+          if options_set
+            client.emit_ooc "Selected options: #{options_set.sklist}"
+          else
+            client.emit_ooc "No options set yet."
+          end
+        end
+      end
     end
 
     # Helper method to add a move to the character's moves

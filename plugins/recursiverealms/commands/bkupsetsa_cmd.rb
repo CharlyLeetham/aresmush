@@ -1,6 +1,6 @@
 module AresMUSH
   module RecursiveRealms
-    class SetSACmd
+    class BkupSetSACmd
       include CommandHandler
 
       attr_accessor :ability_name, :choices
@@ -14,8 +14,6 @@ module AresMUSH
       end
 
       def handle
-        client.emit_ooc "#{ability_name}, #{choices}"
-
         # Retrieve character type and tier from their traits
         traits = enactor.rr_traits.first
         if traits.nil?
