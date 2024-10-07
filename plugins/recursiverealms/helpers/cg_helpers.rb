@@ -127,57 +127,40 @@ module AresMUSH
         return
       end
     
-      # Retrieve the character's current tier
       current_tier = traits.tier
-    
       client.emit_ooc "Available Special Abilities for #{traits.type.capitalize} (Tier #{current_tier}):"
     
-      # Get the list of special abilities already set on the character (if any)
+      # Retrieve the list of abilities set on the character
       character_abilities = enactor.rr_specialabilities&.map(&:name)&.map(&:downcase) || []
     
-      # Iterate over each ability and display its status along with the tier
       abilities.each do |ability|
-        # Ensure ability has a name field and check if it's set
-        ability_name_downcase = ability['Name'] ? ability['Name'].downcase : nil
-        is_set = ability_name_downcase && character_abilities.include?(ability_name_downcase)
+        ability_name = ability['Name']
+        next unless ability_name # Skip abilities without a name
     
-        ability_name = is_set ? "%xg#{ability['Name']}%xn" : "%xr#{ability['Name']}%xn"
+        ability_name_downcase = ability_name.downcase
+        is_set = character_abilities.include?(ability_name_downcase)
+        display_name = is_set ? "%xg#{ability_name}%xn" : "%xr#{ability_name}%xn"
     
-        # Determine the tier for the ability
-        tier = ability['Tier'] || 'Unknown'  # Fallback to 'Unknown' if tier is not specified
+        tier = ability['Tier'] || 'Unknown'
+        client.emit_ooc "#{display_name}: #{ability['Flavor Text']} (Tier #{tier})"
     
-        # Display the ability name, status, and tier
-        client.emit_ooc "#{ability_name}: #{ability['Flavor Text']} (Tier #{tier})"
-    
-        # Check if the ability has an SkList (meaning it has options to set)
         if ability['SkList']
-
-          options_set = enactor.rr_specialabilities.to_a.find do |sa|
-            sa.name.downcase == ability_name_downcase.downcase
-          end
-
-          selected_options = []
-
-          if options_set && options_set.respond_to?(:sklist) && options_set.sklist.is_a?(String)
-            selected_options = options_set.sklist.split(',').map(&:strip)
-          end
-  
-          # Extract the expertise level from the ability and calculate remaining choices
+          options_set = enactor.rr_specialabilities.to_a.find { |sa| sa.name.downcase == ability_name_downcase }
+          selected_options = options_set&.sklist&.split(',')&.map(&:strip) || []
+    
           expertise_limit = ability['Expertise'].split('/').first.to_i
           remaining_choices = expertise_limit - selected_options.size
     
-          # Display selected options and expertise limits
           if selected_options.any?
             client.emit_ooc "Selected options: #{selected_options.join(', ')}"
           else
             client.emit_ooc "No options set yet."
           end
     
-          # Show how many choices they are allowed to set and how many they have left
-          client.emit_ooc "You can select up to #{expertise_limit} options for #{ability['Name']}."
-          if remaining_choices > 0
+          client.emit_ooc "You can select up to #{expertise_limit} options for #{ability_name}."
+          if remaining_choices.positive?
             client.emit_ooc "You have #{remaining_choices} remaining choices."
-            client.emit_ooc "Use the command: rr/set/sa/#{ability['Name'].downcase}/[choice1],[choice2],..."
+            client.emit_ooc "Use the command: rr/set/sa/#{ability_name_downcase}/[choice1],[choice2],..."
           else
             client.emit_ooc "You have selected the maximum allowed options."
           end
