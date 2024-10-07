@@ -77,42 +77,7 @@ RecursiveRealms:
           Effect 1:
             Title: ""
             Description: ""
-
-    - Focus: Abides in Stone
-      Description: Your character has a body made of stone, making you incredibly tough and strong.
-      Connection: One of the other PCs knows a secret about your stone nature.
-      Equipment: Extra medium or heavy melee weapon.
-      Minor Effect Suggestion: Your stone form makes you more resistant to damage.
-      Major Effect Suggestion: Your stone form makes you nearly invulnerable for a short time.
-      Tiers:
-        Tier 1:
-          Effect 1:
-            Title: ""
-            Description: ""
-          Effect 2:
-            Title: ""
-            Description: ""
-        Tier 2:
-          Effect 1:
-            Title: ""
-            Description: ""
-        Tier 3:
-          Effect 1:
-            Title: ""
-            Description: ""
-        Tier 4:
-          Effect 1:
-            Title: ""
-            Description: ""
-        Tier 5:
-          Effect 1:
-            Title: ""
-            Description: ""
-        Tier 6:
-          Effect 1:
-            Title: ""
-            Description: ""
-
+ 
     - Focus: Carries A Quiver
       Description: You are a master archer, skilled in the use of bows and creating arrows.
       Connection: One of the other PCs is a fellow archer or hunter.
