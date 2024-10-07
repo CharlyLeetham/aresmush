@@ -1,8 +1,7 @@
 module AresMUSH
   module RecursiveRealms
     class RRSheetTemplate < ErbTemplateRenderer
-      attr_accessor :traits
-
+      attr_accessor :traits, :special_abilities, :moves
       def initialize(traits, special_abilities, moves)
         @traits = traits
         @special_abilities = special_abilities
