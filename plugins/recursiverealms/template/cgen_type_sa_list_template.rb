@@ -7,7 +7,7 @@ module AresMUSH
         @enactor = enactor
         @abilities = abilities
         @current_tier = traits.tier || 'Unknown'
-        @selected_abilities = enactor.rr_specialabilities.map(&:name).map(&:downcase)
+        @selected_abilities = enactor.rr_specialabilities
 
         super File.dirname(__FILE__) + "/cgen_type_sa_list.erb"
 
