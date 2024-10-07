@@ -145,19 +145,19 @@ module AresMUSH
         
         if ability['SkList'] && ability['Expertise'].to_s.split('/').first.to_i == 1
           # Special case where SkList exists and expertise is 1
-          client.emit_ooc "#{display_name}: #{ability['Flavor Text']} (#{ability['SkList']}): Tier #{tier}"
+          client.emit_ooc "#{display_name}: #{ability['Flavor Text']} (#{ability['SkList']}). Tier #{tier}"
         else
           # Normal case without SkList or expertise other than 1
           client.emit_ooc "#{display_name}: #{ability['Flavor Text']} (Tier #{tier})"
         end
     
-        # If the ability has options (SkList), display additional details
-        if ability['SkList']
+        # Check for SkList only if expertise is 2 or greater
+        expertise_level = ability['Expertise'].split('/').first.to_i
+        if ability['SkList'] && expertise_level > 1
           options_set = enactor.rr_specialabilities.to_a.find { |sa| sa.name.downcase == ability_name_downcase }
           selected_options = options_set&.sklist&.split(',')&.map(&:strip) || []
     
-          expertise_limit = ability['Expertise'].split('/').first.to_i
-          remaining_choices = expertise_limit - selected_options.size
+          remaining_choices = expertise_level - selected_options.size
     
           if selected_options.any?
             client.emit_ooc "Selected options: #{selected_options.join(', ')}"
@@ -165,7 +165,7 @@ module AresMUSH
             client.emit_ooc "No options set yet."
           end
     
-          client.emit_ooc "You can select up to #{expertise_limit} options for #{ability_name}."
+          client.emit_ooc "You can select up to #{expertise_level} options for #{ability_name}."
           if remaining_choices.positive?
             client.emit_ooc "You have #{remaining_choices} remaining choices."
             client.emit_ooc "Use the command: rr/set/sa/#{ability_name_downcase}/[choice1],[choice2],..."
