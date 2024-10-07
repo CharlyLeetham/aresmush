@@ -20,7 +20,7 @@ module AresMUSH
           {
             name: descriptor["Descriptor"],
             description: descriptor["Flavor Text"] || "No description available",
-            selected: descriptor["ID"] == @selected_descriptor
+            selected: descriptor["ID"].to_s == @selected_descriptor.to_s
           }
         end
       end
