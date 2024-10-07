@@ -16,6 +16,7 @@ module AresMUSH
 
         # Categorize abilities into fully set and unset/incomplete
         #@set_abilities, @unset_abilities = categorize_abilities
+        @set_abilities = categorize_abilities
       end
 
       def chartypetitle
