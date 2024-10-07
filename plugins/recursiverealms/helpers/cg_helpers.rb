@@ -135,17 +135,16 @@ module AresMUSH
       # Get the list of special abilities already set on the character (if any)
       character_abilities = enactor.rr_specialabilities&.map(&:name)&.map(&:downcase) || []
     
-      client.emit_ooc "#{abilities.inspect}"
       # Iterate over each ability and display its status along with the tier
       abilities.each do |ability|
         is_set = character_abilities.include?(ability['Name'].downcase)
-        ability_status = is_set ? "%xg(SET)%xn" : "%xr(UNSET)%xn"
+        ability_name = is_set ? "%xg#{ability['Name']}%xn" : "%xr#{ability['Name']}%xn"
     
         # Determine the tier for the ability
         tier = ability['Tier'] || 'Unknown'  # Fallback to 'Unknown' if tier is not specified
     
         # Display the ability name, status, and tier
-        client.emit_ooc "#{ability_status} #{ability['Name']}: #{ability['Flavor Text']} (Tier #{tier})"
+        client.emit_ooc "#{ability['Name']}: #{ability['Flavor Text']} (Tier #{tier})"
       end
     end
 
