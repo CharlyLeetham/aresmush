@@ -295,7 +295,7 @@ module AresMUSH
       descriptors = Global.read_config("RecursiveRealms", "descriptors")
 
       # Get the character type from the traits
-      #character_type = traits.type.downcase
+      character_type = traits.type.downcase
 
       # Create the command string to call ListTypeFocusSummCmd with the character type
       #command_string = "recursiverealms.ListTypeDescriptorSummCmd #{character_type}"      
@@ -305,7 +305,7 @@ module AresMUSH
       #list_command.handle
 
       # Pass descriptors to the template
-      template = CharacterTypeDescriptorSummTemplate.new(enactor, descriptors)
+      template = CharacterTypeDescriptorSummTemplate.new(enactor, character_type, descriptors)
       client.emit template.render      
   
     end    
