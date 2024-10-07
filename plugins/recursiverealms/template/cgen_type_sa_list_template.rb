@@ -9,10 +9,7 @@ module AresMUSH
         @client = client
         @current_tier = enactor.rr_traits.first&.tier || 'Unknown' # Get the character's current tier
         # Safely map special abilities and downcase the names
-        @selected_abilities = enactor.rr_specialabilities.to_a.map do |sa|
-          # Ensure 'sa' responds to 'name' and that 'name' is present
-          sa.name&.downcase if sa.respond_to?(:name)
-        end.compact
+       
 
         super File.dirname(__FILE__) + "/cgen_type_sa_list.erb"
 
