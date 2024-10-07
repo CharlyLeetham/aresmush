@@ -155,7 +155,9 @@ module AresMUSH
 
             client.emit_ooc "here"
             # Get the ability from the character's set abilities to check if any options are already selected
-            options_set = enactor.rr_specialabilities.find { |sa| sa.name.downcase == ability['Name'].downcase }
+            options_set = enactor.rr_specialabilities.find do |sa| 
+              sa.respond_to?(:name) && sa.name.downcase == ability_name_downcase
+            end
 
             client.emit_ooc "here 2"
             if options_set && options_set.sklist
