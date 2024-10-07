@@ -51,6 +51,7 @@ module AresMUSH
 
       def display_current_descriptor(enactor, client)
         traits = enactor.rr_traits.first
+        client.emit_ooc "#{traits.inspect}"
         
         if traits.descriptor.nil?
           client.emit_ooc "No Descriptor set."
