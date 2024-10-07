@@ -19,7 +19,7 @@ module AresMUSH
       end
 
       def chartypetitle
-        traits.type.capitalize
+        @traits.type.capitalize
       end
 
 
