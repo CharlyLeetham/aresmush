@@ -1,21 +1,23 @@
 <%= line_with_text "Available Special Abilities for #{chartypetitle} (Tier #{current_tier}):" %>
 
-<% if expertise_one_abilities.any? %>
-  <% expertise_one_abilities.each do |ability| %>
-    <% display_name = ability[:is_set] ? "%xg#{ability[:name]}%xn" : "%xr#{ability[:name]}%xn" %>
+<%= line_with_text "Fully Set Special Abilities:" %>
+<% fully_set_abilities = @abilities.select { |ability| ability[:remaining_choices] <= 0 } %>
+<% if fully_set_abilities.any? %>
+  <% fully_set_abilities.each do |ability| %>
+    <% display_name = "%xg#{ability[:name]}%xn" %>
+    <%= left("#{display_name}: #{ability[:description]} (Tier #{ability[:tier]})", 80) %>
     <% if ability[:sklist] %>
-      <%= left("#{display_name}: #{ability[:description]} (#{ability[:sklist]}). Tier #{ability[:tier]}", 80) %>
-    <% else %>
-      <%= left("#{display_name}: #{ability[:description]} (Tier #{ability[:tier]})", 80) %>
+      <%= left("Selected options: #{ability[:selected_options].join(', ')}", 80) %>
     <% end %>
   <% end %>
 <% else %>
-  <%= left("No Special Abilities with expertise 1.", 80) %>
+  <%= left("No fully set abilities.", 80) %>
 <% end %>
 
-<%= line_with_text "Abilities with expertise 2 or more:" %>
-<% if expertise_two_or_more_abilities.any? %>
-  <% expertise_two_or_more_abilities.each do |ability| %>
+<%= line_with_text "Unset or Incomplete Special Abilities:" %>
+<% incomplete_abilities = @abilities.reject { |ability| ability[:remaining_choices] <= 0 } %>
+<% if incomplete_abilities.any? %>
+  <% incomplete_abilities.each do |ability| %>
     <% display_name = ability[:is_set] ? "%xg#{ability[:name]}%xn" : "%xr#{ability[:name]}%xn" %>
     <%= left("#{display_name}: #{ability[:description]} (Tier #{ability[:tier]})", 80) %>
 
@@ -36,7 +38,7 @@
     <% end %>
   <% end %>
 <% else %>
-  <%= left("No Special Abilities with expertise 2 or more.", 80) %>
+  <%= left("No unset or incomplete abilities.", 80) %>
 <% end %>
 
 <%= footer %>
