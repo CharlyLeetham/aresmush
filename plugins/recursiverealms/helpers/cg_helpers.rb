@@ -201,6 +201,10 @@ module AresMUSH
 
       client.emit_ooc "Abilities: #{abilities}"
       client.emit_ooc "Selected Abilities: #{enactor.rr_specialabilities.to_a}"
+      selected_abilities= enactor.rr_specialabilities
+      ability_name = "reach beyond"
+      is_set = @selected_abilities.to_a.any? { |sa| sa.name.downcase == ability_name }
+      cient.emit_ooc "Is set: #{is_set}"
       template = RecursiveRealms::SpecialAbilitiesTemplate.new(abilities, enactor, traits)
       client.emit template.render
     end
