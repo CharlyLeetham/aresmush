@@ -11,11 +11,14 @@ module AresMUSH
           return
         end
 
+        # Fetch all descriptors from the YAML configuration
+        descriptors = Global.read_config("RecursiveRealms", "descriptors")
+
         # Remove the descriptor
-        old_descriptor = traits.descriptor
+        old_descriptor = descriptors.find { |d| d['ID'].to_s == traits.descriptor.to_s }
         traits.update(descriptor: nil) # Clear the focus from the character's traits
 
-        client.emit_success "Your Descriptor '#{old_descriptor.capitalize}' has been removed."
+        client.emit_success "Your Descriptor '#{old_descriptor[Descriptor].capitalize}' has been removed."
       end
     end
   end
