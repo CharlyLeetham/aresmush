@@ -153,19 +153,17 @@ module AresMUSH
         if ability['SkList']
 
           client.emit_ooc "Here"
-          # Get the special ability from the character's set abilities, checking for name presence
-          options_set = enactor.rr_specialabilities.find do |sa| 
-            sa.respond_to?(:name) && sa.name && sa.name.downcase == ability_name_downcase
-          end
     
-          client.emit_ooc "#{options_set.inspect}"
-          client.emit_ooc "There"
+
 
           selected_options = []
 
           if options_set && options_set.respond_to?(:sklist) && options_set.sklist.is_a?(String)
             selected_options = options_set.sklist.split(',').map(&:strip)
           end
+
+          client.emit_ooc "#{options_set.inspect}"
+          client.emit_ooc "There"
     
           # Extract the expertise level from the ability and calculate remaining choices
           expertise_limit = ability['Expertise'].split('/').first.to_i
