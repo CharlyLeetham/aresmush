@@ -143,7 +143,9 @@ module AresMUSH
               when "moves"
                 return RemoveMovesCmd    
               when "focus"
-                return RemoveFocusCmd                              
+                return RemoveFocusCmd  
+              when "descriptor"
+                return RemoveDescriptorCmd                                              
               end 
             else
               #client.emit_ooc "Testing"
