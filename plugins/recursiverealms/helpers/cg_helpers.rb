@@ -122,36 +122,18 @@ module AresMUSH
         return
       end
     
-      client.emit_ooc "Available Special Abilities for #{traits.type.capitalize} (Current and Lower Tiers):"
+      client.emit_ooc "Available Special Abilities for #{traits.type.capitalize}:"
     
-      # Check if there are any special abilities set on the character
+      # Get the list of special abilities already set on the character (if any)
       character_abilities = enactor.rr_specialabilities&.map(&:name)&.map(&:downcase) || []
-      
-      if character_abilities.empty?
-        client.emit_ooc "No special abilities are currently set on your character."
-      else
-        client.emit_ooc "Current Abilities: #{character_abilities.inspect}"
-      end
     
-      # Iterate over each ability, display its status and options
+      # Iterate over each ability and display its status
       abilities.each do |ability|
         is_set = character_abilities.include?(ability['Name'].downcase)
         ability_status = is_set ? "%xg(SET)%xn" : "%xr(UNSET)%xn"
-        client.emit_ooc "#{ability_status} #{ability['Name']} - #{ability['Flavor Text']}"
-    
-        # If the ability has options (SkList), check if any options are set and display them
-        if ability['SkList']
-          client.emit_ooc "Options: #{ability['SkList']}"
-          
-          # Check if options are set for the current ability
-          options_set = enactor.rr_specialabilities&.find { |sa| sa.name.downcase == ability['Name'].downcase }
-    
-          if options_set && options_set.sklist
-            client.emit_ooc "Selected options: #{options_set.sklist}"
-          else
-            client.emit_ooc "No options set yet."
-          end
-        end
+        
+        # Display the ability name and status
+        client.emit_ooc "#{ability_status} #{ability['Name']}: #{ability['Flavor Text']}"
       end
     end
 
