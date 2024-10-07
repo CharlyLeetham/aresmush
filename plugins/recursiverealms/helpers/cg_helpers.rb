@@ -136,6 +136,7 @@ module AresMUSH
     
       # Iterate over each ability, display its status and options
       abilities.each do |ability|
+        client.emit_ooc "Test"
         is_set = character_abilities.include?(ability['Name'].downcase)
         options_set = ability['SkList'] && enactor.rr_specialabilities.find { |sa| sa.name.downcase == ability['Name'].downcase }
     
