@@ -5,9 +5,9 @@ module AresMUSH
 
       def initialize(abilities, enactor, traits)
         @enactor = enactor
-        @abilities = abilities
+        @abilities = abilities # Abilities for the type
         @current_tier = traits.tier || 'Unknown'
-        @selected_abilities = enactor.rr_specialabilities.to_a # Store the full objects
+        @selected_abilities = enactor.rr_specialabilities.map(&:name).map(&:downcase)
         @traits = traits
 
         super File.dirname(__FILE__) + "/cgen_type_sa_list.erb"
