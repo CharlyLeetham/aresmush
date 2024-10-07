@@ -3,9 +3,9 @@
 
 <% descriptor_list.each do |descriptor| %>
   <% if descriptor[:selected] %>
-    <%= left("%xh%xg#{descriptor[:name]}:%xg%xn", 30) %> <%= left("#{descriptor[:description]}", 70) %>
+    <%= left("%xh%xg#{descriptor[:name]}:%xg%xn", 15) %> <%= left("#{descriptor[:description]}", 100) %>
   <% else %>
-    <%= left("%xh#{descriptor[:name]}:%xn", 30) %> <%= left("#{descriptor[:description]}", 70) %>
+    <%= left("%xh#{descriptor[:name]}:%xn", 15) %> <%= left("#{descriptor[:description]}", 100) %>
   <% end %>
 <% end %>
 
