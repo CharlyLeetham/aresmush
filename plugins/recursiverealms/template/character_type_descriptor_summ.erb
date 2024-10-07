@@ -1,7 +1,7 @@
 <%= line_with_text t('RecursiveRealms.char_descriptor_title', :chartype => self.chartypetitle) %>
 <%= left("%xhDescription:%xn #{chartype['Descriptor']}", 100) %>
 
-<%= "#{selected_descriptor}" %>
+<%= "#{@selected_descriptor}" %>
 
 <% descriptor_list.each do |descriptor| %>
   <% if descriptor[:selected] %>
