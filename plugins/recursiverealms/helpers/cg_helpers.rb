@@ -104,17 +104,22 @@ module AresMUSH
 
     def self.get_all_special_abilities_for_tier_and_below(chartype, current_tier)
       abilities_by_tier = []
-
+    
       chartype['Tiers'].each do |tier_name, tier_data|
         tier_number = tier_name.split(' ').last.to_i
         if tier_number <= current_tier.to_i
           tier_abilities = tier_data['Special Abilities'] || []
-          abilities_by_tier += tier_abilities
+    
+          # Add the tier number to each ability's data
+          tier_abilities.each do |ability|
+            ability_with_tier = ability.merge('Tier' => tier_number)
+            abilities_by_tier << ability_with_tier
+          end
         end
       end
-
+    
       abilities_by_tier
-    end    
+    end  
 
     def self.list_all_special_abilities(abilities, enactor, client, traits)
       if abilities.nil? || abilities.empty?
