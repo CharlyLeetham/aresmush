@@ -27,7 +27,7 @@
 
       <% if ability[:remaining_choices].positive? %>
         <%= left("You can select up to %xh%xg#{ability[:expertise_limit]}%xn options for %xh%xc#{ability[:name]}%xn and have %xg#{ability[:remaining_choices]}%xn choices remaining.", 80) %>
-         <%= left("Available options: #{ability[:sklist].join(', ')}", 80) %>
+         <%= left("Available options: #{ability[:sklist]}", 80) %>
         <%= left("Use the command: rr/set/sa/#{ability[:name].downcase}/[choice1],[choice2],...", 80) %>
       <% else %>
         <%= left("You have selected the maximum allowed options.", 80) %>
