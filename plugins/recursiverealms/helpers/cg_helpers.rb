@@ -190,21 +190,18 @@ module AresMUSH
 
     def self.new_list_all_special_abilities(abilities, enactor, client, traits)
       if abilities.nil? || abilities.empty?
-        client.emit_failure "No special abilities available for #{traits.type.capitalize}."
+        #client.emit_failure "No special abilities available for #{traits.type.capitalize}."
         return
       end
     
       enactor.rr_specialabilities.each do |ability|
-        client.emit_ooc "Name: #{ability.name}, Tier: #{ability.tier}, Expertise: #{ability.expertise}, SkList: #{ability.sklist}"
+        #client.emit_ooc "Name: #{ability.name}, Tier: #{ability.tier}, Expertise: #{ability.expertise}, SkList: #{ability.sklist}"
       end
       # Prepare the template data and render
 
-      client.emit_ooc "Abilities: #{abilities}"
-      client.emit_ooc "Selected Abilities: #{enactor.rr_specialabilities.to_a}"
       selected_abilities= enactor.rr_specialabilities
       ability_name = "reach beyond"
       is_set = @selected_abilities.to_a.any? { |sa| sa.name.downcase == ability_name }
-      client.emit_ooc "Is set: #{is_set}"
       template = RecursiveRealms::SpecialAbilitiesTemplate.new(abilities, enactor, traits)
       client.emit template.render
     end
