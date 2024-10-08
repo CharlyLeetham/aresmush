@@ -13,8 +13,7 @@
 <% else %>
   <%= left("No fully set abilities.", 80) %>
 <% end %>
-
-<%= left("%xh%xrUnset or Incomplete Special Abilities:%xn", 80) %>
+<%= left("%xrUnset or Incomplete Special Abilities:%xn", 80) %>
 <% if @unset_abilities.any? %>
   <% @unset_abilities.each do |ability| %>
 
