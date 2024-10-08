@@ -16,7 +16,6 @@
 <%= left("%xrUnset or Incomplete Special Abilities:%xn", 80) %>
 <% if @unset_abilities.any? %>
   <% @unset_abilities.each do |ability| %>
-
     <% display_name = ability[:is_set] ? "%xg#{ability[:name]}%xn" : "%xr#{ability[:name]}%xn" %>
     <%= "#{display_name}: #{ability[:description]} (Tier #{ability[:tier]})" %>
     <% if ability[:sklist] %>
@@ -25,7 +24,6 @@
       <% else %>
         <%= left("No options set yet.", 80) %>
       <% end %>
-
       <% if ability[:remaining_choices].positive? %>
         <%= left("You can select up to %xh%xg#{ability[:expertise_limit]}%xn options for %xh%xc#{ability[:name]}%xn and have %xg#{ability[:remaining_choices]}%xn choices remaining.", 80) %>
         <%= left("%xgAvailable options:%xn %x8#{ability[:sklist]}%xn", 80) %>
