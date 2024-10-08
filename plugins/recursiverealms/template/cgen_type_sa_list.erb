@@ -5,12 +5,14 @@
     <%= left("#{display_name}: #{ability[:description]} (Tier #{ability[:tier]})", 80) %>
     <% if ability[:sklist] %>
       <%= left("Selected options: #{ability[:selected_options].join(', ')}", 80) %>
+
     <% end %>
   <% end %>
 <% else %>
   <%= left("No fully set abilities.", 80) %>
 <% end %>
-<%= left("Unset or Incomplete Special Abilities:", 80) %>
+
+<%= left("%xhX%xrnset or Incomplete Special Abilities:%xn", 80) %>
 <% if @unset_abilities.any? %>
   <% @unset_abilities.each do |ability| %>
 
