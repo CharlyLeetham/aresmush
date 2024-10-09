@@ -33,6 +33,12 @@ module AresMUSH
           trait.moves && trait.moves.downcase == move_name.downcase && trait.tier == @tier
         end
       end
+
+      # A method to return the traits of the character
+      def enactor_traits
+        return "No traits found" unless @enactor && @enactor.rr_traits
+        @enactor.rr_traits.map(&:inspect).join(", ")
+      end
     end
   end
 end

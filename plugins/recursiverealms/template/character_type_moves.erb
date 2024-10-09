@@ -1,6 +1,9 @@
 <%= line_with_text t('RecursiveRealms.char_moves_title', :chartype => self.chartypetitle) %>
 <%= left("%xhDescription:%xn #{chartype['Descriptor']}", 100) %>
 
+<!-- Output the value of enactor_traits method -->
+<%= "rr_traits: #{self.enactor_traits}" %>
+
 <% self.tiers.each do |tier, attrib| %>
   <%= left("%xh#{tier}:%xn", 100) %>
   <% if attrib && attrib['Moves'] %> 
@@ -8,7 +11,8 @@
     <% attrib['Moves'].each do |move| %>
       <% move_name_downcase = move['Name'].downcase %>
 
-      <%= "#{move_selected?(move_name_downcase)}" %> <!-- Output the result of move_selected? -->
+      <!-- Output the result of move_selected? -->
+      <%= "#{move_selected?(move_name_downcase)}" %>
 
       <% if move_selected?(move_name_downcase) %>
         <%= left("%xh%xg#{move['Name']}:%xn #{move['Description']}", 100) %> <!-- Highlight selected move -->
