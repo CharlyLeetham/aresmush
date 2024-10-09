@@ -27,8 +27,7 @@ module AresMUSH
       # Check if a move is selected for the character (based on move name and tier)
       def move_selected?(move_name)
         return false unless @enactor && @enactor.rr_traits
-        return @enactor.rr_traits
-        
+
         # Check if the move is set in the character's rr_traits
         @enactor.rr_traits.any? do |trait|
           trait.moves && trait.moves.downcase == move_name.downcase && trait.tier == @tier
