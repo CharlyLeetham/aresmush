@@ -3,6 +3,7 @@
 
 <!-- Output the value of enactor_traits method -->
 <%= "rr_traits: #{self.enactor_traits}" %>
+<%= "rr_moves: #{self.enactor_moves}" %>
 
 <% self.tiers.each do |tier, attrib| %>
   <%= left("%xh#{tier}:%xn", 100) %>
