@@ -8,6 +8,7 @@
     <% attrib['Moves'].each do |move| %>
       <% move_name_downcase = move['Name'].downcase %>
 
+      <%= "#{move_selected}"
       <% if move_selected?(move_name_downcase) %>
         <%= left("%xh%xg#{move['Name']}:%xn #{move['Description']}", 100) %> <!-- Highlight selected move -->
       <% else %>
