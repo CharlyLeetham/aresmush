@@ -14,7 +14,7 @@ module AresMUSH
       end
 
       def tiers
-        # If a tier is specified, ensure only the relevant data is returned
+        # Return either all tiers or only the specified one
         if @tier
           return { "Tier #{@tier}" => @chartype['Tiers']["Tier #{@tier}"] }
         else
@@ -27,8 +27,10 @@ module AresMUSH
         # Ensure enactor and rr_traits are defined
         return false unless @enactor && @enactor.rr_traits
 
-        # Check if the move is set in the character's rr_traits
-        @enactor.rr_traits.any? { |trait| trait.moves.downcase == move_name.downcase }
+        # Check if the move is set in the character's rr_traits for the correct tier
+        @enactor.rr_traits.any? do |trait|
+          trait.moves.downcase == move_name.downcase && trait.tier == @tier
+        end
       end
     end
   end

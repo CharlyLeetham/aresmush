@@ -7,9 +7,9 @@
     <%= left("%xhMoves:%xn", 100) %>
     <% attrib['Moves'].each do |move| %>
       <% if move_selected?(move['Name']) %>
-        <%= left("%xh%xg#{move['Name']}:%xn #{move['Description']}", 100) %>
+        <%= left("%xh%xg#{move['Name']}:%xn #{move['Description']}", 100) %> <!-- Highlight selected move -->
       <% else %>
-        <%= left("%xh#{move['Name']}:%xn #{move['Description']}", 100) %>
+        <%= left("%xh#{move['Name']}:%xn #{move['Description']}", 100) %> <!-- Non-highlighted move -->
       <% end %>
 
       <% move.each do |key, value| %>
@@ -22,3 +22,5 @@
     <%= left("%xhNo moves found for #{tier}.%xn", 100) %> <!-- Error handling for missing moves -->
   <% end %>
 <% end %>
+
+<%= footer %>
