@@ -13,23 +13,24 @@ module AresMUSH
         return @chartype["Type"]
       end
 
+      # Get the tiers for the character type, but filter for the requested tier if provided
       def tiers
-        # Return either all tiers or only the specified one
         if @tier
-          return { "Tier #{@tier}" => @chartype['Tiers']["Tier #{@tier}"] }
+          # Return only the specific tier
+          { "Tier #{@tier}" => @chartype['Tiers']["Tier #{@tier}"] }
         else
-          return @chartype['Tiers']
+          # Return all tiers if no specific tier is requested
+          @chartype['Tiers']
         end
       end
 
-      # Check if a move is selected for the character
+      # Check if a move is selected for the character (based on move name and tier)
       def move_selected?(move_name)
-        # Ensure enactor and rr_traits are defined
         return false unless @enactor && @enactor.rr_traits
 
-        # Check if the move is set in the character's rr_traits for the correct tier
+        # Check if the move is set in the character's rr_traits
         @enactor.rr_traits.any? do |trait|
-          trait.moves.downcase == move_name.downcase && trait.tier == @tier
+          trait.moves && trait.moves.downcase == move_name.downcase && trait.tier == @tier
         end
       end
     end

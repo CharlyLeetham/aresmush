@@ -6,7 +6,9 @@
   <% if attrib && attrib['Moves'] %> 
     <%= left("%xhMoves:%xn", 100) %>
     <% attrib['Moves'].each do |move| %>
-      <% if move_selected?(move['Name']) %>
+      <% move_name_downcase = move['Name'].downcase %>
+
+      <% if move_selected?(move_name_downcase) %>
         <%= left("%xh%xg#{move['Name']}:%xn #{move['Description']}", 100) %> <!-- Highlight selected move -->
       <% else %>
         <%= left("%xh#{move['Name']}:%xn #{move['Description']}", 100) %> <!-- Non-highlighted move -->
