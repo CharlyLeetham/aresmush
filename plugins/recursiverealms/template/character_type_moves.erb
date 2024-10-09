@@ -6,26 +6,19 @@
   <% if attrib && attrib['Moves'] %> 
     <%= left("%xhMoves:%xn", 100) %>
     <% attrib['Moves'].each do |move| %>
-      <% 
-        # Check if the move is set on the character
-        is_set = @enactor.rr_moves.any? { |m| m.name.downcase == move['Name'].downcase }
-        move_status = is_set ? "%xg%xh#{move["Name"]}%xn" : "%xr%xh#{move["Name"]}%xn"
-      %>
-      <%= left("%xg%xh#{move_status}:%xn #{move['Description']}", 100) %>
-      
+      <% move_name_downcase = move['Name'].downcase %>
+      <% move_data = @enactor.rr_traits.find { |trait| trait.moves.downcase == move_name_downcase } %>
+
+      <% if move_data %>
+        <%= left("%xh%xg#{move['Name']}:%xn #{move['Description']}", 100) %>
+      <% else %>
+        <%= left("%xh#{move['Name']}:%xn #{move['Description']}", 100) %>
+      <% end %>
+
       <% move.each do |key, value| %>
         <% unless key == 'Name' or key == 'Description' %>
           <%= "%xh#{key}:%xn #{value}" %>
         <% end %>
-      <% end %>
-
-      <% if is_set %>
-        <% 
-          # Fetch the selected options for the move (if any)
-          selected_move = @enactor.rr_moves.find { |m| m.name.downcase == move['Name'].downcase }
-          selected_options = selected_move&.options || "No options set"
-        %>
-        <%= left("Selected options: #{selected_options}", 100) %>
       <% end %>
     <% end %>
   <% else %>
