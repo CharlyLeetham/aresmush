@@ -21,6 +21,15 @@ module AresMUSH
           return @chartype['Tiers']
         end
       end
+
+      # Check if a move is selected for the character
+      def move_selected?(move_name)
+        # Ensure enactor and rr_traits are defined
+        return false unless @enactor && @enactor.rr_traits
+
+        # Check if the move is set in the character's rr_traits
+        @enactor.rr_traits.any? { |trait| trait.moves.downcase == move_name.downcase }
+      end
     end
   end
 end

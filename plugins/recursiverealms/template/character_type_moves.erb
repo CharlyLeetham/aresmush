@@ -6,10 +6,7 @@
   <% if attrib && attrib['Moves'] %> 
     <%= left("%xhMoves:%xn", 100) %>
     <% attrib['Moves'].each do |move| %>
-      <% move_name_downcase = move['Name'].downcase %>
-      <% move_data = @enactor.rr_traits.find { |trait| trait.moves.downcase == move_name_downcase } %>
-
-      <% if move_data %>
+      <% if move_selected?(move['Name']) %>
         <%= left("%xh%xg#{move['Name']}:%xn #{move['Description']}", 100) %>
       <% else %>
         <%= left("%xh#{move['Name']}:%xn #{move['Description']}", 100) %>
@@ -25,5 +22,3 @@
     <%= left("%xhNo moves found for #{tier}.%xn", 100) %> <!-- Error handling for missing moves -->
   <% end %>
 <% end %>
-
-<%= footer %>
