@@ -3,9 +3,10 @@ module AresMUSH
     class CharacterTypeMovesTemplate < ErbTemplateRenderer
       attr_accessor :chartype, :tier
 
-      def initialize(chartype, tier = nil)
+      def initialize(chartype, tier = nil, enactor)
         @chartype = chartype
         @tier = tier
+        @enactor = enactor
         super File.dirname(__FILE__) + "/character_type_moves.erb"
       end
 

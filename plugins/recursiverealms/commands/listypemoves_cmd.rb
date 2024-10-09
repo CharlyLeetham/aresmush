@@ -37,14 +37,14 @@ module AresMUSH
 
           if tier_data && tier_data['Moves']
             # Pass only the tier number to the template
-            template = CharacterTypeMovesTemplate.new(chartype, self.tier)
+            template = CharacterTypeMovesTemplate.new(chartype, self.tier, enactor)
             client.emit template.render
           else
             client.emit_failure "Moves not found for Tier #{self.tier} for character type #{self.type.capitalize}."
           end
         else
           # Show moves for all tiers
-          template = CharacterTypeMovesTemplate.new(chartype, nil) # Pass nil to render all tiers
+          template = CharacterTypeMovesTemplate.new(chartype, nil, enactor) # Pass nil to render all tiers
           client.emit template.render
         end
       end
