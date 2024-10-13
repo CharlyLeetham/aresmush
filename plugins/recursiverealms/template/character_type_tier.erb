@@ -6,10 +6,16 @@
   <% attrib.each do |attribute_name, attribute_value| %>
     <% if attribute_value.is_a?(Hash) %>
       <%= left("%xh%xb#{attribute_name}:%xn", 20) %>
-      <%= "hash" %>
-      <% attribute_value.each do |key, val| %>
-        <%= left("%xh%xb#{key}:%xn #{val}", 20) -%>
-      <% end %>
+        <% if #{attribute_name} == "Physical Nature" %>
+          <%= "%xh%xbEdges%xn" %>
+          <%= left("%xh%xbMight:%xn #{val}", 15) -%>
+          <%= left("%xh%xbSpeed:%xn #{val}", 15) -%>
+          <%= left("%xh%xbIntellect:%xn #{val}", 15) -%>
+        <% else  %>
+          <% attribute_value.each do |key, val| %>
+            <%= left("%xh%xb#{key}:%xn #{val}", 15) -%>
+          <% end %>
+        <% end %>
 
     <% elsif attribute_value.is_a?(Array) %>
       <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
