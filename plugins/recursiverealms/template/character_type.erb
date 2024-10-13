@@ -10,15 +10,15 @@
 <%= line_with_text t('RecursiveRealms.char_type_tiersheading') %>
 
 <% @chartype['Tiers'].each do |tier, attrib| %>
-  <%= left("%xhXb#{tier}:%xn", 80) %>
-   <%= left("%xhXbEffort:%xn #{attrib['Effort'] || 'N/A'}  %xhMight Edge:%xn #{attrib['Might Edge'] || 'N/A'} %xhSpeed Edge:%xn #{attrib['Speed Edge'] || 'N/A'}  %xhIntellect Edge:%xn #{attrib['Intellect Edge'] || 'N/A'}  %xhCypher Limit:%xn #{attrib['Cypher Limit'] || 'N/A'}", 100) %>
+  <%= left("%xh%xb#{tier}:%xn", 80) %>
+   <%= left("%xh%xbEffort:%xn #{attrib['Effort'] || 'N/A'}  %xhMight Edge:%xn #{attrib['Might Edge'] || 'N/A'} %xhSpeed Edge:%xn #{attrib['Speed Edge'] || 'N/A'}  %xhIntellect Edge:%xn #{attrib['Intellect Edge'] || 'N/A'}  %xhCypher Limit:%xn #{attrib['Cypher Limit'] || 'N/A'}", 100) %>
    <% if attrib["Special Abilities"].is_a?(Array) %>
    <%= left("%xh%xbSpecial Abilities: %xn#{attrib['Special Abilities'].map { |ability| ability['Name'] }.join(', ')}", 80) %>
    <% else %>
    No special abilities available.
    <% end %>
    <% if attrib["Moves"].is_a?(Array) %>
-   <%= left("%xhMoves:%xn%xb #{attrib['Moves'].map { |move| move['Name'] }.join(', ')}", 80) %>
+   <%= left("%xh%xbMoves:%xn #{attrib['Moves'].map { |move| move['Name'] }.join(', ')}", 80) %>
    <% else %>
    No moves available.
    <% end %>    
@@ -27,6 +27,6 @@
 
 <%= line_with_text t('RecursiveRealms.char_type_movesheading') %>
 <% @chartype['Tiers']['Tier 1']['Moves'].each do |move| %>
-  <%= left("%xh%xb#{move['Name']}:%xn  #{move['Description']} (%xhType:%xn #{move['Type']}, %xhDuration:%xn #{move['Duration']}, %xhCost:%xn #{move['Cost']}, %xhModifier:%xn #{move['Modifier']}", 80) %>
+  <%= "%xh%xb#{move['Name']}:%xn  #{move['Flavor Text']} (%xhType:%xn #{move['Type']}, %xhDuration:%xn #{move['Duration']}, %xhCost:%xn #{move['Cost']}, %xhModifier:%xn #{move['Modifier']}" %>
 <% end %>
 <%= footer %>
