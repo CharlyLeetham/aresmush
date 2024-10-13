@@ -25,7 +25,6 @@
 
       <% end %>
     <% else %> 
-      <%= "Here. #{attribute_name.inspect}" %>
       <% if attribute_name == "Effort" %>      
         <%= left("%xh%xb#{attribute_name} 000:%xn #{attribute_value}", 20) %>
       <% elsif attribute_name == "Cypher Limit"  %>
