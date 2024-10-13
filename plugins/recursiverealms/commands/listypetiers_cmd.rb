@@ -3,13 +3,14 @@ module AresMUSH
     class ListTypeTiersCmd
       include CommandHandler
             
-      attr_accessor :split_switch, :topcmd, :type, :value
+      attr_accessor :split_switch, :topcmd, :type, :value, :tiers
 
       def parse_args
         split_switch = RecursiveRealms.multi_split_command(@cmd)
         self.topcmd = split_switch[0]
         self.type = split_switch[1]
         self.value = split_switch[2]
+        self.tiers = split_switch[3]
       end
 
       def handle
