@@ -30,8 +30,8 @@ module AresMUSH
         return false unless @enactor && @enactor.rr_moves
 
         # Debugging output
-        puts "Checking move: #{move_name}"
-        puts "Character's selected moves: #{@enactor.rr_moves.map(&:name).join(', ')}"
+ Global.logger.debug "Checking move: #{move_name}"
+  Global.logger.debug "Character's selected moves: #{@enactor.rr_moves.map(&:name).join(', ')}"
 
         # Check if the move is in the character's rr_moves collection
         @enactor.rr_moves.any? { |move| move.name.downcase == move_name.downcase }
