@@ -6,6 +6,7 @@
   <% attrib.each do |attribute_name, attribute_value| %>
     <% if attribute_value.is_a?(Hash) %>
       <%= left("%xh%xb#{attribute_name}:%xn", 20) %>
+      <%= "hash" %>
       <% attribute_value.each do |key, val| %>
         <%= left("%xh%xb#{key}:%xn #{val}", 20)%>
       <% end %>
