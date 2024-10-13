@@ -13,7 +13,7 @@
       <% move_name_downcase = move['Name'].downcase %>
 
       <!-- Output the result of move_selected? -->
-      <%= "#{move_selected?(move_name_downcase)}" %>
+      <%= "#{move_selected(move_name_downcase)}" %>
 
       <% if self.move_selected(move_name_downcase) %>
         <%= left("%xh%xg#{move['Name']}:%xn #{move['Description']}", 100) %> <!-- Highlight selected move -->
