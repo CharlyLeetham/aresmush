@@ -7,14 +7,15 @@
     <% if attribute_value.is_a?(Hash) %>
       <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
       <% attribute_value.each do |key, val| %>
-         <%= "Key: #{key.inspect}" %> 
         <%= left("%xh%xb#{key}:%xn #{val}", 100)%>
       <% end %>
     <% elsif attribute_value.is_a?(Array) %>
       <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
-      <% outputstring = build_attribute_strings(attribute_value) %> 
-      <%= outputstring %>  
-      <%= "\n" %>
+      <% attribute_value.each do |item| %>
+        <% item.each do |key, val| %>
+          <%= left("%xh%xb#{key}:%xn #{val}", 100)%>
+        <% end %>
+      <% end %>
     <% else %>           
       <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 100)%>
     <% end %>
