@@ -46,8 +46,10 @@ module AresMUSH
                     end
                 elsif fr && detail && (attrib.nil? || attrib.empty?)
                     detail = detail.downcase
+                    client.emit "HEre"
                     return ListTypeCmd
                 else
+                    client.emit "There"
                     return ListAllTypesCmd
                 end 
               
