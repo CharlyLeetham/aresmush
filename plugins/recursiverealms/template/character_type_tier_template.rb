@@ -37,9 +37,11 @@ module AresMUSH
             if item.is_a?(Hash) # Ensure we're working with a hash
               item.each do |key, val|
                 if key != "Flavor Text"
-                  outputstring += "#{key}: #{val}  "  # Concatenate key-value pairs with spaces
+                  # Apply the left formatting for key-value pairs
+                  outputstring += left("%xh%xb#{key}:%xn #{val}", 40)
                 else
-                  flavortext = "#{key}: #{val}"  # Handle flavor text separately
+                  # Handle flavor text separately
+                  flavortext = "%xh%xb#{key}:%xn #{val}"
                 end
               end
             end
