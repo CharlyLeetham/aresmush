@@ -11,7 +11,7 @@ en:
         rr_command_descriptor_title: "Available Descriptors"
         rr_set_title: "CGen Set Commands"
         rr_sheet_title: "Sheet Commands"
-        rr_sheet_special_abilities_heading: "Special Abilities"        
+        rr_sheet_special_abilities_heading: "%xcSpecial Abilities%xn"        
         rr_sheet_moves_heading: "%xbMoves%xn"                
         char_type_attributesheading: "%xyAttributes%xn"
         char_type_tiersheading: "%xyTiers%xn"
