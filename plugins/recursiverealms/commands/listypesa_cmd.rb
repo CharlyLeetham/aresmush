@@ -23,6 +23,7 @@ module AresMUSH
               template = CharacterTypeSATemplate.new(chartype, nil) # Pass nil to show all tiers
             else
               # Otherwise, show the specific tier
+              client.emit_ooc "Here"
               template = CharacterTypeSATemplate.new(chartype, self.tiers)
             end            
               client.emit template.render
