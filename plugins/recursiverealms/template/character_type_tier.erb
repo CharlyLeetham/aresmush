@@ -8,13 +8,16 @@
       <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
       <% attribute_value.each do |key, val| %>
          <%= "Key: #{key.inspect}" %> 
-        <% if key == "Flavor Text" %>
+        <% if key != "Flavor Text" %>
           <%= "woooo" %>
         <% end %>
         <%= left("%xh%xb#{key}:%xn #{val}", 100)%>
       <% end %>
     <% elsif attribute_value.is_a?(Array) %>
       <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
+      <% outputstring, flavortext = build_attribute_strings(attribute_value) %> 
+      <%= outputstring %>  
+      <%= flavortext %>    
       <% attribute_value.each do |item| %>
         <% item.each do |key, val| %>
           <%= "Key: #{key.inspect}" %> 

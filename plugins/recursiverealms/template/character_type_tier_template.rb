@@ -28,6 +28,22 @@ module AresMUSH
           items.each_slice(group_size).to_a
         end   
 
+        # Method to build output strings for the attributes
+        def build_attribute_strings(attribute_value)
+          outputstring = ""
+          flavortext = ""
+
+          attribute_value.each do |key, val|
+            if key != "Flavor Text"
+              outputstring += left("%xh%xb#{key}:%xn #{val}", 40)
+            else
+              flavortext = "%xh%xb#{key}:%xn #{val}"
+            end
+          end
+
+          return outputstring, flavortext
+        end
+        
       end
     end
   end
