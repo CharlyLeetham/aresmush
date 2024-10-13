@@ -23,10 +23,10 @@ module AresMUSH
           end
         end   
         
-        # Group any array-type attributes into rows of 3
+        # Group items into rows of 3
         def group_items(items, group_size = 3)
           items.each_slice(group_size).to_a
-        end        
+        end   
 
       end
     end
