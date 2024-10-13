@@ -48,7 +48,7 @@ module AresMUSH
               outputstring += "      "
             end
           end
-  
+          outputstring += flavourtext
           return outputstring.strip, flavortext.strip  # Return the strings without trailing spaces
         end
 
