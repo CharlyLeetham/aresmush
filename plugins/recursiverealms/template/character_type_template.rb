@@ -30,8 +30,8 @@ module AresMUSH
         return false unless @enactor && @enactor.rr_moves
 
         # Debugging output
- Global.logger.debug "Checking move: #{move_name}"
-  Global.logger.debug "Character's selected moves: #{@enactor.rr_moves.map(&:name).join(', ')}"
+        Global.logger.debug "Checking move: #{move_name}"
+        Global.logger.debug "Character's selected moves: #{@enactor.rr_moves.map(&:name).join(', ')}"
 
         # Check if the move is in the character's rr_moves collection
         @enactor.rr_moves.any? { |move| move.name.downcase == move_name.downcase }
@@ -39,9 +39,12 @@ module AresMUSH
 
       # Highlight selected moves
       def highlight_moves(moves)
+        Global.logger.debug "Entered Hightlight Moves"
         moves.map do |move|
           move_name = move['Name']
+          Global.logger.debug "Move name 1: #{move_name}"
           if move_selected?(move_name)
+            Global.logger.debug "Move name selected: #{move_name}"
             "%xg#{move_name}%xn"  # Highlight selected move in green
           else
             move_name
