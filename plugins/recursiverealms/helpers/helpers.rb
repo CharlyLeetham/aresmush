@@ -13,5 +13,7 @@ module AresMUSH
             split_switch = cmd.raw.split('/').reject(&:empty?)
             return split_switch[1..-1] # Return all arguments except the first (which is typically the command root)
         end
+
+        
     end
 end
