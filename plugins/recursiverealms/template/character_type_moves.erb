@@ -8,11 +8,9 @@
     <% attrib['Moves'].each do |move| %>
       <% move_name_downcase = move['Name'].downcase %>
       <% if self.move_selected?(move_name_downcase) %>
-        <%= left("%xh%xg#{move['Name']}: %xn", 6)  -%>
-        <%= "#{move['Flavor Text']}" %> 
+        <%= left("%xh%xg#{move['Name']}: %xn#{move['Flavor Text']}", 100) %> 
       <% else %>
-        <%= left("%xh%xb#{move['Name']}:%xn", 6) -%>
-        <%= "#{move['Flavor Text']}" %> 
+        <%= left("%xh%xb#{move['Name']}:%xn #{move['Flavor Text']}", 100) %> 
       <% end %>
       <% move.each do |key, value| %>
         <% unless key == 'Name' or key == 'Flavor Text' %>
