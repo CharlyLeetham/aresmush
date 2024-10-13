@@ -7,12 +7,10 @@
   <% attrib.each do |attribute_name, attribute_value| %>
     
     <% if attribute_value.is_a?(Array) %>
-      <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
-
-      <%= "group_items = #{self.group_items(attribute_value)}" %>
-      
+      <%= left("%xh%xb#{attribute_name}:%xn", 100) %>      
       <% self.group_items(attribute_value).each do |row| %>
         <% row.each do |item| %>
+          <%= "#{item}" %>
           <% if item.is_a?(Hash) %>
             <% item.each do |key, val| %>
               <%= "%xh%xb#{key}:%xn #{val}".ljust(35) %>
