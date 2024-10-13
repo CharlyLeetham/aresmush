@@ -24,11 +24,7 @@
           <%= left("%xh%xb#{key}:%xn #{val}", 100)%>
         <% end %>
       <% end %>
-    <% else %>     
-      <%= "Key: #{key.inspect}" %> 
-      <% if key == "Flavor Text" %>
-        <%= "woooo" %>
-      <% end %>        
+    <% else %>           
       <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 100)%>
     <% end %>
   <% end %>
