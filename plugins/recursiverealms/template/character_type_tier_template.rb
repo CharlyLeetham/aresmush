@@ -35,10 +35,15 @@ module AresMUSH
   
           attribute_value.each do |item|
             if item.is_a?(Hash) # Ensure we're working with a hash
-              item.each do |key, val|
+              item.each_with_index do |(key, val), index|
                 if key != "Flavor Text"
-                  # Apply the left formatting for key-value pairs
-                  outputstring += left("%xh%xb#{key}:%xn #{val}", 20)
+                  if index == 0
+                    # First key-value pair on the line, no indentation
+                    outputstring += left("%xh%xb#{key}:%xn #{val}", 20)
+                  else
+                    # Subsequent lines: indent
+                    outputstring += "  " + left("%xh%xb#{key}:%xn #{val}", 20)
+                  end
                 else
                   # Handle flavor text separately
                   flavortext = "%xh%xb#{key}:%xn #{val}"
