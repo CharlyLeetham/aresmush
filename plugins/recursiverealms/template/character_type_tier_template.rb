@@ -32,18 +32,18 @@ module AresMUSH
         def build_attribute_strings(attribute_value)
           outputstring = ""
           flavortext = ""
-
+  
           attribute_value.each do |key, val|
             if key != "Flavor Text"
-              outputstring += left("%xh%xb#{key}:%xn #{val}", 40)
+              outputstring += "#{key}: #{val}  "  # Concatenate key-value pairs with spaces
             else
-              flavortext = "%xh%xb#{key}:%xn #{val}"
+              flavortext = "#{key}: #{val}"  # Handle flavor text separately
             end
           end
-
-          return outputstring, flavortext
+  
+          return outputstring.strip, flavortext.strip  # Return the strings without trailing spaces
         end
-        
+
       end
     end
   end
