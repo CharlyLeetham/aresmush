@@ -14,7 +14,6 @@ module AresMUSH
       end
 
       def handle
-        client.emit_ooc ("Tiers: #{self.tiers}")
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type }
         if chartype
           begin
@@ -23,7 +22,6 @@ module AresMUSH
               template = CharacterTypeSATemplate.new(chartype, nil) # Pass nil to show all tiers
             else
               # Otherwise, show the specific tier
-              client.emit_ooc "Here"
               template = CharacterTypeSATemplate.new(chartype, self.tiers)
             end            
               client.emit template.render
