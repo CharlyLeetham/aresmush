@@ -15,7 +15,7 @@ module AresMUSH
       def handle
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type }
         if chartype
-              template = CharacterTypeTemplate.new(chartype)
+              template = CharacterTypeTemplate.new(chartype, enactor)
               client.emit template.render
         else
           @client.emit_failure "Character type #{self.type.capitalize} not found. Please check your spelling."
