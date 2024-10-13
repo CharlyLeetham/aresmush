@@ -14,6 +14,7 @@
       <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
       <% outputstring = build_attribute_strings(attribute_value) %> 
       <%= outputstring %>  
+      <%= "\n" %>
     <% else %>           
       <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 100)%>
     <% end %>

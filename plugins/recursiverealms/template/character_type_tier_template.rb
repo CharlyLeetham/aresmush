@@ -38,7 +38,7 @@ module AresMUSH
               item.each do |key, val|
                 if key != "Flavor Text"
                   # Apply the left formatting for key-value pairs
-                  outputstring += left("%xh%xb#{key}:%xn #{val}", 30)
+                  outputstring += left("%xh%xb#{key}:%xn #{val}", 35)
                 else
                   # Handle flavor text separately
                   flavortext = "%xh%xb#{key}:%xn #{val}"
