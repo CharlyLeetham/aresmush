@@ -13,7 +13,6 @@
           <%= left("%xh%xbIntellect:%xn #{attribute_value["Intellect Edge"]}", 15) %>
         <% else  %>
           <% attribute_value.each do |key, val| %>
-                      <%= "weeeee" %>
             <%= left("%xh%xb#{key}:%xn #{val}", 15) -%>
           <% end %>
         <% end %>
@@ -27,8 +26,10 @@
       <% end %>
     <% else %> 
       <% if #{attribute_name} == "Effort" %>      
+                            <%= "weeeee" %>
         <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 20) %>
       <% else %>
+                            <%= "weeeee2" %>
         <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 20) -%>
       <% end %>
     <% end %>
