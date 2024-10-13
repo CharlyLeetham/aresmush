@@ -1,7 +1,7 @@
 module AresMUSH
   module RecursiveRealms
     class CharacterTypeMovesTemplate < ErbTemplateRenderer
-      attr_accessor :chartype, :tier
+      attr_accessor :chartype, :tier, :enactor
 
       def initialize(chartype, tier = nil, enactor)
         @chartype = chartype
@@ -17,34 +17,30 @@ module AresMUSH
       # Get the tiers for the character type, but filter for the requested tier if provided
       def tiers
         if @tier
-          # Return only the specific tier
           { "Tier #{@tier}" => @chartype['Tiers']["Tier #{@tier}"] }
         else
-          # Return all tiers if no specific tier is requested
           @chartype['Tiers']
         end
       end
 
-      # Check if a move is selected for the character (based on move name and tier)
-      def move_selected(move_name)
-        return false unless @enactor && @enactor.rr_traits
+      # Check if a move is selected for the character
+      def move_selected?(move_name)
+        return false unless @enactor && @enactor.rr_moves
 
-        # Check if the move is set in the character's rr_traits
-        @enactor.rr_traits.any? do |trait|
-          trait.moves && trait.moves.downcase == move_name.downcase && trait.tier == @tier
-        end
+        # Check if the move is set in the character's rr_moves
+        @enactor.rr_moves.any? { |move| move.name.downcase == move_name.downcase }
       end
 
-      # A method to return the traits of the character
+      # Return enactor's traits (for debugging)
       def enactor_traits
         return "No traits found" unless @enactor && @enactor.rr_traits
         @enactor.rr_traits.map(&:inspect).join(", ")
       end
 
-      # A method to return the traits of the character
+      # Return enactor's moves (for debugging)
       def enactor_moves
-        return "No traits found" unless @enactor && @enactor.rr_moves
-        @enactor.rr_moves.map(&:inspect).join(", ")
+        return "No moves found" unless @enactor && @enactor.rr_moves
+        @enactor.rr_moves.map(&:name).join(", ")
       end      
     end
   end
