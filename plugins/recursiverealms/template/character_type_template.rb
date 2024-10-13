@@ -25,14 +25,24 @@ module AresMUSH
           details.empty? ? "" : " (" + details.join(", ") + ")"
         end 
         
-        # Check if the move is selected on the character
-        def move_selected?(move_name)
-          return false unless @enactor && @enactor.rr_moves
+      # Check if the move is selected on the character
+      def move_selected?(move_name)
+        return false unless @enactor && @enactor.rr_moves
+        @enactor.rr_moves.any? { |move| move.name.downcase == move_name.downcase }
+      end
 
-          # Check if the move is in the character's rr_moves collection
-          @enactor.rr_moves.any? { |move| move.name.downcase == move_name.downcase }
-        end
-                
+      # Highlight selected moves
+      def highlight_moves(moves)
+        moves.map do |move|
+          move_name = move['Name']
+          if move_selected?(move_name)
+            "%xg#{move_name}%xn"  # Highlight selected move in green
+          else
+            move_name
+          end
+        end.join(', ')
+      end
+
 
       end
     end

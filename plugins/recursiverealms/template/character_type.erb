@@ -17,18 +17,9 @@
    <% else %>
    No special abilities available.
    <% end %>
-   <% if attrib["Moves"].is_a?(Array) %>
-   <% highlighted_moves = attrib['Moves'].map do |move| %>
-      <% move_name = move['Name'] %>
-      <% if move_selected?(move_name) %>
-        "<%xg#{move_name}%xn>"  <!-- Highlight the move if it is selected -->
-      <% else %>
-        move_name
-      <% end %>
-   <% end.join(', ') %>
-
-   <%= "%xh%xbMoves:%xn #{highlighted_moves}" %>
-   <% else %>
+  <% if attrib["Moves"].is_a?(Array) %>
+    <%= "%xh%xbMoves:%xn #{highlight_moves(attrib['Moves'])}" %>  <!-- Use the helper method to highlight selected moves -->
+  <% else %>
    No moves available.
    <% end %>    
 
