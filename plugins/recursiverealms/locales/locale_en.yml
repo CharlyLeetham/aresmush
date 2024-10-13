@@ -6,7 +6,7 @@ en:
         char_moves_title: "Moves for: %{chartype} "  
         char_focus_title: "Focuses for: %{chartype} "          
         rr_command_title: "How to use Recursive Realms commands"
-        rr_command_chartype_title: "%xgAvailable Character Types%xn"
+        rr_command_chartype_title: "%xcAvailable Character Types%xn"
         rr_command_focus_title: "Available Focii"
         rr_command_descriptor_title: "Available Descriptors"
         rr_set_title: "CGen Set Commands"
