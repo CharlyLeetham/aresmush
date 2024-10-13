@@ -7,7 +7,7 @@
   <% if attribute_value.is_a?(Hash) %>
     <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
     <% attribute_value.each do |key, val| %>
-      <%= left("%xh#{key}:%xn #{val}", 100)%>
+      <%= left("%xh%xb#{key}:%xn #{val}", 100)%>
     <% end %>
 
     <% elsif attribute_value.is_a?(Array) %>
