@@ -12,6 +12,19 @@ module AresMUSH
           return @chartype["Type"]
         end
 
+        # Build the move details string with conditional fields
+        def build_move_details(move)
+          details = []
+          
+          details << "%xhType:%xn #{move['Type']}" if move['Type']
+          details << "%xhDuration:%xn #{move['Duration']}" if move['Duration']
+          details << "%xhCost:%xn #{move['Cost']}" if move['Cost']
+          details << "%xhModifier:%xn #{move['Modifier']}" if move['Modifier']
+          
+          # Join the details with commas and wrap them in parentheses
+          details.empty? ? "" : " (" + details.join(", ") + ")"
+        end        
+
       end
     end
   end
