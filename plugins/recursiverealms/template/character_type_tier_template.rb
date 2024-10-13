@@ -33,11 +33,15 @@ module AresMUSH
           outputstring = ""
           flavortext = ""
   
-          attribute_value.each do |key, val|
-            if key != "Flavor Text"
-              outputstring += "#{key}: #{val}  "  # Concatenate key-value pairs with spaces
-            else
-              flavortext = "#{key}: #{val}"  # Handle flavor text separately
+          attribute_value.each do |item|
+            if item.is_a?(Hash) # Ensure we're working with a hash
+              item.each do |key, val|
+                if key != "Flavor Text"
+                  outputstring += "#{key}: #{val}  "  # Concatenate key-value pairs with spaces
+                else
+                  flavortext = "#{key}: #{val}"  # Handle flavor text separately
+                end
+              end
             end
           end
   
