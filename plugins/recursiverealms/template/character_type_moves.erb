@@ -1,28 +1,20 @@
 <%= line_with_text t('RecursiveRealms.char_moves_title', :chartype => self.chartypetitle) %>
 <%= left("%xhDescription:%xn #{chartype['Descriptor']}", 100) %>
 
-<!-- Output the value of enactor_traits method for debugging -->
-<%= "rr_traits: #{self.enactor_traits}" %>
-<%= "rr_moves: #{self.enactor_moves}" %>
-
 <% self.tiers.each do |tier, attrib| %>
-  <%= left("%xh#{tier}:%xn", 100) %>
+  <%= left("%xh%xy#{tier}:%xn", 100) %>
   <% if attrib && attrib['Moves'] %> 
-    <%= left("%xhMoves:%xn", 100) %>
+    <%= left("%xh%xbMoves:%xn", 100) %>
     <% attrib['Moves'].each do |move| %>
       <% move_name_downcase = move['Name'].downcase %>
-
-      <!-- Output if the move is selected -->
       <% if self.move_selected?(move_name_downcase) %>
-        <%= left("%xh%xg#{move['Name']}:%xn #{move['Flavor Text']}", 100) %> <!-- Highlight selected move -->
+        <%= left("%xh%xg#{move['Name']}:%xn #{move['Flavor Text']}", 100) %> 
       <% else %>
-        <%= left("%xh#{move['Name']}:%xn #{move['Flavor Text']}", 100) %> <!-- Non-highlighted move -->
+        <%= left("%xh%xb#{move['Name']}:%xn #{move['Flavor Text']}", 100) %> 
       <% end %>
-
-      <!-- Print the details of the move -->
       <% move.each do |key, value| %>
         <% unless key == 'Name' or key == 'Flavor Text' %>
-          <%= left("%xh#{key}:%xn #{value}", 100) %>
+          <%= left("%xh%xb#{key}:%xn #{value}", 100) %>
         <% end %>
       <% end %>
     <% end %>
