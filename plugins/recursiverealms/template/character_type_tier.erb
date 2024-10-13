@@ -16,7 +16,6 @@
             <%= left("%xh%xb#{key}:%xn #{val}", 15) -%>
           <% end %>
         <% end %>
-
     <% elsif attribute_value.is_a?(Array) %>
       <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
       <% attribute_value.each do |item| %>
@@ -25,9 +24,8 @@
         <% end %>
 
       <% end %>
-    <% else %>   
-     <%= "else" %>        
-      <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 100)%>
+    <% else %>        
+      <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 20) -%>
     <% end %>
   <% end %>
 <% end %>
