@@ -7,6 +7,7 @@
     <% if attribute_value.is_a?(Hash) %>
       <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
       <% attribute_value.each do |key, val| %>
+         <%= "Key: #{key.inspect}" %> 
         <% if key == "Flavor Text" %>
           <%= "woooo" %>
         <% end %>
