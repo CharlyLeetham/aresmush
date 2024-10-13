@@ -1,5 +1,5 @@
 <%= line_with_text t('RecursiveRealms.char_type_title', :chartype => self.chartypetitle) %>
-<%=  left("%xh%xbDescription:%xn #{chartype['Descriptor']}", 80) %>
+<%= left("%xh%xbDescription:%xn #{chartype['Descriptor']}", 80) %>
 
 <%= line_with_text t('RecursiveRealms.char_type_attributesheading') %>
 <%= left("%xh%xbMight:%xn #{chartype['Might']}", 80) %>
@@ -11,17 +11,19 @@
 
 <% @chartype['Tiers'].each do |tier, attrib| %>
   <%= left("%xh%xb#{tier}:%xn", 80) %>
-   <%= left("%xh%xbEffort:%xn #{attrib['Effort'] || 'N/A'}  %xh%xbMight Edge:%xn #{attrib['Might Edge'] || 'N/A'} %xh%xbSpeed Edge:%xn #{attrib['Speed Edge'] || 'N/A'}  %xh%xbIntellect Edge:%xn #{attrib['Intellect Edge'] || 'N/A'}  %xh%xbCypher Limit:%xn #{attrib['Cypher Limit'] || 'N/A'}", 100) %>
-   <% if attrib["Special Abilities"].is_a?(Array) %>
-   <%= "%xh%xbSpecial Abilities: %xn#{attrib['Special Abilities'].map { |ability| ability['Name'] }.join(', ')}" %>
-   <% else %>
-   No special abilities available.
-   <% end %>
-  <% if attrib["Moves"].is_a?(Array) %>
-    <%= "%xh%xbMoves:%xn #{self.highlight_moves(attrib['Moves'])}" %> 
+  <%= left("%xh%xbEffort:%xn #{attrib['Effort'] || 'N/A'}  %xhMight Edge:%xn #{attrib['Might Edge'] || 'N/A'} %xhSpeed Edge:%xn #{attrib['Speed Edge'] || 'N/A'}  %xhIntellect Edge:%xn #{attrib['Intellect Edge'] || 'N/A'}  %xhCypher Limit:%xn #{attrib['Cypher Limit'] || 'N/A'}", 100) %>
+   
+  <% if attrib["Special Abilities"].is_a?(Array) %>
+    <%= "%xh%xbSpecial Abilities: %xn#{attrib['Special Abilities'].map { |ability| ability['Name'] }.join(', ')}" %>
   <% else %>
-   No moves available.
-   <% end %>    
+    No special abilities available.
+  <% end %>
+   
+  <% if attrib["Moves"].is_a?(Array) %>
+    <%= "%xh%xbMoves:%xn #{highlight_moves(attrib['Moves'])}" %>  <!-- Use the helper method to highlight selected moves -->
+  <% else %>
+    No moves available.
+  <% end %>    
 
 <% end %>
 
