@@ -23,7 +23,16 @@ module AresMUSH
           
           # Join the details with commas and wrap them in parentheses
           details.empty? ? "" : " (" + details.join(", ") + ")"
-        end        
+        end 
+        
+        # Check if the move is selected on the character
+        def move_selected?(move_name)
+          return false unless @enactor && @enactor.rr_moves
+
+          # Check if the move is in the character's rr_moves collection
+          @enactor.rr_moves.any? { |move| move.name.downcase == move_name.downcase }
+        end
+                
 
       end
     end
