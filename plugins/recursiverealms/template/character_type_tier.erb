@@ -12,10 +12,12 @@
         <% row.each do |item| %>
           <%= "#{item}" %>
           <% if item.is_a?(Hash) %>
+            <%= "Is hash" %>
             <% item.each do |key, val| %>
               <%= "%xh%xb#{key}:%xn #{val}".ljust(35) %>
             <% end %>
           <% else %>
+            <%= "Isn't hash" %>
             <%= "%xh%xb#{item}:%xn".ljust(35) %>
           <% end %>
         <% end %>
