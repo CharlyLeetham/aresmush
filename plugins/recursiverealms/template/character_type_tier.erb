@@ -7,26 +7,22 @@
   <% attrib.each do |attribute_name, attribute_value| %>
     
     <% if attribute_value.is_a?(Array) %>
-      <!-- If it's an array, render items 3 per row -->
       <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
       
       <% group_items(attribute_value).each do |row| %>
         <% row.each do |item| %>
           <% if item.is_a?(Hash) %>
-            <!-- If the item is a hash, print key-value pairs -->
             <% item.each do |key, val| %>
-              <%= "%xh%xb#{key}:%xn #{val}".ljust(35) %> <!-- Left align with padding -->
+              <%= "%xh%xb#{key}:%xn #{val}".ljust(35) %>
             <% end %>
           <% else %>
-            <!-- If it's a simple value, print it -->
             <%= "%xh%xb#{item}:%xn".ljust(35) %>
           <% end %>
         <% end %>
-        <%= "\n" %> <!-- New line after each row of 3 -->
+        <%= "\n" %>
       <% end %>
 
     <% elsif attribute_value.is_a?(Hash) %>
-      <!-- If it's a hash (not in an array), display each key-value pair -->
       <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
       <% attribute_value.each do |key, val| %>
         <%= "%xh%xb#{key}:%xn #{val}".ljust(35) %>
@@ -34,7 +30,6 @@
       <%= "\n" %>
 
     <% else %>
-      <!-- If it's a simple attribute, just display the key and value -->
       <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 100) %>
     <% end %>
 
