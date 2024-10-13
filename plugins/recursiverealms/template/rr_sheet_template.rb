@@ -14,6 +14,10 @@ module AresMUSH
         return @traits.type.capitalize
       end
 
+      def charname
+        return @enactor.name
+      end
+
       def tier
         return @traits.tier || "N/A"
       end
