@@ -8,6 +8,8 @@
     
     <% if attribute_value.is_a?(Array) %>
       <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
+
+      <%= "group_items = #{self.group_items} %>
       
       <% group_items(attribute_value).each do |row| %>
         <% row.each do |item| %>
