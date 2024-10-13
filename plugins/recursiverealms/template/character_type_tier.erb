@@ -1,26 +1,47 @@
 <%= line_with_text t('RecursiveRealms.char_tier_title', :chartype => self.chartypetitle) %>
 <%= left("%xhDescription:%xn #{chartype['Descriptor']}", 100) %>
 
-<%= "#{self.tiers}" %>
 <% self.tiers.each do |tier, attrib| %>
   <%= left("%xh%xy#{tier}:%xn", 100) %>
+
   <% attrib.each do |attribute_name, attribute_value| %>
-    <% if attribute_value.is_a?(Hash) %>
+    
+    <% if attribute_value.is_a?(Array) %>
+      <!-- If it's an array, render items 3 per row -->
+      <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
+      
+      <% group_items(attribute_value).each do |row| %>
+        <div style="display: flex;">
+          <% row.each do |item| %>
+            <div style="flex: 1; padding: 5px;">
+              <% if item.is_a?(Hash) %>
+                <!-- If each item is a hash, display its key-value pairs -->
+                <% item.each do |key, val| %>
+                  <%= left("%xh%xb#{key}:%xn #{val}", 100) %>
+                <% end %>
+              <% else %>
+                <!-- If it's a simple value, display it directly -->
+                <%= left("%xh%xb#{item}:%xn", 100) %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+    <% elsif attribute_value.is_a?(Hash) %>
+      <!-- If it's a hash (not in an array), display each key-value pair -->
       <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
       <% attribute_value.each do |key, val| %>
-        <%= left("%xh%xb#{key}:%xn #{val}", 100)%>
+        <%= left("%xh%xb#{key}:%xn #{val}", 100) %>
       <% end %>
-    <% elsif attribute_value.is_a?(Array) %>
-      <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
-      <% attribute_value.each do |item| %>
-        <% item.each do |key, val| %>
-          <%= left("%xh%xb#{key}:%xn #{val}", 100)%>
-        <% end %>
-      <% end %>
-    <% else %>         
-      <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 100)%>
+
+    <% else %>
+      <!-- If it's a simple attribute, just display the key and value -->
+      <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 100) %>
     <% end %>
+
   <% end %>
+
 <% end %>
 
 <%= footer %>
