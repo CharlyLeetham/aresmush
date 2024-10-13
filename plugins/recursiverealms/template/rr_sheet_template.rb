@@ -1,11 +1,12 @@
 module AresMUSH
   module RecursiveRealms
     class RRSheetTemplate < ErbTemplateRenderer
-      attr_accessor :traits, :special_abilities, :moves
-      def initialize(traits, special_abilities, moves)
+      attr_accessor :traits, :special_abilities, :moves, :enactor
+      def initialize(traits, special_abilities, moves, enactor)
         @traits = traits
         @special_abilities = special_abilities
         @moves = moves
+        @enactor = enactor
         super File.dirname(__FILE__) + "/rr_sheet.erb"
       end
 
