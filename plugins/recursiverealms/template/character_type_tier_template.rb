@@ -45,7 +45,7 @@ module AresMUSH
                 end
               end
               outputstring += "\n"
-              outputstring += "   "
+              outputstring += "      "
             end
           end
   
