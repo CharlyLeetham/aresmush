@@ -1,12 +1,12 @@
 <%= line_with_text t('RecursiveRealms.char_type_title', :chartype => self.chartypetitle) %>
-<%= left("%xhTier:%xn #{tier}", 25) %> <%= left("%xhFocus:%xn #{focus}", 25) %> <%= left("%xhDescriptor:%xn #{descriptor}", 25) %>
-<%= left("%xhMight:%xn #{might}", 25) %> <%= left("%xhSpeed:%xn #{speed}", 25) %> <%= left("%xhIntellect:%xn #{intellect}", 25) %>
-<%= left("%xhEffort:%xn #{effort}", 25) %> <%= left("%xhXP:%xn #{xp}", 25) %> <%= left("%xhMoves Allowed:%xn #{moves_allowed}", 25) %>
+<%= left("%xh%xbTier:%xn #{tier}", 25) %> <%= left("%xh%xbFocus:%xn #{focus}", 25) %> <%= left("%xh%xbDescriptor:%xn #{descriptor}", 25) %>
+<%= left("%xh%xbMight:%xn #{might}", 25) %> <%= left("%xh%xbSpeed:%xn #{speed}", 25) %> <%= left("%xh%xbIntellect:%xn #{intellect}", 25) %>
+<%= left("%xh%xbEffort:%xn #{effort}", 25) %> <%= left("%xh%xbXP:%xn #{xp}", 25) %> <%= left("%xh%xbMoves Allowed:%xn #{moves_allowed}", 25) %>
 
 <%= line_with_text t('RecursiveRealms.rr_sheet_special_abilities_heading') %>
-<%= left("Special Abilities: #{special_abilities_list}", 100) %>
+<%= left("%xbSpecial Abilities: %xn#{special_abilities_list}", 100) %>
 
 <%= line_with_text t('RecursiveRealms.rr_sheet_moves_heading') %>
-<%= left("Moves: #{moves_list}", 100) %>
+<%= left("%xbMoves: %xn #{moves_list}", 100) %>
 
 <%= footer %>
