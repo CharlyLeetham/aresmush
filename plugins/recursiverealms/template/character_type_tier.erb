@@ -26,8 +26,11 @@
       <% end %>
     <% else %> 
       <% if #{attribute_name} == "Effort" %>      
-        <%= left("%xh%xbEffort:%xn #{attribute_value["Effort"]}", 20) %>
-
+        <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 20) %>
+      <% elsif #{attribute_name} == "Cypher Limit"  %>
+        <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 20) -%>
+      <% elseif #{attribute_name} == "Moves Allowed" %>
+        <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 20) %>
       <% end %>
     <% end %>
   <% end %>
