@@ -2,7 +2,7 @@
 <%= line_with_text t('RecursiveRealms.rr_command_chartype_title') %>
 <% if @chartype.present? %>
   <% @chartype.each do |ct| %> 
-    <%= left("%xhTitle:%xn #{ct['Type']}", 30) %> 
+    <%= left("%xh%xbTitle:%xn #{ct['Type']}", 30) %> 
     <%= "%xb%xhDescription:%xn #{ct['Descriptor']}" %>
     <%= left("%xb%xhMight:%xn #{ct['Might']}  %xh%xbSpeed:%xn #{ct['Speed']}   %xh%xbIntellect:%xn #{ct['Intellect']}   %xh%xbAdditional Points:%xn #{ct['Additional Points']}", 165) %>
 
