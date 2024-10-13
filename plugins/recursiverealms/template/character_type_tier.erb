@@ -11,29 +11,27 @@
       <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
       
       <% group_items(attribute_value).each do |row| %>
-        <div style="display: flex;">
-          <% row.each do |item| %>
-            <div style="flex: 1; padding: 5px;">
-              <% if item.is_a?(Hash) %>
-                <!-- If each item is a hash, display its key-value pairs -->
-                <% item.each do |key, val| %>
-                  <%= left("%xh%xb#{key}:%xn #{val}", 100) %>
-                <% end %>
-              <% else %>
-                <!-- If it's a simple value, display it directly -->
-                <%= left("%xh%xb#{item}:%xn", 100) %>
-              <% end %>
-            </div>
+        <% row.each do |item| %>
+          <% if item.is_a?(Hash) %>
+            <!-- If the item is a hash, print key-value pairs -->
+            <% item.each do |key, val| %>
+              <%= "%xh%xb#{key}:%xn #{val}".ljust(35) %> <!-- Left align with padding -->
+            <% end %>
+          <% else %>
+            <!-- If it's a simple value, print it -->
+            <%= "%xh%xb#{item}:%xn".ljust(35) %>
           <% end %>
-        </div>
+        <% end %>
+        <%= "\n" %> <!-- New line after each row of 3 -->
       <% end %>
 
     <% elsif attribute_value.is_a?(Hash) %>
       <!-- If it's a hash (not in an array), display each key-value pair -->
       <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
       <% attribute_value.each do |key, val| %>
-        <%= left("%xh%xb#{key}:%xn #{val}", 100) %>
+        <%= "%xh%xb#{key}:%xn #{val}".ljust(35) %>
       <% end %>
+      <%= "\n" %>
 
     <% else %>
       <!-- If it's a simple attribute, just display the key and value -->
