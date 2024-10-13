@@ -14,6 +14,7 @@ module AresMUSH
       end
 
       def handle
+        client.emit_ooc ("Tiers: #{tiers}")
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type }
         if chartype
           begin
