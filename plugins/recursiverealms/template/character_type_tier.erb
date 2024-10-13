@@ -8,7 +8,7 @@
     
     <% if attribute_value.is_a?(Array) %>
       <%= left("%xh%xb#{attribute_name}:%xn", 100) %>  
-      <%= "#{self.group_items[attribute_value].inspect}" %>    
+      <%= "#{self.group_items(attribute_value).inspect}" %>    
       <% self.group_items(attribute_value).each do |row| %>
         <% row.each do |item| %>
           <%= "#{item}" %>
