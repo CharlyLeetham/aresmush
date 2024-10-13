@@ -12,11 +12,8 @@
       <% end %>
     <% elsif attribute_value.is_a?(Array) %>
       <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
-      <% outputstring, flavortext = build_attribute_strings(attribute_value) %> 
+      <% outputstring = build_attribute_strings(attribute_value) %> 
       <%= outputstring %>  
-      <%= "\n" %>
-      <%= flavortext %>    
-
     <% else %>           
       <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 100)%>
     <% end %>
