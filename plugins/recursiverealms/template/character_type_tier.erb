@@ -11,7 +11,7 @@
 
       <%= "group_items = #{self.group_items(attribute_value)}" %>
       
-      <% group_items(attribute_value).each do |row| %>
+      <% self.group_items(attribute_value).each do |row| %>
         <% row.each do |item| %>
           <% if item.is_a?(Hash) %>
             <% item.each do |key, val| %>
