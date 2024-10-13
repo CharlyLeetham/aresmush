@@ -7,7 +7,7 @@
     <% if attribute_value.is_a?(Hash) %>
       <%= left("%xh%xb#{attribute_name}:%xn", 20) %>
         <% if #{attribute_name} == "Physical Nature" %>
-          <%= "%xh%xbEdges%xn" %>
+          <%= left("%xh%xbEdges:%xn", 15) -%>
           <%= left("%xh%xbMight:%xn #{attribute_value["Might Edge"]}", 15) -%>
           <%= left("%xh%xbSpeed:%xn #{attribute_value["Speed Edge"]}", 15) -%>
           <%= left("%xh%xbIntellect:%xn #{attribute_value["Intellect Edge"]}", 15) %>
