@@ -17,10 +17,18 @@
       <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
       <% attribute_value.each do |item| %>
         <% item.each do |key, val| %>
+          <%= "Key: #{key.inspect}" %> 
+          <% if key == "Flavor Text" %>
+            <%= "woooo" %>
+          <% end %>          
           <%= left("%xh%xb#{key}:%xn #{val}", 100)%>
         <% end %>
       <% end %>
-    <% else %>         
+    <% else %>     
+      <%= "Key: #{key.inspect}" %> 
+      <% if key == "Flavor Text" %>
+        <%= "woooo" %>
+      <% end %>        
       <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 100)%>
     <% end %>
   <% end %>
