@@ -3,7 +3,7 @@ module AresMUSH
     class CharacterTypeSATemplate < ErbTemplateRenderer
         attr_accessor :chartype, :tier_selection
   
-        def initialize(chartype, tierselection)
+        def initialize(chartype, tier_selection = nil)
           @chartype = chartype
           @tier_selection = tier_selection          
           super File.dirname(__FILE__) + "/character_type_sa.erb"
