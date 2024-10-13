@@ -14,7 +14,7 @@
       <% end %>
       <% move.each do |key, value| %>
         <% unless key == 'Name' or key == 'Flavor Text' %>
-          <%= left("%xh%xb#{key}:%xn #{value}", 20) %>
+          <%= left("%xh%xb#{key}:%xn #{value}", 25) %>
         <% end %>
       <% end %>
     <% end %>
