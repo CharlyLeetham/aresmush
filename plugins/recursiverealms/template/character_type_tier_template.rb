@@ -42,7 +42,7 @@ module AresMUSH
                     outputstring += left("%xh%xb#{key}:%xn #{val}", 20)
                   else
                     # Subsequent lines: indent
-                    outputstring += "  " + left("%xh%xb#{key}:%xn #{val}", 20)
+                    outputstring += "ddd  " + left("%xh%xb#{key}:%xn #{val}", 20)
                   end
                 else
                   # Handle flavor text separately
