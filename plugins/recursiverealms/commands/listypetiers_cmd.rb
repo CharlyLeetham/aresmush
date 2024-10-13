@@ -18,12 +18,20 @@ module AresMUSH
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type }
         if chartype
           begin
-             template = CharacterTypeTierTemplate.new(chartype, tiers)
-             client.emit template.render
+            # If no specific tier is provided, show all tiers
+            if self.tiers.nil? || self.tiers.empty?
+              template = CharacterTypeTierTemplate.new(chartype, nil) # Pass nil to show all tiers
+            else
+              # Otherwise, show the specific tier
+              template = CharacterTypeTierTemplate.new(chartype, self.tiers)
+            end
+            client.emit template.render
           rescue => e   
-            client.emit_failure "An Error occured: #{e.message}"
+            client.emit_failure "An error occurred: #{e.message}"
             Global.logger.error "Error reading character types: #{e.message}"            
           end
+        else
+          client.emit_failure "Character type '#{self.type}' not found in the configuration."
         end
       end
     end

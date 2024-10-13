@@ -13,6 +13,16 @@ module AresMUSH
           return @chartype["Type"]
         end
 
+        def tiers
+          # If a specific tier is provided, return only that tier
+          if @tier
+            return { "Tier #{@tier}" => @chartype['Tiers']["Tier #{@tier}"] }
+          else
+            # Otherwise, return all tiers
+            return @chartype['Tiers']
+          end
+        end        
+
       end
     end
   end

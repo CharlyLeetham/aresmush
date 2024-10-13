@@ -1,31 +1,25 @@
-<%= "#{tiers}" %>
 <%= line_with_text t('RecursiveRealms.char_tier_title', :chartype => self.chartypetitle) %>
-<%=  left("%xhDescription:%xn #{chartype['Descriptor']}", 100) %>
+<%= left("%xhDescription:%xn #{chartype['Descriptor']}", 100) %>
 
-<% @chartype['Tiers'].each do |tier, attrib| %>
-<%= left("%xh%xy#{tier}:%xn", 100) %>
-<% attrib.each do |attribute_name, attribute_value| %>
-  <% if attribute_value.is_a?(Hash) %>
-    <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
-    <% attribute_value.each do |key, val| %>
-      <%= left("%xh%xb#{key}:%xn #{val}", 100)%>
-    <% end %>
-
-    <% elsif attribute_value.is_a?(Array) %>
-    <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
-      <% attribute_value.each do |item| %>
-      <% item.each do |key, val| %>
-        <%#= left("%xh%xb#{key}:%xn #{val}", 100)%>
-        <%= "%xh%xb#{key}:%xn #{val}" %>
+<% self.tiers.each do |tier, attrib| %>
+  <%= left("%xh%xy#{tier}:%xn", 100) %>
+  <% attrib.each do |attribute_name, attribute_value| %>
+    <% if attribute_value.is_a?(Hash) %>
+      <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
+      <% attribute_value.each do |key, val| %>
+        <%= left("%xh%xb#{key}:%xn #{val}", 100)%>
       <% end %>
-
-    <% end %>    
-  <% else %>         
-    <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 100)%>
+    <% elsif attribute_value.is_a?(Array) %>
+      <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
+      <% attribute_value.each do |item| %>
+        <% item.each do |key, val| %>
+          <%= left("%xh%xb#{key}:%xn #{val}", 100)%>
+        <% end %>
+      <% end %>
+    <% else %>         
+      <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 100)%>
+    <% end %>
   <% end %>
-
 <% end %>
 
 <%= footer %>
-
-<% end %>
