@@ -1,6 +1,6 @@
 en:
     RecursiveRealms:
-        char_sheet_title: "%xcSheet for: %{charname}%xn"
+        char_sheet_title: "%xcSheet for: %{charname} (%chartype)%xn"
         char_type_title: "%xcCharacter Type for: %{chartype} %xn"
         char_tier_title: "%xcTiers for: %{chartype} %xn" 
         char_sa_title: "Special Abilities for: %{chartype} "       
