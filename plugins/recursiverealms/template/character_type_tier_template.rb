@@ -3,8 +3,9 @@ module AresMUSH
     class CharacterTypeTierTemplate < ErbTemplateRenderer
         attr_accessor :chartype, :tiers
   
-        def initialize(chartype)
+        def initialize(chartype, tiers)
           @chartype = chartype
+          @tiers = tiers
           super File.dirname(__FILE__) + "/character_type_tier.erb"
         end
 
