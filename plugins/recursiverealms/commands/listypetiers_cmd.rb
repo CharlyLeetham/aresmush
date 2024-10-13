@@ -18,7 +18,7 @@ module AresMUSH
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type }
         if chartype
           begin
-             template = CharacterTypeTierTemplate.new(chartype)
+             template = CharacterTypeTierTemplate.new(chartype. tiers)
              client.emit template.render
           rescue => e   
             client.emit_failure "An Error occured: #{e.message}"
