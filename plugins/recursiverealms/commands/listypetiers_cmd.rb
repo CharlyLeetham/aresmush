@@ -6,13 +6,14 @@ module AresMUSH
       attr_accessor :split_switch, :topcmd, :type, :value
 
       def parse_args
-        split_switch = RecursiveRealms.split_command(@cmd)
+        split_switch = RecursiveRealms.multi_split_command(@cmd)
         self.topcmd = split_switch[0]
         self.type = split_switch[1]
         self.value = split_switch[2]
       end
 
       def handle
+        client.emit_ooc "topcmd: #{topcmd}, type: #{type}, value: #{value}"
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.type }
         if chartype
           begin
