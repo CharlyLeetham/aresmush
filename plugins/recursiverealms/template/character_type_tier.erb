@@ -25,15 +25,12 @@
 
       <% end %>
     <% else %> 
-      <% if #{attribute_name} == "Physical Nature" %>
-          <%= "dkdkdkdkd" %>
-      <% end %>
       <% if #{attribute_name} == "Effort" %>      
-                            <%= "weeeee #{attribute_name} " %>
-        <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 20) %>
-      <% else %>
-                            <%= "wee2" %>
-        <%= left("%xh%xb#{attribute_name}:%xn #{attribute_value}", 20) -%>
+        <%= left("%xh%xbEffort:%xn #{attribute_value["Effort"]}", 20) %>
+      <% elsif #{attribute_name} == "Cypher Limit"  %>
+        <%= left("%xh%xbCypher Limit:%xn #{attribute_value["Cypher Limit"]}", 20) -%>
+      <% elseif #{attribute_name} == "Moves Allowed" %>
+        <%= left("%xh%xbMoves Allowed:%xn #{attribute_value["Moves Allowed"]}", 20) %>
       <% end %>
     <% end %>
   <% end %>
