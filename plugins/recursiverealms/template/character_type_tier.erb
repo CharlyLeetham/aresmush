@@ -14,8 +14,8 @@
     <%= left("%xh%xb#{attribute_name}:%xn", 100) %>
       <% attribute_value.each do |item| %>
       <% item.each do |key, val| %>
-        <%#= left("%xh%sb#{key}:%xn #{val}", 100)%>
-        <%= "%xh%xy#{key}:%xn #{val}" %>
+        <%#= left("%xh%xb#{key}:%xn #{val}", 100)%>
+        <%= "%xh%xb#{key}:%xn #{val}" %>
       <% end %>
 
     <% end %>    
