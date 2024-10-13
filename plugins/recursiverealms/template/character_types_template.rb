@@ -5,7 +5,7 @@ module AresMUSH
   
         def initialize(chartype)
           @chartype = chartype
-          puts "#{@chartype}"
+          puts "Chartype: #{@chartype}"
           super File.dirname(__FILE__) + "/character_types.erb"
         end
 
