@@ -32,7 +32,7 @@ module AresMUSH
         if self.ability_name
           # Remove the specific ability by name
           client.emit_ooc "Here"
-          ability_to_remove = abilities.find { |ability| ability.name.downcase == self.ability_name.downcase }
+          ability_to_remove = abilities.to_a.find { |ability| ability.name.downcase == self.ability_name.downcase }
           if ability_to_remove.nil?
             client.emit_failure "No special ability found with the name '#{self.ability_name}'."
           else
