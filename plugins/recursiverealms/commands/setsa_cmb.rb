@@ -28,31 +28,40 @@ module AresMUSH
         # Get all special abilities for the character's current and lower tiers
         all_special_abilities = RecursiveRealms.get_all_special_abilities_for_tier_and_below(chartype, traits.tier)
 
-        # Iterate over all abilities to set them on the character
-        all_special_abilities.each do |ability|
-          # Expertise limit for choosing options
-          expertise_limit = ability['Expertise'] ? ability['Expertise'].split('/').first.to_i : 0
-
-          if ability['SkList']
-            options = ability['SkList'].split(',').map(&:strip)
-
-            if options.size == 1
-              # Automatically set the single option
-              self.choices = options.first
-              RecursiveRealms.set_special_ability_choices(ability, self.choices, expertise_limit, enactor, client, traits)
-              client.emit_success "The option '#{self.choices}' has been automatically set for the ability '#{ability['Name']}'."
-            else
-              # Display available options if multiple choices are available
-              client.emit_ooc "Available options for '#{ability['Name']}': #{options.join(', ')}"
-              client.emit_ooc "You can select up to #{expertise_limit} options."
-            end
-          else
-            # No options to set, just add the ability
-            RecursiveRealms.set_special_ability_choices(ability, nil, expertise_limit, enactor, client, traits)
-            client.emit_success "The ability '#{ability['Name']}' has been set."
-          end
+        # If no ability name is provided, show all special abilities, highlighting what's already set
+        if self.ability_name.nil?
+          RecursiveRealms.new_list_all_special_abilities(all_special_abilities, enactor, client, traits)
+          return
         end
-      end
-    end
-  end
-end
+
+        # Find the ability by name
+        ability = all_special_abilities.find { |a| a['Name'].casecmp(self.ability_name).zero? }
+        if ability.nil?
+          client.emit_failure "Special Ability '#{self.ability_name}' not found."
+          return
+        end
+
+        # Expertise limit for choosing options
+        expertise_limit = ability['Expertise'] ? ability['Expertise'].split('/').first.to_i : 0
+
+        # Handle case where the ability has options
+        if ability['SkList']
+          options = ability['SkList'].split(',').map(&:strip)
+
+          if options.size == 1
+            # Automatically set the single option
+            self.choices = options.first
+            RecursiveRealms.set_special_ability_choices(ability, self.choices, expertise_limit, enactor, client, traits)
+            client.emit_success "The option '#{self.choices}' has been automatically set for the ability '#{self.ability_name}'."
+          elsif self.choices.nil?
+            # Display available options if no choices are provided
+            client.emit_ooc "Available options for '#{self.ability_name}': #{options.join(', ')}"
+            client.emit_ooc "You can select up to #{expertise_limit} options."
+          else
+            # Set the selected choices for the ability
+            RecursiveRealms.set_special_ability_choices(ability, self.choices, expertise_limit, enactor, client, traits)
+          end
+        else
+          # No options to set, just add the ability
+          RecursiveRealms.set_special_ability_choices(ability, nil, expertise_limit, enactor, client, traits)
+          client.emit_success "The ability '#{self.ability_name}' has been set."
