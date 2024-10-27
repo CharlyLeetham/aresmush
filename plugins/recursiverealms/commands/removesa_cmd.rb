@@ -12,9 +12,12 @@ module AresMUSH
         if split_switch.length > 2 && split_switch[2].match?(/^\d+$/)
           self.tier = split_switch[2].to_i
           self.ability_name = nil
+        elsif split_switch.length > 2
+          self.tier = nil
+          self.ability_name = titlecase_arg(split_switch[2])
         else
           self.tier = nil
-          self.ability_name = split_switch.length > 2 ? split_switch[2] : nil
+          self.ability_name = nil
         end
       end
 
