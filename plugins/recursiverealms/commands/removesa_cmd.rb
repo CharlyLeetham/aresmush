@@ -50,8 +50,10 @@ module AresMUSH
           end
         else
           # Remove all special abilities if no tier or ability name is specified
-          abilities.each { |ability| enactor.rr_specialabilities.delete(ability); ability.delete }
-          client.emit_success "All special abilities have been removed."
+          abilities.each do |ability|
+              ability.delete # Ohm method to delete the move object
+            end
+            client.emit_success "All Special Abilities have been removed."
         end
       end
     end
