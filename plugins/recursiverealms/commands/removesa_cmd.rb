@@ -24,6 +24,8 @@ module AresMUSH
       def handle
         abilities = enactor.rr_specialabilities
 
+        client.emit_ooc "tier: #{tier}, Ability: #{ability_name}"
+
         if abilities.empty?
           client.emit_failure "You have no special abilities to remove."
           return
