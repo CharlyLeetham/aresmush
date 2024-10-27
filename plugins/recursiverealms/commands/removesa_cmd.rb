@@ -31,12 +31,11 @@ module AresMUSH
 
         if self.ability_name
           # Remove the specific ability by name
-          client.emit_ooc "Here"
           ability_to_remove = abilities.to_a.find { |ability| ability.name.downcase == self.ability_name.downcase }
           if ability_to_remove.nil?
             client.emit_failure "No special ability found with the name '#{self.ability_name}'."
           else
-            abilities.delete(ability_to_remove)
+            enactor.rr_specialabilities.delete(ability_to_remove)
             ability_to_remove.delete
             client.emit_success "The special ability '#{self.ability_name}' has been removed."
           end
@@ -47,12 +46,12 @@ module AresMUSH
           if abilities_to_remove.empty?
             client.emit_failure "No special abilities found for Tier #{self.tier}."
           else
-            abilities_to_remove.each { |ability| ability.delete }
+            abilities_to_remove.each { |ability| enactor.rr_specialabilities.delete(ability); ability.delete }
             client.emit_success "All special abilities for Tier #{self.tier} have been removed."
           end
         else
           # Remove all special abilities if no tier or ability name is specified
-          abilities.each { |ability| ability.delete }
+          abilities.to_a.each { |ability| enactor.rr_specialabilities.delete(ability); ability.delete }
           client.emit_success "All special abilities have been removed."
         end
       end
