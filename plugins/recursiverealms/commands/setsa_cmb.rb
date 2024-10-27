@@ -65,3 +65,8 @@ module AresMUSH
           # No options to set, just add the ability
           RecursiveRealms.set_special_ability_choices(ability, nil, expertise_limit, enactor, client, traits)
           client.emit_success "The ability '#{self.ability_name}' has been set."
+        end
+      end
+    end
+  end
+end
