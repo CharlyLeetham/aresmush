@@ -3,7 +3,24 @@ module AresMUSH
     class RRSheetCmd
       include CommandHandler
 
+      attr_accessor :target_name
+
+      def parse_args
+        split_switch = RecursiveRealms.multi_split_command(cmd)
+        self.target_name = split_switch.length > 1 ? split_switch[1] : enactor_name
+
+      end
+
       def handle
+
+        # Find the target character (default to enactor if no name is provided)
+        result = ClassTargetFinder.find(self.target_name, Character, searcher)
+        client.emit_ooc "#{result}"
+
+        if target.nil?
+          client.emit_ooc "Character '#{target_name}' not found."
+          return
+        end        
         # Fetch and display the character's rr_traits
         traits = enactor.rr_traits.first
         if traits
