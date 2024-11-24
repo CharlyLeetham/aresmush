@@ -50,7 +50,7 @@ module AresMUSH
           end
           client.emit_ooc "Here"
           # Remove the tier and all tiers above it
-          tiers_to_remove = (self.tier.to_i..current_tier).to_a
+          tiers_to_remove = (self.tier.to_i..current_tier.to_i).to_a
           client.emit_ooc "#{tiers_to_remove.inspect}"
           traits.update(tier: self.tier.to_i - 1)
           client.emit_success "#{target.name}'s tier has been updated to #{self.tier.to_i - 1}. Removed Tier(s): #{tiers_to_remove.join(', ')}."
