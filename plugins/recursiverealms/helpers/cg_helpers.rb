@@ -249,7 +249,7 @@ module AresMUSH
 
       move = moves.find { |m| m['Name'].downcase == move_name.downcase }
       if move.nil?
-        client.emit_failure "Move '#{move_name}' not found."
+        client.emit_failure "Move rrr'#{move_name}' not found."
         return
       end
 
