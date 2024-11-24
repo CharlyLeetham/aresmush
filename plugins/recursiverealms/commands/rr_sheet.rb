@@ -15,8 +15,9 @@ module AresMUSH
 
         # Find the target character (default to enactor if no name is provided)
         result = ClassTargetFinder.find(self.target_name, Character, enactor)
-        client.emit_ooc "#{result.Character}"
-        client.emit_ooc "#{enactor}"
+        ClassTargetFinder.find(self.target_name, Character, enactor) do |model|
+          client.emit_ooc "model.inspect"
+        end
 
         if target_name.nil?
           client.emit_ooc "Character '#{target_name}' not found."
