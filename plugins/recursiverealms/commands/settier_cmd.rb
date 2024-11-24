@@ -5,12 +5,18 @@ module AresMUSH
 
       attr_accessor :value
 
+      def check_permission
+        return t('dispatcher.not_allowed') if !RecursiveRealms.can_manage_apps?(enactor)
+        return nil
+      end
+      
       def parse_args
         split_switch = RecursiveRealms.multi_split_command(@cmd)
         self.value = split_switch[2] # Only the tier value is needed
       end
 
       def handle
+
         client.emit_ooc "Setting Tier to #{value}"
 
         if self.value.nil?

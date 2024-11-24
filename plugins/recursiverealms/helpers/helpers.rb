@@ -14,6 +14,10 @@ module AresMUSH
             return split_switch[1..-1] # Return all arguments except the first (which is typically the command root)
         end
 
+        def self.can_manage_apps?(actor)
+            actor && actor.has_permission?("manage_apps")
+        end  
+
         
     end
 end
