@@ -44,10 +44,10 @@ module AresMUSH
           # Ensure the tier is within the character's current tier range
           current_tier = traits.tier || 0
           client.emit_ooc "#{current_tier}"
-          if current_tier < self.tier.to_i
-            client.emit_failure "#{target.name} is not set to Tier #{self.tier} or higher."
-            return
-          end
+          #if current_tier < self.tier.to_i
+           # client.emit_failure "#{target.name} is not set to Tier #{self.tier} or higher."
+           # return
+          #end
   
           # Remove the tier and all tiers above it
           tiers_to_remove = (self.tier.to_i..current_tier).to_a
