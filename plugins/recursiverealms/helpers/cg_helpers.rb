@@ -47,6 +47,26 @@ module AresMUSH
       end
     end
 
+    def self.remove_special_abilities(target, tier = nil, client)
+      abilities = target.rr_specialabilities.to_a
+  
+      if tier
+        # Remove special abilities for the specified tier
+        abilities_to_remove = abilities.select { |ability| ability.tier.to_i == tier.to_i }
+        abilities_to_remove.each(&:delete) # Ohm method to delete the ability object
+  
+        if abilities_to_remove.any?
+          client.emit_success "Special Abilities for Tier #{tier} have been removed from #{target.name}."
+        else
+          client.emit_failure "No Special Abilities found for Tier #{tier} on #{target.name}."
+        end
+      else
+        # Remove all special abilities for the target if no tier is specified
+        #abilities.each(&:delete) # Ohm method to delete the ability object
+        #client.emit_success "All Special Abilities have been removed from #{target.name}."
+      end
+    end  
+
 
     def self.list_unset_abilities_with_options(abilities, enactor, client)
       client.emit_ooc "Special Abilities that have unset options (SkList):"

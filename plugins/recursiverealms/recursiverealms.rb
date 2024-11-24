@@ -136,7 +136,7 @@ module AresMUSH
               when "type"
                 return SetTypeCmd
               when "tier"
-                return SetTierCmd
+                return RemoveTierCmd
               when "sa"
                 return RemoveSACmd
               when "moves"
