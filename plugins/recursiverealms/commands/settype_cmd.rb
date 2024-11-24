@@ -19,7 +19,7 @@ module AresMUSH
             return RecursiveRealms.handle_missing_type(client, enactor) 
           end          
 
-          chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.value }
+          chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == self.value.downcase }
           if chartype
             client.emit_ooc "#{self.value.capitalize} Selected"
             # Find the traits record, or create a new one if it doesn't exist
