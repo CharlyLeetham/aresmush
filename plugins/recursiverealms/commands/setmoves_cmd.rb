@@ -84,7 +84,7 @@ module AresMUSH
         if move.nil?
           client.emit_failure "Move '#{self.move_name}' not found."
           move_list = moves.map { |move| move['Name'] }.join(", ")
-          client.emit_ooc "Available Moves: #{move_list}"
+          client.emit_ooc "Available Moves 2: #{move_list}"
           return
         end
 
