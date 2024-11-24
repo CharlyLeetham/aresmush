@@ -3,49 +3,52 @@ module AresMUSH
     class SetTierCmd
       include CommandHandler
 
-      attr_accessor :value
+      attr_accessor :value, :target_name
 
       def check_permission
         return t('dispatcher.not_allowed') if !RecursiveRealms.can_manage_apps?(enactor)
         return nil
       end
-      
+
       def parse_args
-        split_switch = RecursiveRealms.multi_split_command(@cmd)
-        self.value = split_switch[2] # Only the tier value is needed
-      end
+        split_switch = RecursiveRealms.multi_split_command(cmd)
+        self.value = split_switch[2] # The tier value
+        self.target_name = split_switch.length > 3 ? split_switch[3] : enactor_name  #character_name      
+      end      
 
       def handle
+        # Find the target character (default to enactor if no name is provided)
+        result = ClassTargetFinder.find(self.target_name, Character, enactor)
 
-        client.emit_ooc "Setting Tier to #{value}"
+        if result.error
+          client.emit_failure "Error: #{result.error}"
+          return
+        end
 
-        if self.value.nil?
-          return RecursiveRealms.handle_missing_type(client, enactor) 
-        end 
-        
-        # Check if the tier is a valid number
-        if !self.value || !self.value.is_integer? || self.value.to_i <= 0
-          return client.emit_failure "Please provide a valid tier number."
-        end   
-        
-        # Find or create the traits record
-        traits = enactor.rr_traits.first
+        traits = result.target.rr_traits.first
+
         if traits.nil?
-          return client.emit_failure "You need to set a character type before you can adjust the tier."
+          client.emit_failure "#{result.target.name} needs to set a character type before adjusting the tier."
+          return
         end
 
-        # Update the tier in the character's traits
+        # Update the tier
+        if !self.value.is_integer? || self.value.to_i <= 0
+          client.emit_failure "Please provide a valid tier number."
+          return
+        end
+
         traits.update(tier: self.value.to_i)
-        client.emit_success "Your character's tier has been updated to #{self.value}."
+        client.emit_success "#{result.target.name}'s tier has been updated to #{self.value}."
 
-        # Fetch the character type from the configuration
-        chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
-
+        # Fetch and update character details based on type
+        chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].casecmp(traits.type).zero? }
         if chartype.nil?
-          return client.emit_failure "Character type '#{traits.type}' not found in the configuration."
+          client.emit_failure "Character type '#{traits.type}' not found in the configuration."
+          return
         end
 
-        # Update effort
+        # Update Effort
         tier_key = "Tier #{self.value}"
         effort = chartype['Tiers'][tier_key]['Effort']
         if effort
@@ -61,7 +64,7 @@ module AresMUSH
         # Add Special Abilities for the new tier
         special_abilities = chartype['Tiers'][tier_key]['Special Abilities']
         if special_abilities
-          RecursiveRealms.add_special_abilities(special_abilities, self.value.to_i, enactor, client)
+          RecursiveRealms.add_special_abilities(special_abilities, self.value.to_i, result.target, client)
         end
       end
     end
