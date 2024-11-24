@@ -241,15 +241,21 @@ module AresMUSH
       end
 
       tier_key = "Tier #{traits.tier}"
-      moves = chartype['Tiers'][tier_key]['Moves']
+      current_tier = traits.tier.to_i          
+
+      moves = chartype['Tiers']
+      .select { |key, _| key.match(/Tier (\d+)/) && $1.to_i <= current_tier }
+      .map { |_, data| data['Moves'] || [] }
+      .flatten      
+      #moves = chartype['Tiers'][tier_key]['Moves']
       if moves.nil?
         client.emit_failure "Moves not found for Tier #{traits.tier}."
         return
       end
 
-      move = moves.find { |m| m['Name'].downcase == move_name.downcase }
+      move = moves.to_a.find { |m| m['Name'].downcase == move_name.downcase }
       if move.nil?
-        client.emit_failure "Move rrr'#{move_name}' not found."
+        client.emit_failure "Move '#{move_name}' not found."
         return
       end
 
