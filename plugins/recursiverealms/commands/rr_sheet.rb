@@ -24,7 +24,7 @@ module AresMUSH
 
         # Fetch and display the character's rr_traits
         traits = result.target.rr_traits.first
-        client.emit_ooc "#{traits}"
+        client.emit_ooc "#{traits.inspect}"
         if traits
           traits = result.target.rr_traits.first
 
