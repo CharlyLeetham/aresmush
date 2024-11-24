@@ -63,7 +63,9 @@ module AresMUSH
       def descriptor
         selected_descriptor = @traits.descriptor
         @descriptors = Global.read_config("RecursiveRealms", "descriptors").find { |c| c['ID'].to_i == selected_descriptor.to_i }
-        return @descriptors['Descriptor'] || "N/A"
+        #return @descriptors['Descriptor'] || "N/A"
+          # Return the descriptor or a blank string if not found
+        @descriptors && @descriptors['Descriptor'] || "N/A"
       end
 
     end
