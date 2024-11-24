@@ -154,8 +154,9 @@ module AresMUSH
           #reset command
           when "reset"
             return RRResetCmd
-          #Sheet command  
-          when "sheet"
+          #Sheet command 
+          #Focus Commands  
+          when ->(args) { args.start_with?('sheet') } 
             return RRSheetCmd
   
           #I don't know if these are needed, but I'm leaving them as place holders (25 Aug 2024)
