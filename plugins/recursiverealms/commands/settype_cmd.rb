@@ -13,8 +13,6 @@ module AresMUSH
         end
   
         def handle
-          client.emit_ooc "#{topcmd}, #{type}, #{value}"
-
           if self.value.nil?
             return RecursiveRealms.handle_missing_type(client, enactor) 
           end          
