@@ -89,7 +89,7 @@ module AresMUSH
 
         client.emit_ooc "#{moves.inspect}"
 
-        move = moves.find { |m| m['Name'].downcase == self.move_name.downcase }
+        move = moves.find.to_a { |m| m['Name'].downcase == self.move_name.downcase }
 
         if move.nil?
           client.emit_failure "Move '#{self.move_name}' not found."
