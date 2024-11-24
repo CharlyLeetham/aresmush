@@ -74,7 +74,7 @@ module AresMUSH
         # If no move name is given, show a list of available moves for the current tier
         if self.move_name.nil? || self.move_name.empty?
           move_list = moves.map { |move| move['Name'] }.join(", ")
-          client.emit_ooc "Available Moves: #{move_list}"
+          client.emit_ooc "Available Moves 1: #{move_list}"
           return
         end
 
