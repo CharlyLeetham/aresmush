@@ -60,4 +60,5 @@ Spinner
 `rr/rmove/moves/[move]` - Remove the Move on the character
 
 
-`rr/sheet` - Gives a very basic output of the current characters sheet - for testing at the moment.
+`rr/sheet` - Shows your sheet
+`rr/sheet/[character name]` - Shows another Characters Sheet 
