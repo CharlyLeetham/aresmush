@@ -52,9 +52,11 @@ module AresMUSH
           traits.update(tier: self.tier.to_i - 1)
           client.emit_success "#{target.name}'s tier has been updated to #{self.tier.to_i - 1}. Removed Tier(s): #{tiers_to_remove.join(', ')}."
   
-          # Remove abilities for the tiers being removed
           tiers_to_remove.each do |tier|
+            # Remove abilities for the tiers being removed
             RecursiveRealms.remove_special_abilities(target, tier, client)
+            # Remove moves
+            RecursiveRealms.remove_moves(target, tier, client)            
           end
   
           client.emit_success "Special abilities and effects for Tiers #{tiers_to_remove.join(', ')} have been removed for #{target.name}."
