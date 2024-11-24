@@ -17,7 +17,7 @@ module AresMUSH
         result = ClassTargetFinder.find(self.target_name, Character, enactor)
         client.emit_ooc "#{result}"
 
-        if target.nil?
+        if target_name.nil?
           client.emit_ooc "Character '#{target_name}' not found."
           return
         end        
