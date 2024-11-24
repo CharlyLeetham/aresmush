@@ -17,6 +17,8 @@ module AresMUSH
         end
   
         def handle
+        
+          client.emit_ooc "Tier: #{self.tier}, Targ: #{self.target_name}"
           # Validate tier input
           if !self.tier.is_integer? || self.tier.to_i <= 0
             client.emit_failure "Please provide a valid tier number."
