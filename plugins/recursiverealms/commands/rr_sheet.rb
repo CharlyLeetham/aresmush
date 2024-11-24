@@ -13,22 +13,21 @@ module AresMUSH
 
       def handle
 
-        # Find the target character (default to enactor if no name is provided)
-        result = ClassTargetFinder.find(self.target_name, Character, enactor)
-        client.emit_ooc "#{result.inspect}"
-
-        ClassTargetFinder.with_a_character(self.target_name, Character, enactor) do |model|
-          client.emit_ooc "model.inspect"
-        end
-
         if target_name.nil?
           client.emit_ooc "Character '#{target_name}' not found."
           return
-        end        
+        end  
+
+        # Find the target character (default to enactor if no name is provided)
+        result = ClassTargetFinder.find(self.target_name, Character, enactor)
+        #client.emit_ooc "#{result.inspect}"
+
         # Fetch and display the character's rr_traits
         traits = result.target.rr_traits.first
+        client.emit_ooc "#{traits}"
         if traits
           traits = result.target.rr_traits.first
+
           if traits
             # Pass the character's traits, special abilities, and moves to the template
             template = RRSheetTemplate.new(traits, result.target.rr_specialabilities, result.target.rr_moves, result.target)
