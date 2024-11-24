@@ -14,7 +14,7 @@ module AresMUSH
       def handle
 
         # Find the target character (default to enactor if no name is provided)
-        result = ClassTargetFinder.find(self.target_name, Character, searcher)
+        result = ClassTargetFinder.find(self.target_name, Character, enactor)
         client.emit_ooc "#{result}"
 
         if target.nil?
