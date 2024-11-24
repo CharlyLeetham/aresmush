@@ -48,7 +48,7 @@ module AresMUSH
             client.emit_failure "#{target.name} is not set to Tier #{self.tier} or higher."
             return
           end
-  
+          client.emit_ooc "Here"
           # Remove the tier and all tiers above it
           tiers_to_remove = (self.tier.to_i..current_tier).to_a
           client.emit_ooc "#{tiers_to_remove.inspect}"
