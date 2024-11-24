@@ -277,6 +277,26 @@ module AresMUSH
       RecursiveRealms.emit_moves_status(enactor, client)
     end
 
+    def self.remove_moves(target, tier = nil, client)
+      moves = target.rr_moves.to_a
+  
+      if tier
+        # Remove moves for the specified tier
+        moves_to_remove = moves.select { |move| move.tier.to_i == tier.to_i }
+        moves_to_remove.each(&:delete) # Ohm method to delete the move object
+  
+        if moves_to_remove.any?
+          client.emit_success "Moves for Tier #{tier} have been removed from #{target.name}."
+        else
+          client.emit_failure "No moves found for Tier #{tier} on #{target.name}."
+        end
+      else
+        # Remove all moves for the target if no tier is specified
+        #moves.each(&:delete) # Ohm method to delete the move object
+        #client.emit_success "All moves have been removed from #{target.name}."
+      end
+    end    
+
 
     # Helper method to calculate and emit the current move status
     def self.emit_moves_status(enactor, client)
