@@ -26,6 +26,7 @@ module AresMUSH
         end
 
         traits = result.target.rr_traits.first
+        client.emit_ooc "#{traits.inspect}"
 
         if traits.nil?
           client.emit_failure "#{result.target.name} needs to set a character type before adjusting the tier."
