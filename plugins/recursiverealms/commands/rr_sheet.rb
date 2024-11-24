@@ -16,7 +16,11 @@ module AresMUSH
         # Find the target character (default to enactor if no name is provided)
         result = ClassTargetFinder.find(self.target_name, Character, enactor)
 
-        client.emit "#{result.inspect}"
+        # Error checking: Handle cases where the target is not found
+        if result.error
+          client.emit_ooc "Error: #{result.error}"
+          return
+        end
 
         # Fetch and display the character's rr_traits
         traits = result.target.rr_traits.first
