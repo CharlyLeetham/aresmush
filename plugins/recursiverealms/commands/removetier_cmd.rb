@@ -44,7 +44,7 @@ module AresMUSH
           # Ensure the tier is within the character's current tier range
           current_tier = traits.tier || 0
           client.emit_ooc "#{current_tier}"
-          if current_tier < self.tier.to_i
+          if current_tier.to_i < self.tier.to_i
             client.emit "We made it here"
             client.emit_failure "#{target.name} is not set to Tier #{self.tier} or higher."
             return
