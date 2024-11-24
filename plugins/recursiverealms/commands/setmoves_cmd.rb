@@ -28,6 +28,7 @@ module AresMUSH
           end
 
           tier_key = "Tier #{traits.tier}"
+          current_tier = traits.tier.to_i          
           #moves = chartype['Tiers'][tier_key]['Moves']
 
           moves = chartype['Tiers']
