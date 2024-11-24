@@ -28,15 +28,7 @@ module AresMUSH
           end
 
           tier_key = "Tier #{traits.tier}"
-          current_tier = traits.tier.to_i          
-          #moves = chartype['Tiers'][tier_key]['Moves']
-
-          moves = chartype['Tiers']
-          .select { |key, _| key.match(/Tier (\d+)/) && $1.to_i <= current_tier }
-          .map { |_, data| data['Moves'] || [] }
-          .flatten
-
-          client.emit_ooc "#{moves.inspect}"
+          moves = chartype['Tiers'][tier_key]['Moves']
 
           # Call the helper function to show available moves
           RecursiveRealms.handle_missing_move(moves, enactor, client)
@@ -87,6 +79,15 @@ module AresMUSH
         end
 
         # If a move is given, find the move by name
+        current_tier = traits.tier.to_i          
+
+        moves = chartype['Tiers']
+        .select { |key, _| key.match(/Tier (\d+)/) && $1.to_i <= current_tier }
+        .map { |_, data| data['Moves'] || [] }
+        .flatten
+
+        client.emit_ooc "#{moves.inspect}"
+        
         move = moves.find { |m| m['Name'].downcase == self.move_name.downcase }
 
         if move.nil?
