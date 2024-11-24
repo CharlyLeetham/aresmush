@@ -51,6 +51,7 @@ module AresMUSH
 
         tier_key = "Tier #{traits.tier}"
         moves = chartype['Tiers'][tier_key]['Moves']
+        client.emit_ooc "#{moves.inspect}"
 
         # Error handling for when Moves does not exist
         if moves.nil? || moves.empty?
@@ -87,7 +88,7 @@ module AresMUSH
         .flatten
 
         client.emit_ooc "#{moves.inspect}"
-        
+
         move = moves.find { |m| m['Name'].downcase == self.move_name.downcase }
 
         if move.nil?
