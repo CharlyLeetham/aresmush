@@ -31,7 +31,7 @@ module AresMUSH
           traits = result.target.rr_traits.first
           if traits
             # Pass the character's traits, special abilities, and moves to the template
-            template = RRSheetTemplate.new(traits, result.target.rr_specialabilities, result.rr_moves, enactor)
+            template = RRSheetTemplate.new(traits, result.target.rr_specialabilities, result.target.rr_moves, enactor)
             client.emit template.render
           else
             client.emit_ooc "Character type configuration not found in the YAML file."
