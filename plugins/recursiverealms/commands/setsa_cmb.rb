@@ -32,7 +32,18 @@ module AresMUSH
 
         client.emit_ooc "#{all_special_abilities}"
 
-        # If no ability name is provided, apply all special abilities available
+          # If no ability name is provided, list all available special abilities
+        if self.ability_name.nil? || self.ability_name.strip.empty?
+          if all_special_abilities.empty?
+            client.emit_ooc "No special abilities are available for your character."
+          else
+            ability_list = all_special_abilities.map { |ability| ability['Name'] }.join(', ')
+            client.emit_ooc "Available special abilities: #{ability_list}"
+          end
+          return
+        end
+
+        # If no ability name is provided, list  all special abilities available
         if self.ability_name.nil?
           all_special_abilities.each do |ability|
             expertise_limit = ability['Expertise'] ? ability['Expertise'].split('/').first.to_i : 0
