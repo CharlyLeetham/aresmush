@@ -12,8 +12,6 @@ module AresMUSH
       end
 
       def handle
-
-        client.emit_ooc "Ability_name: #{self.ability_name}, Choices: #{self.choices}"
         traits = enactor.rr_traits.first
         if traits.nil?
           client.emit_failure "Character traits not found."
@@ -37,8 +35,8 @@ module AresMUSH
           if all_special_abilities.empty?
             client.emit_ooc "No special abilities are available for your character."
           else
-            ability_list = all_special_abilities.map { |ability| ability['Name'] }.join(', ')
-            client.emit_ooc "Available special abilities: #{ability_list}"
+            template = RecursiveRealms::SpecialAbilitiesTemplate.new(all_special_abilities, enactor, traits)
+            client.emit template.render
           end
           return
         end
