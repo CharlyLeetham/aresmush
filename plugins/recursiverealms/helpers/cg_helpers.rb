@@ -107,7 +107,17 @@ module AresMUSH
           sklist: selected_choices.join(", ")
         )
       end
-      client.emit_success "You have selected: #{selected_choices.join(", ")} for #{ability['Name']}."
+      # Emit messages based on the number of options available
+      if ability['SkList'].nil? || ability['SkList'].strip.empty?
+        client.emit_success "The ability '#{ability['Name']}' has been set without specific options."
+      elsif selected_choices.size == 1
+        client.emit_success "The option '#{selected_choices.first}' has been automatically set for the ability '#{ability['Name']}'."
+      else
+        options = ability['SkList'].split(',').map(&:strip)
+        client.emit_ooc "Available options for '#{ability['Name']}': #{options.join(', ')}"
+        client.emit_ooc "Enter rr/set/sa/#{ability['Name']}/[option 1],[option 2] to select your options."
+        client.emit_ooc "You can select up to #{expertise_limit} options."
+      end
     end
 
     def self.get_all_special_abilities_for_tier_and_below(chartype, current_tier)
