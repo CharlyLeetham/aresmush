@@ -84,8 +84,10 @@ module AresMUSH
 
     # Helper method to validate and set the chosen options for a special ability
     def self.set_special_ability_choices(ability, choices, expertise_limit, enactor, client, traits)
-      
-      selected_choices = choices.split(",").map(&:strip)
+
+      # Handle nil choices by setting to an empty array
+      selected_choices = choices.nil? ? [] : choices.split(",").map(&:strip)
+
       if selected_choices.size > expertise_limit
         client.emit_failure "You can only choose up to #{expertise_limit} options for #{ability['Name']}."
         return
