@@ -30,6 +30,8 @@ module AresMUSH
         # Get all special abilities for the character's current and lower tiers
         all_special_abilities = RecursiveRealms.get_all_special_abilities_for_tier_and_below(chartype, traits.tier)
 
+        client.emit_ooc "#{all_special_abilities}"
+
         # If no ability name is provided, apply all special abilities available
         if self.ability_name.nil?
           all_special_abilities.each do |ability|
