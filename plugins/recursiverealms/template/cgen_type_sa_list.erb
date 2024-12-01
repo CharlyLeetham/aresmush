@@ -1,21 +1,7 @@
 <%= line_with_text "Available Special Abilities for #{chartypetitle} (Tier #{current_tier}):" %>
 
-<%= left("%xh%xgSpecial Abilities already set:%xn", 80) %>
-<% if @set_abilities.any? %>
-  <% @set_abilities.each do |ability| %>
-    <% display_name = "%xg#{ability[:name]}%xn" %>
-    <%= left("#{display_name}: #{ability[:description]} (Tier #{ability[:tier]})", 80) %>
-    <% if ability[:sklist] %>
-      <%= left("Selected options: #{ability[:selected_options].join(', ')}", 80) %>
-
-    <% end %>
-  <% end %>
-<% else %>
-  <%= left("No fully set abilities.", 80) %>
-<% end %>
-<%= left("%xrUnset or Incomplete Special Abilities:%xn", 80) %>
-<% if @unset_abilities.any? %>
-  <% @unset_abilities.each do |ability| %>
+<% if abilities.any? %>
+  <% abilities.each do |ability| %>
     <% display_name = ability[:is_set] ? "%xg#{ability[:name]}%xn" : "%xr#{ability[:name]}%xn" %>
     <%= "#{display_name}: #{ability[:description]} (Tier #{ability[:tier]})" %>
     <% if ability[:sklist] %>
@@ -35,7 +21,7 @@
     <% end %>
   <% end %>
 <% else %>
-  <%= left("No unset or incomplete abilities.", 80) %>
+  <%= left("No abilities available.", 80) %>
 <% end %>
 
 <%= footer %>
