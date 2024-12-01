@@ -61,7 +61,9 @@ module AresMUSH
             client.emit_success "The option '#{self.choices}' has been automatically set for the ability '#{self.ability_name}'."
           elsif self.choices.nil?
             # Display available options if no choices are provided
+            RecursiveRealms.set_special_ability_choices(ability, nil, expertise_limit, enactor, client, traits)
             client.emit_ooc "Available options for '#{self.ability_name}': #{options.join(', ')}"
+            client.emit_ooc "Enter rr/set/sa/#{self.ability_name}/[option 1] [option 2]"
             client.emit_ooc "You can select up to #{expertise_limit} options."
           else
             # Set the selected choices for the ability
