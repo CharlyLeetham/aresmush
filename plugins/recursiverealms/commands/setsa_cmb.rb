@@ -12,6 +12,8 @@ module AresMUSH
       end
 
       def handle
+
+        client.emit_ooc "Ability_name: #{self.ability_name}, Choices: #{self.choices}"
         traits = enactor.rr_traits.first
         if traits.nil?
           client.emit_failure "Character traits not found."
