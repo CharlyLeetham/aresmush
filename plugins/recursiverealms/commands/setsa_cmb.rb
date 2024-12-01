@@ -38,6 +38,7 @@ module AresMUSH
 
               if options.size == 1
                 # Automatically set the single option
+                client.emit_ooc "Loop 1"
                 self.choices = options.first
                 RecursiveRealms.set_special_ability_choices(ability, self.choices, expertise_limit, enactor, client, traits)
                 client.emit_success "The option '#{self.choices}' has been automatically set for the ability '#{ability['Name']}'."
@@ -48,6 +49,7 @@ module AresMUSH
               end
             else
               # No options to set, just add the ability
+              client.emit_ooc "Loop 2"
               RecursiveRealms.set_special_ability_choices(ability, nil, expertise_limit, enactor, client, traits)
               client.emit_success "The ability '#{ability['Name']}' has been set."
             end
