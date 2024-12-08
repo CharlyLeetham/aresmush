@@ -22,16 +22,6 @@ module AresMUSH
         # Fetch and display the character's rr_traits
         traits = result.target.rr_traits.first
 
-        #Testing
-
-
-        chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'] == traits.type }
-        client.emit_ooc "RRTraits: #{traits.type}"
-        currenttier = traits.tier.to_i
-        nummoves = RecursiveRealms.calculate_total_moves(chartype, currenttier)
-
-        client.emit_ooc "Type: #{traits.tier}, nummoves: #{nummoves}"
-
         if traits
           # Pass the character's traits, special abilities, and moves to the template
           template = RRSheetTemplate.new(traits, result.target.rr_specialabilities, result.target.rr_moves, result.target)
