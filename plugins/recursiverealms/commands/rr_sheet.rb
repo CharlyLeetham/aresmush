@@ -23,9 +23,9 @@ module AresMUSH
         traits = result.target.rr_traits.first
 
         #Testing
-        client.emit_ooc "RRTraits: #{result.target.traits.inspect}"
-        chartype = result.target.traits.type
-        currenttier = result.target.traits.type
+        client.emit_ooc "RRTraits: #{traits.inspect}"
+        chartype = traits.type
+        currenttier = traits.tier
         nummoves = RecursiveRealms.calculate_total_moves(chartype, current_tier)
 
         client.emit_ooc "Type: #{chartype}, nummoves: #{nummoves}"
