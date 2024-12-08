@@ -50,10 +50,6 @@ module AresMUSH
               client.emit_failure "Effort information for #{self.value.capitalize} (Tier #{traits.tier}) not found."
             end  
 
-
-            # Update Moves Allowed
-            RecursiveRealms.update_moves_allowed(chartype, traits, traits.tier.to_i, client)
-
             # Retrieve and add the special abilities for the type and tier
             special_abilities = chartype['Tiers'][tier_key]['Special Abilities']
             if special_abilities

@@ -101,5 +101,54 @@ module AresMUSH
             template = RecursiveRealms::SpecialAbilitiesTemplate.new(abilities, enactor, traits)
             client.emit template.render
         end
+
+
+        # Check if the character has already reached the maximum allowed moves
+        if current_moves >= moves_allowed
+            client.emit_failure "You have reached the maximum number of allowed moves (#{moves_allowed})."
+            client.emit_ooc "Use rr/remove/moves to remove ALL moves"
+            client.emit_ooc "Use rr/remove/moves/[move] to remove a specific moves"
+            display_current_moves(enactor, client)
+            return
+          end
+  
+          # If no move name is given, show a list of available moves for the current tier
+          if self.move_name.nil? || self.move_name.empty?
+            move_list = moves.map { |move| move['Name'] }.join(", ")
+            client.emit_ooc "Available Moves: #{move_list}"
+            return
+          end
+  
+          # If a move is given, find the move by name
+          current_tier = traits.tier.to_i          
+  
+          moves = chartype['Tiers']
+          .select { |key, _| key.match(/Tier (\d+)/) && $1.to_i <= current_tier }
+          .map { |_, data| data['Moves'] || [] }
+          .flatten
+  
+  
+          move = moves.to_a.find { |m| m['Name'].downcase == self.move_name.downcase }
+  
+          if move.nil?
+            client.emit_failure "Move'#{self.move_name}' not found."
+            move_list = moves.map { |move| move['Name'] }.join(", ")
+            client.emit_ooc "Available Moves: #{move_list}"
+            return
+          end
+  
+          # Add the move to the character's rr_moves collection
+          RecursiveRealms.add_move(self.move_name, enactor, client)
+  
+        end
+  
+        def display_current_moves(enactor, client)
+          if enactor.rr_moves.empty?
+            client.emit_ooc "No moves set."
+          else
+            move_list = enactor.rr_moves.map { |move| move.name }.join(", ")
+            client.emit_ooc "Current Moves: #{move_list}"
+          end
+        end        
     end 
 end 

@@ -266,25 +266,6 @@ module AresMUSH
       available_moves
     end    
 
-    # Helper method to update moves allowed based on current tier -- this should be made into a general helper that calculates the total number of moves on a dynamic basis.
-    def self.update_moves_allowed(chartype, traits, current_tier, client)
-      moves_allowed_total = 0
-
-      (1..current_tier).each do |tier|
-        tier_key = "Tier #{tier}"
-        moves_allowed_for_tier = chartype['Tiers'][tier_key] ? chartype['Tiers'][tier_key]['Moves Allowed'] : nil
-
-        if moves_allowed_for_tier
-          moves_allowed_total += moves_allowed_for_tier
-        else
-          client.emit_ooc "Moves Allowed for #{traits.type.capitalize} (Tier #{tier}) not found. Skipping."
-        end
-      end
-
-      traits.update(moves: moves_allowed_total)
-      client.emit_success "Total allowed moves for #{traits.type.capitalize} (up to Tier #{current_tier}) set to #{moves_allowed_total}."
-    end
-
     # Handle the case when the move_name is missing
     def self.handle_missing_move(moves, enactor, client)
       # Retrieve character traits
