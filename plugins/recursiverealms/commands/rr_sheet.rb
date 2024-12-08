@@ -30,7 +30,7 @@ module AresMUSH
         currenttier = traits.tier.to_i
         nummoves = RecursiveRealms.calculate_total_moves(chartype, currenttier)
 
-        client.emit_ooc "Type: #{chartype.Type}, nummoves: #{nummoves}"
+        client.emit_ooc "Type: #{traits.type}, nummoves: #{nummoves}"
 
         if traits
           # Pass the character's traits, special abilities, and moves to the template
