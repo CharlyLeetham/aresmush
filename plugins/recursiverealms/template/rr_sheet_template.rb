@@ -62,18 +62,18 @@ module AresMUSH
 
       def descriptor
         selected_descriptor = @traits.descriptor
-        @descriptors = Global.read_config("RecursiveRealms", "descriptors").find { |c| c['ID'].to_i == selected_descriptor.to_i }
+        @descriptors = Global.read_config("RecursiveRealms", "descriptors").find { |c| c['Type'].to_i == selected_descriptor.to_i }
         # Return the descriptor or a blank string if not found
         @descriptors && @descriptors['Descriptor'] || "N/A"
       end
 
       def total_moves
-        chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['ID'] == @traits.type }
+        chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'] == @traits.type }
         RecursiveRealms.calculate_total_moves(chartype, @traits.tier)
       end
 
       def num_tier_moves
-        chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['ID'] == @traits.type }
+        chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'] == @traits.type }
         RecursiveRealms.calculate_moves_per_tier(chartype, @traits.tier)
       end      
 
