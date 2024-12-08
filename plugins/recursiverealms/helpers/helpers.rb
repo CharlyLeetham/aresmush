@@ -22,7 +22,7 @@ module AresMUSH
         def self.calculate_total_moves(chartype, current_tier)
             total_moves = 0
         
-            (1..current_tier).each do |tier|
+            (1..current_tier.to_i).each do |tier|
               tier_key = "Tier #{tier}"
               moves_allowed_for_tier = chartype['Tiers'][tier_key] ? chartype['Tiers'][tier_key]['Moves Allowed'] : 0
         
@@ -36,7 +36,7 @@ module AresMUSH
         def self.calculate_moves_per_tier(chartype, current_tier)
         tier_moves = {}
     
-        (1..current_tier).each do |tier|
+        (1..current_tier.to_i).each do |tier|
             tier_key = "Tier #{tier}"
             moves_allowed_for_tier = chartype['Tiers'][tier_key] ? chartype['Tiers'][tier_key]['Moves Allowed'] : 0
     
