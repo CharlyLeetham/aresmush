@@ -53,7 +53,7 @@ module AresMUSH
         total_moves_allowed = RecursiveRealms.calculate_total_moves(chartype, current_tier)
         tier_moves_allowed = RecursiveRealms.calculate_moves_per_tier(chartype, current_tier)
 
-        client.emit_ooc "Here"
+        client.emit_ooc "Here #{self.move_name}"
 
         # Display move limits dynamically
         if self.move_name.nil? || self.move_name.empty?
