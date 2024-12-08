@@ -266,7 +266,7 @@ module AresMUSH
       available_moves
     end    
 
-    # Helper method to update moves allowed based on current tier
+    # Helper method to update moves allowed based on current tier -- this should be made into a general helper that calculates the total number of moves on a dynamic basis.
     def self.update_moves_allowed(chartype, traits, current_tier, client)
       moves_allowed_total = 0
 

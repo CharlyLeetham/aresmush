@@ -18,6 +18,47 @@ module AresMUSH
             actor && actor.has_permission?("manage_apps")
         end  
 
+        # Calculate the total number of moves up to the given tier
+        def self.calculate_total_moves(chartype, current_tier)
+            total_moves = 0
+        
+            (1..current_tier).each do |tier|
+              tier_key = "Tier #{tier}"
+              moves_allowed_for_tier = chartype['Tiers'][tier_key] ? chartype['Tiers'][tier_key]['Moves Allowed'] : 0
+        
+              total_moves += moves_allowed_for_tier
+            end
+        
+            total_moves
+          end
+        
+        # Calculate the number of moves for each tier up to the current tier
+        def self.calculate_moves_per_tier(chartype, current_tier)
+        tier_moves = {}
+    
+        (1..current_tier).each do |tier|
+            tier_key = "Tier #{tier}"
+            moves_allowed_for_tier = chartype['Tiers'][tier_key] ? chartype['Tiers'][tier_key]['Moves Allowed'] : 0
+    
+            tier_moves[tier_key] = moves_allowed_for_tier
+        end
+    
+        tier_moves
+        end
+        
+        # General helper to display moves dynamically
+        def self.display_moves(chartype, current_tier, client)
+            total_moves = calculate_total_moves(chartype, current_tier)
+            tier_moves = calculate_moves_per_tier(chartype, current_tier)
+
+            # Emit total moves message
+            client.emit_success "Total allowed moves up to Tier #{current_tier}: #{total_moves}."
+
+            # Emit moves per tier messages
+            tier_moves.each do |tier, moves|
+            client.emit_success "Moves for #{tier}: #{moves}."
+            end
+        end
         
     end
 end
