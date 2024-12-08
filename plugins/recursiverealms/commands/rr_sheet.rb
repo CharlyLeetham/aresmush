@@ -24,7 +24,9 @@ module AresMUSH
 
         #Testing
         #client.emit_ooc "RRTraits: #{traits.inspect}"
-        chartype = traits.type
+
+        chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['ID'] == traits.type }
+        #chartype = traits.type
         currenttier = traits.tier.to_i
         nummoves = RecursiveRealms.calculate_total_moves(chartype, currenttier)
 
