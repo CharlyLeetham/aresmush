@@ -13,6 +13,7 @@ module AresMUSH
       def handle
         # Find the target character (default to enactor if no name is provided)
         result = ClassTargetFinder.find(self.target_name, Character, enactor)
+        client.emit_ooc "Traits: #{traits}"
 
         if result.error
           client.emit_ooc "Error: #{result.error}"
