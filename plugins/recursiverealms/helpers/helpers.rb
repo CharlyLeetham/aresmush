@@ -25,6 +25,7 @@ module AresMUSH
             (1..current_tier.to_i).each do |tier|
               Global.logger.debug "Tier level #{tier}."                   
               tier_key = "Tier #{tier}"
+              Global.logger.debug "Tier key #{tier_key}." 
               moves_allowed_for_tier = chartype['Tiers'][tier_key] ? chartype['Tiers'][tier_key]['Moves Allowed'] : 0
         
               total_moves += moves_allowed_for_tier
@@ -38,7 +39,6 @@ module AresMUSH
         tier_moves = {}
     
         (1..current_tier.to_i).each do |tier|
-            Global.logger.debug "Tier level #{tier}."
             tier_key = "Tier #{tier}"
             moves_allowed_for_tier = chartype['Tiers'][tier_key] ? chartype['Tiers'][tier_key]['Moves Allowed'] : 0
     
