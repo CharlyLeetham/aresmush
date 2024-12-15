@@ -21,7 +21,8 @@ module AresMUSH
         # Calculate the total number of moves up to the given tier
         def self.calculate_total_moves(chartype, current_tier)
             total_moves = 0
-            Global.logger.debug "Tier level #{current_tier}."        
+            Global.logger.debug "Tier level #{current_tier}."
+            Global.logger.debug "Chartype #{chartype}"        
             (1..current_tier.to_i).each do |tier|
               Global.logger.debug "Tier level #{tier}."                   
               tier_key = "Tier #{tier}"
