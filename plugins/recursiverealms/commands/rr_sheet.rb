@@ -23,12 +23,10 @@ module AresMUSH
         # Fetch and display the character's rr_traits
         traits = result.target.rr_traits.first
 
-        client.emit_ooc "Traits: #{traits.inspect}"
-
         if traits
           # Pass the character's traits, special abilities, and moves to the template
-          #template = RRSheetTemplate.new(traits, result.target.rr_specialabilities, result.target.rr_moves, result.target)
-          #client.emit template.render
+          template = RRSheetTemplate.new(traits, result.target.rr_specialabilities, result.target.rr_moves, result.target)
+          client.emit template.render
         else
           client.emit_ooc "#{result.target.name} has no Type assigned yet. Please type `rr/set/type/[type]` to begin your character creation."
           RecursiveRealms.handle_missing_type(client, result.target)
