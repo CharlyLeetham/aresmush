@@ -22,6 +22,8 @@ module AresMUSH
         # Fetch and display the character's rr_traits
         traits = result.target.rr_traits.first
 
+        client.emit_ooc "#{traits}"
+
         if traits
           # Pass the character's traits, special abilities, and moves to the template
           template = RRSheetTemplate.new(traits, result.target.rr_specialabilities, result.target.rr_moves, result.target)
