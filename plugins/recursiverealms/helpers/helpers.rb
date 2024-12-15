@@ -34,7 +34,7 @@ module AresMUSH
                 Global.logger.debug("#{tier_key} does not exist in Tiers")
               end       
               Global.logger.debug("Moves Allowed: #{chartype['Tiers'][tier_key]['Moves Allowed']}")       
-              moves_allowed_for_tier = chartype['Tiers'][tier_key] ? chartype['Tiers'][tier_key]['Moves Allowed'] : 0
+              moves_allowed_for_tier = (chartype['Tiers'] && chartype['Tiers'][tier_key] && chartype['Tiers'][tier_key]['Moves Allowed']) || 0
         
               total_moves += moves_allowed_for_tier
             end
