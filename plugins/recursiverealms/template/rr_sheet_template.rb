@@ -68,13 +68,13 @@ module AresMUSH
       end
 
       def total_moves
-        Global.logger.debug "Traits type #{@traits.type}."        
+        Global.logger.debug "Totalmoves Traits type #{@traits.type}."        
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'] == @traits.type }
         RecursiveRealms.calculate_total_moves(chartype, @traits.tier.to_i)
       end
 
       def num_tier_moves
-        Global.logger.debug "Traits type #{@traits.type}." 
+        Global.logger.debug "Tiermoves Traits type #{@traits.type}." 
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'] == @traits.type }
         RecursiveRealms.calculate_moves_per_tier(chartype, @traits.tier.to_i)
       end      
