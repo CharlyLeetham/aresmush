@@ -11,7 +11,6 @@ module AresMUSH
       end
 
       def handle
-        client.emit_ooc "Traits: #{traits}"
         # Find the target character (default to enactor if no name is provided)
         result = ClassTargetFinder.find(self.target_name, Character, enactor)
         
@@ -24,7 +23,7 @@ module AresMUSH
         # Fetch and display the character's rr_traits
         traits = result.target.rr_traits.first
 
-        client.emit_ooc "Traits: #{traits}"
+        client.emit_ooc "Traits: #{traits.inspect}"
 
         if traits
           # Pass the character's traits, special abilities, and moves to the template
