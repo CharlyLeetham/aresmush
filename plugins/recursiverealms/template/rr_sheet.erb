@@ -3,7 +3,6 @@
 <%= left("%xh%xbMight:%xn #{might}", 25) %> <%= left("%xh%xbSpeed:%xn #{speed}", 25) %> <%= left("%xh%xbIntellect:%xn #{intellect}", 25) %>
 <%= left("%xh%xbEffort:%xn #{effort}", 25) %> <%= left("%xh%xbXP:%xn #{xp}", 25) %> <%= left("%xh%xbMoves Allowed:%xn #{total_moves}", 25) %>
 <%= "%xh%xbNumber of Moves per Tier:%xn" %>
-<%= num_tier_moves %>
 <% num_tier_moves.each_slice(6) do |tier_moves_row| %> 
 <%= tier_moves_row.map { |tier_key, tier_moves| left("%xh%xb#{tier_key}:%xn #{tier_moves}", 10) }.join %> 
 <% end %> 
