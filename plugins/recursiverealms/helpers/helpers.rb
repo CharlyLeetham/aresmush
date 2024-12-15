@@ -22,7 +22,7 @@ module AresMUSH
         def self.calculate_total_moves(chartype, current_tier)
             total_moves = 0
             Global.logger.debug "totalmoves Tier level #{current_tier}."
-            Global.logger.debug "totalmoves Chartype #{chartype}"        
+            Global.logger.debug "totalmoves Chartype #{chartype.inspect}"        
             (1..current_tier.to_i).each do |tier|
               Global.logger.debug "totalmoves 2 Tier level #{tier}."                   
               tier_key = "Tier #{tier}"
