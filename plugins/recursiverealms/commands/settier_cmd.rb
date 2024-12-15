@@ -59,9 +59,6 @@ module AresMUSH
           client.emit_success "Effort information for #{traits.type.capitalize} (Tier #{self.value}) does not change."
         end
 
-        # Update Moves Allowed
-        RecursiveRealms.update_moves_allowed(chartype, traits, self.value.to_i, client)
-
         # Add Special Abilities for the new tier
         special_abilities = chartype['Tiers'][tier_key]['Special Abilities']
         if special_abilities

@@ -61,7 +61,7 @@ module AresMUSH
             tier_moves.each do |tier, moves|
             client.emit_success "Moves for #{tier}: #{moves}."
             end
-        end
+        end        
         
     end
 end
