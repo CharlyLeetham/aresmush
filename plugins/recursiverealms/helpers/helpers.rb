@@ -22,11 +22,16 @@ module AresMUSH
         def self.calculate_total_moves(chartype, current_tier)
             total_moves = 0
                             
-            (1..current_tier.to_i).each do |tier|
-              Global.logger.debug "totalmoves 2 Tier level #{tier}."                   
+            (1..current_tier.to_i).each do |tier|               
               tier_key = "Tier #{tier}"
-              Global.logger.debug "Totalmoves 2 Tier key #{tier_key}." 
-              Global.logger.debug "Tier key comparison: #{tier_key} vs #{chartype['Tiers'].keys.first}"               
+              Global.logger.debug "Totalmoves Tier key #{tier_key}." 
+              Global.logger.debug "Processing #{tier_key}: #{chartype['Tiers'][tier_key].inspect}"
+              
+              if chartype['Tiers'].key?(tier_key)
+                Global.logger.debug("#{tier_key} exists in Tiers")
+              else
+                Global.logger.debug("#{tier_key} does not exist in Tiers")
+              end              
               moves_allowed_for_tier = chartype['Tiers'][tier_key] ? chartype['Tiers'][tier_key]['Moves Allowed'] : 0
         
               total_moves += moves_allowed_for_tier
