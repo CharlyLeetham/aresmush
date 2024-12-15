@@ -30,13 +30,14 @@ module AresMUSH
             end
         
             total_moves
-          end
+        end
         
         # Calculate the number of moves for each tier up to the current tier
         def self.calculate_moves_per_tier(chartype, current_tier)
         tier_moves = {}
     
         (1..current_tier.to_i).each do |tier|
+            Global.logger.debug "Tier level #{tier}."
             tier_key = "Tier #{tier}"
             moves_allowed_for_tier = chartype['Tiers'][tier_key] ? chartype['Tiers'][tier_key]['Moves Allowed'] : 0
     
