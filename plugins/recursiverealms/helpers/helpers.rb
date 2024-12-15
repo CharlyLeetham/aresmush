@@ -20,22 +20,10 @@ module AresMUSH
 
         # Calculate the total number of moves up to the given tier
         def self.calculate_total_moves(chartype, current_tier)
-            total_moves = 0
-            Global.logger.debug("current_tier value: #{current_tier}, type: #{current_tier.class}")                
+            total_moves = 0        
             (1..current_tier.to_i).each do |tier|               
-              tier_key = "Tier #{tier}"
-              Global.logger.debug "Totalmoves Tier key #{tier_key}." 
-              Global.logger.debug "Processing tier: #{tier}, key: #{tier_key}"
-              Global.logger.debug("Tiers available: #{chartype['Tiers'].keys}")
-              Global.logger.debug("Range to process: #{1..current_tier.to_i}")
-              if chartype['Tiers'].key?(tier_key)
-                Global.logger.debug("#{tier_key} exists in Tiers")
-              else
-                Global.logger.debug("#{tier_key} does not exist in Tiers")
-              end       
-              Global.logger.debug("Moves Allowed: #{chartype['Tiers'][tier_key]['Moves Allowed']}")       
-              moves_allowed_for_tier = (chartype['Tiers'] && chartype['Tiers'][tier_key] && chartype['Tiers'][tier_key]['Moves Allowed']) || 0
-        
+              tier_key = "Tier #{tier}"          
+              moves_allowed_for_tier = chartype['Tiers'][tier_key] ? chartype['Tiers'][tier_key]['Moves Allowed'] : 0   
               total_moves += moves_allowed_for_tier
             end
         
@@ -46,13 +34,11 @@ module AresMUSH
         def self.calculate_moves_per_tier(chartype, current_tier)
         tier_moves = {}
     
-        (1..current_tier.to_i).each do |tier|
+        (1..current_tier.to_i).each do |tier|        
             tier_key = "Tier #{tier}"
             moves_allowed_for_tier = chartype['Tiers'][tier_key] ? chartype['Tiers'][tier_key]['Moves Allowed'] : 0
-    
             tier_moves[tier_key] = moves_allowed_for_tier
         end
-    
         tier_moves
         end
         
