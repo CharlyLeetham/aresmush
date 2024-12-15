@@ -73,6 +73,7 @@ module AresMUSH
       end
 
       def num_tier_moves
+        return @traits.tier
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'] == @traits.type }
         RecursiveRealms.calculate_moves_per_tier(chartype, @traits.tier.to_i)
       end      
