@@ -25,8 +25,9 @@ module AresMUSH
             (1..current_tier.to_i).each do |tier|               
               tier_key = "Tier #{tier}"
               Global.logger.debug "Totalmoves Tier key #{tier_key}." 
-              Global.logger.debug "Processing #{tier_key}: #{chartype['Tiers'][tier_key].inspect}"
-              
+              Global.logger.debug "Processing tier: #{tier}, key: #{tier_key}"
+              Global.logger.debug("Tiers available: #{chartype['Tiers'].keys}")
+              Global.logger.debug("Range to process: #{1..current_tier.to_i}")
               if chartype['Tiers'].key?(tier_key)
                 Global.logger.debug("#{tier_key} exists in Tiers")
               else
