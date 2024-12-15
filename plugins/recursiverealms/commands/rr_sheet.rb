@@ -22,6 +22,7 @@ module AresMUSH
 
         # Fetch and display the character's rr_traits
         traits = result.target.rr_traits.first
+        client.emit_ooc "#{traits.inspect}"
 
         if traits
           # Pass the character's traits, special abilities, and moves to the template
