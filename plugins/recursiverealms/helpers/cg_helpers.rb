@@ -142,7 +142,7 @@ module AresMUSH
     # Helper method to add a move to the character's moves
     def self.add_move(move_name, enactor, client)
       traits = enactor.rr_traits.first
-      return "Inside add_move loop"
+      client.emit_ooc "Inside add_move loop"
       if traits.nil?
         client.emit_failure "Character traits not found."
         return
