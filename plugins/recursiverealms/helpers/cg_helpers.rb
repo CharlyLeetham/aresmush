@@ -281,8 +281,7 @@ module AresMUSH
     
     def self.list_all_moves(client, enactor)
       # Retrieve character traits
-      client.emit_ooc "List All Moves"
-      traits = enactor.rr_traits.first
+        traits = enactor.rr_traits.first
       if traits.nil?
         client.emit_failure "Character traits not found."
         return
@@ -304,6 +303,7 @@ module AresMUSH
     
       if tier_data && tier_data['Moves']
         # Pass the moves data to the template for rendering
+        client.emit_ooc "Here"
         template = CharacterTypeMovesSummTemplate.new(enactor, chartype, traits, current_tier)
         client.emit template.render
       else
