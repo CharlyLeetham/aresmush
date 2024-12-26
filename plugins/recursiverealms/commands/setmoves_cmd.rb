@@ -20,7 +20,6 @@ module AresMUSH
             return
           end
           
-
           # Retrieve character type and tier from the YAML
           chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == traits.type.downcase }
           if chartype.nil?
@@ -49,13 +48,10 @@ module AresMUSH
           client.emit_failure "Character type '#{traits.type}' not found in configuration."
           return
         end
-
-    
+  
         current_tier = traits.tier.to_i
         total_moves_allowed = RecursiveRealms.calculate_total_moves(chartype, current_tier)
         tier_moves_allowed = RecursiveRealms.calculate_moves_per_tier(chartype, current_tier)
-
-        client.emit_ooc "Here #{self.move_name}"
 
         # Display move limits dynamically
         if self.move_name.nil? || self.move_name.empty?
@@ -83,8 +79,6 @@ module AresMUSH
 
         move = moves.to_a.find { |m| m['Name'].downcase == self.move_name.downcase }
 
-        client.emit_ooc ("Move: #{move}")
-
         if move.nil?
           client.emit_failure "Move '#{self.move_name}' not found."
           move_list = moves.map { |move| move['Name'] }.join(", ")
@@ -102,10 +96,8 @@ module AresMUSH
           return
         end
 
-        client.emit_ooc ("Move 4")
         # Add the move to the character's rr_moves collection
-        output = RecursiveRealms.add_move(self.move_name, enactor, client)
-        client.emit_ooc "#{output}"
+        RecursiveRealms.add_move(self.move_name, enactor, client)
       end
 
       def display_current_moves(enactor, client)
