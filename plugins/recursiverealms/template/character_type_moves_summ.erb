@@ -11,6 +11,7 @@
       <%= left("%xhNumber of Moves:%xn #{tier_moves[tier_name]}", 100) %>
       <% tier_data['Moves'].each do |move| %>
         <% move_name = move['Name'].downcase %>
+        <%= charmoves.inspect %>
         <% if char_moves.include?(move_name) %>
           <%= left("%xh%xg#{move['Name']}:%xg%xn", 30) %> <%= left("#{move['Flavor Text']}", 70) %>
         <% else %>
