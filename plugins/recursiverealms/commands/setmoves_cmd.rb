@@ -104,7 +104,8 @@ module AresMUSH
 
         client.emit_ooc ("Move 4")
         # Add the move to the character's rr_moves collection
-        RecursiveRealms.add_move(self.move_name, enactor, client)
+        output = RecursiveRealms.add_move(self.move_name, enactor, client)
+        client.emit_ooc "#{output}"
       end
 
       def display_current_moves(enactor, client)
