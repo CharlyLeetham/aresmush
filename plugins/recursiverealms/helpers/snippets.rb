@@ -101,7 +101,7 @@ module AresMUSH
           client.emit template.render
       end
 
-      def self.add_move(move_name, enactor, client)
+      def self.add_move_old(move_name, enactor, client)
           # Define the logic for adding a move
       end
 
