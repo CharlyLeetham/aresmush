@@ -281,6 +281,7 @@ module AresMUSH
     
     def self.list_all_moves(client, enactor)
       # Retrieve character traits
+      client.emit_ooc "List All Moves"
       traits = enactor.rr_traits.first
       if traits.nil?
         client.emit_failure "Character traits not found."
