@@ -192,6 +192,7 @@ module AresMUSH
         duration: move['Duration']
       )
 
+      client.emit_success "Move '#{move_name}' added."      
       # Call the function to display current moves status after the move is added
       RecursiveRealms.emit_moves_status(enactor, client)
     end
