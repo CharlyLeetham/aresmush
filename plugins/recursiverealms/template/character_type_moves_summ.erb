@@ -9,7 +9,7 @@
   <% if tier_number <= current_tier %>
     <%= left("%xh#{tier_name}:%xn", 100) %>
     <% if tier_data['Moves'] %>
-      <%= left("%xhMoves:%xn #{}", 100) %>
+      <%= left("%xhNumber of Moves:%xn #{tier_moves}", 100) %>
       <% tier_data['Moves'].each do |move| %>
         <% move_name = move['Name'].downcase %>
         <% if char_moves.include?(move_name) %>
