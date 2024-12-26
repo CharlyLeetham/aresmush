@@ -229,7 +229,6 @@ module AresMUSH
       moves_allowed= RecursiveRealms.calculate_total_moves(chartype, traits.tier.to_i)
       current_moves = enactor.rr_moves.size
       remaining_moves = moves_allowed - current_moves
-      client.emit_ooc "moves allowed: #{moves_allowed}, current moves: #{current_moves}, remaining moves: #{remaining_moves}"
 
       if remaining_moves > 0
         # List the available moves from all tiers they have access to
