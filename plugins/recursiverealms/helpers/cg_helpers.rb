@@ -267,6 +267,7 @@ module AresMUSH
     end    
 
     # Handle the case when the move_name is missing
+    # moves is not used in this function. Consider modifying it to allow moves to be set for other players
     def self.handle_missing_move(moves, enactor, client)
       # Retrieve character traits
       traits = enactor.rr_traits.first
@@ -295,15 +296,14 @@ module AresMUSH
     
       # Retrieve the current tier and number of moves
       current_tier = traits.tier
-      num_moves = traits.moves
-    
+  
       # Get the moves for the current tier
       tier_key = "Tier #{current_tier}"
       tier_data = chartype['Tiers'][tier_key]
     
       if tier_data && tier_data['Moves']
         # Pass the moves data to the template for rendering
-        template = CharacterTypeMovesSummTemplate.new(enactor, chartype, current_tier, num_moves)
+        template = CharacterTypeMovesSummTemplate.new(enactor, chartype, traits, current_tier)
         client.emit template.render
       else
         client.emit_failure "Moves not found for Tier #{current_tier} for character type #{traits.type.capitalize}."

@@ -1,13 +1,13 @@
 module AresMUSH
   module RecursiveRealms
     class CharacterTypeMovesSummTemplate < ErbTemplateRenderer
-      attr_accessor :chartype, :tier, :num_moves
+      attr_accessor :chartype, :traits, :tier, :num_moves
 
-      def initialize(enactor, chartype, tier = nil, num_moves = nil)
+      def initialize(enactor, chartype, traits, tier = nil)
         @chartype = chartype
         @tier = tier
-        @num_moves = num_moves
         @enactor = enactor
+        @traits = traits
         super File.dirname(__FILE__) + "/character_type_moves_summ.erb"
       end
 
@@ -24,9 +24,15 @@ module AresMUSH
         end
       end
 
-      def current_moves
-        @enactor.rr_moves.map(&:name).map(&:downcase)
+      def total_moves
+        chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == @traits.type }      
+        RecursiveRealms.calculate_total_moves(chartype, @traits.tier.to_i)
       end
+
+      def tier_moves
+        chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == @traits.type }      
+        RecursiveRealms.calculate_moves_per_tier(chartype, @traits.tier.to_i)
+      end      
 
     end
   end

@@ -1,15 +1,15 @@
 <%= line_with_text t('RecursiveRealms.char_moves_title', :chartype => self.chartypetitle) %>
 <%= left("%xhDescription:%xn #{chartype['Descriptor']}", 100) %>
-<%= left("%xhTotal Moves:%xn #{num_moves}", 100) %>
+<%= left("%xhTotal Moves:%xn #{total_moves}", 100) %>
 <% current_tier = @tier.to_i %>
-<% current_moves = self.current_moves %>
+<% current_moves = self.total_moves %>
 <% @chartype['Tiers'].each do |tier_name, tier_data| %>
   
   <% tier_number = tier_name.split(' ').last.to_i %>
   <% if tier_number <= current_tier %>
     <%= left("%xh#{tier_name}:%xn", 100) %>
     <% if tier_data['Moves'] %>
-      <%= left("%xhMoves:%xn", 100) %>
+      <%= left("%xhMoves:%xn #{}", 100) %>
       <% tier_data['Moves'].each do |move| %>
         <% move_name = move['Name'].downcase %>
         <% if current_moves.include?(move_name) %>
