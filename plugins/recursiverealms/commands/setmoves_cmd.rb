@@ -93,6 +93,8 @@ module AresMUSH
 
         if tier_moves_count >= tier_limit
           client.emit_failure "You have reached the maximum number of moves for Tier #{move_tier} (#{tier_limit})."
+          # Call the function to list all available moves
+          RecursiveRealms.list_all_moves(client, enactor)          
           return
         end
 
