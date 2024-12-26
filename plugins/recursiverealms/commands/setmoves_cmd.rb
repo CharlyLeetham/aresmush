@@ -49,6 +49,7 @@ module AresMUSH
           return
         end
 
+        client.emit_ooc "Here"        
         current_tier = traits.tier.to_i
         total_moves_allowed = RecursiveRealms.calculate_total_moves(chartype, current_tier)
         tier_moves_allowed = RecursiveRealms.calculate_moves_per_tier(chartype, current_tier)
