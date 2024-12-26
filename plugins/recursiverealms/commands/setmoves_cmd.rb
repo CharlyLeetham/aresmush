@@ -67,7 +67,7 @@ module AresMUSH
         # Check if the character has already reached the maximum allowed moves
         if enactor.rr_moves.size >= total_moves_allowed
           client.emit_failure "You have reached the maximum number of allowed moves (#{total_moves_allowed})."
-          display_current_moves(enactor, client)
+          RecursiveRealms.list_all_moves(client, enactor) 
           return
         end
 
