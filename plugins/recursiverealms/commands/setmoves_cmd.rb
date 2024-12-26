@@ -30,7 +30,7 @@ module AresMUSH
 
           tier_key = "Tier #{traits.tier}"
           moves = chartype['Tiers'][tier_key]['Moves']
-          client.emit_ooc "Here 1"
+          client.emit_ooc "Here 1" 
           # Call the helper function to show available moves
           RecursiveRealms.handle_missing_move(moves, enactor, client)
           return
