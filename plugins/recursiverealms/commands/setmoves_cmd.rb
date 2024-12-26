@@ -102,6 +102,7 @@ module AresMUSH
           return
         end
 
+        client.emit_ooc ("Move 4")
         # Add the move to the character's rr_moves collection
         RecursiveRealms.add_move(self.move_name, enactor, client)
       end
