@@ -101,16 +101,6 @@ module AresMUSH
         # Add the move to the character's rr_moves collection
         RecursiveRealms.add_move(self.move_name, enactor, client)
       end
-
-      def display_current_moves(enactor, client)
-        if enactor.rr_moves.empty?
-          client.emit_ooc "No moves set."
-        else
-          move_list = enactor.rr_moves.map { |move| move.name }.join(", ")
-          client.emit_ooc "Current Moves: #{move_list}"
-        end
-      end
-
     end
   end
 end
