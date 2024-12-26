@@ -32,7 +32,13 @@ module AresMUSH
       def tier_moves
         chartype = Global.read_config("RecursiveRealms", "characters").find { |c| c['Type'].downcase == @traits.type }      
         RecursiveRealms.calculate_moves_per_tier(chartype, @traits.tier.to_i)
-      end      
+      end 
+      
+      def char_moves
+        charmoves = enactor.rr_moves
+        return charmoves.map { |move| move.name }.join(', ') unless charmoves.empty?
+        return "None"
+      end
 
     end
   end

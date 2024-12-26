@@ -303,7 +303,6 @@ module AresMUSH
     
       if tier_data && tier_data['Moves']
         # Pass the moves data to the template for rendering
-        client.emit_ooc "Here"
         template = CharacterTypeMovesSummTemplate.new(enactor, chartype, traits, current_tier)
         client.emit template.render
       else
