@@ -83,6 +83,8 @@ module AresMUSH
 
         move = moves.to_a.find { |m| m['Name'].downcase == self.move_name.downcase }
 
+        client.emit_ooc ("Move: #{move}")
+
         if move.nil?
           client.emit_failure "Move '#{self.move_name}' not found."
           move_list = moves.map { |move| move['Name'] }.join(", ")
