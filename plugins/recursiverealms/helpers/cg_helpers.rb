@@ -243,6 +243,9 @@ module AresMUSH
       else
         client.emit_failure "You have reached the maximum number of moves."
       end
+      
+      # Call the function to list all available moves
+      list_all_moves(client, enactor)
     end 
     
     # Helper method to list available moves from all accessible tiers, excluding chosen ones
