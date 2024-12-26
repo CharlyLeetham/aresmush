@@ -35,7 +35,7 @@ module AresMUSH
       end 
       
       def char_moves
-        charmoves = enactor.rr_moves
+        charmoves = @enactor.rr_moves
         return charmoves.map { |move| move.name }.join(', ') unless charmoves.empty?
         return "None"
       end
