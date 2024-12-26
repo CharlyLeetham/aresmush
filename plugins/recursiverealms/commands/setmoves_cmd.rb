@@ -32,6 +32,7 @@ module AresMUSH
           moves = chartype['Tiers'][tier_key]['Moves']
 
           # Call the helper function to show available moves
+          client.emit_ooc "#{moves.inspect}"
           RecursiveRealms.handle_missing_move(moves, enactor, client)
           client.emit_ooc "Here 1" 
           return
